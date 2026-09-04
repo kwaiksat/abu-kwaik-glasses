@@ -1,1 +1,48 @@
-{% extends 'base.html' %}{% block content %}<main class="hero"><div class="icon">👓</div><h1>مبادرة العطاء لدعم النظارات الطبية</h1><h2><b>لكبار السن من عائلة أبوكويك المحترمين</b></h2><p>استقبال طلبات الدعم الخاصة بتوفير وتركيب النظارات الطبية.</p><div class="status">{{'🟢 التسجيل مفتوح حاليًا' if registration_open else '🔴 التسجيل مغلق حاليًا'}}</div>{% if registration_open %}<a class="btn" href="/register">بدء التسجيل</a>{% endif %}</main>{% endblock %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main>  <section class="hero"><div class="icon">👓</div>
+
+<h1>
+  مبادرة العطاء لدعم النظارات الطبية
+</h1>
+
+<h2>
+  لكبار السن من عائلة أبوكويك المحترمين
+</h2>
+
+<p>
+  مبادرة إنسانية تهدف إلى المساهمة في توفير وتركيب
+  النظارات الطبية لكبار السن من أفراد عائلة أبوكويك،
+  ومساعدتهم على تحسين قدرتهم على الرؤية وجودة حياتهم.
+</p>
+
+<div class="status">
+  {{ '🟢 التسجيل مفتوح حاليًا' if registration_open else '🔴 التسجيل مغلق حاليًا' }}
+</div>
+
+{% if registration_open %}
+
+<div class="center">
+  <a class="btn" href="/register">
+    👓 بدء التسجيل
+  </a>
+</div>
+
+{% endif %}
+
+  </section>  <section class="card"><h3>عن المبادرة</h3>
+
+<p>
+  نرحب بطلبات كبار السن من عائلة أبوكويك الراغبين
+  في الاستفادة من دعم النظارات الطبية، وسيتم مراجعة
+  البيانات المقدمة وفق آلية المبادرة.
+</p>
+
+<div class="note">
+  💜 يرجى تعبئة البيانات المطلوبة بدقة، والتأكد من
+  صحة رقم الهاتف والمعلومات الخاصة بالمستفيد.
+</div>
+
+  </section></main>{% endblock %}
