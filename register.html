@@ -1,1 +1,212 @@
-{% extends 'base.html' %}{% block content %}<main class="card"><h1>📝 طلب دعم النظارات الطبية</h1><form method="post" enctype="multipart/form-data"><h3>بيانات مقدم الطلب</h3><div class="grid"><label>الاسم الكامل*<input name="applicant_name" required></label><label>رقم الهوية<input name="applicant_id"></label><label>رقم الهاتف / واتساب<input name="phone"></label><label>مكان السكن<input name="address"></label></div><h3>بيانات كبير السن المستفيد</h3><div class="grid"><label>الاسم الكامل*<input name="beneficiary_name" required></label><label>رقم الهوية<input name="beneficiary_id"></label><label>تاريخ الميلاد<input type="date" name="birth_date"></label><label>العمر<input type="number" name="age" min="1" max="120"></label><label>الجنس<select name="gender"><option>ذكر</option><option>أنثى</option></select></label><label>رقم الهاتف إن وجد<input name="beneficiary_phone"></label><label>اسم الأب<input name="father_name"></label><label>اسم الأم<input name="mother_name"></label></div><h3>🩺 الحالة الصحية</h3><div class="grid"><label>ارتفاع ضغط الدم<select name="blood_pressure"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><label>مرض السكري<select name="diabetes"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label></div><h3>👓 حالة النظر</h3><div class="grid"><label>يستخدم نظارة حاليًا؟<select name="current_glasses"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><label>لديه وصفة طبية؟<select name="prescription"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><label>تاريخ آخر فحص للعيون<input type="date" name="last_eye_exam"></label><label>نوع النظارة المطلوبة<select name="glasses_type"><option>للقراءة</option><option>للنظر البعيد</option><option>للقراءة والنظر البعيد</option><option>غير محدد ويحتاج فحصًا</option></select></label></div><label>وصف مشكلة النظر<textarea name="vision_problem"></textarea></label><label>هل لديه تقرير طبي؟<select name="medical_report"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><h3>👨‍👩‍👧‍👦 أفراد الأسرة</h3><label>أسماء أفراد الأسرة وأعمارهم وصلة القرابة<textarea name="family_data"></textarea></label><h3>📎 المرفقات</h3><input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png"><p class="note">إرسال الطلب لا يعني الموافقة التلقائية على الدعم، ويخضع الطلب للمراجعة وتوفر الدعم.</p><button class="btn" type="submit">إرسال طلب الدعم</button></form></main>{% endblock %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="card">  <div class="center">
+    <div class="icon">👓</div><h1>طلب دعم النظارات الطبية</h1>
+
+<p>
+  يرجى تعبئة البيانات التالية بدقة لمساعدة فريق المبادرة
+  على مراجعة طلب المستفيد.
+</p>
+
+  </div>  <form method="post" enctype="multipart/form-data"><h3>👤 أولًا: بيانات مقدم الطلب</h3>
+
+<div class="grid">
+
+  <label>
+    الاسم الكامل *
+    <input name="applicant_name" required>
+  </label>
+
+  <label>
+    رقم الهوية
+    <input name="applicant_id">
+  </label>
+
+  <label>
+    رقم الهاتف / واتساب
+    <input name="phone">
+  </label>
+
+  <label>
+    مكان السكن
+    <input name="address">
+  </label>
+
+</div>
+
+
+<h3>👴 ثانيًا: بيانات كبير السن المستفيد</h3>
+
+<div class="grid">
+
+  <label>
+    الاسم الكامل *
+    <input name="beneficiary_name" required>
+  </label>
+
+  <label>
+    رقم الهوية
+    <input name="beneficiary_id">
+  </label>
+
+  <label>
+    تاريخ الميلاد
+    <input type="date" name="birth_date">
+  </label>
+
+  <label>
+    العمر
+    <input type="number" name="age" min="1" max="120">
+  </label>
+
+  <label>
+    الجنس
+    <select name="gender">
+      <option>ذكر</option>
+      <option>أنثى</option>
+    </select>
+  </label>
+
+  <label>
+    رقم الهاتف إن وجد
+    <input name="beneficiary_phone">
+  </label>
+
+  <label>
+    اسم الأب
+    <input name="father_name">
+  </label>
+
+  <label>
+    اسم الأم
+    <input name="mother_name">
+  </label>
+
+</div>
+
+
+<h3>🩺 ثالثًا: الحالة الصحية</h3>
+
+<div class="grid">
+
+  <label>
+    هل يعاني من ارتفاع ضغط الدم؟
+    <select name="blood_pressure">
+      <option>نعم</option>
+      <option>لا</option>
+      <option>لا أعرف</option>
+    </select>
+  </label>
+
+  <label>
+    هل يعاني من مرض السكري؟
+    <select name="diabetes">
+      <option>نعم</option>
+      <option>لا</option>
+      <option>لا أعرف</option>
+    </select>
+  </label>
+
+</div>
+
+
+<h3>👓 رابعًا: حالة النظر</h3>
+
+<div class="grid">
+
+  <label>
+    هل يستخدم نظارة حاليًا؟
+    <select name="current_glasses">
+      <option>نعم</option>
+      <option>لا</option>
+      <option>لا أعرف</option>
+    </select>
+  </label>
+
+  <label>
+    هل لديه وصفة طبية؟
+    <select name="prescription">
+      <option>نعم</option>
+      <option>لا</option>
+      <option>لا أعرف</option>
+    </select>
+  </label>
+
+  <label>
+    تاريخ آخر فحص للعيون
+    <input type="date" name="last_eye_exam">
+  </label>
+
+  <label>
+    نوع النظارة المطلوبة
+    <select name="glasses_type">
+      <option>للقراءة</option>
+      <option>للنظر البعيد</option>
+      <option>للقراءة والنظر البعيد</option>
+      <option>غير محدد ويحتاج فحصًا</option>
+    </select>
+  </label>
+
+</div>
+
+<label>
+  وصف مشكلة النظر
+  <textarea
+    name="vision_problem"
+    placeholder="اكتب وصفًا مختصرًا لمشكلة النظر..."
+  ></textarea>
+</label>
+
+<label>
+  هل لديه تقرير طبي؟
+  <select name="medical_report">
+    <option>نعم</option>
+    <option>لا</option>
+    <option>لا أعرف</option>
+  </select>
+</label>
+
+
+<h3>👨‍👩‍👧‍👦 خامسًا: أفراد الأسرة</h3>
+
+<label>
+  أسماء أفراد الأسرة وأعمارهم وصلة القرابة
+  <textarea
+    name="family_data"
+    placeholder="مثال: أحمد - 35 سنة - ابن..."
+  ></textarea>
+</label>
+
+
+<h3>📎 سادسًا: المرفقات</h3>
+
+<label>
+  إرفاق تقرير أو وصفة طبية إن وجدت
+  <input
+    type="file"
+    name="attachment"
+    accept=".pdf,.jpg,.jpeg,.png"
+  >
+</label>
+
+<div class="note">
+  💜 يمكنك إرفاق تقرير طبي أو وصفة للنظارات إذا كانت متوفرة.
+  الإرفاق اختياري.
+</div>
+
+
+<div class="note">
+  ⚠️ إرسال الطلب لا يعني الموافقة التلقائية على الدعم،
+  ويخضع كل طلب للمراجعة وفق آلية المبادرة وتوفر الدعم.
+</div>
+
+
+<div class="center">
+  <button class="btn" type="submit">
+    👓 إرسال طلب الدعم
+  </button>
+</div>
+
+  </form></main>{% endblock %}
