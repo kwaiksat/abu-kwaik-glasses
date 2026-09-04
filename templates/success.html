@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="card center">
+
+  <div class="icon">✅</div>
+
+  <h1>تم تسجيل الطلب بنجاح</h1>
+
+  <p>شكرًا لتقديم الطلب، تم استلام بياناتكم بنجاح.</p>
+
+  <p>رقم الطلب:</p>
+
+  <strong class="num">{{ no }}</strong>
+
+  <p class="note">
+    يرجى الاحتفاظ برقم الطلب للمتابعة عند الحاجة.
+  </p>
+
+  <a class="btn" href="/">🏠 العودة إلى الرئيسية</a>
+
+</main>
+{% endblock %}
