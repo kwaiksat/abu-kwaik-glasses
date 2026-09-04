@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="card">
+
+  <h1>لوحة التحكم</h1>
+
+  <p class="note">
+    من هنا يمكنك التحكم في فترة استقبال طلبات التسجيل.
+  </p>
+
+  <form method="post">
+
+    <label>
+      فتح التسجيل
+      <input type="datetime-local" name="open_at" value="{{ open_at }}">
+    </label>
+
+    <label>
+      إغلاق التسجيل
+      <input type="datetime-local" name="close_at" value="{{ close_at }}">
+    </label>
+
+    <label>
+      <input type="checkbox" name="enabled" value="1"
+             {% if enabled=='1' %}checked{% endif %}>
+      تفعيل التسجيل
+    </label>
+
+    <button class="btn" type="submit">
+      حفظ الإعدادات
+    </button>
+
+  </form>
+
+</main>
+
+<main class="card">
+
+  <h2>الطلبات: {{ rows|length }}</h2>
+
+  <div style="overflow-x:auto;">
+
+    <table>
+
+      <tr>
+        <th>رقم الطلب</th>
+        <th>المستفيد</th>
+        <th>العمر</th>
+        <th>التاريخ</th>
+        <th>ملفات</th>
+      </tr>
+
+      {% for r in rows %}
+
+      <tr>
+
+        <td>{{ r.application_no }}</td>
+
+        <td>{{ r.beneficiary_name }}</td>
+
+        <td>{{ r.age }}</td>
+
+        <td>{{ r.created_at }}</td>
+
+        <td>
+          <a href="/export/{{ r.id }}/docx">Word</a>
+          |
+          <a href="/export/{{ r.id }}/pdf">PDF</a>
+        </td>
+
+      </tr>
+
+      {% endfor %}
+
+    </table>
+
+  </div>
+
+</main>
+
+{% endblock %}
