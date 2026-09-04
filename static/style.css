@@ -1,0 +1,260 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --purple: #7057e8;
+  --purple-dark: #5740c7;
+  --purple-light: #f1edff;
+  --gold: #c9a227;
+  --gold-light: #fff8df;
+  --white: #ffffff;
+  --text: #292633;
+  --muted: #6f6a78;
+  --border: #e6e1ef;
+  --background: #f8f7fc;
+  --success: #16834b;
+  --success-bg: #eaf8ee;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, var(--background) 100%);
+  color: var(--text);
+  font-family: Tahoma, Arial, sans-serif;
+  line-height: 1.8;
+}
+
+main {
+  max-width: 1000px;
+  margin: 28px auto;
+  padding: 30px;
+}
+
+.hero,
+.card {
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 10px 35px rgba(80, 60, 130, 0.09);
+  border: 1px solid rgba(112, 87, 232, 0.08);
+}
+
+.hero {
+  text-align: center;
+  padding: 70px 30px;
+  background:
+    radial-gradient(circle at top right, rgba(201, 162, 39, 0.12), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(112, 87, 232, 0.12), transparent 35%),
+    #ffffff;
+}
+
+.card {
+  padding: 32px;
+}
+
+.icon {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  color: var(--purple-dark);
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.hero h2 {
+  color: var(--gold);
+  font-size: 25px;
+  margin: 10px 0 20px;
+}
+
+.hero p {
+  max-width: 750px;
+  margin: 0 auto 25px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.status {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 11px 22px;
+  border-radius: 30px;
+  background: var(--success-bg);
+  color: var(--success);
+  font-weight: bold;
+}
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+  color: white;
+  border: 0;
+  border-radius: 14px;
+  padding: 13px 27px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: bold;
+  box-shadow: 0 6px 18px rgba(112, 87, 232, 0.22);
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(112, 87, 232, 0.28);
+}
+
+label {
+  display: block;
+  margin: 14px 0;
+  font-weight: bold;
+  color: var(--text);
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-top: 7px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(112, 87, 232, 0.10);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 22px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--purple-dark);
+}
+
+h3 {
+  margin-top: 30px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--purple-light);
+}
+
+.note {
+  padding: 14px 17px;
+  margin-top: 18px;
+  background: var(--gold-light);
+  border-right: 4px solid var(--gold);
+  border-radius: 12px;
+  color: #5f5226;
+}
+
+.center {
+  text-align: center;
+}
+
+.num {
+  font-size: 32px;
+  display: block;
+  margin: 15px;
+  color: var(--purple);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+}
+
+th {
+  background: var(--purple-light);
+  color: var(--purple-dark);
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 15px 35px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+footer p {
+  margin: 3px;
+}
+
+a {
+  color: var(--purple-dark);
+}
+
+@media (max-width: 650px) {
+  main {
+    margin: 12px auto;
+    padding: 18px;
+  }
+
+  .hero {
+    padding: 45px 20px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero h2 {
+    font-size: 21px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .icon {
+    font-size: 50px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+  }
+}
