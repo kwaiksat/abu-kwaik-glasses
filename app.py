@@ -1,194 +1,177 @@
 import os
 import sqlite3
-import uuid
 from datetime import datetime
 from flask import Flask, render_template, request, send_file
-from werkzeug.utils import secure_filename
+
 from docx import Document
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
 
-BASE = os.path.dirname(os.path.abspath(__file__))
-DB = os.path.join(BASE, "families.db")
-UP = os.path.join(BASE, "uploads")
 
-os.makedirs(UP, exist_ok=True)
+# =========================
+# إعداد التطبيق
+# =========================
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "abu-kwaik-secret-key")
 
+app.secret_key = os.environ.get("SECRET_KEY", "abu-kwaik-glasses-secret-key")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "families.db")
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+
+# =========================
+# الاتصال بقاعدة البيانات
+# =========================
 
 def conn():
-    c = sqlite3.connect(DB)
-    c.row_factory = sqlite3.Row
-    return c
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    return connection
 
 
-def init():
+# =========================
+# إنشاء قاعدة البيانات
+# =========================
+
+def init_db():
+
     c = conn()
 
     c.execute("""
-    CREATE TABLE IF NOT EXISTS applications (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        application_no TEXT,
-        applicant_name TEXT,
-        applicant_id TEXT,
-        phone TEXT,
-        address TEXT,
-        beneficiary_name TEXT,
-        beneficiary_id TEXT,
-        birth_date TEXT,
-        age TEXT,
-        gender TEXT,
-        beneficiary_phone TEXT,
-        father_name TEXT,
-        mother_name TEXT,
-        blood_pressure TEXT,
-        diabetes TEXT,
-        current_glasses TEXT,
-        prescription TEXT,
-        last_eye_exam TEXT,
-        glasses_type TEXT,
-        vision_problem TEXT,
-        medical_report TEXT,
-        family_data TEXT,
-        attachment TEXT,
-        created_at TEXT
-    )
+        CREATE TABLE IF NOT EXISTS applications (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            application_no TEXT,
+            applicant_name TEXT,
+            applicant_id TEXT,
+            phone TEXT,
+            address TEXT,
+            beneficiary_name TEXT,
+            beneficiary_id TEXT,
+            birth_date TEXT,
+            age TEXT,
+            gender TEXT,
+            beneficiary_phone TEXT,
+            father_name TEXT,
+            mother_name TEXT,
+            blood_pressure TEXT,
+            diabetes TEXT,
+            current_glasses TEXT,
+            prescription TEXT,
+            last_eye_exam TEXT,
+            glasses_type TEXT,
+            vision_problem TEXT,
+            medical_report TEXT,
+            family_data TEXT,
+            attachment TEXT,
+            created_at TEXT
+        )
     """)
 
     c.execute("""
-    CREATE TABLE IF NOT EXISTS settings (
-        key TEXT PRIMARY KEY,
-        value TEXT
-    )
-    """)
-
-    for k, v in [
-        ("enabled", "1"),
-        ("open_at", ""),
-        ("close_at", "")
-    ]:
-        c.execute(
-            "INSERT OR IGNORE INTO settings VALUES (?, ?)",
-            (k, v)
+        CREATE TABLE IF NOT EXISTS settings (
+            key TEXT PRIMARY KEY,
+            value TEXT
         )
+    """)
 
     c.commit()
     c.close()
 
 
-def getset(key):
-    c = conn()
-    r = c.execute(
-        "SELECT value FROM settings WHERE key=?",
-        (key,)
-    ).fetchone()
-    c.close()
-
-    return r["value"] if r else ""
+init_db()
 
 
-def is_open():
-    if getset("enabled") != "1":
-        return False
-
-    now = datetime.now()
-
-    try:
-        if getset("open_at"):
-            if now < datetime.fromisoformat(getset("open_at")):
-                return False
-
-        if getset("close_at"):
-            if now > datetime.fromisoformat(getset("close_at")):
-                return False
-
-    except ValueError:
-        pass
-
-    return True
-
-
-@app.context_processor
-def ctx():
-    return {
-        "registration_open": is_open()
-    }
-
+# =========================
+# الصفحة الرئيسية
+# =========================
 
 @app.route("/")
-def home():
+def index():
     return render_template("index.html")
 
+
+# =========================
+# التسجيل
+# =========================
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
 
-    if not is_open():
-        return render_template("closed.html")
+    if request.method == "GET":
+        return render_template("register.html")
 
-    if request.method == "POST":
+    try:
 
-        try:
-            # -------------------------
-            # رفع المرفق
-            # -------------------------
-            f = request.files.get("attachment")
-            filename = ""
+        # ---------------------------------
+        # بيانات النموذج
+        # ---------------------------------
 
-            if f and f.filename:
-                original_name = secure_filename(f.filename)
+        fields = [
+            "applicant_name",
+            "applicant_id",
+            "phone",
+            "address",
+            "beneficiary_name",
+            "beneficiary_id",
+            "birth_date",
+            "age",
+            "gender",
+            "beneficiary_phone",
+            "father_name",
+            "mother_name",
+            "blood_pressure",
+            "diabetes",
+            "current_glasses",
+            "prescription",
+            "last_eye_exam",
+            "glasses_type",
+            "vision_problem",
+            "medical_report",
+            "family_data"
+        ]
 
-                if original_name:
-                    filename = (
-                        uuid.uuid4().hex
-                        + "_"
-                        + original_name
-                    )
+        data = {}
 
-                    f.save(
-                        os.path.join(UP, filename)
-                    )
+        for field in fields:
+            data[field] = request.form.get(field, "").strip()
 
-            # -------------------------
-            # قراءة جميع البيانات
-            # -------------------------
-            fields = [
-                "applicant_name",
-                "applicant_id",
-                "phone",
-                "address",
-                "beneficiary_name",
-                "beneficiary_id",
-                "birth_date",
-                "age",
-                "gender",
-                "beneficiary_phone",
-                "father_name",
-                "mother_name",
-                "blood_pressure",
-                "diabetes",
-                "current_glasses",
-                "prescription",
-                "last_eye_exam",
-                "glasses_type",
-                "vision_problem",
-                "medical_report",
-                "family_data"
-            ]
 
-            data = {
-                field: request.form.get(field, "").strip()
-                for field in fields
-            }
+        # ---------------------------------
+        # رفع المرفق
+        # ---------------------------------
 
-            # -------------------------
-            # حفظ التسجيل
-            # -------------------------
-            c = conn()
+        filename = ""
 
-            c.execute("""
+        attachment = request.files.get("attachment")
+
+        if attachment and attachment.filename:
+
+            original_name = attachment.filename
+
+            # اسم آمن للملف
+            safe_name = os.path.basename(original_name)
+
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
+
+            filename = f"{timestamp}_{safe_name}"
+
+            attachment.save(
+                os.path.join(UPLOAD_FOLDER, filename)
+            )
+
+
+        # ---------------------------------
+        # حفظ البيانات
+        # ---------------------------------
+
+        c = conn()
+
+        cursor = c.cursor()
+
+        cursor.execute("""
             INSERT INTO applications (
                 application_no,
                 applicant_name,
@@ -216,262 +199,288 @@ def register():
                 created_at
             )
             VALUES (
-                ?,?,?,?,?,?,?,?,?,?,
-                ?,?,?,?,?,?,?,?,?,?,
-                ?,?,?,?
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?
             )
-            """, (
-                "TEMP",
-                data["applicant_name"],
-                data["applicant_id"],
-                data["phone"],
-                data["address"],
-                data["beneficiary_name"],
-                data["beneficiary_id"],
-                data["birth_date"],
-                data["age"],
-                data["gender"],
-                data["beneficiary_phone"],
-                data["father_name"],
-                data["mother_name"],
-                data["blood_pressure"],
-                data["diabetes"],
-                data["current_glasses"],
-                data["prescription"],
-                data["last_eye_exam"],
-                data["glasses_type"],
-                data["vision_problem"],
-                data["medical_report"],
-                data["family_data"],
-                filename,
-                datetime.now().isoformat(timespec="seconds")
-            ))
+        """, (
+            "TEMP",
+            data["applicant_name"],
+            data["applicant_id"],
+            data["phone"],
+            data["address"],
+            data["beneficiary_name"],
+            data["beneficiary_id"],
+            data["birth_date"],
+            data["age"],
+            data["gender"],
+            data["beneficiary_phone"],
+            data["father_name"],
+            data["mother_name"],
+            data["blood_pressure"],
+            data["diabetes"],
+            data["current_glasses"],
+            data["prescription"],
+            data["last_eye_exam"],
+            data["glasses_type"],
+            data["vision_problem"],
+            data["medical_report"],
+            data["family_data"],
+            filename,
+            datetime.now().isoformat(timespec="seconds")
+        ))
 
-            application_id = c.lastrowid
+        # ---------------------------------
+        # التصحيح المهم
+        # ---------------------------------
 
-            application_no = (
-                f"AK-{datetime.now():%Y%m%d}-{application_id:04d}"
-            )
+        # نأخذ رقم السجل من Cursor وليس Connection
+        application_id = cursor.lastrowid
 
-            c.execute(
-                """
-                UPDATE applications
-                SET application_no=?
-                WHERE id=?
-                """,
-                (application_no, application_id)
-            )
+        application_no = (
+            f"AK-{datetime.now():%Y%m%d}-{application_id:04d}"
+        )
 
-            c.commit()
-            c.close()
-
-            # -------------------------
-            # صفحة نجاح التسجيل
-            # -------------------------
-            return render_template(
-                "success.html",
-                no=application_no
-            )
-
-        except Exception as e:
-
-            print("REGISTRATION ERROR:", e)
-
-            return """
-            <div style="
-                direction:rtl;
-                text-align:center;
-                font-family:Arial;
-                padding:50px;
-            ">
-                <h2>حدث خطأ أثناء حفظ التسجيل</h2>
-                <p>يرجى المحاولة مرة أخرى.</p>
-                <a href="/register">العودة إلى نموذج التسجيل</a>
-            </div>
-            """, 500
-
-    return render_template("register.html")
-
-
-# ==========================================
-# لوحة الإدارة
-# ==========================================
-
-@app.route("/admin", methods=["GET", "POST"])
-def admin():
-
-    if request.method == "POST":
-
-        c = conn()
-
-        for key in [
-            "enabled",
-            "open_at",
-            "close_at"
-        ]:
-            c.execute(
-                """
-                INSERT OR REPLACE INTO settings
-                VALUES (?, ?)
-                """,
-                (
-                    key,
-                    request.form.get(key, "")
-                )
-            )
+        cursor.execute("""
+            UPDATE applications
+            SET application_no = ?
+            WHERE id = ?
+        """, (
+            application_no,
+            application_id
+        ))
 
         c.commit()
         c.close()
 
+
+        # ---------------------------------
+        # صفحة النجاح
+        # ---------------------------------
+
         return render_template(
-            "admin.html",
-            rows=[],
-            enabled=getset("enabled"),
-            open_at=getset("open_at"),
-            close_at=getset("close_at")
+            "success.html",
+            no=application_no
         )
+
+
+    except Exception as e:
+
+        print("===================================")
+        print("REGISTRATION ERROR:")
+        print(str(e))
+        print("===================================")
+
+        return """
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>حدث خطأ</title>
+
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background: #f8f7fb;
+                    padding: 30px;
+                    text-align: center;
+                }
+
+                .box {
+                    max-width: 600px;
+                    margin: 50px auto;
+                    background: white;
+                    padding: 30px;
+                    border-radius: 18px;
+                    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+                }
+
+                h1 {
+                    color: #7b4ab8;
+                }
+
+                p {
+                    color: #555;
+                    line-height: 1.8;
+                }
+
+                a {
+                    display: inline-block;
+                    margin-top: 20px;
+                    padding: 12px 25px;
+                    background: #7b4ab8;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 10px;
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <div class="box">
+
+                <h1>حدث خطأ أثناء التسجيل</h1>
+
+                <p>
+                    نعتذر، حدث خطأ أثناء حفظ البيانات.
+                    يرجى المحاولة مرة أخرى.
+                </p>
+
+                <a href="/register">
+                    العودة إلى نموذج التسجيل
+                </a>
+
+            </div>
+
+        </body>
+        </html>
+        """, 500
+
+
+# =========================
+# لوحة الإدارة
+# =========================
+
+@app.route("/admin")
+def admin():
 
     c = conn()
 
-    rows = c.execute(
-        """
+    applications = c.execute("""
         SELECT *
         FROM applications
         ORDER BY id DESC
-        """
-    ).fetchall()
+    """).fetchall()
 
     c.close()
 
     return render_template(
         "admin.html",
-        rows=rows,
-        enabled=getset("enabled"),
-        open_at=getset("open_at"),
-        close_at=getset("close_at")
+        applications=applications
     )
 
 
-# ==========================================
-# جلب طلب
-# ==========================================
+# =========================
+# تصدير Word
+# =========================
 
-def get_application(application_id):
+@app.route("/export/<int:i>/docx")
+def export_docx(i):
 
     c = conn()
 
     row = c.execute(
-        """
-        SELECT *
-        FROM applications
-        WHERE id=?
-        """,
-        (application_id,)
+        "SELECT * FROM applications WHERE id = ?",
+        (i,)
     ).fetchone()
 
     c.close()
 
-    return row
-
-
-# ==========================================
-# تحميل Word
-# ==========================================
-
-@app.route("/export/<int:i>/docx")
-def docx(i):
-
-    r = get_application(i)
-
-    if not r:
-        return "Not found", 404
+    if not row:
+        return "الطلب غير موجود", 404
 
     document = Document()
 
     document.add_heading(
         "مبادرة العطاء لدعم النظارات الطبية",
-        0
-    )
-
-    document.add_heading(
-        "لكبار السن من عائلة أبوكويك المحترمين",
-        1
+        level=1
     )
 
     document.add_paragraph(
-        "رقم الطلب: " + str(r["application_no"])
+        f"رقم الطلب: {row['application_no']}"
     )
 
-    sections = [
-        (
-            "بيانات مقدم الطلب",
-            [
-                ("الاسم الكامل", "applicant_name"),
-                ("رقم الهوية", "applicant_id"),
-                ("رقم الهاتف", "phone"),
-                ("مكان السكن", "address")
-            ]
-        ),
-        (
-            "بيانات المستفيد",
-            [
-                ("اسم المستفيد", "beneficiary_name"),
-                ("رقم الهوية", "beneficiary_id"),
-                ("تاريخ الميلاد", "birth_date"),
-                ("العمر", "age"),
-                ("الجنس", "gender"),
-                ("الهاتف", "beneficiary_phone"),
-                ("اسم الأب", "father_name"),
-                ("اسم الأم", "mother_name")
-            ]
-        ),
-        (
-            "الحالة الصحية",
-            [
-                ("ضغط الدم", "blood_pressure"),
-                ("مرض السكري", "diabetes")
-            ]
-        ),
-        (
-            "حالة النظر",
-            [
-                ("يستخدم نظارة حاليًا", "current_glasses"),
-                ("لديه وصفة طبية", "prescription"),
-                ("تاريخ آخر فحص للعيون", "last_eye_exam"),
-                ("نوع النظارة المطلوبة", "glasses_type"),
-                ("وصف مشكلة النظر", "vision_problem"),
-                ("لديه تقرير طبي", "medical_report")
-            ]
-        ),
-        (
-            "بيانات الأسرة",
-            [
-                ("أفراد الأسرة", "family_data")
-            ]
-        ),
-        (
-            "بيانات التسجيل",
-            [
-                ("تاريخ التسجيل", "created_at")
-            ]
-        )
-    ]
+    document.add_paragraph(
+        f"تاريخ التسجيل: {row['created_at']}"
+    )
 
-    for title, fields in sections:
+    document.add_heading("بيانات مقدم الطلب", level=2)
 
-        document.add_heading(title, 2)
+    document.add_paragraph(
+        f"الاسم: {row['applicant_name']}"
+    )
 
-        for label, key in fields:
+    document.add_paragraph(
+        f"رقم الهوية: {row['applicant_id']}"
+    )
 
-            value = r[key] or ""
+    document.add_paragraph(
+        f"رقم الهاتف: {row['phone']}"
+    )
 
-            document.add_paragraph(
-                f"{label}: {value}"
-            )
+    document.add_paragraph(
+        f"العنوان: {row['address']}"
+    )
+
+    document.add_heading("بيانات المستفيد", level=2)
+
+    document.add_paragraph(
+        f"الاسم: {row['beneficiary_name']}"
+    )
+
+    document.add_paragraph(
+        f"رقم الهوية: {row['beneficiary_id']}"
+    )
+
+    document.add_paragraph(
+        f"تاريخ الميلاد: {row['birth_date']}"
+    )
+
+    document.add_paragraph(
+        f"العمر: {row['age']}"
+    )
+
+    document.add_paragraph(
+        f"الجنس: {row['gender']}"
+    )
+
+    document.add_paragraph(
+        f"هاتف المستفيد: {row['beneficiary_phone']}"
+    )
+
+    document.add_heading("الحالة الصحية والبصرية", level=2)
+
+    document.add_paragraph(
+        f"ضغط الدم: {row['blood_pressure']}"
+    )
+
+    document.add_paragraph(
+        f"السكري: {row['diabetes']}"
+    )
+
+    document.add_paragraph(
+        f"النظارات الحالية: {row['current_glasses']}"
+    )
+
+    document.add_paragraph(
+        f"الوصفة الطبية: {row['prescription']}"
+    )
+
+    document.add_paragraph(
+        f"آخر فحص للعين: {row['last_eye_exam']}"
+    )
+
+    document.add_paragraph(
+        f"نوع النظارة: {row['glasses_type']}"
+    )
+
+    document.add_paragraph(
+        f"مشكلة النظر: {row['vision_problem']}"
+    )
+
+    document.add_paragraph(
+        f"التقرير الطبي: {row['medical_report']}"
+    )
+
+    document.add_paragraph(
+        f"بيانات الأسرة: {row['family_data']}"
+    )
 
     path = os.path.join(
-        BASE,
-        r["application_no"] + ".docx"
+        BASE_DIR,
+        f"{row['application_no']}.docx"
     )
 
     document.save(path)
@@ -482,90 +491,77 @@ def docx(i):
     )
 
 
-# ==========================================
-# تحميل PDF
-# ==========================================
+# =========================
+# تصدير PDF
+# =========================
 
 @app.route("/export/<int:i>/pdf")
-def pdf(i):
+def export_pdf(i):
 
-    r = get_application(i)
+    c = conn()
 
-    if not r:
-        return "Not found", 404
+    row = c.execute(
+        "SELECT * FROM applications WHERE id = ?",
+        (i,)
+    ).fetchone()
+
+    c.close()
+
+    if not row:
+        return "الطلب غير موجود", 404
 
     path = os.path.join(
-        BASE,
-        r["application_no"] + ".pdf"
+        BASE_DIR,
+        f"{row['application_no']}.pdf"
     )
 
-    pdf_file = canvas.Canvas(
-        path,
-        pagesize=A4
-    )
+    pdf = canvas.Canvas(path)
+
+    pdf.setFont("Helvetica", 11)
 
     y = 800
 
-    pdf_file.setFont(
-        "Helvetica-Bold",
-        16
-    )
-
-    pdf_file.drawString(
-        50,
-        y,
-        "Abu Kwaik Family - Medical Glasses Support"
-    )
-
-    y -= 35
-
-    pdf_file.setFont(
-        "Helvetica",
-        10
-    )
-
-    fields = [
-        ("Application No.", "application_no"),
-        ("Applicant", "applicant_name"),
-        ("Applicant ID", "applicant_id"),
-        ("Phone", "phone"),
-        ("Address", "address"),
-        ("Beneficiary", "beneficiary_name"),
-        ("Beneficiary ID", "beneficiary_id"),
-        ("Age", "age"),
-        ("Gender", "gender"),
-        ("Blood pressure", "blood_pressure"),
-        ("Diabetes", "diabetes"),
-        ("Current glasses", "current_glasses"),
-        ("Prescription", "prescription"),
-        ("Glasses type", "glasses_type"),
-        ("Vision problem", "vision_problem"),
-        ("Medical report", "medical_report"),
-        ("Family", "family_data"),
-        ("Created", "created_at")
+    lines = [
+        "Abu Kwaik Medical Glasses Initiative",
+        "",
+        f"Application No: {row['application_no']}",
+        f"Created: {row['created_at']}",
+        "",
+        f"Applicant Name: {row['applicant_name']}",
+        f"Applicant ID: {row['applicant_id']}",
+        f"Phone: {row['phone']}",
+        f"Address: {row['address']}",
+        "",
+        f"Beneficiary Name: {row['beneficiary_name']}",
+        f"Beneficiary ID: {row['beneficiary_id']}",
+        f"Birth Date: {row['birth_date']}",
+        f"Age: {row['age']}",
+        f"Gender: {row['gender']}",
+        "",
+        f"Blood Pressure: {row['blood_pressure']}",
+        f"Diabetes: {row['diabetes']}",
+        f"Current Glasses: {row['current_glasses']}",
+        f"Prescription: {row['prescription']}",
+        f"Last Eye Exam: {row['last_eye_exam']}",
+        f"Glasses Type: {row['glasses_type']}",
+        f"Vision Problem: {row['vision_problem']}",
+        "",
+        f"Medical Report: {row['medical_report']}",
+        f"Family Data: {row['family_data']}"
     ]
 
-    for label, key in fields:
+    for line in lines:
 
-        value = r[key] or ""
+        pdf.drawString(40, y, str(line))
 
-        pdf_file.drawString(
-            50,
-            y,
-            f"{label}: {value}"
-        )
-
-        y -= 18
+        y -= 20
 
         if y < 50:
-            pdf_file.showPage()
+            pdf.showPage()
+            pdf.setFont("Helvetica", 11)
             y = 800
-            pdf_file.setFont(
-                "Helvetica",
-                10
-            )
 
-    pdf_file.save()
+    pdf.save()
 
     return send_file(
         path,
@@ -573,19 +569,16 @@ def pdf(i):
     )
 
 
-# ==========================================
+# =========================
 # تشغيل التطبيق
-# ==========================================
-
-init()
+# =========================
 
 if __name__ == "__main__":
+
+    port = int(os.environ.get("PORT", 10000))
+
     app.run(
         host="0.0.0.0",
-        port=int(
-            os.environ.get(
-                "PORT",
-                5000
-            )
-        )
+        port=port,
+        debug=False
     )
