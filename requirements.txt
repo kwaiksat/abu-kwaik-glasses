@@ -3,3 +3,4 @@ Werkzeug
 python-docx
 reportlab
 gunicorn
+openpyxl
