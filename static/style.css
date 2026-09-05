@@ -3,74 +3,98 @@
 }
 
 :root {
-  --purple: #7057e8;
-  --purple-dark: #5740c7;
-  --purple-light: #f1edff;
-  --gold: #c9a227;
-  --gold-light: #fff8df;
+  --black: #111111;
+  --black-soft: #292929;
+  --gold: #b08a32;
+  --gold-light: #fbf7ea;
   --white: #ffffff;
-  --text: #292633;
-  --muted: #6f6a78;
-  --border: #e6e1ef;
-  --background: #f8f7fc;
-  --success: #16834b;
-  --success-bg: #eaf8ee;
+  --background: #f7f7f5;
+  --text: #222222;
+  --muted: #777777;
+  --border: #e5e2da;
+  --success: #25734a;
+  --success-bg: #edf7f1;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   background: linear-gradient(180deg, #ffffff 0%, var(--background) 100%);
   color: var(--text);
-  font-family: Tahoma, Arial, sans-serif;
-  line-height: 1.8;
+  font-family: "Noto Naskh Arabic", "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+  line-height: 1.9;
 }
 
 main {
-  max-width: 1000px;
-  margin: 28px auto;
+  max-width: 1050px;
+  margin: 30px auto;
   padding: 30px;
 }
 
 .hero,
 .card {
   background: var(--white);
-  border-radius: 24px;
-  box-shadow: 0 10px 35px rgba(80, 60, 130, 0.09);
-  border: 1px solid rgba(112, 87, 232, 0.08);
+  border-radius: 22px;
+  border: 1px solid #e8e5dd;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
 }
 
 .hero {
   text-align: center;
-  padding: 70px 30px;
+  padding: 70px 35px;
   background:
-    radial-gradient(circle at top right, rgba(201, 162, 39, 0.12), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(112, 87, 232, 0.12), transparent 35%),
+    radial-gradient(circle at top right, rgba(176, 138, 50, 0.10), transparent 30%),
     #ffffff;
 }
 
 .card {
-  padding: 32px;
+  padding: 35px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--black);
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  margin-top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gold);
+  font-weight: 600;
 }
 
 .icon {
-  font-size: 60px;
+  font-size: 58px;
   margin-bottom: 10px;
 }
 
 .hero h1 {
-  color: var(--purple-dark);
-  font-size: 36px;
+  color: var(--black);
+  font-size: 37px;
   margin: 10px 0;
 }
 
 .hero h2 {
   color: var(--gold);
-  font-size: 25px;
+  font-size: 24px;
   margin: 10px 0 20px;
 }
 
 .hero p {
-  max-width: 750px;
+  max-width: 760px;
   margin: 0 auto 25px;
   color: var(--muted);
   font-size: 17px;
@@ -79,39 +103,122 @@ main {
 .status {
   display: inline-block;
   margin: 20px 0;
-  padding: 11px 22px;
+  padding: 9px 22px;
   border-radius: 30px;
   background: var(--success-bg);
   color: var(--success);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .btn {
   display: inline-block;
-  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-  color: white;
-  border: 0;
-  border-radius: 14px;
-  padding: 13px 27px;
+  background: var(--black);
+  color: #ffffff;
+  border: 1px solid var(--black);
+  border-radius: 10px;
+  padding: 13px 28px;
   text-decoration: none;
   cursor: pointer;
   font-size: 16px;
   font-family: inherit;
-  font-weight: bold;
-  box-shadow: 0 6px 18px rgba(112, 87, 232, 0.22);
+  font-weight: 600;
   transition: 0.2s ease;
 }
 
 .btn:hover {
+  background: #000000;
   transform: translateY(-2px);
-  box-shadow: 0 9px 22px rgba(112, 87, 232, 0.28);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.registration-card {
+  max-width: 1000px;
+  margin: 25px auto;
+}
+
+.registration-header {
+  padding-bottom: 25px;
+}
+
+.registration-header h1 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+
+.registration-header h2 {
+  color: var(--gold);
+  font-size: 22px;
+  margin-top: 5px;
+}
+
+.registration-subtitle {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.eligibility-note {
+  max-width: 760px;
+  margin: 22px auto 5px;
+  padding: 14px 18px;
+  background: var(--gold-light);
+  border: 1px solid #eadfbf;
+  border-right: 4px solid var(--gold);
+  border-radius: 10px;
+  color: #514522;
+  font-size: 15px;
+}
+
+.form-section {
+  margin-top: 28px;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.form-section:hover {
+  border-color: #d5c79d;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.section-title > span {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gold-light);
+  border: 1px solid #eadfbf;
+  font-size: 20px;
+}
+
+.section-title h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--black);
+  font-size: 20px;
+}
+
+.section-title small {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 label {
   display: block;
-  margin: 14px 0;
-  font-weight: bold;
-  color: var(--text);
+  margin: 13px 0;
+  font-weight: 600;
+  color: var(--black-soft);
+  font-size: 15px;
 }
 
 input,
@@ -119,13 +226,14 @@ select,
 textarea {
   display: block;
   width: 100%;
-  padding: 13px;
+  padding: 12px 14px;
   margin-top: 7px;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fff;
+  border-radius: 9px;
+  background: #ffffff;
   color: var(--text);
-  font: inherit;
+  font-family: inherit;
+  font-size: 15px;
   outline: none;
   transition: 0.2s ease;
 }
@@ -133,31 +241,29 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px rgba(112, 87, 232, 0.10);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(176, 138, 50, 0.10);
 }
 
 textarea {
-  min-height: 120px;
+  min-height: 125px;
   resize: vertical;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5px 22px;
+  gap: 5px 25px;
 }
 
-h1,
-h2,
-h3 {
-  color: var(--purple-dark);
-}
-
-h3 {
-  margin-top: 30px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--purple-light);
+.male-only-note {
+  margin-top: 18px;
+  padding: 12px 16px;
+  background: #f8f8f8;
+  border-right: 3px solid var(--black);
+  border-radius: 8px;
+  color: #555555;
+  font-size: 14px;
 }
 
 .note {
@@ -165,31 +271,54 @@ h3 {
   margin-top: 18px;
   background: var(--gold-light);
   border-right: 4px solid var(--gold);
-  border-radius: 12px;
+  border-radius: 10px;
   color: #5f5226;
+  font-size: 14px;
+}
+
+.privacy-box {
+  margin-top: 25px;
+  padding: 18px 20px;
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: #555555;
+}
+
+.privacy-box strong {
+  color: var(--black);
+}
+
+.privacy-box p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+.submit-area {
+  margin-top: 28px;
+  padding-top: 10px;
+}
+
+.submit-btn {
+  min-width: 240px;
+  font-size: 17px;
+  padding: 14px 30px;
 }
 
 .center {
   text-align: center;
 }
 
-.num {
-  font-size: 32px;
-  display: block;
-  margin: 15px;
-  color: var(--purple);
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background: #fff;
+  background: #ffffff;
 }
 
 th {
-  background: var(--purple-light);
-  color: var(--purple-dark);
+  background: #f5f2e9;
+  color: var(--black);
 }
 
 th,
@@ -199,9 +328,17 @@ td {
   text-align: right;
 }
 
+a {
+  color: var(--black);
+}
+
+a:hover {
+  color: var(--gold);
+}
+
 footer {
   text-align: center;
-  padding: 25px 15px 35px;
+  padding: 28px 15px 38px;
   color: var(--muted);
   font-size: 14px;
 }
@@ -210,14 +347,10 @@ footer p {
   margin: 3px;
 }
 
-a {
-  color: var(--purple-dark);
-}
-
 @media (max-width: 650px) {
   main {
     margin: 12px auto;
-    padding: 18px;
+    padding: 14px;
   }
 
   .hero {
@@ -225,11 +358,27 @@ a {
   }
 
   .card {
-    padding: 22px;
+    padding: 20px 16px;
+  }
+
+  .registration-card {
+    padding: 18px 14px;
+  }
+
+  .registration-header h1 {
+    font-size: 27px;
+  }
+
+  .registration-header h2 {
+    font-size: 19px;
   }
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-section {
+    padding: 18px 14px;
   }
 
   .hero h1 {
@@ -237,7 +386,7 @@ a {
   }
 
   .hero h2 {
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .hero p {
@@ -248,13 +397,9 @@ a {
     font-size: 50px;
   }
 
-  .btn {
+  .btn,
+  .submit-btn {
     width: 100%;
     text-align: center;
-  }
-
-  th,
-  td {
-    white-space: nowrap;
   }
 }
