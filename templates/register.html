@@ -1,184 +1,258 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<main class="card">
-  <div class="center">
-    <div class="icon">👓</div>
-    <h1>نموذج التسجيل في المبادرة</h1>
-    <p>يرجى تعبئة البيانات التالية بدقة ووضوح.</p>
+
+<main class="card registration-card">  <div class="center registration-header">
+    <div class="icon">👓</div><h1>نموذج التسجيل في المبادرة</h1>
+
+<p class="registration-subtitle">
+  يرجى تعبئة البيانات التالية بدقة ووضوح.
+</p>
+
+<div class="eligibility-note">
+  👴 <strong>تنبيه:</strong>
+  هذه المبادرة مخصصة لكبار السن <strong>الذكور فقط</strong>
+  من عائلة أبوكويك.
+</div>
+
+  </div>  <form method="post" enctype="multipart/form-data"><!-- بيانات مقدم الطلب -->
+<section class="form-section">
+  <div class="section-title">
+    <span>👤</span>
+    <div>
+      <h3>بيانات مقدم الطلب</h3>
+      <small>الشخص الذي يقوم بتقديم الطلب</small>
+    </div>
   </div>
 
-  <form method="post" enctype="multipart/form-data">
-
-    <h3>👤 أولًا: بيانات مقدم الطلب</h3>
-
-    <div class="grid">
-      <label>
-        الاسم الكامل
-        <input type="text" name="applicant_name" required>
-      </label>
-
-      <label>
-        رقم الهوية
-        <input type="text" name="applicant_id" required>
-      </label>
-
-      <label>
-        رقم الهاتف / واتساب
-        <input type="text" name="phone" required>
-      </label>
-
-      <label>
-        مكان السكن
-        <input type="text" name="address" required>
-      </label>
-    </div>
-
-    <h3>👴 ثانيًا: بيانات كبير السن المستفيد</h3>
-
-    <div class="grid">
-      <label>
-        اسم المستفيد
-        <input type="text" name="beneficiary_name" required>
-      </label>
-
-      <label>
-        رقم هوية المستفيد
-        <input type="text" name="beneficiary_id">
-      </label>
-
-      <label>
-        تاريخ الميلاد
-        <input type="date" name="birth_date">
-      </label>
-
-      <label>
-        العمر
-        <input type="number" name="age" min="1" max="120">
-      </label>
-
-      <label>
-        الجنس
-        <select name="gender">
-          <option value="">اختر</option>
-          <option value="ذكر">ذكر</option>
-          <option value="أنثى">أنثى</option>
-        </select>
-      </label>
-
-      <label>
-        هاتف المستفيد
-        <input type="text" name="beneficiary_phone">
-      </label>
-
-      <label>
-        اسم الأب
-        <input type="text" name="father_name">
-      </label>
-
-      <label>
-        اسم الأم
-        <input type="text" name="mother_name">
-      </label>
-    </div>
-
-    <h3>🩺 ثالثًا: الحالة الصحية</h3>
-
-    <div class="grid">
-      <label>
-        هل يعاني من ارتفاع ضغط الدم؟
-        <select name="blood_pressure">
-          <option value="">اختر</option>
-          <option value="نعم">نعم</option>
-          <option value="لا">لا</option>
-        </select>
-      </label>
-
-      <label>
-        هل يعاني من مرض السكري؟
-        <select name="diabetes">
-          <option value="">اختر</option>
-          <option value="نعم">نعم</option>
-          <option value="لا">لا</option>
-        </select>
-      </label>
-    </div>
-
-    <h3>👓 رابعًا: حالة النظر</h3>
-
-    <div class="grid">
-      <label>
-        هل يستخدم نظارة حاليًا؟
-        <select name="current_glasses">
-          <option value="">اختر</option>
-          <option value="نعم">نعم</option>
-          <option value="لا">لا</option>
-        </select>
-      </label>
-
-      <label>
-        هل لديه وصفة طبية؟
-        <select name="prescription">
-          <option value="">اختر</option>
-          <option value="نعم">نعم</option>
-          <option value="لا">لا</option>
-        </select>
-      </label>
-
-      <label>
-        تاريخ آخر فحص للعيون
-        <input type="date" name="last_eye_exam">
-      </label>
-
-      <label>
-        نوع النظارة المطلوبة
-        <select name="glasses_type">
-          <option value="">اختر</option>
-          <option value="للقراءة">للقراءة</option>
-          <option value="للمسافات">للمسافات</option>
-          <option value="متعددة الاستخدام">متعددة الاستخدام</option>
-          <option value="غير متأكد">غير متأكد</option>
-        </select>
-      </label>
-    </div>
+  <div class="grid">
 
     <label>
-      وصف مشكلة النظر
-      <textarea name="vision_problem" placeholder="اكتب وصفًا مختصرًا لمشكلة النظر أو الأعراض"></textarea>
+      الاسم الكامل
+      <input type="text" name="applicant_name" required>
     </label>
 
     <label>
-      هل يوجد تقرير طبي؟
-      <select name="medical_report">
+      رقم الهوية
+      <input type="text" name="applicant_id" required>
+    </label>
+
+    <label>
+      رقم الهاتف / واتساب
+      <input type="text" name="phone" required>
+    </label>
+
+    <label>
+      مكان السكن
+      <input type="text" name="address" required>
+    </label>
+
+  </div>
+</section>
+
+
+<!-- بيانات المستفيد -->
+<section class="form-section">
+
+  <div class="section-title">
+    <span>👴</span>
+    <div>
+      <h3>بيانات كبير السن المستفيد</h3>
+      <small>بيانات المستفيد من النظارة الطبية</small>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <label>
+      اسم المستفيد
+      <input type="text" name="beneficiary_name" required>
+    </label>
+
+    <label>
+      رقم هوية المستفيد
+      <input type="text" name="beneficiary_id">
+    </label>
+
+    <label>
+      تاريخ الميلاد
+      <input type="date" name="birth_date">
+    </label>
+
+    <label>
+      العمر
+      <input type="number" name="age" min="1" max="120">
+    </label>
+
+    <label>
+      هاتف المستفيد
+      <input type="text" name="beneficiary_phone">
+    </label>
+
+    <label>
+      اسم الأب
+      <input type="text" name="father_name">
+    </label>
+
+    <label>
+      اسم الأم
+      <input type="text" name="mother_name">
+    </label>
+
+  </div>
+
+  <!-- تحديد الجنس تلقائيًا كذكر -->
+  <input type="hidden" name="gender" value="ذكر">
+
+  <div class="male-only-note">
+    👨 المستفيد المسجل في هذه المبادرة يجب أن يكون من كبار السن الذكور.
+  </div>
+
+</section>
+
+
+<!-- الحالة الصحية -->
+<section class="form-section">
+
+  <div class="section-title">
+    <span>🩺</span>
+    <div>
+      <h3>الحالة الصحية</h3>
+      <small>معلومات صحية تساعد في تقييم الاحتياج</small>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <label>
+      هل يعاني من ارتفاع ضغط الدم؟
+      <select name="blood_pressure">
         <option value="">اختر</option>
         <option value="نعم">نعم</option>
         <option value="لا">لا</option>
       </select>
     </label>
 
-    <h3>👨‍👩‍👧‍👦 خامسًا: أفراد الأسرة</h3>
-
     <label>
-      بيانات أفراد الأسرة
-      <textarea name="family_data" placeholder="اكتب أسماء أفراد الأسرة وعدد أفرادها وأي معلومات مهمة"></textarea>
+      هل يعاني من مرض السكري؟
+      <select name="diabetes">
+        <option value="">اختر</option>
+        <option value="نعم">نعم</option>
+        <option value="لا">لا</option>
+      </select>
     </label>
 
-    <h3>📎 سادسًا: المرفقات</h3>
+  </div>
+
+</section>
+
+
+<!-- حالة النظر -->
+<section class="form-section">
+
+  <div class="section-title">
+    <span>👓</span>
+    <div>
+      <h3>حالة النظر</h3>
+      <small>معلومات متعلقة باحتياج المستفيد للنظارة</small>
+    </div>
+  </div>
+
+  <div class="grid">
 
     <label>
-      إرفاق تقرير أو وصفة أو مستند داعم
-      <input type="file" name="attachment">
+      هل يستخدم نظارة حاليًا؟
+      <select name="current_glasses">
+        <option value="">اختر</option>
+        <option value="نعم">نعم</option>
+        <option value="لا">لا</option>
+      </select>
     </label>
 
-    <div class="note">
-      يرجى التأكد من صحة البيانات قبل إرسال الطلب.
-      سيتم التعامل مع المعلومات المقدمة باحترام وخصوصية.
-    </div>
+    <label>
+      هل لديه وصفة طبية؟
+      <select name="prescription">
+        <option value="">اختر</option>
+        <option value="نعم">نعم</option>
+        <option value="لا">لا</option>
+      </select>
+    </label>
 
-    <div class="center" style="margin-top:25px;">
-      <button class="btn" type="submit">✅ إرسال طلب التسجيل</button>
-    </div>
+    <label>
+      تاريخ آخر فحص للعيون
+      <input type="date" name="last_eye_exam">
+    </label>
 
-  </form>
-</main>
-{% endblock %}
+    <label>
+      نوع النظارة المطلوبة
+      <select name="glasses_type">
+        <option value="">اختر</option>
+        <option value="للقراءة">للقراءة</option>
+        <option value="للمسافات">للمسافات</option>
+        <option value="متعددة الاستخدام">متعددة الاستخدام</option>
+        <option value="غير متأكد">غير متأكد</option>
+      </select>
+    </label>
+
+  </div>
+
+  <label>
+    وصف مشكلة النظر
+    <textarea
+      name="vision_problem"
+      placeholder="اكتب وصفًا مختصرًا لمشكلة النظر أو الأعراض التي يعاني منها المستفيد"
+    ></textarea>
+  </label>
+
+  <label>
+    هل يوجد تقرير طبي؟
+    <select name="medical_report">
+      <option value="">اختر</option>
+      <option value="نعم">نعم</option>
+      <option value="لا">لا</option>
+    </select>
+  </label>
+
+</section>
+
+
+<!-- المرفقات -->
+<section class="form-section">
+
+  <div class="section-title">
+    <span>📎</span>
+    <div>
+      <h3>المرفقات</h3>
+      <small>يمكن إرفاق تقرير طبي أو وصفة أو مستند داعم</small>
+    </div>
+  </div>
+
+  <label>
+    إرفاق تقرير أو وصفة أو مستند داعم
+    <input type="file" name="attachment">
+  </label>
+
+  <div class="note">
+    📌 يرجى إرفاق المستندات المتوفرة إن وجدت، والتأكد من وضوحها.
+  </div>
+
+</section>
+
+
+<!-- الخصوصية -->
+<div class="privacy-box">
+  🔒 <strong>الخصوصية والبيانات</strong>
+  <p>
+    يرجى التأكد من صحة البيانات قبل إرسال الطلب.
+    سيتم التعامل مع المعلومات المقدمة باحترام وخصوصية.
+  </p>
+</div>
+
+
+<!-- الإرسال -->
+<div class="center submit-area">
+  <button class="btn submit-btn" type="submit">
+    ✅ إرسال طلب التسجيل
+  </button>
+</div>
+
+  </form></main>{% endblock %}
