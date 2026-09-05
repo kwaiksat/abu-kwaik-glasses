@@ -11,8 +11,7 @@ from flask import (
     send_file,
     redirect,
     url_for,
-    session,
-    flash
+    session
 )
 
 from docx import Document
@@ -116,11 +115,69 @@ def init_db():
             ADD COLUMN status TEXT DEFAULT 'قيد المراجعة'
         """)
 
+    # الإعدادات الافتراضية
+    defaults = {
+        "open_at": "",
+        "close_at": "",
+        "enabled": "1"
+    }
+
+    for key, value in defaults.items():
+
+        exists = c.execute("""
+            SELECT value
+            FROM settings
+            WHERE key = ?
+        """, (key,)).fetchone()
+
+        if not exists:
+            c.execute("""
+                INSERT INTO settings (key, value)
+                VALUES (?, ?)
+            """, (key, value))
+
     c.commit()
     c.close()
 
 
 init_db()
+
+
+# =========================================================
+# SETTINGS HELPERS
+# =========================================================
+
+def get_setting(key, default=""):
+
+    c = conn()
+
+    row = c.execute("""
+        SELECT value
+        FROM settings
+        WHERE key = ?
+    """, (key,)).fetchone()
+
+    c.close()
+
+    if row:
+        return row["value"]
+
+    return default
+
+
+def save_setting(key, value):
+
+    c = conn()
+
+    c.execute("""
+        INSERT INTO settings (key, value)
+        VALUES (?, ?)
+        ON CONFLICT(key)
+        DO UPDATE SET value = excluded.value
+    """, (key, value))
+
+    c.commit()
+    c.close()
 
 
 # =========================================================
@@ -154,14 +211,18 @@ def admin_login():
 
             session["admin_logged_in"] = True
 
-            return redirect(url_for("admin"))
+            return redirect(
+                url_for("admin")
+            )
 
         return render_template(
             "admin_login.html",
             error="كلمة المرور غير صحيحة"
         )
 
-    return render_template("admin_login.html")
+    return render_template(
+        "admin_login.html"
+    )
 
 
 @app.route("/admin/logout")
@@ -265,9 +326,9 @@ def register():
                 ""
             ).strip()
 
-        # -------------------------------------------------
+        # =================================================
         # ATTACHMENT
-        # -------------------------------------------------
+        # =================================================
 
         filename = ""
 
@@ -298,9 +359,9 @@ def register():
                 )
             )
 
-        # -------------------------------------------------
+        # =================================================
         # DATABASE INSERT
-        # -------------------------------------------------
+        # =================================================
 
         c = conn()
 
@@ -388,7 +449,6 @@ def register():
         c.commit()
         c.close()
 
-        # success.html موجود ضمن ملفات الموقع حسب المستودع
         return render_template(
             "success.html",
             no=application_no
@@ -463,9 +523,55 @@ def check_status():
 # ADMIN DASHBOARD
 # =========================================================
 
-@app.route("/admin")
+@app.route(
+    "/admin",
+    methods=["GET", "POST"]
+)
 @admin_required
 def admin():
+
+    # =====================================================
+    # SAVE SETTINGS
+    # =====================================================
+
+    if request.method == "POST":
+
+        open_at = request.form.get(
+            "open_at",
+            ""
+        ).strip()
+
+        close_at = request.form.get(
+            "close_at",
+            ""
+        ).strip()
+
+        enabled = "1" if request.form.get(
+            "enabled"
+        ) == "1" else "0"
+
+        save_setting(
+            "open_at",
+            open_at
+        )
+
+        save_setting(
+            "close_at",
+            close_at
+        )
+
+        save_setting(
+            "enabled",
+            enabled
+        )
+
+        return redirect(
+            url_for("admin")
+        )
+
+    # =====================================================
+    # APPLICATIONS
+    # =====================================================
 
     c = conn()
 
@@ -502,11 +608,15 @@ def admin():
 
     return render_template(
         "admin.html",
+        rows=applications,
         applications=applications,
         total=total,
         review=review,
         preparing=preparing,
-        waiting=waiting
+        waiting=waiting,
+        open_at=get_setting("open_at"),
+        close_at=get_setting("close_at"),
+        enabled=get_setting("enabled", "1")
     )
 
 
@@ -627,20 +737,20 @@ def export_excel():
     workbook = Workbook()
 
     sheet = workbook.active
-    sheet.title = "طلبات النظارات"
+    sheet.title = "Applications"
 
     headers = [
         "رقم الطلب",
         "اسم مقدم الطلب",
-        "رقم الهوية",
-        "الجوال",
+        "هوية مقدم الطلب",
+        "الهاتف",
         "العنوان",
         "اسم المستفيد",
         "هوية المستفيد",
         "تاريخ الميلاد",
         "العمر",
         "الجنس",
-        "جوال المستفيد",
+        "هاتف المستفيد",
         "اسم الأب",
         "اسم الأم",
         "ضغط الدم",
@@ -695,15 +805,10 @@ def export_excel():
 
     output.seek(0)
 
-    filename = (
-        f"abu_kwaik_applications_"
-        f"{datetime.now():%Y%m%d_%H%M%S}.xlsx"
-    )
-
     return send_file(
         output,
         as_attachment=True,
-        download_name=filename,
+        download_name="applications.xlsx",
         mimetype=(
             "application/vnd.openxmlformats-"
             "officedocument.spreadsheetml.sheet"
@@ -749,15 +854,15 @@ def export_word(application_id):
 
     fields = [
         ("اسم مقدم الطلب", "applicant_name"),
-        ("رقم الهوية", "applicant_id"),
-        ("الجوال", "phone"),
+        ("هوية مقدم الطلب", "applicant_id"),
+        ("الهاتف", "phone"),
         ("العنوان", "address"),
         ("اسم المستفيد", "beneficiary_name"),
         ("هوية المستفيد", "beneficiary_id"),
         ("تاريخ الميلاد", "birth_date"),
         ("العمر", "age"),
         ("الجنس", "gender"),
-        ("جوال المستفيد", "beneficiary_phone"),
+        ("هاتف المستفيد", "beneficiary_phone"),
         ("اسم الأب", "father_name"),
         ("اسم الأم", "mother_name"),
         ("ضغط الدم", "blood_pressure"),
@@ -769,14 +874,16 @@ def export_word(application_id):
         ("مشكلة النظر", "vision_problem"),
         ("التقرير الطبي", "medical_report"),
         ("بيانات الأسرة", "family_data"),
-        ("الحالة", "status"),
-        ("تاريخ التسجيل", "created_at")
+        ("تاريخ التسجيل", "created_at"),
+        ("الحالة", "status")
     ]
 
     for label, key in fields:
 
+        value = row[key] or ""
+
         document.add_paragraph(
-            f"{label}: {row[key] or ''}"
+            f"{label}: {value}"
         )
 
     output = BytesIO()
@@ -827,63 +934,86 @@ def export_pdf(application_id):
 
     output = BytesIO()
 
-    pdf = canvas.Canvas(output)
+    pdf = canvas.Canvas(
+        output
+    )
 
     pdf.setTitle(
-        row["application_no"]
+        f"Application {row['application_no']}"
     )
 
     y = 800
 
     pdf.setFont(
-        "Helvetica",
-        12
+        "Helvetica-Bold",
+        16
     )
 
-    lines = [
-        "Abu Kwaik Glasses",
-        f"Application: {row['application_no']}",
-        "",
-        f"Applicant: {row['applicant_name']}",
-        f"Applicant ID: {row['applicant_id']}",
-        f"Phone: {row['phone']}",
-        f"Address: {row['address']}",
-        "",
-        f"Beneficiary: {row['beneficiary_name']}",
-        f"Beneficiary ID: {row['beneficiary_id']}",
-        f"Birth date: {row['birth_date']}",
-        f"Age: {row['age']}",
-        f"Gender: {row['gender']}",
-        "",
-        f"Glasses type: {row['glasses_type']}",
-        f"Vision problem: {row['vision_problem']}",
-        f"Prescription: {row['prescription']}",
-        f"Last eye exam: {row['last_eye_exam']}",
-        "",
-        f"Status: {row['status']}",
-        f"Created: {row['created_at']}"
+    pdf.drawString(
+        50,
+        y,
+        "Medical Glasses Application"
+    )
+
+    y -= 35
+
+    pdf.setFont(
+        "Helvetica",
+        10
+    )
+
+    fields = [
+        ("Application No", "application_no"),
+        ("Applicant Name", "applicant_name"),
+        ("Applicant ID", "applicant_id"),
+        ("Phone", "phone"),
+        ("Address", "address"),
+        ("Beneficiary Name", "beneficiary_name"),
+        ("Beneficiary ID", "beneficiary_id"),
+        ("Birth Date", "birth_date"),
+        ("Age", "age"),
+        ("Gender", "gender"),
+        ("Beneficiary Phone", "beneficiary_phone"),
+        ("Father Name", "father_name"),
+        ("Mother Name", "mother_name"),
+        ("Blood Pressure", "blood_pressure"),
+        ("Diabetes", "diabetes"),
+        ("Current Glasses", "current_glasses"),
+        ("Prescription", "prescription"),
+        ("Last Eye Exam", "last_eye_exam"),
+        ("Glasses Type", "glasses_type"),
+        ("Vision Problem", "vision_problem"),
+        ("Medical Report", "medical_report"),
+        ("Family Data", "family_data"),
+        ("Created At", "created_at"),
+        ("Status", "status")
     ]
 
-    for line in lines:
+    for label, key in fields:
+
+        value = str(row[key] or "")
+
+        if len(value) > 90:
+            value = value[:90] + "..."
+
+        pdf.drawString(
+            50,
+            y,
+            f"{label}: {value}"
+        )
+
+        y -= 22
 
         if y < 50:
 
             pdf.showPage()
 
-            y = 800
-
             pdf.setFont(
                 "Helvetica",
-                12
+                10
             )
 
-        pdf.drawString(
-            50,
-            y,
-            str(line)
-        )
-
-        y -= 20
+            y = 800
 
     pdf.save()
 
@@ -912,7 +1042,7 @@ def health():
 
 
 # =========================================================
-# RUN APPLICATION
+# RUN
 # =========================================================
 
 if __name__ == "__main__":
