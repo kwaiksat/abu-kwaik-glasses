@@ -1,1 +1,365 @@
-{% extends 'base.html' %}{% block content %}<main class="hero"><div class="icon">👓</div><h1>مبادرة العطاء لدعم النظارات الطبية</h1><h2><b>لكبار السن من عائلة أبوكويك المحترمين</b></h2><p>استقبال طلبات الدعم الخاصة بتوفير وتركيب النظارات الطبية.</p><div class="status">{{'🟢 التسجيل مفتوح حاليًا' if registration_open else '🔴 التسجيل مغلق حاليًا'}}</div>{% if registration_open %}<a class="btn" href="/register">بدء التسجيل</a>{% endif %}</main>{% endblock %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="home-page">
+
+    <!-- Hero -->
+    <section class="hero-card">
+
+        <div class="glasses-icon">👓</div>
+
+        <h1>مبادرة العطاء لدعم النظارات الطبية</h1>
+
+        <h2>لكبار السن من عائلة أبوكويك المحترمين</h2>
+
+        <p class="hero-text">
+            مبادرة إنسانية تهدف إلى استقبال طلبات الدعم الخاصة
+            بتوفير وتركيب النظارات الطبية لكبار السن من عائلة أبوكويك،
+            بكل احترام واهتمام.
+        </p>
+
+        <!-- Registration status -->
+        <div class="registration-open">
+            🟢 التسجيل مفتوح حاليًا
+        </div>
+
+        <div class="buttons">
+
+            <a href="{{ url_for('register') }}" class="btn btn-primary">
+                👓 التسجيل الآن
+            </a>
+
+            <a href="{{ url_for('check_status') }}" class="btn btn-secondary">
+                🔎 متابعة الطلب
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section class="info-card">
+
+        <h2>💜 عن المبادرة</h2>
+
+        <p>
+            نستقبل طلبات كبار السن من عائلة أبوكويك ممن يحتاجون
+            إلى نظارات طبية، بهدف تسهيل الوصول إلى الدعم المناسب
+            بطريقة منظمة تحفظ خصوصية المستفيد وكرامته.
+        </p>
+
+        <p>
+            يرجى تعبئة البيانات بدقة، وإرفاق المستندات أو التقارير
+            المتوفرة إن وجدت، حتى نتمكن من دراسة الطلب بصورة أفضل.
+        </p>
+
+    </section>
+
+
+    <!-- Important notice -->
+    <section class="notice-card">
+
+        <h3>📌 تنبيه مهم</h3>
+
+        <p>
+            التسجيل لا يعني الموافقة النهائية على تقديم النظارات،
+            وإنما يخضع الطلب للمراجعة والتحقق من البيانات والاحتياج.
+        </p>
+
+    </section>
+
+
+    <!-- Statistics -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <span class="stat-icon">👥</span>
+            <strong>{{ total }}</strong>
+            <small>إجمالي الطلبات</small>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">📋</span>
+            <strong>{{ review }}</strong>
+            <small>قيد المراجعة</small>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">👓</span>
+            <strong>{{ preparing }}</strong>
+            <small>قيد التجهيز</small>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">📞</span>
+            <strong>{{ waiting }}</strong>
+            <small>بانتظار الاتصال</small>
+        </div>
+
+    </section>
+
+
+    <!-- Footer message -->
+    <section class="final-message">
+
+        <div>👓</div>
+
+        <h3>مبادرة العطاء لدعم النظارات الطبية</h3>
+
+        <p>
+            لكبار السن من عائلة أبوكويك المحترمين
+        </p>
+
+        <span>
+            نسأل الله أن يجعل هذه المبادرة بابًا للخير والعطاء.
+        </span>
+
+    </section>
+
+</main>
+
+
+<style>
+
+.home-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px 15px 50px;
+    direction: rtl;
+}
+
+
+/* Hero */
+
+.hero-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 45px 25px;
+    text-align: center;
+    border: 1px solid #eee8f7;
+    box-shadow: 0 8px 30px rgba(93, 63, 139, 0.08);
+}
+
+.glasses-icon {
+    font-size: 58px;
+    margin-bottom: 10px;
+}
+
+.hero-card h1 {
+    color: #5b3a91;
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.hero-card h2 {
+    color: #7655a8;
+    font-size: 20px;
+    margin: 8px 0 20px;
+}
+
+.hero-text {
+    max-width: 720px;
+    margin: auto;
+    line-height: 2;
+    color: #555;
+    font-size: 16px;
+}
+
+
+/* Registration status */
+
+.registration-open {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    background: #eaf8ef;
+    color: #237a45;
+    font-weight: bold;
+    border: 1px solid #ccebd7;
+}
+
+
+/* Buttons */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #7655a8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #644594;
+}
+
+.btn-secondary {
+    background: #f4effa;
+    color: #5b3a91;
+    border: 1px solid #ddd0ed;
+}
+
+.btn-secondary:hover {
+    background: #ebe2f5;
+}
+
+
+/* Information */
+
+.info-card,
+.notice-card {
+    background: #ffffff;
+    margin-top: 22px;
+    padding: 30px 25px;
+    border-radius: 20px;
+    border: 1px solid #eee8f7;
+    box-shadow: 0 5px 20px rgba(93, 63, 139, 0.05);
+}
+
+.info-card h2 {
+    color: #5b3a91;
+    margin-top: 0;
+}
+
+.info-card p,
+.notice-card p {
+    color: #555;
+    line-height: 2;
+    margin-bottom: 10px;
+}
+
+
+/* Notice */
+
+.notice-card {
+    background: #faf8fd;
+    border-right: 5px solid #7655a8;
+}
+
+.notice-card h3 {
+    color: #5b3a91;
+    margin-top: 0;
+}
+
+
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #eee8f7;
+    border-radius: 18px;
+    padding: 22px 10px;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(93, 63, 139, 0.05);
+}
+
+.stat-icon {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.stat-card strong {
+    display: block;
+    color: #5b3a91;
+    font-size: 25px;
+}
+
+.stat-card small {
+    display: block;
+    color: #777;
+    margin-top: 5px;
+}
+
+
+/* Final */
+
+.final-message {
+    text-align: center;
+    margin-top: 30px;
+    padding: 30px 20px;
+    background: #f8f5fc;
+    border-radius: 20px;
+}
+
+.final-message div {
+    font-size: 40px;
+}
+
+.final-message h3 {
+    color: #5b3a91;
+    margin: 10px 0;
+}
+
+.final-message p {
+    color: #7655a8;
+    font-weight: bold;
+}
+
+.final-message span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .home-page {
+        padding: 15px 10px 35px;
+    }
+
+    .hero-card {
+        padding: 30px 18px;
+    }
+
+    .hero-card h1 {
+        font-size: 24px;
+    }
+
+    .hero-card h2 {
+        font-size: 17px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+</style>
+
+{% endblock %}
