@@ -1,1 +1,723 @@
-{% extends 'base.html' %}{% block content %}<main class="card"><h1>📝 طلب دعم النظارات الطبية</h1><form method="post" enctype="multipart/form-data"><h3>بيانات مقدم الطلب</h3><div class="grid"><label>الاسم الكامل*<input name="applicant_name" required></label><label>رقم الهوية<input name="applicant_id"></label><label>رقم الهاتف / واتساب<input name="phone"></label><label>مكان السكن<input name="address"></label></div><h3>بيانات كبير السن المستفيد</h3><div class="grid"><label>الاسم الكامل*<input name="beneficiary_name" required></label><label>رقم الهوية<input name="beneficiary_id"></label><label>تاريخ الميلاد<input type="date" name="birth_date"></label><label>العمر<input type="number" name="age" min="1" max="120"></label><label>الجنس<select name="gender"><option>ذكر</option><option>أنثى</option></select></label><label>رقم الهاتف إن وجد<input name="beneficiary_phone"></label><label>اسم الأب<input name="father_name"></label><label>اسم الأم<input name="mother_name"></label></div><h3>🩺 الحالة الصحية</h3><div class="grid"><label>ارتفاع ضغط الدم<select name="blood_pressure"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><label>مرض السكري<select name="diabetes"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label></div><h3>👓 حالة النظر</h3><div class="grid"><label>يستخدم نظارة حاليًا؟<select name="current_glasses"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><label>لديه وصفة طبية؟<select name="prescription"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><label>تاريخ آخر فحص للعيون<input type="date" name="last_eye_exam"></label><label>نوع النظارة المطلوبة<select name="glasses_type"><option>للقراءة</option><option>للنظر البعيد</option><option>للقراءة والنظر البعيد</option><option>غير محدد ويحتاج فحصًا</option></select></label></div><label>وصف مشكلة النظر<textarea name="vision_problem"></textarea></label><label>هل لديه تقرير طبي؟<select name="medical_report"><option>نعم</option><option>لا</option><option>لا أعرف</option></select></label><h3>👨‍👩‍👧‍👦 أفراد الأسرة</h3><label>أسماء أفراد الأسرة وأعمارهم وصلة القرابة<textarea name="family_data"></textarea></label><h3>📎 المرفقات</h3><input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png"><p class="note">إرسال الطلب لا يعني الموافقة التلقائية على الدعم، ويخضع الطلب للمراجعة وتوفر الدعم.</p><button class="btn" type="submit">إرسال طلب الدعم</button></form></main>{% endblock %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="registration-page">
+
+    <section class="registration-card">
+
+        <!-- Header -->
+        <div class="registration-header">
+
+            <div class="icon">👓</div>
+
+            <h1>طلب دعم النظارات الطبية</h1>
+
+            <p>
+                مبادرة العطاء لدعم النظارات الطبية
+                <br>
+                لكبار السن من عائلة أبوكويك المحترمين
+            </p>
+
+            <div class="open-badge">
+                🟢 التسجيل مفتوح حاليًا
+            </div>
+
+        </div>
+
+
+        <!-- Notice -->
+        <div class="notice">
+            <strong>📌 قبل البدء</strong>
+            <p>
+                يرجى تعبئة البيانات بدقة، والتأكد من صحة رقم الهاتف
+                والبيانات الخاصة بالمستفيد قبل إرسال الطلب.
+            </p>
+        </div>
+
+
+        <form method="POST"
+              action="{{ url_for('register') }}"
+              enctype="multipart/form-data">
+
+
+            <!-- ================================================= -->
+            <!-- بيانات مقدم الطلب -->
+            <!-- ================================================= -->
+
+            <div class="section-title">
+                <span>1</span>
+                بيانات مقدم الطلب
+            </div>
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label>اسم مقدم الطلب *</label>
+                    <input
+                        type="text"
+                        name="applicant_name"
+                        placeholder="الاسم الرباعي"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>رقم الهوية *</label>
+                    <input
+                        type="text"
+                        name="applicant_id"
+                        placeholder="رقم الهوية"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>رقم الهاتف *</label>
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="05XXXXXXXX"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>العنوان *</label>
+                    <input
+                        type="text"
+                        name="address"
+                        placeholder="المنطقة / الحي"
+                        required>
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- بيانات المستفيد -->
+            <!-- ================================================= -->
+
+            <div class="section-title">
+                <span>2</span>
+                بيانات المستفيد
+            </div>
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label>اسم المستفيد *</label>
+                    <input
+                        type="text"
+                        name="beneficiary_name"
+                        placeholder="اسم المستفيد الرباعي"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>رقم هوية المستفيد *</label>
+                    <input
+                        type="text"
+                        name="beneficiary_id"
+                        placeholder="رقم الهوية"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>تاريخ الميلاد *</label>
+                    <input
+                        type="date"
+                        name="birth_date"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>العمر *</label>
+                    <input
+                        type="number"
+                        name="age"
+                        min="1"
+                        max="120"
+                        placeholder="العمر"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>الجنس *</label>
+
+                    <select name="gender" required>
+                        <option value="">اختر الجنس</option>
+                        <option value="ذكر">ذكر</option>
+                        <option value="أنثى">أنثى</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>هاتف المستفيد</label>
+                    <input
+                        type="tel"
+                        name="beneficiary_phone"
+                        placeholder="05XXXXXXXX">
+                </div>
+
+                <div class="field">
+                    <label>اسم الأب</label>
+                    <input
+                        type="text"
+                        name="father_name"
+                        placeholder="اسم الأب">
+                </div>
+
+                <div class="field">
+                    <label>اسم الأم</label>
+                    <input
+                        type="text"
+                        name="mother_name"
+                        placeholder="اسم الأم">
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- الحالة الصحية -->
+            <!-- ================================================= -->
+
+            <div class="section-title">
+                <span>3</span>
+                الحالة الصحية والبصرية
+            </div>
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label>ضغط الدم</label>
+
+                    <select name="blood_pressure">
+                        <option value="">اختر الحالة</option>
+                        <option value="طبيعي">طبيعي</option>
+                        <option value="مرتفع">مرتفع</option>
+                        <option value="منخفض">منخفض</option>
+                        <option value="غير معروف">غير معروف</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>مرض السكري</label>
+
+                    <select name="diabetes">
+                        <option value="">اختر الحالة</option>
+                        <option value="نعم">نعم</option>
+                        <option value="لا">لا</option>
+                        <option value="غير معروف">غير معروف</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>هل يستخدم نظارة حاليًا؟</label>
+
+                    <select name="current_glasses">
+                        <option value="">اختر</option>
+                        <option value="نعم">نعم</option>
+                        <option value="لا">لا</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>نوع النظارة المطلوبة</label>
+
+                    <select name="glasses_type">
+                        <option value="">اختر النوع</option>
+                        <option value="للقراءة">للقراءة</option>
+                        <option value="للبعيد">للبعيد</option>
+                        <option value="متعددة الاستخدام">متعددة الاستخدام</option>
+                        <option value="غير معروف">غير معروف</option>
+                    </select>
+                </div>
+
+                <div class="field full">
+                    <label>ما المشكلة في النظر؟ *</label>
+
+                    <textarea
+                        name="vision_problem"
+                        rows="4"
+                        placeholder="اذكر المشكلة التي يعاني منها المستفيد في النظر..."
+                        required></textarea>
+                </div>
+
+                <div class="field full">
+                    <label>وصفة النظارات أو قياس النظر</label>
+
+                    <textarea
+                        name="prescription"
+                        rows="4"
+                        placeholder="يمكن كتابة قياس النظر إن كان متوفرًا"></textarea>
+                </div>
+
+                <div class="field full">
+                    <label>متى كان آخر فحص للعين؟</label>
+
+                    <input
+                        type="text"
+                        name="last_eye_exam"
+                        placeholder="مثال: قبل سنة / قبل 6 أشهر / لا يوجد">
+                </div>
+
+                <div class="field full">
+                    <label>التقرير الطبي أو المعلومات الطبية</label>
+
+                    <textarea
+                        name="medical_report"
+                        rows="4"
+                        placeholder="اكتب أي معلومات أو تقارير متوفرة عن حالة المستفيد"></textarea>
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- بيانات الأسرة -->
+            <!-- ================================================= -->
+
+            <div class="section-title">
+                <span>4</span>
+                بيانات الأسرة والاحتياج
+            </div>
+
+            <div class="field full">
+
+                <label>بيانات الأسرة والاحتياج</label>
+
+                <textarea
+                    name="family_data"
+                    rows="5"
+                    placeholder="اذكر باختصار عدد أفراد الأسرة وأي معلومات تساعد في تقييم الاحتياج..."></textarea>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- المرفقات -->
+            <!-- ================================================= -->
+
+            <div class="section-title">
+                <span>5</span>
+                المرفقات
+            </div>
+
+            <div class="upload-box">
+
+                <div class="upload-icon">📎</div>
+
+                <h3>إرفاق مستند أو تقرير</h3>
+
+                <p>
+                    يمكنك إرفاق تقرير طبي أو وصفة نظارات أو أي مستند
+                    يساعد في دراسة الطلب.
+                </p>
+
+                <input
+                    type="file"
+                    name="attachment"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+
+                <small>
+                    الملفات المسموح بها: PDF، JPG، PNG، DOC، DOCX
+                </small>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- إقرار -->
+            <!-- ================================================= -->
+
+            <div class="agreement">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        required>
+
+                    <span>
+                        أقر بأن المعلومات التي أدخلتها صحيحة حسب علمي،
+                        وأوافق على استخدامها لغرض دراسة طلب دعم النظارات
+                        الطبية فقط.
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button type="submit" class="submit-btn">
+                👓 إرسال طلب التسجيل
+            </button>
+
+            <a href="{{ url_for('index') }}" class="back-btn">
+                ← العودة إلى الصفحة الرئيسية
+            </a>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<style>
+
+/* =========================================================
+   الصفحة
+   ========================================================= */
+
+.registration-page {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 25px 15px 50px;
+    direction: rtl;
+}
+
+
+/* =========================================================
+   البطاقة الرئيسية
+   ========================================================= */
+
+.registration-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 35px;
+    border: 1px solid #eee8f7;
+    box-shadow: 0 8px 30px rgba(93, 63, 139, 0.08);
+}
+
+
+/* =========================================================
+   العنوان
+   ========================================================= */
+
+.registration-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.registration-header .icon {
+    font-size: 55px;
+    margin-bottom: 8px;
+}
+
+.registration-header h1 {
+    color: #5b3a91;
+    margin: 5px 0 10px;
+    font-size: 29px;
+}
+
+.registration-header p {
+    color: #666;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.open-badge {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: #eaf8ef;
+    border: 1px solid #ccebd7;
+    color: #237a45;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   التنبيه
+   ========================================================= */
+
+.notice {
+    background: #faf8fd;
+    border-right: 5px solid #7655a8;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 30px;
+}
+
+.notice strong {
+    color: #5b3a91;
+}
+
+.notice p {
+    color: #666;
+    line-height: 1.8;
+    margin: 8px 0 0;
+}
+
+
+/* =========================================================
+   عناوين الأقسام
+   ========================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 32px;
+    margin-bottom: 18px;
+
+    color: #5b3a91;
+    font-size: 19px;
+    font-weight: bold;
+
+    border-bottom: 1px solid #eee8f7;
+    padding-bottom: 12px;
+}
+
+.section-title span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #7655a8;
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   الحقول
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    margin-bottom: 7px;
+    color: #444;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #ddd4e9;
+    border-radius: 11px;
+
+    padding: 13px 14px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    background: #ffffff;
+    color: #444;
+
+    outline: none;
+    transition: 0.2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #7655a8;
+    box-shadow: 0 0 0 3px rgba(118, 85, 168, 0.08);
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+
+/* =========================================================
+   رفع الملفات
+   ========================================================= */
+
+.upload-box {
+    text-align: center;
+
+    background: #faf8fd;
+
+    border: 2px dashed #d9ccea;
+
+    border-radius: 18px;
+
+    padding: 30px 20px;
+
+    margin-top: 5px;
+}
+
+.upload-icon {
+    font-size: 38px;
+}
+
+.upload-box h3 {
+    color: #5b3a91;
+    margin: 8px 0;
+}
+
+.upload-box p {
+    color: #777;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.upload-box input[type="file"] {
+    max-width: 100%;
+}
+
+.upload-box small {
+    display: block;
+    margin-top: 12px;
+    color: #888;
+}
+
+
+/* =========================================================
+   الإقرار
+   ========================================================= */
+
+.agreement {
+    background: #f8f5fc;
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 28px;
+}
+
+.agreement label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: #555;
+    line-height: 1.8;
+    cursor: pointer;
+}
+
+.agreement input {
+    margin-top: 6px;
+    transform: scale(1.2);
+}
+
+
+/* =========================================================
+   زر الإرسال
+   ========================================================= */
+
+.submit-btn {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #7655a8;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background: #644594;
+}
+
+
+/* =========================================================
+   العودة
+   ========================================================= */
+
+.back-btn {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: #f4effa;
+
+    color: #5b3a91;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #ebe2f5;
+}
+
+
+/* =========================================================
+   الهاتف
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .registration-page {
+        padding: 12px 8px 35px;
+    }
+
+    .registration-card {
+        padding: 22px 15px;
+        border-radius: 18px;
+    }
+
+    .registration-header h1 {
+        font-size: 23px;
+    }
+
+    .registration-header .icon {
+        font-size: 45px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .section-title {
+        font-size: 17px;
+    }
+
+}
+
+</style>
+
+{% endblock %}
