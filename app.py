@@ -22,8 +22,10 @@ from openpyxl import Workbook
 
 app = Flask(__name__)
 
-# كلمة المرور
-# يمكن لاحقًا نقلها إلى Render Environment Variable
+# =========================================================
+# SETTINGS
+# =========================================================
+
 ADMIN_PASSWORD = os.environ.get(
     "ADMIN_PASSWORD",
     "Debug8276611$"
@@ -46,10 +48,7 @@ UPLOAD_FOLDER = os.path.join(
     "uploads"
 )
 
-os.makedirs(
-    UPLOAD_FOLDER,
-    exist_ok=True
-)
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
 # =========================================================
@@ -92,7 +91,8 @@ def init_db():
             medical_report TEXT,
             family_data TEXT,
             attachment TEXT,
-            created_at TEXT
+            created_at TEXT,
+            status TEXT DEFAULT 'قيد المراجعة'
         )
     """)
 
@@ -103,10 +103,6 @@ def init_db():
         )
     """)
 
-    # -----------------------------------------------------
-    # إضافة status للقاعدة الحالية إذا لم يكن موجودًا
-    # -----------------------------------------------------
-
     columns = [
         row["name"]
         for row in c.execute(
@@ -115,7 +111,6 @@ def init_db():
     ]
 
     if "status" not in columns:
-
         c.execute("""
             ALTER TABLE applications
             ADD COLUMN status TEXT DEFAULT 'قيد المراجعة'
@@ -138,10 +133,7 @@ def admin_required(func):
     def wrapper(*args, **kwargs):
 
         if not session.get("admin_logged_in"):
-
-            return redirect(
-                url_for("admin_login")
-            )
+            return redirect(url_for("admin_login"))
 
         return func(*args, **kwargs)
 
@@ -162,18 +154,14 @@ def admin_login():
 
             session["admin_logged_in"] = True
 
-            return redirect(
-                url_for("admin")
-            )
+            return redirect(url_for("admin"))
 
         return render_template(
             "admin_login.html",
             error="كلمة المرور غير صحيحة"
         )
 
-    return render_template(
-        "admin_login.html"
-    )
+    return render_template("admin_login.html")
 
 
 @app.route("/admin/logout")
@@ -240,10 +228,7 @@ def index():
 def register():
 
     if request.method == "GET":
-
-        return render_template(
-            "register.html"
-        )
+        return render_template("register.html")
 
     try:
 
@@ -281,7 +266,7 @@ def register():
             ).strip()
 
         # -------------------------------------------------
-        # Attachment
+        # ATTACHMENT
         # -------------------------------------------------
 
         filename = ""
@@ -314,7 +299,7 @@ def register():
             )
 
         # -------------------------------------------------
-        # Insert
+        # DATABASE INSERT
         # -------------------------------------------------
 
         c = conn()
@@ -403,6 +388,7 @@ def register():
         c.commit()
         c.close()
 
+        # success.html موجود ضمن ملفات الموقع حسب المستودع
         return render_template(
             "success.html",
             no=application_no
@@ -410,18 +396,10 @@ def register():
 
     except Exception as e:
 
-        print(
-            "==================================="
-        )
-        print(
-            "REGISTRATION ERROR:"
-        )
-        print(
-            str(e)
-        )
-        print(
-            "==================================="
-        )
+        print("===================================")
+        print("REGISTRATION ERROR:")
+        print(str(e))
+        print("===================================")
 
         return """
         <!DOCTYPE html>
@@ -506,25 +484,19 @@ def admin():
         SELECT COUNT(*)
         FROM applications
         WHERE status = ?
-    """, (
-        "قيد المراجعة",
-    )).fetchone()[0]
+    """, ("قيد المراجعة",)).fetchone()[0]
 
     preparing = c.execute("""
         SELECT COUNT(*)
         FROM applications
         WHERE status = ?
-    """, (
-        "قيد التجهيز",
-    )).fetchone()[0]
+    """, ("قيد التجهيز",)).fetchone()[0]
 
     waiting = c.execute("""
         SELECT COUNT(*)
         FROM applications
         WHERE status = ?
-    """, (
-        "بانتظار الاتصال",
-    )).fetchone()[0]
+    """, ("بانتظار الاتصال",)).fetchone()[0]
 
     c.close()
 
@@ -541,3 +513,419 @@ def admin():
 # =========================================================
 # CHANGE APPLICATION STATUS
 # =========================================================
+
+@app.route(
+    "/admin/status/<int:application_id>",
+    methods=["POST"]
+)
+@admin_required
+def change_status(application_id):
+
+    status = request.form.get(
+        "status",
+        "قيد المراجعة"
+    ).strip()
+
+    allowed_statuses = [
+        "قيد المراجعة",
+        "قيد التجهيز",
+        "بانتظار الاتصال",
+        "تمت الاستفادة",
+        "مرفوض"
+    ]
+
+    if status not in allowed_statuses:
+        status = "قيد المراجعة"
+
+    c = conn()
+
+    c.execute("""
+        UPDATE applications
+        SET status = ?
+        WHERE id = ?
+    """, (
+        status,
+        application_id
+    ))
+
+    c.commit()
+    c.close()
+
+    return redirect(
+        url_for("admin")
+    )
+
+
+# =========================================================
+# DELETE APPLICATION
+# =========================================================
+
+@app.route(
+    "/admin/delete/<int:application_id>",
+    methods=["POST"]
+)
+@admin_required
+def delete_application(application_id):
+
+    c = conn()
+
+    row = c.execute("""
+        SELECT attachment
+        FROM applications
+        WHERE id = ?
+    """, (
+        application_id,
+    )).fetchone()
+
+    if row and row["attachment"]:
+
+        file_path = os.path.join(
+            UPLOAD_FOLDER,
+            row["attachment"]
+        )
+
+        if os.path.exists(file_path):
+
+            try:
+                os.remove(file_path)
+            except Exception:
+                pass
+
+    c.execute("""
+        DELETE FROM applications
+        WHERE id = ?
+    """, (
+        application_id,
+    ))
+
+    c.commit()
+    c.close()
+
+    return redirect(
+        url_for("admin")
+    )
+
+
+# =========================================================
+# EXCEL EXPORT
+# =========================================================
+
+@app.route("/admin/export/excel")
+@admin_required
+def export_excel():
+
+    c = conn()
+
+    rows = c.execute("""
+        SELECT *
+        FROM applications
+        ORDER BY id DESC
+    """).fetchall()
+
+    c.close()
+
+    workbook = Workbook()
+
+    sheet = workbook.active
+    sheet.title = "طلبات النظارات"
+
+    headers = [
+        "رقم الطلب",
+        "اسم مقدم الطلب",
+        "رقم الهوية",
+        "الجوال",
+        "العنوان",
+        "اسم المستفيد",
+        "هوية المستفيد",
+        "تاريخ الميلاد",
+        "العمر",
+        "الجنس",
+        "جوال المستفيد",
+        "اسم الأب",
+        "اسم الأم",
+        "ضغط الدم",
+        "السكري",
+        "النظارات الحالية",
+        "الوصفة",
+        "آخر فحص للعين",
+        "نوع النظارات",
+        "مشكلة النظر",
+        "التقرير الطبي",
+        "بيانات الأسرة",
+        "المرفق",
+        "تاريخ التسجيل",
+        "الحالة"
+    ]
+
+    sheet.append(headers)
+
+    for row in rows:
+
+        sheet.append([
+            row["application_no"],
+            row["applicant_name"],
+            row["applicant_id"],
+            row["phone"],
+            row["address"],
+            row["beneficiary_name"],
+            row["beneficiary_id"],
+            row["birth_date"],
+            row["age"],
+            row["gender"],
+            row["beneficiary_phone"],
+            row["father_name"],
+            row["mother_name"],
+            row["blood_pressure"],
+            row["diabetes"],
+            row["current_glasses"],
+            row["prescription"],
+            row["last_eye_exam"],
+            row["glasses_type"],
+            row["vision_problem"],
+            row["medical_report"],
+            row["family_data"],
+            row["attachment"],
+            row["created_at"],
+            row["status"]
+        ])
+
+    output = BytesIO()
+
+    workbook.save(output)
+
+    output.seek(0)
+
+    filename = (
+        f"abu_kwaik_applications_"
+        f"{datetime.now():%Y%m%d_%H%M%S}.xlsx"
+    )
+
+    return send_file(
+        output,
+        as_attachment=True,
+        download_name=filename,
+        mimetype=(
+            "application/vnd.openxmlformats-"
+            "officedocument.spreadsheetml.sheet"
+        )
+    )
+
+
+# =========================================================
+# WORD EXPORT
+# =========================================================
+
+@app.route(
+    "/admin/export/word/<int:application_id>"
+)
+@admin_required
+def export_word(application_id):
+
+    c = conn()
+
+    row = c.execute("""
+        SELECT *
+        FROM applications
+        WHERE id = ?
+    """, (
+        application_id,
+    )).fetchone()
+
+    c.close()
+
+    if not row:
+        return "الطلب غير موجود", 404
+
+    document = Document()
+
+    document.add_heading(
+        "مبادرة العطاء لدعم النظارات الطبية",
+        level=1
+    )
+
+    document.add_paragraph(
+        f"رقم الطلب: {row['application_no']}"
+    )
+
+    fields = [
+        ("اسم مقدم الطلب", "applicant_name"),
+        ("رقم الهوية", "applicant_id"),
+        ("الجوال", "phone"),
+        ("العنوان", "address"),
+        ("اسم المستفيد", "beneficiary_name"),
+        ("هوية المستفيد", "beneficiary_id"),
+        ("تاريخ الميلاد", "birth_date"),
+        ("العمر", "age"),
+        ("الجنس", "gender"),
+        ("جوال المستفيد", "beneficiary_phone"),
+        ("اسم الأب", "father_name"),
+        ("اسم الأم", "mother_name"),
+        ("ضغط الدم", "blood_pressure"),
+        ("السكري", "diabetes"),
+        ("النظارات الحالية", "current_glasses"),
+        ("الوصفة", "prescription"),
+        ("آخر فحص للعين", "last_eye_exam"),
+        ("نوع النظارات", "glasses_type"),
+        ("مشكلة النظر", "vision_problem"),
+        ("التقرير الطبي", "medical_report"),
+        ("بيانات الأسرة", "family_data"),
+        ("الحالة", "status"),
+        ("تاريخ التسجيل", "created_at")
+    ]
+
+    for label, key in fields:
+
+        document.add_paragraph(
+            f"{label}: {row[key] or ''}"
+        )
+
+    output = BytesIO()
+
+    document.save(output)
+
+    output.seek(0)
+
+    filename = (
+        f"{row['application_no']}.docx"
+    )
+
+    return send_file(
+        output,
+        as_attachment=True,
+        download_name=filename,
+        mimetype=(
+            "application/vnd.openxmlformats-"
+            "officedocument.wordprocessingml.document"
+        )
+    )
+
+
+# =========================================================
+# PDF EXPORT
+# =========================================================
+
+@app.route(
+    "/admin/export/pdf/<int:application_id>"
+)
+@admin_required
+def export_pdf(application_id):
+
+    c = conn()
+
+    row = c.execute("""
+        SELECT *
+        FROM applications
+        WHERE id = ?
+    """, (
+        application_id,
+    )).fetchone()
+
+    c.close()
+
+    if not row:
+        return "الطلب غير موجود", 404
+
+    output = BytesIO()
+
+    pdf = canvas.Canvas(output)
+
+    pdf.setTitle(
+        row["application_no"]
+    )
+
+    y = 800
+
+    pdf.setFont(
+        "Helvetica",
+        12
+    )
+
+    lines = [
+        "Abu Kwaik Glasses",
+        f"Application: {row['application_no']}",
+        "",
+        f"Applicant: {row['applicant_name']}",
+        f"Applicant ID: {row['applicant_id']}",
+        f"Phone: {row['phone']}",
+        f"Address: {row['address']}",
+        "",
+        f"Beneficiary: {row['beneficiary_name']}",
+        f"Beneficiary ID: {row['beneficiary_id']}",
+        f"Birth date: {row['birth_date']}",
+        f"Age: {row['age']}",
+        f"Gender: {row['gender']}",
+        "",
+        f"Glasses type: {row['glasses_type']}",
+        f"Vision problem: {row['vision_problem']}",
+        f"Prescription: {row['prescription']}",
+        f"Last eye exam: {row['last_eye_exam']}",
+        "",
+        f"Status: {row['status']}",
+        f"Created: {row['created_at']}"
+    ]
+
+    for line in lines:
+
+        if y < 50:
+
+            pdf.showPage()
+
+            y = 800
+
+            pdf.setFont(
+                "Helvetica",
+                12
+            )
+
+        pdf.drawString(
+            50,
+            y,
+            str(line)
+        )
+
+        y -= 20
+
+    pdf.save()
+
+    output.seek(0)
+
+    filename = (
+        f"{row['application_no']}.pdf"
+    )
+
+    return send_file(
+        output,
+        as_attachment=True,
+        download_name=filename,
+        mimetype="application/pdf"
+    )
+
+
+# =========================================================
+# HEALTH CHECK
+# =========================================================
+
+@app.route("/health")
+def health():
+
+    return "OK", 200
+
+
+# =========================================================
+# RUN APPLICATION
+# =========================================================
+
+if __name__ == "__main__":
+
+    port = int(
+        os.environ.get(
+            "PORT",
+            5000
+        )
+    )
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
