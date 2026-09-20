@@ -4,16 +4,16 @@
 
 :root {
   --black: #111111;
-  --black-soft: #2b2b2b;
-  --silver: #777777;
-  --silver-light: #f1f1f1;
+  --black-soft: #222222;
+  --gold: #c9a227;
+  --gold-light: #f7efd0;
   --white: #ffffff;
-  --background: #f7f7f7;
+  --background: #f7f7f5;
   --text: #222222;
-  --muted: #777777;
-  --border: #dddddd;
-  --success: #28734a;
-  --success-bg: #edf7f1;
+  --muted: #666666;
+  --border: #e2e2e2;
+  --danger: #a51d2d;
+  --danger-bg: #fff1f2;
 }
 
 html {
@@ -22,14 +22,8 @@ html {
 
 body {
   margin: 0;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #f7f7f7 100%
-  );
-
+  background: var(--background);
   color: var(--text);
-
   font-family:
     "Noto Naskh Arabic",
     "Noto Sans Arabic",
@@ -37,542 +31,418 @@ body {
     Tahoma,
     Arial,
     sans-serif;
-
   line-height: 1.9;
 }
 
 main {
-  max-width: 1050px;
-  margin: 30px auto;
-  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px 35px;
 }
 
-.hero,
-.card {
-  background: var(--white);
-  border-radius: 22px;
-  border: 1px solid #e1e1e1;
+/* شريط الثقة */
 
-  box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.07);
+.trust-bar {
+  background: var(--black);
+  color: var(--gold);
+  text-align: center;
+  padding: 12px 15px;
+  font-weight: 700;
+  font-size: 18px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.trust-bar.bottom {
+  margin-top: 30px;
+  border-top: 2px solid var(--gold);
+  border-bottom: 0;
+}
+
+/* الواجهة الرئيسية */
+
+.majd-page {
+  min-height: 100vh;
 }
 
 .hero {
+  margin-top: 22px;
+  padding: 55px 25px;
   text-align: center;
-  padding: 70px 35px;
-
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(0, 0, 0, 0.04),
-      transparent 30%
-    ),
-    #ffffff;
-}
-
-.card {
-  padding: 35px;
-}
-
-/* العناوين */
-
-h1,
-h2,
-h3 {
-  color: var(--black);
-}
-
-h1 {
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-h2 {
-  font-weight: 600;
-}
-
-h3 {
-  margin-top: 30px;
-  padding-bottom: 10px;
-
-  border-bottom:
-    1px solid #cfcfcf;
-
-  font-weight: 600;
-}
-
-/* الأيقونة */
-
-.icon {
-  font-size: 58px;
-  margin-bottom: 10px;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 22px;
+  border: 1px solid #333333;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
 .hero h1 {
-  color: var(--black);
-  font-size: 37px;
-  margin: 10px 0;
+  margin: 0 0 12px;
+  color: var(--gold);
+  font-size: 38px;
+  font-weight: 800;
 }
 
 .hero h2 {
-  color: var(--silver);
-  font-size: 24px;
-  margin: 10px 0 20px;
+  margin: 0 0 18px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 600;
 }
 
 .hero p {
-  max-width: 760px;
-  margin: 0 auto 25px;
-
-  color: var(--muted);
+  max-width: 800px;
+  margin: 0 auto;
+  color: #eeeeee;
   font-size: 17px;
 }
 
-/* حالة التسجيل */
-
-.status {
-  display: inline-block;
-
-  margin: 20px 0;
-
-  padding: 9px 22px;
-
-  border-radius: 30px;
-
-  background: var(--success-bg);
-  color: var(--success);
-
-  font-weight: 600;
+.hero-icon {
+  font-size: 55px;
+  margin-bottom: 5px;
 }
 
 /* الأزرار */
 
 .btn {
   display: inline-block;
-
-  background: var(--black);
-  color: #ffffff;
-
-  border: 1px solid var(--black);
-
+  padding: 12px 24px;
+  margin-top: 18px;
   border-radius: 10px;
-
-  padding: 13px 28px;
-
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--black);
   text-decoration: none;
-
-  cursor: pointer;
-
-  font-size: 16px;
-
-  font-family: inherit;
-
-  font-weight: 600;
-
+  font-weight: 800;
   transition: 0.2s ease;
 }
 
 .btn:hover {
-  background: #000000;
-
+  background: #e0bd3d;
   transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
-/* نموذج التسجيل */
+/* التنبيه الأحمر */
 
-.registration-card {
-  max-width: 1000px;
-  margin: 25px auto;
+.important-notice {
+  margin-top: 22px;
+  padding: 20px;
+  background: var(--danger-bg);
+  border: 1px solid #efb4bc;
+  border-right: 6px solid var(--danger);
+  border-radius: 14px;
+  color: #5f1720;
 }
 
-.registration-header {
-  padding-bottom: 25px;
+.important-notice h3 {
+  margin: 0 0 8px;
+  color: var(--danger);
+  font-size: 20px;
 }
 
-.registration-header h1 {
-  font-size: 34px;
-  margin-bottom: 5px;
-}
-
-.registration-header h2 {
-  color: var(--silver);
-  font-size: 22px;
-  margin-top: 5px;
-}
-
-.registration-subtitle {
-  color: var(--muted);
-  font-size: 16px;
-}
-
-/* تنبيه الفئة */
-
-.eligibility-note {
-  max-width: 760px;
-
-  margin: 22px auto 5px;
-
-  padding: 14px 18px;
-
-  background: var(--silver-light);
-
-  border: 1px solid #dddddd;
-
-  border-right: 4px solid var(--black);
-
-  border-radius: 10px;
-
-  color: #444444;
-
+.important-notice p {
+  margin: 0;
   font-size: 15px;
 }
 
-/* أقسام النموذج */
+/* الأقسام */
 
-.form-section {
-  margin-top: 28px;
-
-  padding: 25px;
-
-  background: #ffffff;
-
-  border: 1px solid var(--border);
-
-  border-radius: 16px;
+.section {
+  margin-top: 30px;
 }
-
-.form-section:hover {
-  border-color: #cfcfcf;
-
-  box-shadow:
-    0 5px 18px rgba(0, 0, 0, 0.04);
-}
-
-/* عنوان القسم */
 
 .section-title {
-  display: flex;
-
-  align-items: center;
-
-  gap: 13px;
-
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.section-title > span {
+.section-title h2 {
+  margin: 0;
+  color: var(--black);
+  font-size: 27px;
+}
+
+.section-title p {
+  margin: 5px auto 0;
+  color: var(--muted);
+  max-width: 750px;
+}
+
+/* خطوات الاستفادة */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.step-card {
+  background: var(--white);
+  padding: 22px 15px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
   width: 42px;
   height: 42px;
-
+  margin: 0 auto 10px;
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
-  background: #f2f2f2;
-
-  border: 1px solid #dddddd;
-
-  font-size: 20px;
+  background: var(--black);
+  color: var(--gold);
+  font-weight: 800;
 }
 
-.section-title h3 {
-  margin: 0;
-
-  padding: 0;
-
-  border: 0;
-
+.step-card h3 {
+  margin: 5px 0;
   color: var(--black);
-
-  font-size: 20px;
+  font-size: 18px;
 }
 
-.section-title small {
+.step-card p {
+  margin: 0;
   color: var(--muted);
-
-  font-size: 13px;
+  font-size: 14px;
 }
 
-/* الحقول */
+/* بطاقات المساعدات */
 
-label {
-  display: block;
-
-  margin: 13px 0;
-
-  font-weight: 600;
-
-  color: var(--black-soft);
-
-  font-size: 15px;
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
-input,
-select,
-textarea {
+.category-card {
   display: block;
-
-  width: 100%;
-
-  padding: 12px 14px;
-
-  margin-top: 7px;
-
+  padding: 22px;
+  background: var(--white);
   border: 1px solid var(--border);
-
-  border-radius: 9px;
-
-  background: #ffffff;
-
+  border-radius: 16px;
+  text-decoration: none;
   color: var(--text);
-
-  font-family: inherit;
-
-  font-size: 15px;
-
-  outline: none;
-
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
   transition: 0.2s ease;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--black);
-
-  box-shadow:
-    0 0 0 3px rgba(0, 0, 0, 0.08);
+.category-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #aaaaaa;
+.category-icon {
+  font-size: 35px;
+  margin-bottom: 5px;
 }
 
-textarea {
-  min-height: 125px;
-
-  resize: vertical;
+.category-card h3 {
+  margin: 0 0 5px;
+  color: var(--black);
+  font-size: 19px;
 }
 
-/* شبكة الحقول */
+.category-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
 
-.grid {
+/* روابط المساعدات */
+
+.aid-links {
   display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 5px 25px;
+  gap: 16px;
 }
 
-/* تنبيه الذكور */
-
-.male-only-note {
-  margin-top: 18px;
-
-  padding: 12px 16px;
-
-  background: #f7f7f7;
-
-  border-right: 3px solid var(--black);
-
-  border-radius: 8px;
-
-  color: #555555;
-
-  font-size: 14px;
-}
-
-/* الملاحظات */
-
-.note {
-  padding: 14px 17px;
-
-  margin-top: 18px;
-
-  background: #f3f3f3;
-
-  border-right: 4px solid #777777;
-
-  border-radius: 10px;
-
-  color: #555555;
-
-  font-size: 14px;
-}
-
-/* الخصوصية */
-
-.privacy-box {
-  margin-top: 25px;
-
-  padding: 18px 20px;
-
-  background: #fafafa;
-
+.aid-section {
+  background: var(--white);
   border: 1px solid var(--border);
-
-  border-radius: 12px;
-
-  color: #555555;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
 }
 
-.privacy-box strong {
+.aid-section h3 {
+  margin: 0 0 8px;
   color: var(--black);
+  font-size: 21px;
 }
 
-.privacy-box p {
-  margin: 5px 0 0;
-
+.aid-section p {
+  margin: 0 0 15px;
+  color: var(--muted);
   font-size: 14px;
 }
 
-/* زر الإرسال */
-
-.submit-area {
-  margin-top: 28px;
-
-  padding-top: 10px;
+.no-links {
+  padding: 14px;
+  background: #fafafa;
+  border-right: 4px solid var(--gold);
+  border-radius: 9px;
+  color: #666666;
 }
 
-.submit-btn {
-  min-width: 240px;
+/* الأمان */
 
-  font-size: 17px;
-
-  padding: 14px 30px;
-
+.security-box {
   background: var(--black);
-
-  border-color: var(--black);
+  color: #eeeeee;
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid #333333;
 }
 
-.submit-btn:hover {
-  background: #000000;
+.security-box h2 {
+  color: var(--gold);
+  margin-top: 0;
 }
 
-/* التوسيط */
+.security-box ul {
+  margin: 10px 0 0;
+  padding-right: 22px;
+}
 
-.center {
+.security-box li {
+  margin: 8px 0;
+}
+
+/* قسم التواصل */
+
+.contact-box {
   text-align: center;
+  padding: 28px 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
 }
 
-/* الجداول */
-
-table {
-  width: 100%;
-
-  border-collapse: collapse;
-
-  margin-top: 20px;
-
-  background: #ffffff;
-}
-
-th {
-  background: #eeeeee;
-
+.contact-box h2 {
+  margin-top: 0;
   color: var(--black);
 }
 
-th,
-td {
-  padding: 12px;
-
-  border-bottom:
-    1px solid var(--border);
-
-  text-align: right;
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* الروابط */
-
-a {
-  color: var(--black);
+.contact-buttons .btn {
+  margin-top: 5px;
 }
 
-a:hover {
-  color: var(--silver);
+/* الثقة */
+
+.trust-section {
+  margin-top: 30px;
+  padding: 35px 20px;
+  text-align: center;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 20px;
+  border: 2px solid var(--gold);
+}
+
+.trust-section h2 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 30px;
+}
+
+.trust-section p {
+  max-width: 760px;
+  margin: 10px auto 0;
+  color: #eeeeee;
 }
 
 /* التذييل */
 
 footer {
+  padding: 25px 15px 35px;
   text-align: center;
-
-  padding: 28px 15px 38px;
-
   color: var(--muted);
-
-  font-size: 14px;
+  font-size: 13px;
 }
 
 footer p {
-  margin: 3px;
+  margin: 4px;
 }
 
 /* الهاتف */
 
-@media (max-width: 650px) {
-
+@media (max-width: 750px) {
   main {
-    margin: 12px auto;
-    padding: 14px;
+    padding: 0 12px 25px;
   }
 
   .hero {
-    padding: 45px 20px;
-  }
-
-  .card {
-    padding: 20px 16px;
-  }
-
-  .registration-card {
-    padding: 18px 14px;
-  }
-
-  .registration-header h1 {
-    font-size: 27px;
-  }
-
-  .registration-header h2 {
-    font-size: 19px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-section {
-    padding: 18px 14px;
+    padding: 42px 18px;
+    border-radius: 17px;
   }
 
   .hero h1 {
-    font-size: 28px;
+    font-size: 29px;
   }
 
   .hero h2 {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .hero p {
     font-size: 15px;
   }
 
-  .icon {
-    font-size: 50px;
+  .steps {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .btn,
-  .submit-btn {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title h2 {
+    font-size: 23px;
+  }
+
+  .trust-bar {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-icon {
+    font-size: 45px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .important-notice {
+    padding: 16px;
+  }
+
+  .aid-section,
+  .contact-box,
+  .security-box {
+    padding: 19px 15px;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+  }
+
+  .contact-buttons .btn {
     width: 100%;
-    text-align: center;
   }
 }
