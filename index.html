@@ -2,36 +2,626 @@
 
 {% block content %}
 
-<main class="home-page">
+<main class="majd-page">
 
-    <!-- Hero -->
-    <section class="hero-card">
+    <!-- =========================
+         TOP TRUST BAR
+    ========================== -->
+    <div class="trust-bar">
+        <span class="trust-icon">✓</span>
+        <span>نحن ثقة للمستفيد</span>
+    </div>
 
-        <div class="glasses-icon">👓</div>
 
-        <h1>مبادرة العطاء لدعم النظارات الطبية</h1>
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="hero">
 
-        <h2>لكبار السن من عائلة أبوكويك المحترمين</h2>
-
-        <p class="hero-text">
-            مبادرة إنسانية تهدف إلى استقبال طلبات الدعم الخاصة
-            بتوفير وتركيب النظارات الطبية لكبار السن من عائلة أبوكويك،
-            بكل احترام واهتمام.
-        </p>
-
-        <!-- Registration status -->
-        <div class="registration-open">
-            🟢 التسجيل مفتوح حاليًا
+        <div class="hero-symbol">
+            <span>✓</span>
         </div>
 
-        <div class="buttons">
+        <div class="verified-label">
+            روابط موثقة • معلومات واضحة • وصول مباشر
+        </div>
 
-            <a href="{{ url_for('register') }}" class="btn btn-primary">
-                👓 التسجيل الآن
+        <h1>منصة مجد الخير</h1>
+
+        <p class="hero-subtitle">
+            بوابة للوصول إلى روابط المساعدات والتسجيلات
+            الموثوقة لأهالي قطاع غزة
+        </p>
+
+        <p class="hero-description">
+            نسعى إلى التحقق من الروابط الرسمية المعتمدة وتوثيقها
+            داخل منصة مجد الخير، لمساعدة المستفيد على الوصول
+            إلى جهة التسجيل مباشرة وبطريقة واضحة وآمنة.
+        </p>
+
+        <div class="hero-badges">
+
+            <div class="hero-badge">
+                <span>✓</span>
+                <strong>روابط موثقة</strong>
+            </div>
+
+            <div class="hero-badge">
+                <span>🔗</span>
+                <strong>وصول مباشر</strong>
+            </div>
+
+            <div class="hero-badge">
+                <span>🛡️</span>
+                <strong>بدون رسوم تسجيل</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT RED NOTICE
+    ========================== -->
+    <section class="important-notice">
+
+        <div class="notice-title">
+            ⚠️ تنويه وملاحظة مهمة
+        </div>
+
+        <p>
+            نحن هنا نعمل من أجل التحقق من الروابط الرسمية المعتمدة
+            وتوثيقها داخل منصة مجد الخير.
+        </p>
+
+        <p>
+            نحن منصة لا تحقق أرباحًا من المستفيدين أو المسجلين،
+            ولا نطلب من المستفيدين دفع أي تكاليف أو رسوم مقابل التسجيل،
+            ولا نقوم بدفع أي تكاليف أو رسوم لأي تسجيل.
+        </p>
+
+        <p>
+            هدفنا هو مساعدتك في الوصول إلى الروابط الموثوقة
+            وتجنب طرق النصب والاحتيال التي قد يواجهها المستفيدون.
+            ونسعى إلى الأمانة والمصداقية في كل رابط يتم نشره
+            من خلال منصة مجد الخير.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+    <section class="how-section">
+
+        <div class="section-heading">
+            <span>طريقة الاستخدام</span>
+            <h2>كيف تستفيد من المنصة؟</h2>
+        </div>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>اختر نوع المساعدة</h3>
+                <p>
+                    اختر القسم المناسب لاحتياجك من الأقسام الموجودة في المنصة.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>راجع الرابط</h3>
+                <p>
+                    اقرأ معلومات الجهة والرابط قبل الانتقال إلى صفحة التسجيل.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>انتقل للجهة الرسمية</h3>
+                <p>
+                    اضغط على زر التسجيل للانتقال مباشرة إلى الرابط المنشور.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>أدخل بياناتك بنفسك</h3>
+                <p>
+                    يتم إدخال بيانات التسجيل مباشرة لدى الجهة صاحبة الرابط.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HELP CATEGORIES
+    ========================== -->
+    <section class="categories-section">
+
+        <div class="section-heading">
+            <span>أقسام المساعدات</span>
+            <h2>اختر القسم المناسب لك</h2>
+            <p>
+                اختر نوع المساعدة للوصول إلى الروابط الموثقة المتوفرة.
+            </p>
+        </div>
+
+
+        <div class="categories-grid">
+
+
+            <!-- Cash -->
+            <article class="category-card">
+
+                <div class="category-icon cash-icon">
+                    💰
+                </div>
+
+                <div class="category-content">
+
+                    <h3>المساعدات النقدية</h3>
+
+                    <p>
+                        روابط التسجيل في برامج المساعدات النقدية
+                        المتاحة للمستفيدين.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#cash-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- In-kind -->
+            <article class="category-card">
+
+                <div class="category-icon">
+                    📦
+                </div>
+
+                <div class="category-content">
+
+                    <h3>المساعدات العينية</h3>
+
+                    <p>
+                        روابط التسجيل أو الاستفادة من المساعدات
+                        العينية والمواد الأساسية.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#inkind-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Cleaning -->
+            <article class="category-card">
+
+                <div class="category-icon">
+                    🧴
+                </div>
+
+                <div class="category-content">
+
+                    <h3>مساعدات المنظفات</h3>
+
+                    <p>
+                        روابط برامج المساعدات الخاصة بمواد
+                        النظافة والمنظفات.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#cleaning-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Elderly -->
+            <article class="category-card">
+
+                <div class="category-icon">
+                    👴
+                </div>
+
+                <div class="category-content">
+
+                    <h3>مساعدات كبار السن</h3>
+
+                    <p>
+                        روابط البرامج والمساعدات المخصصة
+                        لكبار السن.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#elderly-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Orphans -->
+            <article class="category-card">
+
+                <div class="category-icon">
+                    🤝
+                </div>
+
+                <div class="category-content">
+
+                    <h3>مساعدات الأيتام</h3>
+
+                    <p>
+                        روابط البرامج والمساعدات المخصصة
+                        للأطفال الأيتام.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#orphans-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Students -->
+            <article class="category-card">
+
+                <div class="category-icon">
+                    🎒
+                </div>
+
+                <div class="category-content">
+
+                    <h3>مساعدات طلاب المدارس</h3>
+
+                    <p>
+                        روابط التسجيل للحصول على الدعم
+                        والاحتياجات المدرسية.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#students-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Education -->
+            <article class="category-card">
+
+                <div class="category-icon">
+                    📚
+                </div>
+
+                <div class="category-content">
+
+                    <h3>مساعدات التربية والتعليم</h3>
+
+                    <p>
+                        روابط برامج الدعم المتعلقة بالتعليم
+                        والتربية والطلبة.
+                    </p>
+
+                    <div class="verified-status">
+                        <span>✓</span>
+                        روابط يتم التحقق منها
+                    </div>
+
+                    <a href="#education-aid"
+                       class="category-button">
+                        عرض الروابط
+                        <span>←</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LINK AREA
+         READY FOR VERIFIED LINKS
+    ========================== -->
+    <section class="links-section">
+
+        <div class="section-heading">
+            <span>الروابط الموثقة</span>
+            <h2>روابط التسجيل والاستفادة</h2>
+            <p>
+                لا يتم نشر أي رابط هنا إلا بعد التحقق منه واعتماده للنشر.
+            </p>
+        </div>
+
+
+        <!-- Cash -->
+        <div class="link-group" id="cash-aid">
+
+            <div class="group-title">
+                <span>💰</span>
+                <div>
+                    <h3>المساعدات النقدية</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+
+        <!-- In-kind -->
+        <div class="link-group" id="inkind-aid">
+
+            <div class="group-title">
+                <span>📦</span>
+                <div>
+                    <h3>المساعدات العينية</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Cleaning -->
+        <div class="link-group" id="cleaning-aid">
+
+            <div class="group-title">
+                <span>🧴</span>
+                <div>
+                    <h3>مساعدات المنظفات</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Elderly -->
+        <div class="link-group" id="elderly-aid">
+
+            <div class="group-title">
+                <span>👴</span>
+                <div>
+                    <h3>مساعدات كبار السن</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Orphans -->
+        <div class="link-group" id="orphans-aid">
+
+            <div class="group-title">
+                <span>🤝</span>
+                <div>
+                    <h3>مساعدات الأيتام</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Students -->
+        <div class="link-group" id="students-aid">
+
+            <div class="group-title">
+                <span>🎒</span>
+                <div>
+                    <h3>مساعدات طلاب المدارس</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+
+        <!-- Education -->
+        <div class="link-group" id="education-aid">
+
+            <div class="group-title">
+                <span>📚</span>
+                <div>
+                    <h3>مساعدات التربية والتعليم</h3>
+                    <small>روابط التسجيل الموثقة</small>
+                </div>
+            </div>
+
+            <div class="empty-link">
+                <span>🔎</span>
+                <p>سيتم إضافة الروابط بعد التحقق منها.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SECURITY / TRUST
+    ========================== -->
+    <section class="security-card">
+
+        <div class="security-icon">🛡️</div>
+
+        <h2>ثقتك مسؤوليتنا</h2>
+
+        <p>
+            لا تطلب منصة مجد الخير منك كلمة مرور حسابك،
+            أو رمز التحقق الخاص بهاتفك، أو بيانات بطاقتك البنكية.
+        </p>
+
+        <p>
+            عند الانتقال إلى أي رابط، تأكد من أنك تقوم بإدخال
+            بياناتك في الموقع التابع للجهة صاحبة المساعدة نفسها.
+        </p>
+
+        <div class="security-note">
+            <strong>تذكّر:</strong>
+            لا تدفع أي مبلغ مقابل التسجيل في أي مساعدة.
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BLACK TRUST SIGN
+    ========================== -->
+    <section class="gold-trust">
+
+        <div class="gold-check">✓</div>
+
+        <h2>نحن ثقة للمستفيد</h2>
+
+        <p>
+            الأمانة والمصداقية في كل رابط يتم نشره
+            من خلال منصة مجد الخير.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+    <section class="contact-card">
+
+        <div class="contact-heading">
+            <span>تواصل معنا</span>
+            <h2>للاستفسار والتواصل</h2>
+        </div>
+
+        <p>
+            إذا كان لديك استفسار أو تريد الإبلاغ عن رابط مشبوه،
+            يمكنك التواصل معنا.
+        </p>
+
+        <div class="contact-buttons">
+
+            <a href="https://wa.me/970592480001"
+               class="contact-button whatsapp"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <span>💬</span>
+
+                <div>
+                    <strong>WhatsApp</strong>
+                    <small>0592480001</small>
+                </div>
+
             </a>
 
-            <a href="{{ url_for('check_status') }}" class="btn btn-secondary">
-                🔎 متابعة الطلب
+
+            <a href="mailto:n299964@hotmail.com"
+               class="contact-button email">
+
+                <span>✉️</span>
+
+                <div>
+                    <strong>البريد الإلكتروني</strong>
+                    <small>n299964@hotmail.com</small>
+                </div>
+
             </a>
 
         </div>
@@ -39,325 +629,818 @@
     </section>
 
 
-    <!-- About -->
-    <section class="info-card">
-
-        <h2>💜 عن المبادرة</h2>
-
-        <p>
-            نستقبل طلبات كبار السن من عائلة أبوكويك ممن يحتاجون
-            إلى نظارات طبية، بهدف تسهيل الوصول إلى الدعم المناسب
-            بطريقة منظمة تحفظ خصوصية المستفيد وكرامته.
-        </p>
-
-        <p>
-            يرجى تعبئة البيانات بدقة، وإرفاق المستندات أو التقارير
-            المتوفرة إن وجدت، حتى نتمكن من دراسة الطلب بصورة أفضل.
-        </p>
-
-    </section>
+    <!-- =========================
+         BOTTOM TRUST
+    ========================== -->
+    <div class="bottom-trust">
+        <span>✓</span>
+        <strong>منصة مجد الخير</strong>
+        <small>للتحقق من الروابط وتوثيقها</small>
+    </div>
 
 
-    <!-- Important notice -->
-    <section class="notice-card">
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="site-footer">
 
-        <h3>📌 تنبيه مهم</h3>
-
-        <p>
-            التسجيل لا يعني الموافقة النهائية على تقديم النظارات،
-            وإنما يخضع الطلب للمراجعة والتحقق من البيانات والاحتياج.
-        </p>
-
-    </section>
-
-
-    <!-- Statistics -->
-    <section class="stats">
-
-        <div class="stat-card">
-            <span class="stat-icon">👥</span>
-            <strong>{{ total }}</strong>
-            <small>إجمالي الطلبات</small>
+        <div class="footer-logo">
+            منصة مجد الخير
         </div>
 
-        <div class="stat-card">
-            <span class="stat-icon">📋</span>
-            <strong>{{ review }}</strong>
-            <small>قيد المراجعة</small>
-        </div>
-
-        <div class="stat-card">
-            <span class="stat-icon">👓</span>
-            <strong>{{ preparing }}</strong>
-            <small>قيد التجهيز</small>
-        </div>
-
-        <div class="stat-card">
-            <span class="stat-icon">📞</span>
-            <strong>{{ waiting }}</strong>
-            <small>بانتظار الاتصال</small>
-        </div>
-
-    </section>
-
-
-    <!-- Footer message -->
-    <section class="final-message">
-
-        <div>👓</div>
-
-        <h3>مبادرة العطاء لدعم النظارات الطبية</h3>
-
         <p>
-            لكبار السن من عائلة أبوكويك المحترمين
+            منصة مستقلة تهدف إلى تسهيل الوصول إلى الروابط
+            الموثوقة للمساعدات والتسجيلات.
         </p>
 
-        <span>
-            نسأل الله أن يجعل هذه المبادرة بابًا للخير والعطاء.
-        </span>
+        <p class="footer-warning">
+            لا تمثل المنصة أي جهة مانحة، ولا تفرض أو تدفع رسومًا
+            مقابل التسجيل في المساعدات.
+        </p>
 
-    </section>
+        <div class="footer-line"></div>
+
+        <small>
+            © منصة مجد الخير
+        </small>
+
+    </footer>
 
 </main>
 
 
 <style>
 
-.home-page {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 25px 15px 50px;
+/* =========================================
+   GLOBAL
+========================================= */
+
+.majd-page {
     direction: rtl;
-}
-
-
-/* Hero */
-
-.hero-card {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 45px 25px;
-    text-align: center;
-    border: 1px solid #eee8f7;
-    box-shadow: 0 8px 30px rgba(93, 63, 139, 0.08);
-}
-
-.glasses-icon {
-    font-size: 58px;
-    margin-bottom: 10px;
-}
-
-.hero-card h1 {
-    color: #5b3a91;
-    font-size: 30px;
-    margin: 10px 0;
-}
-
-.hero-card h2 {
-    color: #7655a8;
-    font-size: 20px;
-    margin: 8px 0 20px;
-}
-
-.hero-text {
-    max-width: 720px;
+    max-width: 1120px;
     margin: auto;
-    line-height: 2;
-    color: #555;
-    font-size: 16px;
+    padding: 18px 15px 60px;
+    font-family:
+        "Tajawal",
+        "Cairo",
+        "Noto Sans Arabic",
+        Arial,
+        sans-serif;
+    color: #171717;
+    background: #f7f7f5;
 }
 
 
-/* Registration status */
+/* =========================================
+   TRUST BAR
+========================================= */
 
-.registration-open {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 22px;
-    border-radius: 30px;
-    background: #eaf8ef;
-    color: #237a45;
-    font-weight: bold;
-    border: 1px solid #ccebd7;
-}
-
-
-/* Buttons */
-
-.buttons {
+.trust-bar {
+    background: #080808;
+    color: #d9b45b;
+    border-radius: 14px;
+    padding: 13px 18px;
     display: flex;
     justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 25px;
+    align-items: center;
+    gap: 9px;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 15px;
 }
 
-.btn {
-    display: inline-block;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.btn-primary {
-    background: #7655a8;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #644594;
-}
-
-.btn-secondary {
-    background: #f4effa;
-    color: #5b3a91;
-    border: 1px solid #ddd0ed;
-}
-
-.btn-secondary:hover {
-    background: #ebe2f5;
-}
-
-
-/* Information */
-
-.info-card,
-.notice-card {
-    background: #ffffff;
-    margin-top: 22px;
-    padding: 30px 25px;
-    border-radius: 20px;
-    border: 1px solid #eee8f7;
-    box-shadow: 0 5px 20px rgba(93, 63, 139, 0.05);
-}
-
-.info-card h2 {
-    color: #5b3a91;
-    margin-top: 0;
-}
-
-.info-card p,
-.notice-card p {
-    color: #555;
-    line-height: 2;
-    margin-bottom: 10px;
-}
-
-
-/* Notice */
-
-.notice-card {
-    background: #faf8fd;
-    border-right: 5px solid #7655a8;
-}
-
-.notice-card h3 {
-    color: #5b3a91;
-    margin-top: 0;
-}
-
-
-/* Statistics */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 22px;
-}
-
-.stat-card {
-    background: #ffffff;
-    border: 1px solid #eee8f7;
-    border-radius: 18px;
-    padding: 22px 10px;
-    text-align: center;
-    box-shadow: 0 5px 18px rgba(93, 63, 139, 0.05);
-}
-
-.stat-icon {
-    display: block;
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-.stat-card strong {
-    display: block;
-    color: #5b3a91;
-    font-size: 25px;
-}
-
-.stat-card small {
-    display: block;
-    color: #777;
-    margin-top: 5px;
-}
-
-
-/* Final */
-
-.final-message {
-    text-align: center;
-    margin-top: 30px;
-    padding: 30px 20px;
-    background: #f8f5fc;
-    border-radius: 20px;
-}
-
-.final-message div {
-    font-size: 40px;
-}
-
-.final-message h3 {
-    color: #5b3a91;
-    margin: 10px 0;
-}
-
-.final-message p {
-    color: #7655a8;
-    font-weight: bold;
-}
-
-.final-message span {
-    color: #777;
+.trust-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #d9b45b;
+    color: #080808;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
 }
 
 
-/* Mobile */
+/* =========================================
+   HERO
+========================================= */
 
-@media (max-width: 700px) {
+.hero {
+    background:
+        radial-gradient(circle at 50% 0%,
+        rgba(218,180,91,0.16),
+        transparent 38%),
+        #101010;
 
-    .home-page {
-        padding: 15px 10px 35px;
-    }
+    color: white;
+    border-radius: 28px;
+    padding: 52px 25px 45px;
+    text-align: center;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+    overflow: hidden;
+    position: relative;
+}
 
-    .hero-card {
-        padding: 30px 18px;
-    }
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(217,180,91,0.25);
+    border-radius: 50%;
+    top: -95px;
+    right: -60px;
+}
 
-    .hero-card h1 {
-        font-size: 24px;
-    }
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 1px solid rgba(217,180,91,0.18);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -70px;
+}
 
-    .hero-card h2 {
-        font-size: 17px;
-    }
+.hero-symbol {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    border: 2px solid #d9b45b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
 
-    .hero-text {
-        font-size: 15px;
-    }
+.hero-symbol span {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #d9b45b;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+}
 
-    .stats {
+.verified-label {
+    display: inline-block;
+    border: 1px solid rgba(217,180,91,0.45);
+    color: #d9b45b;
+    padding: 7px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-bottom: 13px;
+}
+
+.hero h1 {
+    margin: 5px 0 10px;
+    font-size: 39px;
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.hero-subtitle {
+    max-width: 760px;
+    margin: auto;
+    color: #e5e5e5;
+    font-size: 19px;
+    line-height: 1.9;
+    font-weight: 700;
+}
+
+.hero-description {
+    max-width: 720px;
+    margin: 18px auto 0;
+    color: #bdbdbd;
+    line-height: 2;
+    font-size: 15px;
+}
+
+.hero-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 27px;
+}
+
+.hero-badge {
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #eeeeee;
+    font-size: 13px;
+}
+
+.hero-badge span {
+    color: #d9b45b;
+}
+
+
+/* =========================================
+   IMPORTANT NOTICE
+========================================= */
+
+.important-notice {
+    background: #fff;
+    border: 2px solid #c62828;
+    border-right: 7px solid #c62828;
+    border-radius: 18px;
+    padding: 25px 22px;
+    margin-top: 20px;
+    color: #292929;
+    box-shadow: 0 7px 25px rgba(198,40,40,0.07);
+}
+
+.notice-title {
+    color: #c62828;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 13px;
+}
+
+.important-notice p {
+    line-height: 2;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-heading > span {
+    display: inline-block;
+    color: #98751e;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 27px;
+    color: #111;
+    font-weight: 900;
+}
+
+.section-heading p {
+    color: #777;
+    margin: 9px auto 0;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   HOW IT WORKS
+========================================= */
+
+.how-section {
+    margin-top: 45px;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.step {
+    background: white;
+    border: 1px solid #e8e8e5;
+    border-radius: 18px;
+    padding: 23px 17px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.035);
+}
+
+.step-number {
+    width: 38px;
+    height: 38px;
+    background: #111;
+    color: #d9b45b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-weight: 900;
+}
+
+.step h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.step p {
+    margin: 0;
+    color: #777;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   CATEGORIES
+========================================= */
+
+.categories-section {
+    margin-top: 48px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+}
+
+.category-card {
+    background: white;
+    border: 1px solid #e5e5e2;
+    border-radius: 21px;
+    overflow: hidden;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.045);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.category-icon {
+    height: 92px;
+    background: #111;
+    color: #d9b45b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+}
+
+.category-content {
+    padding: 20px;
+}
+
+.category-content h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #111;
+}
+
+.category-content p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.8;
+    min-height: 47px;
+    margin: 0 0 13px;
+}
+
+.verified-status {
+    color: #28784a;
+    background: #eff8f1;
+    border: 1px solid #d6ebdb;
+    border-radius: 8px;
+    padding: 7px 9px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+.verified-status span {
+    font-weight: 900;
+    margin-left: 4px;
+}
+
+.category-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    background: #111;
+    color: white;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.category-button span {
+    color: #d9b45b;
+    font-size: 18px;
+}
+
+
+/* =========================================
+   VERIFIED LINKS
+========================================= */
+
+.links-section {
+    margin-top: 50px;
+}
+
+.link-group {
+    background: white;
+    border: 1px solid #e4e4e1;
+    border-radius: 20px;
+    margin-bottom: 17px;
+    padding: 20px;
+    scroll-margin-top: 20px;
+}
+
+.group-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border-bottom: 1px solid #eeeeeb;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.group-title > span {
+    width: 47px;
+    height: 47px;
+    background: #111;
+    color: #d9b45b;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.group-title h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.group-title small {
+    color: #888;
+    display: block;
+    margin-top: 4px;
+}
+
+.empty-link {
+    background: #fafaf8;
+    border: 1px dashed #d4d4d0;
+    border-radius: 13px;
+    padding: 18px;
+    text-align: center;
+    color: #777;
+}
+
+.empty-link span {
+    display: block;
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.empty-link p {
+    margin: 0;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+.security-card {
+    background: #f1f1ee;
+    border: 1px solid #deded9;
+    border-radius: 22px;
+    padding: 32px 23px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.security-icon {
+    font-size: 42px;
+    margin-bottom: 7px;
+}
+
+.security-card h2 {
+    margin: 0 0 12px;
+    font-size: 24px;
+}
+
+.security-card p {
+    max-width: 700px;
+    margin: 8px auto;
+    color: #666;
+    line-height: 2;
+    font-size: 14px;
+}
+
+.security-note {
+    max-width: 620px;
+    margin: 18px auto 0;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #d9d9d4;
+    color: #9a2222;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   GOLD TRUST
+========================================= */
+
+.gold-trust {
+    margin-top: 22px;
+    background: #080808;
+    color: white;
+    border-radius: 22px;
+    padding: 32px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+}
+
+.gold-check {
+    width: 48px;
+    height: 48px;
+    background: #d9b45b;
+    color: #111;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.gold-trust h2 {
+    color: #d9b45b;
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+.gold-trust p {
+    color: #cfcfcf;
+    margin: 0;
+    line-height: 1.9;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact-card {
+    background: white;
+    border: 1px solid #e5e5e1;
+    border-radius: 22px;
+    padding: 30px 22px;
+    margin-top: 22px;
+    text-align: center;
+}
+
+.contact-heading span {
+    color: #98751e;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.contact-heading h2 {
+    margin: 4px 0 8px;
+    font-size: 24px;
+}
+
+.contact-card > p {
+    color: #777;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.contact-button {
+    min-width: 230px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    text-align: right;
+    padding: 13px 16px;
+    border-radius: 13px;
+    color: white;
+}
+
+.contact-button > span {
+    font-size: 25px;
+}
+
+.contact-button strong,
+.contact-button small {
+    display: block;
+}
+
+.contact-button small {
+    margin-top: 3px;
+    opacity: 0.85;
+    direction: ltr;
+    text-align: right;
+}
+
+.whatsapp {
+    background: #1d6841;
+}
+
+.email {
+    background: #111;
+}
+
+
+/* =========================================
+   BOTTOM TRUST
+========================================= */
+
+.bottom-trust {
+    margin-top: 22px;
+    padding: 18px;
+    background: #080808;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.bottom-trust span {
+    color: #d9b45b;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.bottom-trust strong {
+    color: #d9b45b;
+}
+
+.bottom-trust small {
+    display: block;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 30px 15px 5px;
+}
+
+.footer-logo {
+    font-size: 20px;
+    font-weight: 900;
+    color: #111;
+}
+
+.site-footer p {
+    max-width: 650px;
+    margin: 8px auto;
+    color: #888;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer-warning {
+    color: #9a2222 !important;
+}
+
+.footer-line {
+    width: 70px;
+    height: 2px;
+    background: #d9b45b;
+    margin: 18px auto 12px;
+}
+
+.site-footer small {
+    color: #999;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .categories-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .btn {
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .majd-page {
+        padding: 10px 9px 40px;
+    }
+
+    .hero {
+        padding: 38px 17px 32px;
+        border-radius: 21px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-badges {
+        gap: 7px;
+    }
+
+    .hero-badge {
         width: 100%;
+        justify-content: center;
         box-sizing: border-box;
     }
+
+    .important-notice {
+        padding: 20px 15px;
+    }
+
+    .notice-title {
+        font-size: 18px;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .category-content p {
+        min-height: auto;
+    }
+
+    .contact-button {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    .trust-bar {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================
+   SMOOTH SCROLL
+========================================= */
+
+html {
+    scroll-behavior: smooth;
 }
 
 </style>
