@@ -1,24 +1,29 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="مبادرة العطاء لدعم النظارات الطبية لكبار السن من عائلة أبوكويك المحترمين">
+    <meta charset="utf-8">
 
-  <title>مبادرة العطاء لدعم النظارات الطبية | عائلة أبوكويك</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="description"
+          content="منصة مجد الخير - منصة مستقلة للتحقق من روابط المساعدات والتسجيلات الموثوقة لأهالي قطاع غزة">
+
+    <meta name="robots"
+          content="index, follow">
+
+    <title>منصة مجد الخير | MAJD AL-KHAIR PLATFORM</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-  {% block content %}{% endblock %}
-
-  <footer>
-    <p>مبادرة العطاء لدعم النظارات الطبية</p>
-    <p>لكبار السن من عائلة أبوكويك المحترمين</p>
-  </footer>
+    {% block content %}
+    {% endblock %}
 
 </body>
 </html>
