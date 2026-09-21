@@ -1,313 +1,150 @@
-{% extends 'base.html' %}
+import os
 
-{% block content %}
-
-<main class="majd-page">
-
-    <!-- =========================
-         PLATFORM BRAND
-    ========================== -->
-    <header class="platform-brand">
-
-        <div class="brand-arabic">
-            منصة مجد الخير
-        </div>
-
-        <div class="brand-english">
-            MAJD AL-KHAIR PLATFORM
-        </div>
-
-        <div class="brand-line"></div>
-
-    </header>
+from flask import Flask, render_template
 
 
-    <!-- =========================
-         TOP TRUST BAR
-    ========================== -->
-    <div class="trust-bar">
-        <span class="trust-icon">✓</span>
-        <span>نحن ثقة للمستفيد</span>
-    </div>
+# =========================================================
+# APPLICATION
+# =========================================================
+
+app = Flask(__name__)
+
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "majd-al-khair-platform-secret-key"
+)
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
-    <section class="hero">
+# =========================================================
+# HOME PAGE
+# =========================================================
 
-        <div class="hero-symbol">
-            <span>✓</span>
-        </div>
-
-        <div class="verified-label">
-            روابط موثقة • معلومات واضحة • وصول مباشر
-        </div>
-
-        <h1>منصة مجد الخير</h1>
-
-        <p class="hero-subtitle">
-            بوابة للوصول إلى روابط المساعدات والتسجيلات
-            الموثوقة لأهالي قطاع غزة
-        </p>
-
-        <p class="hero-description">
-            نسعى إلى التحقق من الروابط الرسمية المعتمدة وتوثيقها
-            داخل منصة مجد الخير، لمساعدة المستفيد على الوصول
-            إلى جهة التسجيل مباشرة وبطريقة واضحة وآمنة.
-        </p>
-
-        <div class="hero-badges">
-
-            <div class="hero-badge">
-                <span>✓</span>
-                <strong>روابط موثقة</strong>
-            </div>
-
-            <div class="hero-badge">
-                <span>🔗</span>
-                <strong>وصول مباشر</strong>
-            </div>
-
-            <div class="hero-badge">
-                <span>🛡️</span>
-                <strong>بدون رسوم تسجيل</strong>
-            </div>
-
-        </div>
-
-    </section>
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
 
 
-    <!-- =========================
-         IMPORTANT NOTICE
-    ========================== -->
-    <section class="important-notice">
+# =========================================================
+# REGISTRATION PAGE
+# =========================================================
 
-        <div class="notice-title">
-            ⚠️ تنويه وملاحظة مهمة
-        </div>
-
-        <p>
-            نحن هنا نعمل من أجل التحقق من الروابط الرسمية المعتمدة
-            وتوثيقها داخل منصة مجد الخير.
-        </p>
-
-        <p>
-            نحن منصة لا تحقق أرباحًا من المستفيدين أو المسجلين،
-            ولا نطلب من المستفيدين دفع أي تكاليف أو رسوم مقابل التسجيل،
-            ولا نقوم بدفع أي تكاليف أو رسوم لأي تسجيل.
-        </p>
-
-        <p>
-            هدفنا هو مساعدتك في الوصول إلى الروابط الموثوقة
-            وتجنب طرق النصب والاحتيال التي قد يواجهها المستفيدون.
-            ونسعى إلى الأمانة والمصداقية في كل رابط يتم نشره
-            من خلال منصة مجد الخير.
-        </p>
-
-    </section>
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
 
 
-    <!-- =========================
-         HOW IT WORKS
-    ========================== -->
-    <section class="how-section">
+# =========================================================
+# HEALTH CHECK
+# =========================================================
 
-        <div class="section-heading">
-            <span>طريقة الاستخدام</span>
-            <h2>كيف تستفيد من المنصة؟</h2>
-        </div>
-
-        <div class="steps">
-
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>اختر نوع المساعدة</h3>
-                <p>
-                    اختر القسم المناسب لاحتياجك من الأقسام الموجودة في المنصة.
-                </p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>راجع الرابط</h3>
-                <p>
-                    اقرأ معلومات الجهة والرابط قبل الانتقال إلى صفحة التسجيل.
-                </p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>انتقل للجهة الرسمية</h3>
-                <p>
-                    اضغط على زر التسجيل للانتقال مباشرة إلى الرابط المنشور.
-                </p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>أدخل بياناتك بنفسك</h3>
-                <p>
-                    يتم إدخال بيانات التسجيل مباشرة لدى الجهة صاحبة الرابط.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
+@app.route("/health", methods=["GET"])
+def health():
+    return "OK", 200
 
 
-    <!-- =========================
-         HELP CATEGORIES
-    ========================== -->
-    <section class="categories-section">
+# =========================================================
+# 404 PAGE
+# =========================================================
 
-        <div class="section-heading">
-            <span>أقسام المساعدات</span>
-            <h2>اختر القسم المناسب لك</h2>
+@app.errorhandler(404)
+def page_not_found(error):
+    return """
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1">
+        <title>الصفحة غير موجودة - منصة مجد الخير</title>
+
+        <style>
+            body {
+                margin: 0;
+                padding: 30px;
+                background: #f5fbff;
+                color: #12345a;
+                font-family:
+                    "Tajawal",
+                    "Cairo",
+                    "Noto Sans Arabic",
+                    Arial,
+                    sans-serif;
+                text-align: center;
+            }
+
+            .box {
+                max-width: 600px;
+                margin: 80px auto;
+                padding: 35px 20px;
+                background: #ffffff;
+                border-radius: 20px;
+                border: 1px solid #dcebf4;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            }
+
+            h1 {
+                margin-bottom: 12px;
+                color: #0b3157;
+            }
+
+            p {
+                color: #66798a;
+                line-height: 1.8;
+            }
+
+            a {
+                display: inline-block;
+                margin-top: 15px;
+                padding: 12px 24px;
+                background: #0b3157;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+
+            a:hover {
+                background: #124c78;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="box">
+
+            <h1>الصفحة غير موجودة</h1>
+
             <p>
-                اختر نوع المساعدة للوصول إلى الروابط الموثقة المتوفرة.
+                عذرًا، الصفحة التي تبحث عنها غير متوفرة.
             </p>
-        </div>
 
-        <div class="categories-grid">
-
-            <article class="category-card">
-                <div class="category-icon cash-icon">💰</div>
-                <div class="category-content">
-                    <h3>المساعدات النقدية</h3>
-                    <p>
-                        روابط التسجيل في برامج المساعدات النقدية
-                        المتاحة للمستفيدين.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#cash-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
-
-            <article class="category-card">
-                <div class="category-icon">📦</div>
-                <div class="category-content">
-                    <h3>المساعدات العينية</h3>
-                    <p>
-                        روابط التسجيل أو الاستفادة من المساعدات
-                        العينية والمواد الأساسية.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#inkind-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
-
-            <article class="category-card">
-                <div class="category-icon">🧴</div>
-                <div class="category-content">
-                    <h3>مساعدات المنظفات</h3>
-                    <p>
-                        روابط برامج المساعدات الخاصة بمواد
-                        النظافة والمنظفات.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#cleaning-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
-
-            <article class="category-card">
-                <div class="category-icon">👴</div>
-                <div class="category-content">
-                    <h3>مساعدات كبار السن</h3>
-                    <p>
-                        روابط البرامج والمساعدات المخصصة
-                        لكبار السن.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#elderly-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
-
-            <article class="category-card">
-                <div class="category-icon">🤝</div>
-                <div class="category-content">
-                    <h3>مساعدات الأيتام</h3>
-                    <p>
-                        روابط البرامج والمساعدات المخصصة
-                        للأطفال الأيتام.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#orphans-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
-
-            <article class="category-card">
-                <div class="category-icon">🎒</div>
-                <div class="category-content">
-                    <h3>مساعدات طلاب المدارس</h3>
-                    <p>
-                        روابط التسجيل للحصول على الدعم
-                        والاحتياجات المدرسية.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#students-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
-
-            <article class="category-card">
-                <div class="category-icon">📚</div>
-                <div class="category-content">
-                    <h3>مساعدات التربية والتعليم</h3>
-                    <p>
-                        روابط برامج الدعم المتعلقة بالتعليم
-                        والتربية والطلبة.
-                    </p>
-                    <div class="verified-status">
-                        <span>✓</span>
-                        روابط يتم التحقق منها
-                    </div>
-                    <a href="#education-aid" class="category-button">
-                        عرض الروابط <span>←</span>
-                    </a>
-                </div>
-            </article>
+            <a href="/">
+                العودة إلى منصة مجد الخير
+            </a>
 
         </div>
 
-    </section>
+    </body>
+    </html>
+    """, 404
 
 
-    <!-- =========================
-         VERIFIED LINKS
-    ========================== -->
-    <section class="links-section">
+# =========================================================
+# SERVER
+# =========================================================
 
-        <div class="section-heading">
-            <span>ال
+if __name__ == "__main__":
+
+    port = int(
+        os.environ.get(
+            "PORT",
+            5000
+        )
+    )
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
