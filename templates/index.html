@@ -2,609 +2,477 @@
 
 {% block content %}
 
-<main class="home-page"><!-- =========================
-     HERO
-========================== -->
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-<section class="hero-card">
+    body {
+        margin: 0;
+        background: #f4f4f2;
+        color: #171717;
+        font-family:
+            "Tajawal",
+            "Cairo",
+            "Noto Sans Arabic",
+            Arial,
+            sans-serif;
+    }
 
-    <div class="glasses-icon">👓</div>
+    .majd-page {
+        min-height: 100vh;
+        background:
+            radial-gradient(circle at top right, rgba(197, 157, 70, 0.10), transparent 35%),
+            #f4f4f2;
+    }
 
-    <h1>
-        مبادرة العطاء لدعم النظارات الطبية
-    </h1>
+    /* =========================
+       TOP BRAND
+    ========================== */
 
-    <h2>
-        لكبار السن من عائلة أبوكويك المحترمين
-    </h2>
+    .brand-header {
+        background: #111111;
+        color: #ffffff;
+        text-align: center;
+        padding: 28px 18px 24px;
+        border-bottom: 3px solid #c7a34b;
+    }
 
-    <p class="hero-text">
-        مبادرة إنسانية تهدف إلى استقبال طلبات الدعم الخاصة
-        بتوفير وتركيب النظارات الطبية لكبار السن من عائلة أبوكويك،
-        بكل احترام واهتمام.
-    </p>
+    .brand-ar {
+        margin: 0;
+        font-size: clamp(30px, 7vw, 52px);
+        font-weight: 900;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
 
-    <!-- حالة التسجيل -->
+    .brand-en {
+        margin-top: 7px;
+        font-size: clamp(14px, 3vw, 20px);
+        font-weight: 700;
+        letter-spacing: 4px;
+        color: #c7a34b;
+        direction: ltr;
+    }
 
-    <div class="registration-open">
-        🟢 التسجيل مفتوح حاليًا
-    </div>
+    /* =========================
+       TRUST BAR
+    ========================== */
+
+    .trust-bar {
+        max-width: 1100px;
+        margin: 18px auto 0;
+        padding: 13px 20px;
+        background: #111111;
+        color: #ffffff;
+        border-right: 5px solid #c7a34b;
+        border-left: 5px solid #c7a34b;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .trust-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        margin-left: 7px;
+        border-radius: 50%;
+        background: #c7a34b;
+        color: #111111;
+        font-weight: 900;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+        max-width: 1100px;
+        margin: 22px auto 0;
+        padding: 42px 24px;
+        background: #ffffff;
+        border: 1px solid #dedbd2;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .hero-symbol {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid #c7a34b;
+        border-radius: 50%;
+        color: #111111;
+        font-size: 34px;
+        font-weight: 900;
+    }
+
+    .hero h1 {
+        margin: 0;
+        color: #111111;
+        font-size: clamp(26px, 5vw, 42px);
+        font-weight: 900;
+    }
+
+    .hero h2 {
+        margin: 10px 0 18px;
+        color: #8c702e;
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .hero p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #555555;
+        font-size: 17px;
+        line-height: 2;
+    }
+
+    /* =========================
+       NOTICE
+    ========================== */
+
+    .notice {
+        max-width: 1100px;
+        margin: 18px auto;
+        padding: 20px;
+        background: #fffdf7;
+        border: 1px solid #d8c48f;
+        border-right: 6px solid #c7a34b;
+    }
+
+    .notice-title {
+        margin-bottom: 8px;
+        color: #111111;
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    .notice p {
+        margin: 0;
+        color: #555555;
+        line-height: 1.9;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================== */
+
+    .sections {
+        max-width: 1100px;
+        margin: 24px auto;
+        padding: 0 14px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .section-card {
+        background: #ffffff;
+        border: 1px solid #dedbd2;
+        padding: 24px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    }
+
+    .section-card h3 {
+        margin: 0 0 10px;
+        color: #111111;
+        font-size: 21px;
+        font-weight: 900;
+    }
+
+    .section-card p {
+        margin: 0;
+        color: #666666;
+        line-height: 1.8;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        margin: 0 0 15px;
+        background: #c7a34b;
+    }
+
+    /* =========================
+       COMMITMENT
+    ========================== */
+
+    .commitment {
+        max-width: 1100px;
+        margin: 30px auto 0;
+        padding: 30px 22px;
+        background: #111111;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .commitment h2 {
+        margin: 0 0 12px;
+        color: #c7a34b;
+        font-size: 27px;
+        font-weight: 900;
+    }
+
+    .commitment p {
+        max-width: 850px;
+        margin: auto;
+        color: #eeeeee;
+        line-height: 2;
+        font-size: 16px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+        max-width: 1100px;
+        margin: 18px auto 0;
+        padding: 25px 20px;
+        background: #ffffff;
+        border: 1px solid #dedbd2;
+        text-align: center;
+    }
+
+    .contact h2 {
+        margin: 0 0 12px;
+        color: #111111;
+        font-size: 24px;
+    }
+
+    .contact p {
+        margin: 6px 0;
+        color: #555555;
+        line-height: 1.8;
+    }
+
+    .contact strong {
+        color: #111111;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    .footer {
+        margin-top: 28px;
+        padding: 24px 15px;
+        background: #111111;
+        color: #aaaaaa;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .footer strong {
+        color: #c7a34b;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 700px) {
+
+        .brand-header {
+            padding: 22px 12px;
+        }
+
+        .trust-bar {
+            margin: 12px 10px 0;
+            font-size: 16px;
+        }
+
+        .hero {
+            margin: 14px 10px 0;
+            padding: 32px 18px;
+        }
+
+        .notice {
+            margin: 14px 10px;
+        }
+
+        .sections {
+            grid-template-columns: 1fr;
+            padding: 0 10px;
+        }
+
+        .commitment,
+        .contact {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .brand-en {
+            letter-spacing: 2px;
+        }
+    }
+</style>
+
+
+<main class="majd-page">
 
     <!-- =========================
-         BUTTONS
+         BRAND
     ========================== -->
 
-    <div class="buttons">
-
-        <a
-            href="{{ url_for('register') }}"
-            class="btn btn-primary"
-        >
-            👓 التسجيل الآن
-        </a>
-
-        <a
-            href="{{ url_for('check_status') }}"
-            class="btn btn-status"
-        >
-            🔎 فحص حالة الطلب
-        </a>
-
-    </div>
-
-</section>
+    <header class="brand-header">
+        <h1 class="brand-ar">منصة مجد الخير</h1>
+        <div class="brand-en">MAJD AL-KHAIR PLATFORM</div>
+    </header>
 
 
-<!-- =========================
-     ABOUT
-========================== -->
+    <!-- =========================
+         TRUST
+    ========================== -->
 
-<section class="info-card">
-
-    <h2>
-        💜 عن المبادرة
-    </h2>
-
-    <p>
-        نستقبل طلبات كبار السن من عائلة أبوكويك ممن يحتاجون
-        إلى نظارات طبية، بهدف تسهيل الوصول إلى الدعم المناسب
-        بطريقة منظمة تحفظ خصوصية المستفيد وكرامته.
-    </p>
-
-    <p>
-        يرجى تعبئة البيانات بدقة، وإرفاق المستندات أو التقارير
-        المتوفرة إن وجدت، حتى نتمكن من دراسة الطلب بصورة أفضل.
-    </p>
-
-</section>
-
-
-<!-- =========================
-     NOTICE
-========================== -->
-
-<section class="notice-card">
-
-    <h3>
-        📌 تنبيه مهم
-    </h3>
-
-    <p>
-        التسجيل لا يعني الموافقة النهائية على تقديم النظارات،
-        وإنما يخضع الطلب للمراجعة والتحقق من البيانات والاحتياج.
-    </p>
-
-</section>
-
-
-<!-- =========================
-     STATISTICS
-========================== -->
-
-<section class="stats">
-
-    <div class="stat-card">
-
-        <span>👥</span>
-
-        <strong>
-            {{ total }}
-        </strong>
-
-        <small>
-            إجمالي المسجلين
-        </small>
-
+    <div class="trust-bar">
+        <span class="trust-icon">✓</span>
+        نحن ثقة للمستفيد
     </div>
 
 
-    <div class="stat-card">
-
-        <span>📋</span>
-
-        <strong>
-            {{ review }}
-        </strong>
-
-        <small>
-            قيد المراجعة
-        </small>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <span>👓</span>
-
-        <strong>
-            {{ preparing }}
-        </strong>
-
-        <small>
-            قيد التجهيز
-        </small>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <span>📞</span>
-
-        <strong>
-            {{ waiting }}
-        </strong>
-
-        <small>
-            بانتظار الاتصال
-        </small>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FINAL MESSAGE
-========================== -->
-
-<section class="final-message">
-
-    <div>
-        👓
-    </div>
-
-    <h3>
-        مبادرة العطاء لدعم النظارات الطبية
-    </h3>
-
-    <p>
-        لكبار السن من عائلة أبوكويك المحترمين
-    </p>
-
-    <span>
-        نسأل الله أن يجعل هذه المبادرة بابًا للخير والعطاء.
-    </span>
-
-</section>
-
-</main><!-- =========================
-     PAGE STYLE
-========================== --><style>
-
-.home-page {
-
-    max-width: 1000px;
-
-    margin: auto;
-
-    padding: 25px 15px 50px;
-
-    direction: rtl;
-}
-
-
-/* HERO */
-
-.hero-card {
-
-    background: #ffffff;
-
-    border: 1px solid #eee8f7;
-
-    box-shadow: 0 8px 25px rgba(93,63,139,.07);
-
-    text-align: center;
-
-    border-radius: 25px;
-
-    padding: 45px 25px;
-}
-
-
-.glasses-icon {
-
-    font-size: 60px;
-
-}
-
-
-.hero-card h1 {
-
-    color: #5b3a91;
-
-    font-size: 30px;
-
-    margin: 10px 0;
-
-}
-
-
-.hero-card h2 {
-
-    color: #7655a8;
-
-    font-size: 20px;
-
-}
-
-
-.hero-text {
-
-    max-width: 720px;
-
-    margin: auto;
-
-    color: #555;
-
-    line-height: 2;
-
-}
-
-
-/* REGISTRATION STATUS */
-
-.registration-open {
-
-    display: inline-block;
-
-    margin-top: 20px;
-
-    padding: 12px 22px;
-
-    border-radius: 30px;
-
-    background: #eaf8ef;
-
-    color: #237a45;
-
-    border: 1px solid #ccebd7;
-
-    font-weight: bold;
-
-}
-
-
-/* BUTTON AREA */
-
-.buttons {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 14px;
-
-    flex-wrap: wrap;
-
-    margin-top: 28px;
-
-}
-
-
-/* ALL BUTTONS */
-
-.btn {
-
-    display: inline-block;
-
-    text-decoration: none;
-
-    padding: 16px 30px;
-
-    border-radius: 14px;
-
-    font-weight: bold;
-
-    font-size: 16px;
-
-    transition: 0.2s;
-
-}
-
-
-/* REGISTER BUTTON */
-
-.btn-primary {
-
-    background: #7655a8;
-
-    color: #ffffff;
-
-    box-shadow: 0 5px 15px rgba(118,85,168,.18);
-
-}
-
-
-.btn-primary:hover {
-
-    background: #65478f;
-
-    transform: translateY(-1px);
-
-}
-
-
-/* STATUS BUTTON */
-
-.btn-status {
-
-    background: #f1ebf8;
-
-    color: #5b3a91;
-
-    border: 2px solid #d9cbea;
-
-    box-shadow: 0 5px 15px rgba(93,63,139,.08);
-
-}
-
-
-.btn-status:hover {
-
-    background: #e8def3;
-
-    transform: translateY(-1px);
-
-}
-
-
-/* ABOUT */
-
-.info-card {
-
-    margin-top: 22px;
-
-    padding: 28px;
-
-    border-radius: 20px;
-
-    background: #ffffff;
-
-    border: 1px solid #eee8f7;
-
-    box-shadow: 0 8px 25px rgba(93,63,139,.07);
-
-}
-
-
-.info-card h2 {
-
-    color: #5b3a91;
-
-}
-
-
-.info-card p {
-
-    color: #555;
-
-    line-height: 2;
-
-}
-
-
-/* NOTICE */
-
-.notice-card {
-
-    margin-top: 22px;
-
-    padding: 28px;
-
-    border-radius: 20px;
-
-    background: #faf8fd;
-
-    border: 1px solid #eee8f7;
-
-    border-right: 5px solid #7655a8;
-
-    box-shadow: 0 8px 25px rgba(93,63,139,.05);
-
-}
-
-
-.notice-card h3 {
-
-    color: #5b3a91;
-
-}
-
-
-.notice-card p {
-
-    color: #555;
-
-    line-height: 2;
-
-}
-
-
-/* STATISTICS */
-
-.stats {
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 15px;
-
-    margin-top: 22px;
-
-}
-
-
-.stat-card {
-
-    text-align: center;
-
-    border-radius: 18px;
-
-    padding: 22px 10px;
-
-    background: #ffffff;
-
-    border: 1px solid #eee8f7;
-
-    box-shadow: 0 8px 25px rgba(93,63,139,.07);
-
-}
-
-
-.stat-card span {
-
-    display: block;
-
-    font-size: 28px;
-
-}
-
-
-.stat-card strong {
-
-    display: block;
-
-    color: #5b3a91;
-
-    font-size: 25px;
-
-    margin-top: 5px;
-
-}
-
-
-.stat-card small {
-
-    color: #777;
-
-}
-
-
-/* FINAL MESSAGE */
-
-.final-message {
-
-    text-align: center;
-
-    margin-top: 30px;
-
-    padding: 30px;
-
-    background: #f8f5fc;
-
-    border-radius: 20px;
-
-    border: 1px solid #eee8f7;
-
-}
-
-
-.final-message div {
-
-    font-size: 40px;
-
-}
-
-
-.final-message h3 {
-
-    color: #5b3a91;
-
-}
-
-
-.final-message p {
-
-    color: #7655a8;
-
-    font-weight: bold;
-
-}
-
-
-.final-message span {
-
-    color: #777;
-
-}
-
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-    .hero-card {
-
-        padding: 30px 18px;
-
-    }
-
-
-    .hero-card h1 {
-
-        font-size: 24px;
-
-    }
-
-
-    .hero-card h2 {
-
-        font-size: 18px;
-
-    }
-
-
-    .stats {
-
-        grid-template-columns: repeat(2, 1fr);
-
-    }
-
-
-    .buttons {
-
-        flex-direction: column;
-
-        width: 100%;
-
-    }
-
-
-    .btn {
-
-        display: block;
-
-        width: 100%;
-
-        box-sizing: border-box;
-
-    }
-
-}
-
-</style>{% endblock %}
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-symbol">م</div>
+
+        <h1>منصة مجد الخير</h1>
+
+        <h2>للتوثيق والتحقق من روابط المساعدات الرسمية</h2>
+
+        <p>
+            منصة تهدف إلى مساعدة سكان غزة في الوصول إلى روابط المساعدات
+            والفرص الإنسانية الرسمية بعد التحقق منها، والمساهمة في الحد
+            من الروابط الوهمية وعمليات الاحتيال التي تستهدف المحتاجين.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         NOTICE
+    ========================== -->
+
+    <section class="notice">
+
+        <div class="notice-title">
+            تنبيه مهم
+        </div>
+
+        <p>
+            منصة مجد الخير ليست جهة مانحة، ولا تمثل أي مؤسسة أو منظمة
+            دولية أو محلية، ولا تحصل على أي رسوم من المستفيدين مقابل
+            التسجيل أو الوصول إلى روابط المساعدات.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section class="sections">
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>المساعدات النقدية</h3>
+            <p>
+                روابط وبرامج المساعدات النقدية التي يتم التحقق من مصدرها
+                قبل عرضها للمستفيدين.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>المساعدات العينية</h3>
+            <p>
+                روابط المبادرات والبرامج التي تقدم المواد الأساسية
+                والمساعدات العينية.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>مواد التنظيف والاحتياجات الأساسية</h3>
+            <p>
+                برامج المساعدة المتعلقة بمواد التنظيف والاحتياجات
+                اليومية الأساسية.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>كبار السن</h3>
+            <p>
+                روابط ومبادرات مخصصة لدعم كبار السن والاحتياجات
+                الإنسانية المرتبطة بهم.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>الأيتام</h3>
+            <p>
+                روابط البرامج والمبادرات التي تستهدف دعم الأطفال
+                الأيتام والأسر الأكثر احتياجًا.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>الطلاب والمدارس</h3>
+            <p>
+                روابط المساعدات التعليمية والحقائب المدرسية والقرطاسية
+                وبرامج دعم الطلاب.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>التعليم</h3>
+            <p>
+                روابط المبادرات والفرص التعليمية التي يتم التحقق منها
+                قبل نشرها.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <div class="gold-line"></div>
+            <h3>روابط موثقة</h3>
+            <p>
+                يتم إضافة الروابط الرسمية بعد التحقق منها، مع تجنب
+                نشر أي رابط مجهول أو غير موثوق.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMITMENT
+    ========================== -->
+
+    <section class="commitment">
+
+        <h2>الالتزام</h2>
+
+        <p>
+            نلتزم في منصة مجد الخير بالتحقق من روابط المساعدات
