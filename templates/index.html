@@ -2,59 +2,527 @@
 
 {% block content %}
 
-<div style="min-height:100vh;background:#f4f4f2;font-family:Arial,sans-serif;direction:rtl;">
+<div style="
+    min-height:100vh;
+    background:#f5f7fa;
+    font-family:Arial,sans-serif;
+    direction:rtl;
+    color:#172033;
+">
 
-    <header style="background:#111;color:#fff;text-align:center;padding:30px 15px;">
-        <h1 style="margin:0;color:#c7a34b;font-size:32px;">
-            منصة مجد الخير
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header style="
+        background:linear-gradient(135deg,#102a43,#174a73);
+        color:#fff;
+        text-align:center;
+        padding:40px 15px 32px;
+    ">
+
+        <div style="
+            font-size:14px;
+            color:#e2c15b;
+            font-weight:bold;
+            margin-bottom:8px;
+            letter-spacing:1px;
+        ">
+            GHAITH AL-MAJD
+        </div>
+
+        <h1 style="
+            margin:0;
+            font-size:38px;
+            font-weight:800;
+        ">
+            غيث المجد
         </h1>
 
-        <p style="margin:10px 0 0;font-size:18px;">
-            MAJD AL-KHAIR PLATFORM
+        <p style="
+            margin:12px 0 0;
+            font-size:17px;
+            opacity:.95;
+        ">
+            توثيق والتحقق من روابط المساعدات الموثوقة
         </p>
+
     </header>
 
-    <div style="background:#c7a34b;color:#111;text-align:center;padding:12px;font-weight:bold;">
+
+    <!-- =========================
+         TRUST BAR
+    ========================== -->
+    <div style="
+        background:#e2c15b;
+        color:#172033;
+        text-align:center;
+        padding:13px 10px;
+        font-weight:bold;
+        font-size:16px;
+    ">
         ✓ نحن ثقة للمستفيد
     </div>
 
-    <main style="max-width:900px;margin:auto;padding:30px 15px;text-align:center;">
 
-        <h2>للتوثيق والتحقق من روابط المساعدات الرسمية</h2>
+    <!-- =========================
+         BREAKING NEWS
+    ========================== -->
+    <div style="
+        max-width:950px;
+        margin:20px auto 0;
+        padding:0 15px;
+    ">
 
-        <p style="line-height:2;">
-            منصة مجد الخير منصة مستقلة تهدف إلى مساعدة المستفيدين
-            في الوصول إلى روابط المساعدات الرسمية والموثوقة.
-        </p>
+        <div style="
+            background:#fff;
+            border-right:6px solid #d62828;
+            border-radius:12px;
+            padding:16px 18px;
+            box-shadow:0 3px 12px rgba(0,0,0,.08);
+        ">
 
-        <div style="background:#fff;padding:25px;margin-top:25px;border-radius:12px;">
-            <h3>تنبيه مهم</h3>
+            <div style="
+                color:#d62828;
+                font-weight:bold;
+                font-size:18px;
+                margin-bottom:7px;
+            ">
+                🔴 أخبار عاجلة للمساعدات
+            </div>
 
-            <p style="line-height:2;">
-                المنصة ليست جهة مانحة ولا تمثل أي مؤسسة إغاثية،
-                ولا تطلب أي رسوم مقابل التسجيل أو الوصول إلى المعلومات.
+            <div style="
+                color:#344054;
+                line-height:1.9;
+            ">
+                سيتم نشر أخبار وروابط المساعدات الرسمية والموثوقة هنا
+                بعد التحقق منها.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+    <main style="
+        max-width:950px;
+        margin:auto;
+        padding:25px 15px 45px;
+    ">
+
+
+        <!-- =========================
+             SECTIONS TITLE
+        ========================== -->
+
+        <div style="
+            text-align:center;
+            margin-bottom:20px;
+        ">
+
+            <h2 style="
+                color:#174a73;
+                margin-bottom:8px;
+            ">
+                أقسام غيث المجد
+            </h2>
+
+            <p style="
+                color:#667085;
+                margin-top:0;
+            ">
+                اختر القسم للوصول إلى المعلومات والروابط المتعلقة به
             </p>
+
         </div>
 
-        <div style="background:#111;color:#fff;padding:25px;margin-top:25px;border-radius:12px;">
-            <h3 style="color:#c7a34b;">التزامنا</h3>
 
-            <p style="line-height:2;">
-                نلتزم بالتحقق من روابط المساعدات قبل نشرها،
-                وبمساعدة المستفيدين على تجنب الروابط الوهمية والاحتيال.
+        <!-- =========================
+             CATEGORIES
+        ========================== -->
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:16px;
+        ">
+
+
+            <!-- EDUCATION -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #174a73;
+            ">
+
+                <div style="font-size:34px;">🎓</div>
+
+                <h3 style="color:#174a73;">
+                    قسم التربية والتعليم الشامل
+                </h3>
+
+                <p style="
+                    color:#667085;
+                    line-height:1.8;
+                ">
+                    معلومات وروابط موثوقة تخص التربية والتعليم.
+                </p>
+
+            </div>
+
+
+            <!-- WFP -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #e2c15b;
+            ">
+
+                <div style="font-size:34px;">🍚</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات WFP
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات المساعدات المتعلقة ببرنامج الأغذية العالمي.
+                </p>
+
+            </div>
+
+
+            <!-- UNICEF -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #174a73;
+            ">
+
+                <div style="font-size:34px;">👶</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات UNICEF
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات المساعدات والخدمات المتعلقة بالأطفال.
+                </p>
+
+            </div>
+
+
+            <!-- ORPHANS -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #e2c15b;
+            ">
+
+                <div style="font-size:34px;">🤲</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات الأيتام
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات مخصصة لخدمات ومساعدات الأيتام.
+                </p>
+
+            </div>
+
+
+            <!-- UNRWA -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #174a73;
+            ">
+
+                <div style="font-size:34px;">🏠</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات الأونروا
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات الخدمات والمساعدات المتعلقة بالأونروا.
+                </p>
+
+            </div>
+
+
+            <!-- ELDERLY -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #e2c15b;
+            ">
+
+                <div style="font-size:34px;">👴</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات كبار السن
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات الخدمات والمساعدات لكبار السن.
+                </p>
+
+            </div>
+
+
+            <!-- WOMEN -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #174a73;
+            ">
+
+                <div style="font-size:34px;">👩</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات النساء الشاملة
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات الخدمات والمساعدات الخاصة بالنساء.
+                </p>
+
+            </div>
+
+
+            <!-- INSTITUTIONS -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #e2c15b;
+            ">
+
+                <div style="font-size:34px;">🏢</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات المؤسسات الشاملة
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات الخدمات والمساعدات المتعلقة بالمؤسسات.
+                </p>
+
+            </div>
+
+
+            <!-- INJURED -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #174a73;
+            ">
+
+                <div style="font-size:34px;">🩹</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات الجرحى والمصابين
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات الخدمات والمساعدات للجرحى والمصابين.
+                </p>
+
+            </div>
+
+
+            <!-- WIDOWS -->
+
+            <div style="
+                background:#fff;
+                border-radius:16px;
+                padding:25px 18px;
+                text-align:center;
+                box-shadow:0 4px 16px rgba(0,0,0,.07);
+                border-top:5px solid #e2c15b;
+            ">
+
+                <div style="font-size:34px;">💙</div>
+
+                <h3 style="color:#174a73;">
+                    مساعدات الأرامل
+                </h3>
+
+                <p style="color:#667085;line-height:1.8;">
+                    روابط ومعلومات الخدمات والمساعدات الخاصة بالأرامل.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             IMPORTANT NOTICE
+        ========================== -->
+
+        <section style="
+            background:#fff;
+            margin-top:30px;
+            padding:28px 22px;
+            border-radius:16px;
+            border-right:6px solid #e2c15b;
+            box-shadow:0 4px 18px rgba(0,0,0,.08);
+        ">
+
+            <h2 style="
+                margin-top:0;
+                color:#174a73;
+                text-align:center;
+            ">
+                ⚠️ تنويه مهم
+            </h2>
+
+            <p style="
+                line-height:2.1;
+                color:#344054;
+                text-align:center;
+                margin-bottom:0;
+            ">
+
+                <strong>غيث المجد لا يتقاضى أي أموال أو رسوم من أي شخص مقابل هذه الخدمة.</strong>
+
+                <br>
+
+                لا نطلب أي مبالغ مالية مقابل التسجيل أو الوصول إلى روابط المساعدات
+                أو المعلومات المنشورة في الموقع.
+
+                <br>
+
+                غيث المجد جهة مستقلة تُعنى
+                <strong>بتوثيق والتحقق من روابط المساعدات</strong>
+                ومساعدة المستفيدين على الوصول إلى الروابط الموثوقة
+                وتجنب الروابط الوهمية والاحتيالية.
+
             </p>
-        </div>
 
-        <div style="margin-top:30px;">
-            <h3>التواصل</h3>
-            <p>واتساب / هاتف: 0592480001</p>
-            <p>البريد الإلكتروني: n299964@hotmail.com</p>
-        </div>
+        </section>
+
+
+        <!-- =========================
+             ORIGINAL INFORMATION
+        ========================== -->
+
+        <section style="
+            background:#fff;
+            padding:28px 20px;
+            margin-top:25px;
+            border-radius:16px;
+            box-shadow:0 4px 18px rgba(0,0,0,.07);
+            text-align:center;
+        ">
+
+            <h2 style="
+                color:#174a73;
+                margin-top:0;
+            ">
+                للتوثيق والتحقق من روابط المساعدات الرسمية
+            </h2>
+
+            <p style="
+                line-height:2;
+                color:#596579;
+            ">
+                غيث المجد جهة مستقلة تهدف إلى مساعدة المستفيدين
+                في الوصول إلى روابط المساعدات الرسمية والموثوقة.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section style="
+            text-align:center;
+            margin-top:30px;
+            padding:10px;
+        ">
+
+            <h2 style="color:#174a73;">
+                التواصل
+            </h2>
+
+            <p>
+                📱 واتساب / هاتف: 0592480001
+            </p>
+
+            <p>
+                ✉️ البريد الإلكتروني: n299964@hotmail.com
+            </p>
+
+        </section>
 
     </main>
 
-    <footer style="background:#111;color:#fff;text-align:center;padding:20px;">
-        منصة مجد الخير — معلومات موثوقة للمستفيد
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer style="
+        background:#102a43;
+        color:#fff;
+        text-align:center;
+        padding:24px 15px;
+        line-height:1.9;
+    ">
+
+        <strong style="
+            color:#e2c15b;
+            font-size:20px;
+        ">
+            غيث المجد
+        </strong>
+
+        <br>
+
+        توثيق والتحقق من روابط المساعدات الموثوقة
+
     </footer>
 
 </div>
