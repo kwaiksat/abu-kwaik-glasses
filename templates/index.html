@@ -3,27 +3,20 @@
 {% block content %}
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: 'Cairo', Arial, sans-serif;
-}
-
 .majd-page {
     min-height: 100vh;
-    background: linear-gradient(180deg, #f5fbff 0%, #eef8fc 45%, #ffffff 100%);
+    background: linear-gradient(180deg, #f5fbff 0%, #eef8fc 50%, #ffffff 100%);
     direction: rtl;
     color: #000;
+    font-family: Tahoma, Arial, sans-serif;
 }
 
-/* HEADER */
 .majd-header {
-    background: linear-gradient(135deg, #eaf8fd 0%, #d9f1fa 50%, #f8fdff 100%);
+    background: linear-gradient(135deg, #eaf8fd, #d9f1fa, #f8fdff);
     text-align: center;
     padding: 38px 15px 30px;
     border-bottom: 1px solid #c9e8f3;
@@ -34,27 +27,23 @@ body {
     font-weight: 800;
     letter-spacing: 2px;
     color: #111;
-    margin-bottom: 5px;
 }
 
 .brand-ar {
-    margin: 0;
+    margin: 5px 0 10px;
     font-size: 38px;
     font-weight: 900;
     color: #000;
 }
 
 .brand-description {
-    margin: 10px 0 0;
+    margin: 0;
     font-size: 16px;
     font-weight: 600;
-    color: #111;
 }
 
-/* TRUST BAR */
 .trust-bar {
     background: #fff;
-    color: #000;
     text-align: center;
     padding: 13px 10px;
     font-size: 16px;
@@ -62,21 +51,19 @@ body {
     border-bottom: 1px solid #d8edf5;
 }
 
-/* CONTAINER */
 .majd-container {
     max-width: 950px;
     margin: auto;
     padding: 20px 15px 50px;
 }
 
-/* NEWS */
 .news-box {
     background: #fff;
     border-right: 6px solid #c62828;
     border-radius: 18px;
     padding: 17px 18px;
     margin-bottom: 28px;
-    box-shadow: 0 5px 18px rgba(25, 80, 100, .08);
+    box-shadow: 0 5px 18px rgba(25,80,100,.08);
 }
 
 .news-title {
@@ -87,12 +74,10 @@ body {
 }
 
 .news-text {
-    color: #000;
     line-height: 1.9;
     font-size: 15px;
 }
 
-/* SECTION */
 .section-heading {
     text-align: center;
     margin: 25px 0 20px;
@@ -102,17 +87,14 @@ body {
     margin: 0 0 7px;
     font-size: 25px;
     font-weight: 900;
-    color: #000;
 }
 
 .section-heading p {
     margin: 0;
-    color: #222;
     font-size: 14px;
     line-height: 1.8;
 }
 
-/* AID BANNERS */
 .aid-list {
     display: flex;
     flex-direction: column;
@@ -123,14 +105,13 @@ body {
     display: block;
     text-decoration: none;
     color: #000;
-    background: linear-gradient(135deg, #fff 0%, #f4fbfe 55%, #e9f7fc 100%);
+    background: linear-gradient(135deg, #fff, #f4fbfe, #e9f7fc);
     border: 1px solid #c7e9f3;
     border-radius: 22px;
     padding: 20px;
-    box-shadow: 0 5px 18px rgba(36, 105, 130, .09);
+    box-shadow: 0 5px 18px rgba(36,105,130,.09);
     position: relative;
     overflow: hidden;
-    transition: .18s ease;
 }
 
 .aid-banner::before {
@@ -141,12 +122,6 @@ body {
     bottom: 0;
     width: 6px;
     background: #168dcc;
-}
-
-.aid-banner:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 9px 25px rgba(36, 105, 130, .14);
-    border-color: #91d5e8;
 }
 
 .aid-content {
@@ -169,463 +144,4 @@ body {
 }
 
 .aid-text {
-    flex: 1;
-}
-
-.aid-title {
-    margin: 0 0 5px;
-    color: #000;
-    font-size: 19px;
-    font-weight: 900;
-}
-
-.aid-description {
-    margin: 0;
-    color: #222;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-.aid-button {
-    min-width: 120px;
-    background: #168dcc;
-    color: #fff;
-    border-radius: 13px;
-    padding: 11px 15px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 800;
-    white-space: nowrap;
-}
-
-/* CATEGORIES */
-.categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-}
-
-.category-card {
-    background: #fff;
-    border-radius: 18px;
-    padding: 24px 18px;
-    text-align: center;
-    box-shadow: 0 5px 18px rgba(25, 80, 100, .07);
-    border: 1px solid #dceff5;
-}
-
-.category-icon {
-    font-size: 34px;
-    margin-bottom: 5px;
-}
-
-.category-card h3 {
-    margin: 8px 0;
-    color: #000;
-    font-size: 18px;
-    font-weight: 900;
-}
-
-.category-card p {
-    color: #222;
-    line-height: 1.8;
-    font-size: 14px;
-    margin-bottom: 0;
-}
-
-/* NOTICE */
-.notice-box {
-    background: #fff;
-    margin-top: 30px;
-    padding: 28px 22px;
-    border-radius: 18px;
-    border-right: 6px solid #e1b93e;
-    box-shadow: 0 5px 18px rgba(25, 80, 100, .08);
-}
-
-.notice-box h2 {
-    margin-top: 0;
-    color: #000;
-    text-align: center;
-    font-size: 22px;
-}
-
-.notice-box p {
-    line-height: 2.1;
-    color: #000;
-    text-align: center;
-    margin-bottom: 0;
-}
-
-/* INFORMATION */
-.info-box {
-    background: #fff;
-    padding: 28px 20px;
-    margin-top: 25px;
-    border-radius: 18px;
-    box-shadow: 0 5px 18px rgba(25, 80, 100, .07);
-    text-align: center;
-    border: 1px solid #e0f0f5;
-}
-
-.info-box h2 {
-    color: #000;
-    margin-top: 0;
-    font-size: 21px;
-}
-
-.info-box p {
-    line-height: 2;
-    color: #111;
-}
-
-/* CONTACT */
-.contact-box {
-    text-align: center;
-    margin-top: 30px;
-    padding: 18px 10px;
-}
-
-.contact-box h2 {
-    color: #000;
-}
-
-.contact-box p {
-    color: #000;
-}
-
-/* FOOTER */
-.majd-footer {
-    background: linear-gradient(135deg, #e5f6fb, #f8fdff);
-    color: #000;
-    text-align: center;
-    padding: 25px 15px;
-    line-height: 1.9;
-    border-top: 1px solid #cfe9f1;
-}
-
-.footer-brand {
-    font-size: 20px;
-    font-weight: 900;
-}
-
-/* MOBILE */
-@media (max-width: 650px) {
-
-    .majd-header {
-        padding: 30px 13px 25px;
-    }
-
-    .brand-ar {
-        font-size: 32px;
-    }
-
-    .brand-description {
-        font-size: 14px;
-    }
-
-    .majd-container {
-        padding: 16px 12px 40px;
-    }
-
-    .aid-banner {
-        padding: 17px 15px;
-        border-radius: 19px;
-    }
-
-    .aid-content {
-        gap: 11px;
-    }
-
-    .aid-icon {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        border-radius: 14px;
-        font-size: 25px;
-    }
-
-    .aid-title {
-        font-size: 16px;
-    }
-
-    .aid-description {
-        font-size: 12px;
-    }
-
-    .aid-button {
-        min-width: auto;
-        padding: 9px 10px;
-        font-size: 12px;
-    }
-
-    .section-heading h2 {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 430px) {
-
-    .aid-content {
-        flex-wrap: wrap;
-    }
-
-    .aid-text {
-        min-width: calc(100% - 65px);
-    }
-
-    .aid-button {
-        width: 100%;
-        margin-top: 5px;
-    }
-}
-</style>
-
-
-<div class="majd-page">
-
-    <!-- HEADER -->
-    <header class="majd-header">
-
-        <div class="brand-en">
-            GHAYTH AL-MAJD
-        </div>
-
-        <h1 class="brand-ar">
-            غيث المجد
-        </h1>
-
-        <p class="brand-description">
-            توثيق الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
-        </p>
-
-    </header>
-
-
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
-        جهة موثوقة لتوثيق الروابط والمعلومات المتعلقة بالمساعدات
-    </div>
-
-
-    <main class="majd-container">
-
-        <!-- URGENT NEWS -->
-        <div class="news-box">
-
-            <div class="news-title">
-                🚨 تنويه مهم
-            </div>
-
-            <div class="news-text">
-                يتم نشر الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
-                بصورة واضحة ومنظمة، ويُنصح دائمًا بالتأكد من الرابط
-                قبل إدخال أي معلومات شخصية.
-            </div>
-
-        </div>
-
-
-        <!-- MAIN SECTION -->
-        <div class="section-heading">
-
-            <h2>
-                أقسام غيث المجد
-            </h2>
-
-            <p>
-                اختر القسم الذي تبحث عنه للوصول إلى المعلومات والروابط الموثقة.
-            </p>
-
-        </div>
-
-
-        <!-- AID SECTIONS -->
-        <div class="aid-list">
-
-
-            <!-- EDUCATION FIRST -->
-            <a href="#" class="aid-banner">
-
-                <div class="aid-content">
-
-                    <div class="aid-icon">
-                        🎓
-                    </div>
-
-                    <div class="aid-text">
-
-                        <h3 class="aid-title">
-                            قسم التربية و التعليم الشامل
-                        </h3>
-
-                        <p class="aid-description">
-                            روابط ومعلومات متعلقة بالتعليم، الطلبة، المدارس
-                            والمساعدات التعليمية.
-                        </p>
-
-                    </div>
-
-                    <div class="aid-button">
-                        دخول القسم
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- WFP -->
-            <a href="#" class="aid-banner">
-
-                <div class="aid-content">
-
-                    <div class="aid-icon">
-                        🥫
-                    </div>
-
-                    <div class="aid-text">
-
-                        <h3 class="aid-title">
-                            مساعدات WFP
-                        </h3>
-
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات الغذائية والدعم
-                            المرتبط ببرنامج الأغذية العالمي.
-                        </p>
-
-                    </div>
-
-                    <div class="aid-button">
-                        دخول القسم
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- UNICEF -->
-            <a href="#" class="aid-banner">
-
-                <div class="aid-content">
-
-                    <div class="aid-icon">
-                        🧒
-                    </div>
-
-                    <div class="aid-text">
-
-                        <h3 class="aid-title">
-                            مساعدات UNICEF
-                        </h3>
-
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات
-                            الإنسانية الخاصة بالأطفال والأسر.
-                        </p>
-
-                    </div>
-
-                    <div class="aid-button">
-                        دخول القسم
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- ORPHANS -->
-            <a href="#" class="aid-banner">
-
-                <div class="aid-content">
-
-                    <div class="aid-icon">
-                        🤲
-                    </div>
-
-                    <div class="aid-text">
-
-                        <h3 class="aid-title">
-                            مساعدات الأيتام
-                        </h3>
-
-                        <p class="aid-description">
-                            روابط ومعلومات حول برامج ومساعدات الأيتام.
-                        </p>
-
-                    </div>
-
-                    <div class="aid-button">
-                        دخول القسم
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- UNRWA -->
-            <a href="#" class="aid-banner">
-
-                <div class="aid-content">
-
-                    <div class="aid-icon">
-                        🏠
-                    </div>
-
-                    <div class="aid-text">
-
-                        <h3 class="aid-title">
-                            مساعدات الأونروا
-                        </h3>
-
-                        <p class="aid-description">
-                            روابط ومعلومات متعلقة بخدمات ومساعدات الأونروا.
-                        </p>
-
-                    </div>
-
-                    <div class="aid-button">
-                        دخول القسم
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- ELDERLY -->
-            <a href="#" class="aid-banner">
-
-                <div class="aid-content">
-
-                    <div class="aid-icon">
-                        👴
-                    </div>
-
-                    <div class="aid-text">
-
-                        <h3 class="aid-title">
-                            مساعدات كبار السن
-                        </h3>
-
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات
-                            المخصصة لكبار السن.
-                        </p>
-
-                    </div>
-
-                    <div class="aid-button">
-                        دخول القسم
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- WOM
+   
