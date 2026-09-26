@@ -20,7 +20,9 @@ body{
     background:#f5f6f8;
 }
 
-/* الصورة الرئيسية */
+/* =========================
+   الصورة الرئيسية
+========================= */
 
 .hero{
     width:100%;
@@ -39,70 +41,193 @@ body{
     margin:0 auto;
 }
 
-/* أزرار التسجيل */
+/* =========================
+   الشريط العاجل
+========================= */
 
-.buttons-container{
-    width:92%;
-    max-width:900px;
-    margin:25px auto 40px;
-}
-
-.buttons-title{
-    text-align:center;
-    margin:0 0 22px;
-    font-size:26px;
-    font-weight:900;
-    color:#111;
-}
-
-.aid-button{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.urgent-bar{
     width:100%;
-    min-height:62px;
-    margin-bottom:14px;
-    padding:15px 20px;
-    background:#fff;
-    color:#111;
-    border:2px solid #111;
-    border-radius:12px;
-    text-decoration:none;
+    background:#111;
+    color:#fff;
     text-align:center;
-    font-size:18px;
-    font-weight:800;
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    padding:14px 12px;
+    font-size:16px;
+    font-weight:900;
+    line-height:1.8;
+}
+
+/* =========================
+   المحتوى
+========================= */
+
+.main-container{
+    width:92%;
+    max-width:950px;
+    margin:0 auto;
+    padding:25px 0 45px;
+}
+
+/* =========================
+   العنوان
+========================= */
+
+.page-title{
+    text-align:center;
+    margin:5px 0 25px;
+}
+
+.page-title h1{
+    margin:0 0 8px;
+    font-size:30px;
+    font-weight:900;
+}
+
+.page-title p{
+    margin:0;
+    color:#555;
+    line-height:1.8;
+}
+
+/* =========================
+   الأقسام
+========================= */
+
+.sections-title{
+    text-align:center;
+    margin:30px 0 20px;
+    font-size:25px;
+    font-weight:900;
+}
+
+.aid-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.aid-card{
+    display:block;
+    background:#fff;
+    border:2px solid #111;
+    border-radius:16px;
+    padding:18px;
+    text-decoration:none;
+    color:#111;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
     transition:.2s ease;
 }
 
-.aid-button:hover{
+.aid-card:hover{
     background:#111;
     color:#fff;
     transform:translateY(-2px);
-    box-shadow:0 7px 18px rgba(0,0,0,.15);
 }
 
-.aid-button:active{
-    transform:translateY(0);
+.aid-card-content{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-/* التنويه */
+.aid-icon{
+    width:55px;
+    height:55px;
+    min-width:55px;
+    border-radius:15px;
+    background:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+}
+
+.aid-text{
+    flex:1;
+}
+
+.aid-title{
+    margin:0 0 5px;
+    font-size:18px;
+    font-weight:900;
+}
+
+.aid-description{
+    margin:0;
+    color:#666;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.aid-card:hover .aid-description{
+    color:#ddd;
+}
+
+.aid-arrow{
+    font-size:24px;
+    font-weight:900;
+}
+
+/* =========================
+   روابط التسجيل
+========================= */
+
+.registration-box{
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    margin-top:35px;
+    border:1px solid #ddd;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.registration-title{
+    text-align:center;
+    margin:0 0 20px;
+    font-size:23px;
+    font-weight:900;
+}
+
+.registration-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:55px;
+    margin-bottom:12px;
+    padding:13px 15px;
+    background:#111;
+    color:#fff;
+    border-radius:12px;
+    text-decoration:none;
+    text-align:center;
+    font-size:16px;
+    font-weight:800;
+}
+
+.registration-link:last-child{
+    margin-bottom:0;
+}
+
+.registration-link:hover{
+    background:#333;
+}
+
+/* =========================
+   التنويه
+========================= */
 
 .notice{
-    width:92%;
-    max-width:900px;
-    margin:0 auto 35px;
-    padding:20px;
+    margin-top:30px;
     background:#fff;
-    border-right:5px solid #111;
-    border-radius:10px;
-    line-height:1.9;
-    text-align:right;
+    border-right:6px solid #111;
+    border-radius:14px;
+    padding:22px;
+    line-height:2;
 }
 
 .notice h2{
     margin:0 0 10px;
     font-size:21px;
+    font-weight:900;
 }
 
 .notice p{
@@ -111,36 +236,43 @@ body{
     font-size:15px;
 }
 
-/* التواصل */
+/* =========================
+   التواصل
+========================= */
 
 .contact{
     background:#111;
     color:#fff;
-    padding:28px 15px;
+    padding:30px 15px;
     text-align:center;
 }
 
 .contact h2{
     margin:0 0 15px;
-    font-size:22px;
+    font-size:23px;
 }
 
 .contact p{
-    margin:7px 0;
+    margin:8px 0;
     font-size:15px;
 }
 
-/* الفوتر */
+/* =========================
+   الفوتر
+========================= */
 
 .footer{
     background:#000;
     color:#aaa;
     text-align:center;
-    padding:16px;
+    padding:18px 12px;
     font-size:13px;
+    line-height:1.8;
 }
 
-/* الهاتف */
+/* =========================
+   الهاتف
+========================= */
 
 @media(max-width:600px){
 
@@ -148,19 +280,39 @@ body{
         max-height:350px;
     }
 
-    .buttons-container{
+    .main-container{
         width:94%;
-        margin-top:20px;
     }
 
-    .buttons-title{
+    .page-title h1{
+        font-size:25px;
+    }
+
+    .sections-title{
         font-size:22px;
     }
 
-    .aid-button{
-        min-height:58px;
+    .aid-card-content{
+        gap:11px;
+    }
+
+    .aid-icon{
+        width:50px;
+        height:50px;
+        min-width:50px;
+        font-size:23px;
+    }
+
+    .aid-title{
         font-size:16px;
-        padding:14px;
+    }
+
+    .aid-description{
+        font-size:12px;
+    }
+
+    .registration-link{
+        font-size:14px;
     }
 }
 </style>
@@ -168,7 +320,9 @@ body{
 
 <div class="ghayth-page">
 
-    <!-- الصورة الرئيسية -->
+    <!-- =========================
+         الصورة
+    ========================== -->
 
     <div class="hero">
         <img
@@ -179,127 +333,415 @@ body{
     </div>
 
 
-    <!-- روابط التسجيل والاستبيانات -->
+    <!-- =========================
+         المساعدات العاجلة
+    ========================== -->
 
-    <div class="buttons-container">
-
-        <h1 class="buttons-title">
-            تعبئة الاستبيانات والتسجيل
-        </h1>
-
-
-        <a
-            class="aid-button"
-            href="https://donate.mosd.gov.ps"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            وزارة التنمية الاجتماعية – رام الله
-        </a>
-
-
-        <a
-            class="aid-button"
-            href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSezy3pBvLajiJTSmuHfL6p36saZM66-or_r8Xb_US43osefbg/formResponse"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            وزارة التنمية الاجتماعية – غزة
-        </a>
-
-
-        <a
-            class="aid-button"
-            href="https://aid.alfaresalshahm.com/single-reg"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            الفارس الشهم
-        </a>
-
-
-        <a
-            class="aid-button"
-            href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            برنامج الأغذية العالمي WFP
-        </a>
-
-
-        <a
-            class="aid-button"
-            href="https://gazaaid.unrwa.org/Login"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            UNRWA – الأونروا
-        </a>
-
-
-        <a
-            class="aid-button"
-            href="https://gazaaid.unrwa.org/Home/Requests"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            UN – طلبات المساعدة
-        </a>
-
-
-        <a
-            class="aid-button"
-            href="https://e-gaza.com/login"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            هيئة الغاز
-        </a>
-
+    <div class="urgent-bar">
+        🚨 مساعدات عاجلة وروابط مهمة — يرجى التأكد من الرابط قبل إدخال أي بيانات
     </div>
 
 
-    <!-- التنويه -->
+    <main class="main-container">
 
-    <div class="notice">
+        <!-- =========================
+             العنوان
+        ========================== -->
 
-        <h2>
-            تنويه مهم
+        <div class="page-title">
+
+            <h1>
+                غيث المجد
+            </h1>
+
+            <p>
+                توثيق وتنظيم الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             الأقسام
+        ========================== -->
+
+        <h2 class="sections-title">
+            أقسام غيث المجد
         </h2>
 
-        <p>
-            غيث المجد لا يطلب من أي شخص دفع أموال مقابل هذه الخدمة،
-            ولا يستلم أموالًا من المستفيدين.
-            يرجى التأكد من الروابط قبل إدخال أي بيانات شخصية.
-        </p>
 
-    </div>
+        <div class="aid-list">
 
 
-    <!-- التواصل -->
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🎓</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            قسم التربية و التعليم الشامل
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات متعلقة بالتعليم والطلبة والمدارس والمساعدات التعليمية.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🥫</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات WFP
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات الغذائية وبرنامج الأغذية العالمي.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🧒</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات UNICEF
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات الإنسانية للأطفال والأسر.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🤲</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات الأيتام
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات حول برامج ومساعدات الأيتام.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🏠</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات الأونروا
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات متعلقة بخدمات ومساعدات الأونروا.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">👴</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات كبار السن
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة لكبار السن.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">👩</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات النساء الشامل
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة للنساء.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🏢</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات المؤسسات الشامل
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بدعم المؤسسات والجهات المجتمعية والإنسانية.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🩹</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات الجرحى و المصابين
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات الخاصة بالجرحى والمصابين.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🤍</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات الأرامل
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة للأرامل.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+        </div>
+
+
+        <!-- =========================
+             روابط التسجيل والاستبيانات
+        ========================== -->
+
+        <div class="registration-box">
+
+            <h2 class="registration-title">
+                تعبئة الاستبيانات والتسجيل
+            </h2>
+
+
+            <a
+                class="registration-link"
+                href="https://donate.mosd.gov.ps"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                وزارة التنمية الاجتماعية – رام الله
+            </a>
+
+
+            <a
+                class="registration-link"
+                href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSezy3pBvLajiJTSmuHfL6p36saZM66-or_r8Xb_US43osefbg/formResponse"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                وزارة التنمية الاجتماعية – غزة
+            </a>
+
+
+            <a
+                class="registration-link"
+                href="https://aid.alfaresalshahm.com/single-reg"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                الفارس الشهم
+            </a>
+
+
+            <a
+                class="registration-link"
+                href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                برنامج الأغذية العالمي WFP
+            </a>
+
+
+            <a
+                class="registration-link"
+                href="https://gazaaid.unrwa.org/Login"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                UNRWA – الأونروا
+            </a>
+
+
+            <a
+                class="registration-link"
+                href="https://gazaaid.unrwa.org/Home/Requests"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                UN – طلبات المساعدة
+            </a>
+
+
+            <a
+                class="registration-link"
+                href="https://e-gaza.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                هيئة الغاز
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             التنويه
+        ========================== -->
+
+        <div class="notice">
+
+            <h2>
+                ⚠️ تنويه مهم جدًا
+            </h2>
+
+            <p>
+
+                غيث المجد لا يطلب من أي شخص دفع أموال مقابل هذه الخدمة،
+                ولا يستلم أموالًا من المستفيدين.
+
+                <br><br>
+
+                نحن جهة تهدف إلى توثيق وتنظيم الروابط والمعلومات
+                المتعلقة بالمساعدات بصورة واضحة.
+
+                <br><br>
+
+                يرجى الحذر من أي شخص يطلب منك دفع المال مقابل الوصول
+                إلى الروابط أو المعلومات المنشورة.
+
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         التواصل
+    ========================== -->
 
     <div class="contact">
 
         <h2>
-            تواصل معنا
+            📞 تواصل مع غيث المجد
         </h2>
 
         <p>
-            واتساب: 0592480001
+            واتساب / هاتف: 0592480001
         </p>
 
         <p>
             البريد الإلكتروني: n299964@hotmail.com
         </p>
 
+        <p>
+            البريد الإلكتروني: zaeemkwaik@gmail.com
+        </p>
+
     </div>
 
 
-    <!-- الفوتر -->
+    <!-- =========================
+         الفوتر
+    ========================== -->
 
     <div class="footer">
-        © غيث المجد — جميع الحقوق محفوظة
+
+        <strong>غيث المجد</strong>
+
+        <br>
+
+        GHAYTH AL-MAJD
+
+        <br>
+
+        توثيق وتنظيم الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+
     </div>
 
 </div>
