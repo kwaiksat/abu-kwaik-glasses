@@ -2,9 +2,6 @@
 
 {% block content %}
 
-<!-- =========================
-     GOOGLE FONT
-========================= -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
 
@@ -19,20 +16,14 @@ body {
 
 .majd-page {
     min-height: 100vh;
-    background:
-        linear-gradient(180deg, #f5fbff 0%, #eef8fc 45%, #ffffff 100%);
+    background: linear-gradient(180deg, #f5fbff 0%, #eef8fc 45%, #ffffff 100%);
     direction: rtl;
     color: #000;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
+/* HEADER */
 .majd-header {
-    background:
-        linear-gradient(135deg, #eaf8fd 0%, #d9f1fa 50%, #f8fdff 100%);
+    background: linear-gradient(135deg, #eaf8fd 0%, #d9f1fa 50%, #f8fdff 100%);
     text-align: center;
     padding: 38px 15px 30px;
     border-bottom: 1px solid #c9e8f3;
@@ -60,13 +51,9 @@ body {
     color: #111;
 }
 
-
-/* =========================
-   TRUST BAR
-========================= */
-
+/* TRUST BAR */
 .trust-bar {
-    background: #ffffff;
+    background: #fff;
     color: #000;
     text-align: center;
     padding: 13px 10px;
@@ -75,24 +62,16 @@ body {
     border-bottom: 1px solid #d8edf5;
 }
 
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-
+/* CONTAINER */
 .majd-container {
     max-width: 950px;
     margin: auto;
     padding: 20px 15px 50px;
 }
 
-
-/* =========================
-   BREAKING NOTICE
-========================= */
-
+/* NEWS */
 .news-box {
-    background: #ffffff;
+    background: #fff;
     border-right: 6px solid #c62828;
     border-radius: 18px;
     padding: 17px 18px;
@@ -113,11 +92,7 @@ body {
     font-size: 15px;
 }
 
-
-/* =========================
-   SECTION TITLE
-========================= */
-
+/* SECTION */
 .section-heading {
     text-align: center;
     margin: 25px 0 20px;
@@ -137,40 +112,26 @@ body {
     line-height: 1.8;
 }
 
-
-/* =========================
-   VERIFIED AID BANNERS
-========================= */
-
+/* AID BANNERS */
 .aid-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-
-/* كامل البنر رابط */
-
 .aid-banner {
     display: block;
     text-decoration: none;
     color: #000;
-    background:
-        linear-gradient(135deg, #ffffff 0%, #f4fbfe 55%, #e9f7fc 100%);
+    background: linear-gradient(135deg, #fff 0%, #f4fbfe 55%, #e9f7fc 100%);
     border: 1px solid #c7e9f3;
     border-radius: 22px;
     padding: 20px;
     box-shadow: 0 5px 18px rgba(36, 105, 130, .09);
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease,
-        border-color .18s ease;
     position: relative;
     overflow: hidden;
+    transition: .18s ease;
 }
-
-
-/* خط جانبي جميل */
 
 .aid-banner::before {
     content: "";
@@ -182,44 +143,17 @@ body {
     background: #168dcc;
 }
 
-
-/* لمعان خفيف */
-
-.aid-banner::after {
-    content: "";
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    left: -50px;
-    top: -50px;
-    background: rgba(255,255,255,.55);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-
 .aid-banner:hover {
     transform: translateY(-2px);
     box-shadow: 0 9px 25px rgba(36, 105, 130, .14);
     border-color: #91d5e8;
 }
 
-
-.aid-banner:active {
-    transform: scale(.99);
-}
-
-
-/* محتوى البنر */
-
 .aid-content {
     display: flex;
     align-items: center;
     gap: 16px;
 }
-
-
-/* أيقونة */
 
 .aid-icon {
     width: 58px;
@@ -233,9 +167,6 @@ body {
     justify-content: center;
     font-size: 29px;
 }
-
-
-/* النص */
 
 .aid-text {
     flex: 1;
@@ -255,9 +186,6 @@ body {
     line-height: 1.8;
 }
 
-
-/* زر الدخول */
-
 .aid-button {
     min-width: 120px;
     background: #168dcc;
@@ -270,11 +198,7 @@ body {
     white-space: nowrap;
 }
 
-
-/* =========================
-   CATEGORIES
-========================= */
-
+/* CATEGORIES */
 .categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -282,7 +206,7 @@ body {
 }
 
 .category-card {
-    background: #ffffff;
+    background: #fff;
     border-radius: 18px;
     padding: 24px 18px;
     text-align: center;
@@ -309,13 +233,9 @@ body {
     margin-bottom: 0;
 }
 
-
-/* =========================
-   IMPORTANT NOTICE
-========================= */
-
+/* NOTICE */
 .notice-box {
-    background: #ffffff;
+    background: #fff;
     margin-top: 30px;
     padding: 28px 22px;
     border-radius: 18px;
@@ -337,13 +257,9 @@ body {
     margin-bottom: 0;
 }
 
-
-/* =========================
-   INFORMATION
-========================= */
-
+/* INFORMATION */
 .info-box {
-    background: #ffffff;
+    background: #fff;
     padding: 28px 20px;
     margin-top: 25px;
     border-radius: 18px;
@@ -363,11 +279,7 @@ body {
     color: #111;
 }
 
-
-/* =========================
-   CONTACT
-========================= */
-
+/* CONTACT */
 .contact-box {
     text-align: center;
     margin-top: 30px;
@@ -382,14 +294,9 @@ body {
     color: #000;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 .majd-footer {
-    background:
-        linear-gradient(135deg, #e5f6fb, #f8fdff);
+    background: linear-gradient(135deg, #e5f6fb, #f8fdff);
     color: #000;
     text-align: center;
     padding: 25px 15px;
@@ -402,11 +309,7 @@ body {
     font-weight: 900;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media (max-width: 650px) {
 
     .majd-header {
@@ -461,9 +364,6 @@ body {
     }
 }
 
-
-/* شاشة صغيرة جدًا */
-
 @media (max-width: 430px) {
 
     .aid-content {
@@ -484,8 +384,248 @@ body {
 
 <div class="majd-page">
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+    <!-- HEADER -->
+    <header class="majd-header">
 
-    <header
+        <div class="brand-en">
+            GHAYTH AL-MAJD
+        </div>
+
+        <h1 class="brand-ar">
+            غيث المجد
+        </h1>
+
+        <p class="brand-description">
+            توثيق الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+        </p>
+
+    </header>
+
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        جهة موثوقة لتوثيق الروابط والمعلومات المتعلقة بالمساعدات
+    </div>
+
+
+    <main class="majd-container">
+
+        <!-- URGENT NEWS -->
+        <div class="news-box">
+
+            <div class="news-title">
+                🚨 تنويه مهم
+            </div>
+
+            <div class="news-text">
+                يتم نشر الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+                بصورة واضحة ومنظمة، ويُنصح دائمًا بالتأكد من الرابط
+                قبل إدخال أي معلومات شخصية.
+            </div>
+
+        </div>
+
+
+        <!-- MAIN SECTION -->
+        <div class="section-heading">
+
+            <h2>
+                أقسام غيث المجد
+            </h2>
+
+            <p>
+                اختر القسم الذي تبحث عنه للوصول إلى المعلومات والروابط الموثقة.
+            </p>
+
+        </div>
+
+
+        <!-- AID SECTIONS -->
+        <div class="aid-list">
+
+
+            <!-- EDUCATION FIRST -->
+            <a href="#" class="aid-banner">
+
+                <div class="aid-content">
+
+                    <div class="aid-icon">
+                        🎓
+                    </div>
+
+                    <div class="aid-text">
+
+                        <h3 class="aid-title">
+                            قسم التربية و التعليم الشامل
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات متعلقة بالتعليم، الطلبة، المدارس
+                            والمساعدات التعليمية.
+                        </p>
+
+                    </div>
+
+                    <div class="aid-button">
+                        دخول القسم
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- WFP -->
+            <a href="#" class="aid-banner">
+
+                <div class="aid-content">
+
+                    <div class="aid-icon">
+                        🥫
+                    </div>
+
+                    <div class="aid-text">
+
+                        <h3 class="aid-title">
+                            مساعدات WFP
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات الغذائية والدعم
+                            المرتبط ببرنامج الأغذية العالمي.
+                        </p>
+
+                    </div>
+
+                    <div class="aid-button">
+                        دخول القسم
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- UNICEF -->
+            <a href="#" class="aid-banner">
+
+                <div class="aid-content">
+
+                    <div class="aid-icon">
+                        🧒
+                    </div>
+
+                    <div class="aid-text">
+
+                        <h3 class="aid-title">
+                            مساعدات UNICEF
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات
+                            الإنسانية الخاصة بالأطفال والأسر.
+                        </p>
+
+                    </div>
+
+                    <div class="aid-button">
+                        دخول القسم
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- ORPHANS -->
+            <a href="#" class="aid-banner">
+
+                <div class="aid-content">
+
+                    <div class="aid-icon">
+                        🤲
+                    </div>
+
+                    <div class="aid-text">
+
+                        <h3 class="aid-title">
+                            مساعدات الأيتام
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات حول برامج ومساعدات الأيتام.
+                        </p>
+
+                    </div>
+
+                    <div class="aid-button">
+                        دخول القسم
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- UNRWA -->
+            <a href="#" class="aid-banner">
+
+                <div class="aid-content">
+
+                    <div class="aid-icon">
+                        🏠
+                    </div>
+
+                    <div class="aid-text">
+
+                        <h3 class="aid-title">
+                            مساعدات الأونروا
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات متعلقة بخدمات ومساعدات الأونروا.
+                        </p>
+
+                    </div>
+
+                    <div class="aid-button">
+                        دخول القسم
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- ELDERLY -->
+            <a href="#" class="aid-banner">
+
+                <div class="aid-content">
+
+                    <div class="aid-icon">
+                        👴
+                    </div>
+
+                    <div class="aid-text">
+
+                        <h3 class="aid-title">
+                            مساعدات كبار السن
+                        </h3>
+
+                        <p class="aid-description">
+                            معلومات وروابط متعلقة بالمساعدات والخدمات
+                            المخصصة لكبار السن.
+                        </p>
+
+                    </div>
+
+                    <div class="aid-button">
+                        دخول القسم
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- WOM
