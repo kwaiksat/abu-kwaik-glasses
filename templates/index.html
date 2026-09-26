@@ -3,145 +3,379 @@
 {% block content %}
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+.majd-page{
+    min-height:100vh;
+    background:linear-gradient(180deg,#f5fbff,#eef8fc,#fff);
+    direction:rtl;
+    color:#000;
+    font-family:Tahoma,Arial,sans-serif;
 }
 
-.majd-page {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #f5fbff 0%, #eef8fc 50%, #ffffff 100%);
-    direction: rtl;
-    color: #000;
-    font-family: Tahoma, Arial, sans-serif;
+.majd-header{
+    text-align:center;
+    padding:35px 15px 28px;
+    background:linear-gradient(135deg,#eaf8fd,#d9f1fa,#f8fdff);
+    border-bottom:1px solid #c9e8f3;
 }
 
-.majd-header {
-    background: linear-gradient(135deg, #eaf8fd, #d9f1fa, #f8fdff);
-    text-align: center;
-    padding: 38px 15px 30px;
-    border-bottom: 1px solid #c9e8f3;
+.brand-en{
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:2px;
 }
 
-.brand-en {
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #111;
+.brand-ar{
+    margin:6px 0 10px;
+    font-size:38px;
+    font-weight:900;
 }
 
-.brand-ar {
-    margin: 5px 0 10px;
-    font-size: 38px;
-    font-weight: 900;
-    color: #000;
+.brand-description{
+    margin:0;
+    font-size:15px;
+    font-weight:bold;
 }
 
-.brand-description {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
+.trust-bar{
+    background:#fff;
+    text-align:center;
+    padding:13px;
+    font-weight:bold;
+    border-bottom:1px solid #d8edf5;
 }
 
-.trust-bar {
-    background: #fff;
-    text-align: center;
-    padding: 13px 10px;
-    font-size: 16px;
-    font-weight: 800;
-    border-bottom: 1px solid #d8edf5;
+.majd-container{
+    max-width:950px;
+    margin:auto;
+    padding:20px 15px 45px;
 }
 
-.majd-container {
-    max-width: 950px;
-    margin: auto;
-    padding: 20px 15px 50px;
+.news-box,
+.notice-box,
+.info-box{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 5px 18px rgba(25,80,100,.08);
 }
 
-.news-box {
-    background: #fff;
-    border-right: 6px solid #c62828;
-    border-radius: 18px;
-    padding: 17px 18px;
-    margin-bottom: 28px;
-    box-shadow: 0 5px 18px rgba(25,80,100,.08);
+.news-box{
+    border-right:6px solid #c62828;
 }
 
-.news-title {
-    color: #b71c1c;
-    font-weight: 800;
-    font-size: 18px;
-    margin-bottom: 7px;
+.news-title{
+    color:#b71c1c;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
-.news-text {
-    line-height: 1.9;
-    font-size: 15px;
+.news-text,
+.notice-box p,
+.info-box p{
+    line-height:2;
 }
 
-.section-heading {
-    text-align: center;
-    margin: 25px 0 20px;
+.section-heading{
+    text-align:center;
+    margin:25px 0 20px;
 }
 
-.section-heading h2 {
-    margin: 0 0 7px;
-    font-size: 25px;
-    font-weight: 900;
+.section-heading h2{
+    font-size:25px;
+    margin:0 0 7px;
 }
 
-.section-heading p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.8;
+.section-heading p{
+    margin:0;
 }
 
-.aid-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.aid-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
 }
 
-.aid-banner {
-    display: block;
-    text-decoration: none;
-    color: #000;
-    background: linear-gradient(135deg, #fff, #f4fbfe, #e9f7fc);
-    border: 1px solid #c7e9f3;
-    border-radius: 22px;
-    padding: 20px;
-    box-shadow: 0 5px 18px rgba(36,105,130,.09);
-    position: relative;
-    overflow: hidden;
+.aid-banner{
+    display:block;
+    text-decoration:none;
+    color:#000;
+    background:linear-gradient(135deg,#fff,#f4fbfe,#e9f7fc);
+    border:1px solid #c7e9f3;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 5px 18px rgba(36,105,130,.09);
 }
 
-.aid-banner::before {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 6px;
-    background: #168dcc;
+.aid-content{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.aid-content {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+.aid-icon{
+    width:55px;
+    height:55px;
+    min-width:55px;
+    border-radius:16px;
+    background:#e1f5fb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
 }
 
-.aid-icon {
-    width: 58px;
-    height: 58px;
-    min-width: 58px;
-    border-radius: 17px;
-    background: #e1f5fb;
-    border: 1px solid #b9e3ef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 29px;
+.aid-text{
+    flex:1;
 }
 
-.aid-text {
-   
+.aid-title{
+    margin:0 0 5px;
+    font-size:18px;
+    font-weight:900;
+}
+
+.aid-description{
+    margin:0;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.aid-button{
+    background:#168dcc;
+    color:#fff;
+    border-radius:12px;
+    padding:10px 14px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.notice-box{
+    margin-top:28px;
+    border-right:6px solid #e1b93e;
+    text-align:center;
+}
+
+.notice-box h2,
+.info-box h2{
+    margin-top:0;
+}
+
+.info-box{
+    text-align:center;
+}
+
+.contact-box{
+    text-align:center;
+    padding:15px;
+}
+
+.majd-footer{
+    text-align:center;
+    padding:25px 15px;
+    line-height:2;
+    background:#e5f6fb;
+    border-top:1px solid #cfe9f1;
+}
+
+.footer-brand{
+    font-size:20px;
+    font-weight:900;
+}
+
+@media(max-width:600px){
+    .brand-ar{font-size:32px}
+    .aid-content{flex-wrap:wrap}
+    .aid-text{min-width:calc(100% - 70px)}
+    .aid-button{
+        width:100%;
+        text-align:center;
+    }
+}
+</style>
+
+<div class="majd-page">
+
+<header class="majd-header">
+    <div class="brand-en">GHAYTH AL-MAJD</div>
+    <h1 class="brand-ar">غيث المجد</h1>
+    <p class="brand-description">
+        توثيق الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+    </p>
+</header>
+
+<div class="trust-bar">
+    جهة موثوقة لتوثيق الروابط والمعلومات المتعلقة بالمساعدات
+</div>
+
+<main class="majd-container">
+
+<div class="news-box">
+    <div class="news-title">🚨 تنويه مهم</div>
+    <div class="news-text">
+        يتم نشر الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+        بصورة واضحة ومنظمة، ويُنصح دائمًا بالتأكد من الرابط
+        قبل إدخال أي معلومات شخصية.
+    </div>
+</div>
+
+<div class="section-heading">
+    <h2>أقسام غيث المجد</h2>
+    <p>اختر القسم الذي تبحث عنه للوصول إلى المعلومات والروابط الموثقة.</p>
+</div>
+
+<div class="aid-list">
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🎓</div>
+<div class="aid-text">
+<h3 class="aid-title">قسم التربية و التعليم الشامل</h3>
+<p class="aid-description">روابط ومعلومات متعلقة بالتعليم والطلبة والمدارس والمساعدات التعليمية.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🥫</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات WFP</h3>
+<p class="aid-description">معلومات وروابط متعلقة بالمساعدات الغذائية والدعم المرتبط ببرنامج الأغذية العالمي.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🧒</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات UNICEF</h3>
+<p class="aid-description">معلومات وروابط متعلقة بالمساعدات والخدمات الإنسانية للأطفال والأسر.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🤲</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات الأيتام</h3>
+<p class="aid-description">روابط ومعلومات حول برامج ومساعدات الأيتام.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🏠</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات الأونروا</h3>
+<p class="aid-description">روابط ومعلومات متعلقة بخدمات ومساعدات الأونروا.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">👴</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات كبار السن</h3>
+<p class="aid-description">معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة لكبار السن.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">👩</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات النساء الشامل</h3>
+<p class="aid-description">معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة للنساء.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🏢</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات المؤسسات الشامل</h3>
+<p class="aid-description">معلومات وروابط متعلقة بدعم المؤسسات والجهات المجتمعية والإنسانية.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🩹</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات الجرحى و المصابين</h3>
+<p class="aid-description">معلومات وروابط متعلقة بالمساعدات والخدمات الخاصة بالجرحى والمصابين.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+<a href="#" class="aid-banner">
+<div class="aid-content">
+<div class="aid-icon">🤍</div>
+<div class="aid-text">
+<h3 class="aid-title">مساعدات الأرامل</h3>
+<p class="aid-description">معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة للأرامل.</p>
+</div>
+<div class="aid-button">دخول القسم</div>
+</div>
+</a>
+
+</div>
+
+<div class="notice-box">
+<h2>⚠️ تنويه مهم جدًا</h2>
+<p>
+غيث المجد لا يستخدم أموال أي شخص مقابل هذه الخدمة،
+ولا يطلب أي مبالغ مالية مقابل الوصول إلى الروابط أو المعلومات المنشورة.
+<br><br>
+نحن جهة تهدف إلى توثيق الروابط والمعلومات المتعلقة بالمساعدات
+بصورة منظمة وواضحة.
+<br><br>
+يرجى الحذر من أي شخص يطلب منك دفع المال مقابل الحصول على خدمة
+أو مساعدة من خلال الروابط المنشورة.
+</p>
+</div>
+
+<div class="info-box">
+<h2>ℹ️ عن غيث المجد</h2>
+<p>
+غيث المجد هو موقع لتوثيق وتنظيم الروابط والمعلومات المتعلقة
+بالمساعدات والخدمات الإنسانية بهدف تسهيل الوصول إلى المعلومات.
+</p>
+</div>
+
+<div class="contact-box">
+<h2>📞 التواصل</h2>
+<p>للاستفسارات والملاحظات يمكن التواصل عبر وسائل الاتصال المعتمدة في الموقع.</p>
+</div>
+
+</main>
+
+<footer class="majd-footer">
+<div class="footer-brand">غيث المجد</div>
+<div>GHAYTH AL-MAJD</div>
+<div>توثيق وتنظيم الروابط والمعلومات المتعلقة بالمساعدات الإنسانية</div>
+</footer>
+
+</div>
+
+{% endblock %}
