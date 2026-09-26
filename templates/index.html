@@ -1,1 +1,320 @@
-We need output code, not writing block. Need provide full code maybe huge. Could leverage latest code from summary. User asked "يلا" after assistant said full code. Need code. But perhaps concise and use existing code? Need complete. We can provide full code. No writing block for code. Ensure image path. Could reduce CSS. Need preserve categories. Let's answer.
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: #f5f6f8;
+        color: #111;
+    }
+
+    .ghayth-page {
+        direction: rtl;
+        min-height: 100vh;
+        background: #f5f6f8;
+    }
+
+    /* الصورة الرئيسية */
+    .hero {
+        width: 100%;
+        background: #000;
+        text-align: center;
+        padding: 0;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 1100px;
+        height: auto;
+        max-height: 420px;
+        object-fit: cover;
+        display: block;
+        margin: auto;
+    }
+
+    /* العنوان */
+    .brand {
+        background: #000;
+        color: #fff;
+        text-align: center;
+        padding: 25px 15px;
+    }
+
+    .brand h1 {
+        margin: 0;
+        font-size: 38px;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+
+    .brand p {
+        margin: 8px 0 0;
+        font-size: 17px;
+        color: #ddd;
+    }
+
+    /* شريط الثقة */
+    .trust {
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        padding: 14px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    /* التنبيه */
+    .urgent {
+        max-width: 1050px;
+        margin: 25px auto;
+        padding: 20px;
+        background: #fff;
+        border-right: 6px solid #000;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    .urgent h2 {
+        margin-top: 0;
+        font-size: 22px;
+    }
+
+    .urgent p {
+        margin-bottom: 0;
+        line-height: 1.9;
+        color: #444;
+    }
+
+    /* الأقسام */
+    .container {
+        width: 92%;
+        max-width: 1050px;
+        margin: auto;
+    }
+
+    .section-title {
+        text-align: center;
+        margin: 35px 0 20px;
+        font-size: 28px;
+        font-weight: 900;
+    }
+
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+    }
+
+    .category {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 22px 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        transition: .2s;
+    }
+
+    .category:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 20px rgba(0,0,0,.1);
+    }
+
+    /* المعلومات */
+    .info-box {
+        background: #fff;
+        margin: 30px auto;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        line-height: 2;
+    }
+
+    .info-box h2 {
+        margin-top: 0;
+    }
+
+    /* التواصل */
+    .contact {
+        background: #000;
+        color: #fff;
+        margin-top: 35px;
+        padding: 30px 15px;
+        text-align: center;
+    }
+
+    .contact h2 {
+        margin-top: 0;
+    }
+
+    .contact p {
+        margin: 8px 0;
+        font-size: 17px;
+    }
+
+    /* الفوتر */
+    .footer {
+        background: #111;
+        color: #aaa;
+        text-align: center;
+        padding: 18px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+        .brand h1 {
+            font-size: 30px;
+        }
+
+        .brand p {
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 23px;
+        }
+
+        .category {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<div class="ghayth-page">
+
+    <!-- الصورة الرئيسية -->
+    <div class="hero">
+        <img
+            src="/static/1790427276274.jpg"
+            alt="غيث المجد"
+            class="hero-image"
+        >
+    </div>
+
+    <!-- اسم الموقع -->
+    <div class="brand">
+        <h1>غيث المجد</h1>
+        <p>لتوثيق روابط المساعدات والمعلومات الموثوقة</p>
+    </div>
+
+    <!-- شريط الثقة -->
+    <div class="trust">
+        ✓ لا نطلب أي أموال مقابل هذه الخدمة
+    </div>
+
+    <!-- التنبيه العاجل -->
+    <div class="urgent">
+        <h2>تنبيه هام وعاجل</h2>
+        <p>
+            نعمل على توثيق روابط المساعدات والإعلانات المتعلقة بالخدمات
+            الإنسانية، وننصح دائمًا بالتأكد من مصدر أي رابط قبل إدخال
+            البيانات الشخصية أو إرسال أي معلومات.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <!-- الأقسام -->
+        <h2 class="section-title">أقسام المساعدات</h2>
+
+        <div class="categories">
+
+            <div class="category">
+                قسم التربية و التعليم الشامل
+            </div>
+
+            <div class="category">
+                مساعدات WFP
+            </div>
+
+            <div class="category">
+                مساعدات UNICEF
+            </div>
+
+            <div class="category">
+                مساعدات الأيتام
+            </div>
+
+            <div class="category">
+                مساعدات الأونروا
+            </div>
+
+            <div class="category">
+                مساعدات كبار السن
+            </div>
+
+            <div class="category">
+                مساعدات النساء الشامل
+            </div>
+
+            <div class="category">
+                مساعدات المؤسسات الشامل
+            </div>
+
+            <div class="category">
+                مساعدات الجرحى و المصابين
+            </div>
+
+            <div class="category">
+                مساعدات الأرامل
+            </div>
+
+        </div>
+
+        <!-- تنويه -->
+        <div class="info-box">
+            <h2>تنويه مهم</h2>
+
+            <p>
+                غيث المجد لا يستخدم أموال أي شخص ولا يطلب من المستفيدين
+                دفع أي مبلغ مقابل هذه الخدمة.
+            </p>
+
+            <p>
+                يهدف الموقع إلى توثيق روابط المساعدات والمعلومات
+                ومساعدة المستخدمين على الوصول إلى الروابط المعلنة
+                بطريقة أوضح وأكثر أمانًا.
+            </p>
+
+            <p>
+                يرجى دائمًا التأكد من الجهة الرسمية قبل تقديم أي بيانات
+                شخصية.
+            </p>
+        </div>
+
+        <!-- عن الموقع -->
+        <div class="info-box">
+            <h2>عن غيث المجد</h2>
+
+            <p>
+                غيث المجد مساحة مستقلة تهدف إلى تنظيم وتوثيق روابط
+                المساعدات والإعلانات الإنسانية المتداولة، لتسهيل الوصول
+                إليها ومساعدة الأهالي على التحقق من الروابط والمعلومات.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- التواصل -->
+    <div class="contact">
+        <h2>تواصل معنا</h2>
+
+        <p>واتساب: 0592480001</p>
+        <p>البريد الإلكتروني: n299964@hotmail.com</p>
+    </div>
+
+    <!-- الفوتر -->
+    <div class="footer">
+        © غيث المجد — جميع الحقوق محفوظة
+    </div>
+
+</div>
+
+{% endblock %}
