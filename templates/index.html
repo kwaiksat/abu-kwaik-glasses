@@ -3,475 +3,448 @@
 {% block content %}
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    background: #f4f8fc;
-    color: #111111;
-    font-family: "Cairo", sans-serif;
+body{
+    margin:0;
+    background:#f5f8fc;
+    color:#111;
+    font-family:"Cairo","Tahoma","Arial",sans-serif;
 }
 
-.ghayth-page {
-    direction: rtl;
-    min-height: 100vh;
-    background: #f4f8fc;
+.ghayth-page{
+    direction:rtl;
+    min-height:100vh;
+    background:#f5f8fc;
 }
 
 /* =========================
    الصورة الرئيسية
 ========================= */
 
-.hero {
-    width: 100%;
-    background: #ffffff;
-    text-align: center;
-    line-height: 0;
+.hero{
+    width:100%;
+    background:#000;
+    text-align:center;
+    line-height:0;
 }
 
-.hero-image {
-    width: 100%;
-    max-width: 1100px;
-    height: auto;
-    max-height: 430px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto;
+.hero-image{
+    width:100%;
+    max-width:1100px;
+    height:auto;
+    max-height:430px;
+    object-fit:cover;
+    display:block;
+    margin:0 auto;
 }
 
 /* =========================
-   الشريط العاجل
+   شريط المساعدات العاجلة
 ========================= */
 
-.urgent-bar {
-    width: 100%;
-    background: #ffffff;
-    color: #111111;
-    border-top: 1px solid #d9e6f2;
-    border-bottom: 1px solid #d9e6f2;
-    text-align: center;
-    padding: 14px 12px;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 1.8;
+.urgent-bar{
+    width:100%;
+    background:#f4a3a3;
+    color:#111;
+    text-align:center;
+    padding:13px 12px;
+    font-size:16px;
+    font-weight:900;
+    line-height:1.8;
+    border-bottom:1px solid #e58b8b;
+}
+
+/* =========================
+   التنبيه الأمني
+========================= */
+
+.security-box{
+    width:92%;
+    max-width:950px;
+    margin:18px auto 0;
+    background:#fff;
+    border:2px solid #111;
+    border-radius:16px;
+    padding:18px 20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.security-title{
+    margin:0 0 8px;
+    color:#111;
+    font-size:19px;
+    font-weight:900;
+}
+
+.security-text{
+    margin:0;
+    color:#444;
+    font-size:14px;
+    line-height:1.9;
+}
+
+.security-warning{
+    margin:12px 0 0;
+    padding-top:11px;
+    border-top:1px solid #ddd;
+    color:#111;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.8;
 }
 
 /* =========================
    المحتوى
 ========================= */
 
-.main-container {
-    width: 94%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 22px 0 45px;
+.main-container{
+    width:92%;
+    max-width:950px;
+    margin:0 auto;
+    padding:22px 0 45px;
+}
+
+/* =========================
+   العنوان
+========================= */
+
+.page-title{
+    text-align:center;
+    margin:4px 0 22px;
+}
+
+.page-title h1{
+    margin:0 0 6px;
+    color:#111;
+    font-size:29px;
+    font-weight:900;
+}
+
+.page-title p{
+    margin:0;
+    color:#555;
+    line-height:1.8;
+    font-size:14px;
 }
 
 /* =========================
    عنوان الأقسام
 ========================= */
 
-.sections-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    text-align: center;
-    margin: 5px 0 22px;
-    font-size: 27px;
-    font-weight: 900;
-    color: #111111;
-}
-
-.sections-title::before,
-.sections-title::after {
-    content: "";
-    width: 42px;
-    height: 3px;
-    background: #2d6fa8;
-    border-radius: 5px;
+.sections-title{
+    text-align:center;
+    margin:25px 0 17px;
+    color:#111;
+    font-size:23px;
+    font-weight:900;
 }
 
 /* =========================
-   بنرات الأقسام
+   بطاقات الأقسام
 ========================= */
 
-.aid-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+.aid-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
-.aid-card {
-    display: block;
-    background: #ffffff;
-    border: 1px solid #d6e5f2;
-    border-radius: 16px;
-    padding: 15px;
-    text-decoration: none;
-    color: #111111;
-    box-shadow: 0 4px 15px rgba(45, 111, 168, 0.08);
-    transition: 0.2s ease;
+.aid-card{
+    display:block;
+    background:#fff;
+    border:1px solid #d8e1ec;
+    border-radius:13px;
+    padding:12px 14px;
+    text-decoration:none;
+    color:#111;
+    box-shadow:0 3px 10px rgba(35,70,110,.07);
+    transition:.2s ease;
 }
 
-.aid-card:hover {
-    border-color: #8eb8d8;
-    transform: translateY(-2px);
-    box-shadow: 0 7px 20px rgba(45, 111, 168, 0.14);
+.aid-card:hover{
+    border-color:#111;
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+    transform:translateY(-1px);
 }
 
-.aid-card-content {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    min-height: 82px;
+.aid-card-content{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.aid-icon {
-    width: 58px;
-    height: 58px;
-    min-width: 58px;
-    border-radius: 15px;
-    background: #e8f3ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
+.aid-icon{
+    width:47px;
+    height:47px;
+    min-width:47px;
+    border-radius:12px;
+    background:#edf4fb;
+    border:1px solid #dce8f3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
 }
 
-.aid-text {
-    flex: 1;
+.aid-text{
+    flex:1;
+    min-width:0;
 }
 
-.aid-title {
-    margin: 0 0 6px;
-    font-size: 17px;
-    font-weight: 900;
-    color: #111111;
+.aid-title{
+    margin:0 0 3px;
+    color:#111;
+    font-size:16px;
+    font-weight:900;
+    line-height:1.5;
 }
 
-.aid-description {
-    margin: 0;
-    color: #66809b;
-    font-size: 12px;
-    line-height: 1.8;
+.aid-description{
+    margin:0;
+    color:#666;
+    font-size:12px;
+    line-height:1.65;
 }
 
-.aid-arrow {
-    font-size: 28px;
-    font-weight: 900;
-    color: #2d6fa8;
+.aid-arrow{
+    width:28px;
+    min-width:28px;
+    height:28px;
+    border-radius:50%;
+    background:#f0f4f8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#111;
+    font-size:20px;
+    font-weight:900;
 }
 
 /* =========================
-   ألوان الأيقونات
+   روابط التسجيل
 ========================= */
 
-.aid-card:nth-child(1) .aid-icon {
-    background: #e8edff;
+.registration-box{
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    margin-top:30px;
+    border:1px solid #d8e1ec;
+    box-shadow:0 4px 14px rgba(35,70,110,.06);
 }
 
-.aid-card:nth-child(2) .aid-icon {
-    background: #e1f1ff;
+.registration-title{
+    text-align:center;
+    margin:0 0 17px;
+    color:#111;
+    font-size:21px;
+    font-weight:900;
 }
 
-.aid-card:nth-child(3) .aid-icon {
-    background: #e1f8f1;
+.registration-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:50px;
+    margin-bottom:10px;
+    padding:11px 14px;
+    background:#111;
+    color:#fff;
+    border-radius:11px;
+    text-decoration:none;
+    text-align:center;
+    font-size:15px;
+    font-weight:800;
+    transition:.2s ease;
 }
 
-.aid-card:nth-child(4) .aid-icon {
-    background: #eee8ff;
+.registration-link:last-child{
+    margin-bottom:0;
 }
 
-.aid-card:nth-child(5) .aid-icon {
-    background: #e5f5ff;
-}
-
-.aid-card:nth-child(6) .aid-icon {
-    background: #eeeaff;
-}
-
-.aid-card:nth-child(7) .aid-icon {
-    background: #ffeaf4;
-}
-
-.aid-card:nth-child(8) .aid-icon {
-    background: #e2f4f5;
-}
-
-.aid-card:nth-child(9) .aid-icon {
-    background: #ffe9e9;
-}
-
-.aid-card:nth-child(10) .aid-icon {
-    background: #ffeef0;
+.registration-link:hover{
+    background:#333;
 }
 
 /* =========================
-   روابط المساعدات الرسمية
+   تنبيه المعلومات
 ========================= */
 
-.official-box {
-    margin-top: 34px;
+.notice{
+    margin-top:25px;
+    background:#fff;
+    border-right:5px solid #111;
+    border-radius:13px;
+    padding:18px 19px;
+    line-height:2;
+    border-top:1px solid #e0e7ef;
+    border-bottom:1px solid #e0e7ef;
+    border-left:1px solid #e0e7ef;
 }
 
-.official-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    text-align: center;
-    margin: 0 0 20px;
-    font-size: 25px;
-    font-weight: 900;
-    color: #111111;
+.notice h2{
+    margin:0 0 8px;
+    color:#111;
+    font-size:19px;
+    font-weight:900;
 }
 
-.official-title::before,
-.official-title::after {
-    content: "";
-    width: 40px;
-    height: 3px;
-    background: #2d6fa8;
-    border-radius: 5px;
-}
-
-.official-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 13px;
-}
-
-.official-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    min-height: 82px;
-    padding: 15px;
-    background: #ffffff;
-    border: 1px solid #d6e5f2;
-    border-radius: 15px;
-    text-decoration: none;
-    color: #111111;
-    box-shadow: 0 4px 15px rgba(45, 111, 168, 0.07);
-    transition: 0.2s ease;
-}
-
-.official-card:hover {
-    transform: translateY(-2px);
-    border-color: #8eb8d8;
-}
-
-.official-icon {
-    width: 54px;
-    height: 54px;
-    min-width: 54px;
-    border-radius: 14px;
-    background: #e9f3fc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-}
-
-.official-text {
-    flex: 1;
-}
-
-.official-name {
-    margin: 0 0 4px;
-    font-size: 16px;
-    font-weight: 900;
-    color: #111111;
-}
-
-.official-description {
-    margin: 0;
-    font-size: 12px;
-    line-height: 1.7;
-    color: #66809b;
-}
-
-.official-arrow {
-    font-size: 25px;
-    color: #2d6fa8;
-    font-weight: 900;
-}
-
-/* =========================
-   التسجيل
-========================= */
-
-.registration-box {
-    background: #ffffff;
-    border: 1px solid #d6e5f2;
-    border-radius: 17px;
-    padding: 22px;
-    margin-top: 32px;
-    box-shadow: 0 4px 15px rgba(45, 111, 168, 0.06);
-}
-
-.registration-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    text-align: center;
-    margin: 0 0 20px;
-    font-size: 23px;
-    font-weight: 900;
-    color: #111111;
-}
-
-.registration-title::before,
-.registration-title::after {
-    content: "";
-    width: 40px;
-    height: 3px;
-    background: #2d6fa8;
-    border-radius: 5px;
-}
-
-.registration-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    background: #2d6fa8;
-    color: #ffffff;
-    border-radius: 11px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 800;
-    transition: 0.2s ease;
-}
-
-.registration-link:hover {
-    background: #245b8a;
-}
-
-.registration-link:last-child {
-    margin-bottom: 0;
-}
-
-/* =========================
-   التنويه
-========================= */
-
-.notice {
-    margin-top: 28px;
-    background: #fffaf0;
-    border: 1px solid #f0d48b;
-    border-right: 5px solid #dca52b;
-    border-radius: 14px;
-    padding: 20px;
-    line-height: 2;
-}
-
-.notice h2 {
-    margin: 0 0 9px;
-    font-size: 20px;
-    font-weight: 900;
-    color: #111111;
-}
-
-.notice p {
-    margin: 0;
-    color: #53677a;
-    font-size: 14px;
+.notice p{
+    margin:0;
+    color:#444;
+    font-size:14px;
 }
 
 /* =========================
    التواصل
 ========================= */
 
-.contact {
-    background: #edf6ff;
-    color: #111111;
-    padding: 28px 15px;
-    text-align: center;
-    border-top: 1px solid #d4e7f8;
+.contact{
+    background:#111;
+    color:#fff;
+    padding:27px 15px;
+    text-align:center;
 }
 
-.contact h2 {
-    margin: 0 0 15px;
-    font-size: 22px;
-    color: #111111;
+.contact h2{
+    margin:0 0 13px;
+    font-size:21px;
 }
 
-.contact p {
-    margin: 8px 0;
-    font-size: 14px;
+.contact p{
+    margin:7px 0;
+    font-size:14px;
 }
 
 /* =========================
    الفوتر
 ========================= */
 
-.footer {
-    background: #e5f0fa;
-    color: #647b91;
-    text-align: center;
-    padding: 18px 12px;
-    font-size: 12px;
-    line-height: 1.8;
+.footer{
+    background:#000;
+    color:#aaa;
+    text-align:center;
+    padding:17px 12px;
+    font-size:12px;
+    line-height:1.8;
 }
 
 /* =========================
    الهاتف
 ========================= */
 
-@media (max-width: 700px) {
+@media(max-width:600px){
 
-    .hero-image {
-        max-height: 350px;
+    .hero-image{
+        max-height:350px;
     }
 
-    .main-container {
-        width: 94%;
-        padding-top: 19px;
+    .urgent-bar{
+        font-size:14px;
+        padding:11px 10px;
     }
 
-    .sections-title {
-        font-size: 23px;
-        gap: 12px;
+    .security-box{
+        width:94%;
+        padding:15px 16px;
+        margin-top:14px;
     }
 
-    .sections-title::before,
-    .sections-title::after {
-        width: 27px;
+    .security-title{
+        font-size:17px;
     }
 
-    .aid-list {
-        grid-template-columns: 1fr;
-        gap: 12px;
+    .security-text,
+    .security-warning{
+        font-size:13px;
     }
 
-    .aid-title {
-        font-size: 16px;
+    .main-container{
+        width:94%;
+        padding-top:18px;
     }
 
-    .official-list {
-        grid-template-columns: 1fr;
+    .page-title{
+        margin-bottom:18px;
     }
 
-    .official-title {
-        font-size: 21px;
+    .page-title h1{
+        font-size:25px;
     }
 
-    .registration-title {
-        font-size: 20px;
+    .page-title p{
+        font-size:13px;
     }
 
-    .urgent-bar {
-        font-size: 14px;
+    .sections-title{
+        font-size:21px;
+        margin:22px 0 14px;
+    }
+
+    .aid-list{
+        gap:8px;
+    }
+
+    .aid-card{
+        padding:10px 11px;
+        border-radius:12px;
+    }
+
+    .aid-card-content{
+        gap:10px;
+    }
+
+    .aid-icon{
+        width:43px;
+        height:43px;
+        min-width:43px;
+        border-radius:11px;
+        font-size:21px;
+    }
+
+    .aid-title{
+        font-size:15px;
+    }
+
+    .aid-description{
+        font-size:11px;
+        line-height:1.55;
+    }
+
+    .aid-arrow{
+        width:25px;
+        min-width:25px;
+        height:25px;
+        font-size:18px;
+    }
+
+    .registration-box{
+        padding:16px;
+        margin-top:25px;
+    }
+
+    .registration-title{
+        font-size:19px;
+    }
+
+    .registration-link{
+        min-height:47px;
+        font-size:13px;
+    }
+
+    .notice{
+        padding:16px;
+    }
+
+    .notice h2{
+        font-size:18px;
+    }
+
+    .notice p{
+        font-size:13px;
     }
 }
 </style>
@@ -479,7 +452,10 @@ body {
 
 <div class="ghayth-page">
 
-    <!-- الصورة الرئيسية -->
+    <!-- =========================
+         الصورة الرئيسية
+    ========================== -->
+
     <div class="hero">
         <img
             src="/static/1790427276274.jpg"
@@ -489,318 +465,353 @@ body {
     </div>
 
 
-    <!-- التنبيه -->
+    <!-- =========================
+         المساعدات العاجلة
+    ========================== -->
+
     <div class="urgent-bar">
         🚨 مساعدات عاجلة وروابط مهمة — يرجى التأكد من الرابط قبل إدخال أي بيانات
     </div>
 
 
+    <!-- =========================
+         البوابة الآمنة
+    ========================== -->
+
+    <section class="security-box">
+
+        <h2 class="security-title">
+            🔐 بوابة آمنة للوصول إلى المساعدات
+        </h2>
+
+        <p class="security-text">
+            غيث المجد بوابة مستقلة تساعد المستفيدين على الوصول إلى روابط
+            ونماذج المساعدات الرسمية والتحقق منها قبل إدخال البيانات.
+            نحن لا نطلب منك كلمات المرور أو دفع أي مبلغ مقابل الوصول إلى
+            الروابط، ولا نحتكر بياناتك.
+            تأكد دائمًا من اسم الجهة والرابط الرسمي قبل تعبئة أي نموذج.
+        </p>
+
+        <p class="security-warning">
+            أدخل بياناتك في الموقع الرسمي للجهة فقط — ولا ترسل كلمات المرور
+            أو رموز التحقق لأي شخص.
+        </p>
+
+    </section>
+
+
     <main class="main-container">
+
+        <!-- =========================
+             العنوان
+        ========================== -->
+
+        <div class="page-title">
+
+            <h1>
+                غيث المجد
+            </h1>
+
+            <p>
+                توثيق وتنظيم الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
+            </p>
+
+        </div>
+
 
         <!-- =========================
              الأقسام
         ========================== -->
 
         <h2 class="sections-title">
-            أقسام غيث المجد
+            أقسام المساعدات
         </h2>
 
 
         <div class="aid-list">
 
+
+            <!-- المساعدات النقدية -->
+
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
-                    <div class="aid-icon">🎓</div>
+
+                    <div class="aid-icon">💵</div>
+
                     <div class="aid-text">
-                        <h3 class="aid-title">قسم التربية و التعليم الشامل</h3>
+                        <h3 class="aid-title">
+                            المساعدات النقدية والمالية
+                        </h3>
+
                         <p class="aid-description">
-                            روابط ومعلومات متعلقة بالتعليم والطلبة والمدارس والمساعدات التعليمية.
+                            روابط ومعلومات حول برامج الدعم النقدي والمساعدات المالية للأسر.
                         </p>
                     </div>
+
                     <div class="aid-arrow">‹</div>
+
                 </div>
             </a>
 
 
+            <!-- المساعدات الغذائية -->
+
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
+
                     <div class="aid-icon">🥫</div>
+
                     <div class="aid-text">
-                        <h3 class="aid-title">مساعدات WFP</h3>
+                        <h3 class="aid-title">
+                            المساعدات الغذائية
+                        </h3>
+
                         <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات الغذائية وبرنامج الأغذية العالمي.
+                            برامج الغذاء والسلال الغذائية والمساعدات التموينية.
                         </p>
                     </div>
+
                     <div class="aid-arrow">‹</div>
+
                 </div>
             </a>
 
 
+            <!-- الإغاثة العاجلة -->
+
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
-                    <div class="aid-icon">🧒</div>
+
+                    <div class="aid-icon">🚨</div>
+
                     <div class="aid-text">
-                        <h3 class="aid-title">مساعدات UNICEF</h3>
+                        <h3 class="aid-title">
+                            المساعدات والإغاثة العاجلة
+                        </h3>
+
                         <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات الإنسانية للأطفال والأسر.
+                            روابط المساعدات الطارئة والإعلانات والاحتياجات العاجلة.
                         </p>
                     </div>
+
                     <div class="aid-arrow">‹</div>
+
                 </div>
             </a>
 
 
-            <a href="#" class="aid-card">
-                <div class="aid-card-content">
-                    <div class="aid-icon">🤲</div>
-                    <div class="aid-text">
-                        <h3 class="aid-title">مساعدات الأيتام</h3>
-                        <p class="aid-description">
-                            روابط ومعلومات حول برامج ومساعدات الأيتام.
-                        </p>
-                    </div>
-                    <div class="aid-arrow">‹</div>
-                </div>
-            </a>
-
+            <!-- UNRWA -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
+
                     <div class="aid-icon">🏠</div>
+
                     <div class="aid-text">
-                        <h3 class="aid-title">مساعدات الأونروا</h3>
+                        <h3 class="aid-title">
+                            مساعدات الأونروا UNRWA
+                        </h3>
+
                         <p class="aid-description">
-                            روابط ومعلومات متعلقة بخدمات ومساعدات الأونروا.
+                            روابط وخدمات ومعلومات المساعدات التابعة للأونروا.
                         </p>
                     </div>
+
                     <div class="aid-arrow">‹</div>
+
                 </div>
             </a>
 
+
+            <!-- WFP -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
-                    <div class="aid-icon">👴</div>
+
+                    <div class="aid-icon">🌾</div>
+
                     <div class="aid-text">
-                        <h3 class="aid-title">مساعدات كبار السن</h3>
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة لكبار السن.
-                        </p>
-                    </div>
-                    <div class="aid-arrow">‹</div>
-                </div>
-            </a>
-
-
-            <a href="#" class="aid-card">
-                <div class="aid-card-content">
-                    <div class="aid-icon">👩</div>
-                    <div class="aid-text">
-                        <h3 class="aid-title">مساعدات النساء الشامل</h3>
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة للنساء.
-                        </p>
-                    </div>
-                    <div class="aid-arrow">‹</div>
-                </div>
-            </a>
-
-
-            <a href="#" class="aid-card">
-                <div class="aid-card-content">
-                    <div class="aid-icon">🏢</div>
-                    <div class="aid-text">
-                        <h3 class="aid-title">مساعدات المؤسسات الشامل</h3>
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بدعم المؤسسات والجهات المجتمعية والإنسانية.
-                        </p>
-                    </div>
-                    <div class="aid-arrow">‹</div>
-                </div>
-            </a>
-
-
-            <a href="#" class="aid-card">
-                <div class="aid-card-content">
-                    <div class="aid-icon">🩹</div>
-                    <div class="aid-text">
-                        <h3 class="aid-title">مساعدات الجرحى و المصابين</h3>
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات الخاصة بالجرحى والمصابين.
-                        </p>
-                    </div>
-                    <div class="aid-arrow">‹</div>
-                </div>
-            </a>
-
-
-            <a href="#" class="aid-card">
-                <div class="aid-card-content">
-                    <div class="aid-icon">🤍</div>
-                    <div class="aid-text">
-                        <h3 class="aid-title">مساعدات الأرامل</h3>
-                        <p class="aid-description">
-                            معلومات وروابط متعلقة بالمساعدات والخدمات المخصصة للأرامل.
-                        </p>
-                    </div>
-                    <div class="aid-arrow">‹</div>
-                </div>
-            </a>
-
-        </div>
-
-
-        <!-- =========================
-             روابط رسمية جديدة
-        ========================== -->
-
-        <div class="official-box">
-
-            <h2 class="official-title">
-                روابط المساعدات والجهات الرسمية
-            </h2>
-
-
-            <div class="official-list">
-
-                <a
-                    href="https://www.wfp.org/emergencies/palestine-emergency"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-card"
-                >
-                    <div class="official-icon">🥫</div>
-
-                    <div class="official-text">
-                        <h3 class="official-name">
+                        <h3 class="aid-title">
                             برنامج الأغذية العالمي WFP
                         </h3>
 
-                        <p class="official-description">
-                            معلومات المساعدات الغذائية والنقدية في فلسطين وغزة.
+                        <p class="aid-description">
+                            التسجيل والتحديثات والمعلومات المتعلقة بمساعدات WFP.
                         </p>
                     </div>
 
-                    <div class="official-arrow">‹</div>
-                </a>
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
 
 
-                <a
-                    href="https://www.unicef.org/sop/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-card"
-                >
-                    <div class="official-icon">🧒</div>
+            <!-- UNICEF -->
 
-                    <div class="official-text">
-                        <h3 class="official-name">
-                            UNICEF فلسطين
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🧒</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات الأطفال والأسر – UNICEF
                         </h3>
 
-                        <p class="official-description">
-                            معلومات وخدمات إنسانية للأطفال والأسر في قطاع غزة.
+                        <p class="aid-description">
+                            برامج وخدمات المساعدة والحماية والدعم للأطفال والأسر.
                         </p>
                     </div>
 
-                    <div class="official-arrow">‹</div>
-                </a>
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
 
 
-                <a
-                    href="https://gazaaid.unrwa.org/Login/Index"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-card"
-                >
-                    <div class="official-icon">🏠</div>
+            <!-- الطبية والجرحى -->
 
-                    <div class="official-text">
-                        <h3 class="official-name">
-                            بوابة مستفيدي الأونروا
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🩺</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            المساعدات الطبية والجرحى
                         </h3>
 
-                        <p class="official-description">
-                            الدخول وتحديث بيانات المستفيدين لدى الأونروا.
+                        <p class="aid-description">
+                            روابط ومعلومات حول الخدمات الطبية ودعم الجرحى والمصابين.
                         </p>
                     </div>
 
-                    <div class="official-arrow">‹</div>
-                </a>
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
 
 
-                <a
-                    href="https://www.mosd.gov.ps/ar/single-sub-citizen/26"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-card"
-                >
-                    <div class="official-icon">🏛️</div>
+            <!-- المأوى -->
 
-                    <div class="official-text">
-                        <h3 class="official-name">
-                            وزارة التنمية الاجتماعية
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">⛺</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            المأوى والاحتياجات الأساسية
                         </h3>
 
-                        <p class="official-description">
-                            إجراءات التقديم لطلب المساعدة الاجتماعية.
+                        <p class="aid-description">
+                            المأوى والخيام والاحتياجات الأساسية والدعم المنزلي.
                         </p>
                     </div>
 
-                    <div class="official-arrow">‹</div>
-                </a>
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
 
 
-                <a
-                    href="https://www.ochaopt.org/updates"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-card"
-                >
-                    <div class="official-icon">📰</div>
+            <!-- التعليم -->
 
-                    <div class="official-text">
-                        <h3 class="official-name">
-                            تحديثات الوضع الإنساني في غزة
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🎓</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            التعليم والطلاب
                         </h3>
 
-                        <p class="official-description">
-                            آخر التقارير والتحديثات الإنسانية الرسمية.
+                        <p class="aid-description">
+                            مساعدات الطلبة والمدارس والحقائب والاحتياجات التعليمية.
                         </p>
                     </div>
 
-                    <div class="official-arrow">‹</div>
-                </a>
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
 
 
-                <a
-                    href="https://www.icrc.org/ar/where-we-work/israel-and-occupied-territories"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-card"
-                >
-                    <div class="official-icon">🏥</div>
+            <!-- النساء والأرامل -->
 
-                    <div class="official-text">
-                        <h3 class="official-name">
-                            اللجنة الدولية للصليب الأحمر
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">👩</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات النساء والأرامل
                         </h3>
 
-                        <p class="official-description">
-                            معلومات المساعدة والحماية والعمل الإنساني في غزة.
+                        <p class="aid-description">
+                            روابط ومعلومات حول برامج الدعم والخدمات المخصصة للنساء والأرامل.
                         </p>
                     </div>
 
-                    <div class="official-arrow">‹</div>
-                </a>
+                    <div class="aid-arrow">‹</div>
 
-            </div>
+                </div>
+            </a>
+
+
+            <!-- كبار السن -->
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">👴</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات كبار السن
+                        </h3>
+
+                        <p class="aid-description">
+                            خدمات وبرامج المساعدة والدعم المخصصة لكبار السن.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
+
+            <!-- الأيتام -->
+
+            <a href="#" class="aid-card">
+                <div class="aid-card-content">
+
+                    <div class="aid-icon">🤲</div>
+
+                    <div class="aid-text">
+                        <h3 class="aid-title">
+                            مساعدات الأيتام
+                        </h3>
+
+                        <p class="aid-description">
+                            روابط ومعلومات حول برامج دعم ومساعدة الأطفال الأيتام.
+                        </p>
+                    </div>
+
+                    <div class="aid-arrow">‹</div>
+
+                </div>
+            </a>
+
 
         </div>
 
 
         <!-- =========================
-             التسجيل والاستبيانات
+             روابط التسجيل والاستبيانات
         ========================== -->
 
         <div class="registration-box">
@@ -893,6 +904,7 @@ body {
             </h2>
 
             <p>
+
                 غيث المجد لا يطلب من أي شخص دفع أموال مقابل هذه الخدمة،
                 ولا يستلم أموالًا من المستفيدين.
 
@@ -905,6 +917,7 @@ body {
 
                 يرجى الحذر من أي شخص يطلب منك دفع المال مقابل الوصول
                 إلى الروابط أو المعلومات المنشورة.
+
             </p>
 
         </div>
@@ -923,7 +936,7 @@ body {
         </h2>
 
         <p>
-            واتساب: 00970592480001
+            واتساب / هاتف: 0592480001
         </p>
 
         <p>
@@ -931,7 +944,7 @@ body {
         </p>
 
         <p>
-            البريد الإلكتروني: zaaemkwaik@gmail.com
+            البريد الإلكتروني: zaeemkwaik@gmail.com
         </p>
 
     </div>
