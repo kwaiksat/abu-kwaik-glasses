@@ -4,24 +4,25 @@
 
 :root {
     --black: #111111;
-    --black-soft: #202428;
+    --black-2: #1b1b1b;
 
-    --blue: #155f8d;
-    --blue-dark: #0b405f;
-    --blue-light: #eef6fa;
+    --blue: #1769aa;
+    --blue-dark: #0e4f82;
+    --blue-soft: #eef6fc;
 
     --white: #ffffff;
-    --background: #f2f4f5;
+    --bg: #f5f7f9;
+    --bg-soft: #eef1f4;
 
-    --text: #171a1d;
-    --muted: #69737a;
-    --border: #dfe4e7;
+    --text: #16191c;
+    --muted: #69737c;
+    --border: #e1e6ea;
 
-    --shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
-    --shadow-hover: 0 14px 34px rgba(0, 0, 0, 0.11);
+    --shadow: 0 10px 30px rgba(17, 17, 17, 0.06);
+    --shadow-hover: 0 16px 38px rgba(17, 17, 17, 0.11);
 
-    --radius: 14px;
-    --radius-small: 9px;
+    --radius: 18px;
+    --radius-small: 12px;
 }
 
 html {
@@ -32,7 +33,7 @@ body {
     margin: 0;
     padding: 0;
 
-    background: #f2f4f5;
+    background: var(--bg);
 
     color: var(--text);
 
@@ -56,6 +57,7 @@ a {
 }
 
 img {
+    display: block;
     max-width: 100%;
     height: auto;
 }
@@ -67,78 +69,96 @@ textarea {
     font-family: inherit;
 }
 
-/* ==================================================
-   الصفحة الرئيسية
-================================================== */
+/* =========================================
+   الصفحة
+========================================= */
 
 .ghayth-page {
     width: 100%;
     min-height: 100vh;
 
-    padding: 18px 16px 45px;
+    padding: 18px 18px 50px;
 
     background:
+        radial-gradient(
+            circle at top right,
+            rgba(23, 105, 170, 0.07),
+            transparent 32%
+        ),
         linear-gradient(
             180deg,
             #ffffff 0,
-            #f7f8f9 360px,
-            #f1f3f4 100%
+            #f6f8fa 420px,
+            #f1f3f5 100%
         );
 }
 
-/* ==================================================
+/* =========================================
    الصورة الرئيسية
-================================================== */
+========================================= */
 
 .hero {
     position: relative;
 
-    width: min(1120px, 100%);
+    width: min(1180px, 100%);
 
-    margin: 0 auto 14px;
+    margin: 0 auto 16px;
 
     overflow: hidden;
 
     background: #ffffff;
 
-    border: 1px solid #d9dfe3;
-
-    border-radius: 18px;
+    border-radius: 22px;
 
     box-shadow: var(--shadow);
 
     line-height: 0;
 }
 
-.hero-image {
-    display: block;
+.hero::after {
+    content: "";
 
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 60%,
+            rgba(0, 0, 0, 0.08)
+        );
+
+    pointer-events: none;
+}
+
+.hero-image {
     width: 100%;
     height: auto;
 
-    max-height: 430px;
+    max-height: 460px;
 
     object-fit: cover;
 
     margin: 0 auto;
 }
 
-/* ==================================================
-   شريط المساعدات العاجلة
-================================================== */
+/* =========================================
+   الشريط العاجل
+========================================= */
 
 .urgent-bar {
-    width: min(1120px, 100%);
+    width: min(1180px, 100%);
 
     margin: 0 auto 14px;
 
-    padding: 10px 16px;
+    padding: 11px 18px;
 
     background: var(--black);
 
     color: #ffffff;
 
-    border-radius: 9px;
+    border-radius: 12px;
 
     text-align: center;
 
@@ -147,23 +167,23 @@ textarea {
     font-weight: 800;
 
     box-shadow:
-        0 5px 18px rgba(0, 0, 0, 0.08);
+        0 7px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* ==================================================
+/* =========================================
    صندوق الأمان
-================================================== */
+========================================= */
 
 .security-box {
     position: relative;
 
-    width: min(1120px, 100%);
+    width: min(1180px, 100%);
 
     margin: 0 auto;
 
-    padding: 20px 24px;
+    padding: 22px 26px;
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.96);
 
     border: 1px solid var(--border);
 
@@ -179,13 +199,18 @@ textarea {
 
     position: absolute;
 
+    right: 0;
     top: 0;
     bottom: 0;
-    right: 0;
 
     width: 5px;
 
-    background: var(--blue);
+    background:
+        linear-gradient(
+            180deg,
+            var(--blue),
+            var(--blue-dark)
+        );
 }
 
 .security-title {
@@ -193,9 +218,11 @@ textarea {
 
     color: var(--black);
 
-    font-size: 19px;
+    font-size: 20px;
 
     font-weight: 900;
+
+    line-height: 1.5;
 }
 
 .security-text {
@@ -205,41 +232,41 @@ textarea {
 
     font-size: 13px;
 
-    line-height: 1.9;
+    line-height: 2;
 }
 
 .security-warning {
-    margin: 12px 0 0;
+    margin: 13px 0 0;
 
-    padding-top: 10px;
+    padding-top: 11px;
 
     border-top: 1px solid #edf0f2;
 
-    color: #343a3e;
+    color: #343a3f;
 
     font-size: 12px;
 
     font-weight: 800;
 }
 
-/* ==================================================
-   المحتوى
-================================================== */
+/* =========================================
+   المحتوى الرئيسي
+========================================= */
 
 .main-container {
-    width: min(1120px, 100%);
+    width: min(1180px, 100%);
 
     margin: 0 auto;
 
-    padding: 30px 0 35px;
+    padding: 38px 0 42px;
 }
 
-/* ==================================================
-   عنوان غيث المجد
-================================================== */
+/* =========================================
+   العنوان الرئيسي
+========================================= */
 
 .page-title {
-    margin: 0 0 28px;
+    margin: 0 0 34px;
 
     text-align: center;
 }
@@ -249,11 +276,11 @@ textarea {
 
     color: var(--black);
 
-    font-size: 36px;
+    font-size: 40px;
 
     font-weight: 900;
 
-    letter-spacing: -1px;
+    letter-spacing: -1.2px;
 
     line-height: 1.35;
 }
@@ -263,47 +290,47 @@ textarea {
 
     display: block;
 
-    width: 58px;
+    width: 64px;
     height: 4px;
 
-    margin: 10px auto 0;
+    margin: 12px auto 0;
 
     background: var(--blue);
 
-    border-radius: 20px;
+    border-radius: 50px;
 }
 
 .page-title p {
-    margin: 9px 0 0;
+    margin: 10px 0 0;
 
     color: var(--muted);
 
     font-size: 13px;
 }
 
-/* ==================================================
+/* =========================================
    عنوان الأقسام
-================================================== */
+========================================= */
 
 .sections-title {
-    margin: 0 0 16px;
+    margin: 0 0 18px;
 
-    padding-right: 12px;
+    padding-right: 14px;
 
     border-right: 5px solid var(--blue);
 
     color: var(--black);
 
-    font-size: 23px;
+    font-size: 24px;
 
     font-weight: 900;
 
     line-height: 1.5;
 }
 
-/* ==================================================
+/* =========================================
    بطاقات المساعدات
-================================================== */
+========================================= */
 
 .aid-list {
     display: grid;
@@ -311,7 +338,7 @@ textarea {
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 16px;
 }
 
 .aid-card {
@@ -319,9 +346,9 @@ textarea {
 
     display: block;
 
-    min-height: 118px;
+    min-height: 132px;
 
-    padding: 15px;
+    padding: 17px;
 
     background: #ffffff;
 
@@ -334,14 +361,14 @@ textarea {
     text-decoration: none;
 
     box-shadow:
-        0 4px 18px rgba(0, 0, 0, 0.045);
+        0 5px 22px rgba(17, 17, 17, 0.045);
 
     overflow: hidden;
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
 }
 
 .aid-card::before {
@@ -350,64 +377,81 @@ textarea {
     position: absolute;
 
     right: 0;
-
     top: 0;
     bottom: 0;
 
     width: 4px;
 
     background: var(--blue);
+
+    opacity: 0;
+
+    transition: opacity 0.22s ease;
 }
 
 .aid-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
 
-    border-color: #b8ccd7;
+    border-color: #c5d8e5;
 
     box-shadow: var(--shadow-hover);
 }
 
+.aid-card:hover::before {
+    opacity: 1;
+}
+
 .aid-card-content {
-    min-height: 87px;
+    min-height: 96px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 13px;
+    gap: 14px;
 }
 
-/* ==================================================
-   أيقونة المساعدة
-================================================== */
+/* =========================================
+   أيقونة
+========================================= */
 
 .aid-icon {
-    flex: 0 0 52px;
+    flex: 0 0 56px;
 
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: var(--blue-light);
+    background: var(--blue-soft);
 
-    border: 1px solid #d4e5ed;
+    border: 1px solid #d7e8f3;
 
-    border-radius: 13px;
+    border-radius: 15px;
 
     color: var(--blue-dark);
 
-    font-size: 24px;
+    font-size: 25px;
 
     line-height: 1;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease;
 }
 
-/* ==================================================
-   نص البطاقة
-================================================== */
+.aid-card:hover .aid-icon {
+    transform: scale(1.05);
+
+    background: #e5f2fb;
+}
+
+/* =========================================
+   النص
+========================================= */
 
 .aid-text {
     flex: 1;
@@ -416,7 +460,7 @@ textarea {
 }
 
 .aid-title {
-    margin: 0 0 4px;
+    margin: 0 0 5px;
 
     color: var(--black);
 
@@ -424,7 +468,7 @@ textarea {
 
     font-weight: 900;
 
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 .aid-description {
@@ -434,25 +478,25 @@ textarea {
 
     font-size: 11px;
 
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
-/* ==================================================
-   سهم البطاقة
-================================================== */
+/* =========================================
+   السهم
+========================================= */
 
 .aid-arrow {
-    flex: 0 0 28px;
+    flex: 0 0 30px;
 
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: #f0f3f5;
+    background: #f1f4f6;
 
     border-radius: 50%;
 
@@ -461,19 +505,21 @@ textarea {
     font-size: 19px;
 
     transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+        background 0.22s ease,
+        transform 0.22s ease;
 }
 
 .aid-card:hover .aid-arrow {
-    background: var(--blue-light);
+    background: var(--blue-soft);
 
-    transform: translateX(-3px);
+    color: var(--blue-dark);
+
+    transform: translateX(-4px);
 }
 
-/* ==================================================
-   روابط التسجيل
-================================================== */
+/* =========================================
+   روابط مهمة
+========================================= */
 
 .registration-box {
     display: grid;
@@ -481,11 +527,11 @@ textarea {
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-    gap: 11px;
+    gap: 12px;
 
-    margin-top: 30px;
+    margin-top: 34px;
 
-    padding: 22px;
+    padding: 25px;
 
     background: #ffffff;
 
@@ -501,13 +547,13 @@ textarea {
 
     margin: 0;
 
-    padding-bottom: 10px;
+    padding-bottom: 11px;
 
     border-bottom: 1px solid #e7ebee;
 
     color: var(--black);
 
-    font-size: 22px;
+    font-size: 23px;
 
     font-weight: 900;
 
@@ -517,7 +563,7 @@ textarea {
 .registration-subtitle {
     grid-column: 1 / -1;
 
-    margin: -2px 0 8px;
+    margin: -2px 0 10px;
 
     color: var(--muted);
 
@@ -527,20 +573,20 @@ textarea {
 }
 
 .registration-link {
-    min-height: 48px;
+    min-height: 52px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    padding: 9px 14px;
+    padding: 10px 15px;
 
     background: #f8fafb;
 
-    border: 1px solid #d7e1e6;
+    border: 1px solid #d9e2e7;
 
-    border-radius: 9px;
+    border-radius: 11px;
 
     color: var(--black);
 
@@ -553,27 +599,31 @@ textarea {
     text-align: center;
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+        background 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .registration-link:hover {
-    background: var(--blue-light);
+    background: var(--blue-soft);
 
-    border-color: #aec8d7;
+    border-color: #b8d2e2;
 
     transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(17, 17, 17, 0.05);
 }
 
-/* ==================================================
+/* =========================================
    التنبيه
-================================================== */
+========================================= */
 
 .notice {
-    margin-top: 17px;
+    margin-top: 18px;
 
-    padding: 18px 21px;
+    padding: 20px 23px;
 
     background: #ffffff;
 
@@ -587,11 +637,11 @@ textarea {
 }
 
 .notice h2 {
-    margin: 0 0 7px;
+    margin: 0 0 8px;
 
     color: var(--black);
 
-    font-size: 18px;
+    font-size: 19px;
 
     font-weight: 900;
 }
@@ -602,20 +652,27 @@ textarea {
     color: var(--muted);
 
     font-size: 12px;
+
+    line-height: 1.9;
 }
 
-/* ==================================================
+/* =========================================
    التواصل
-================================================== */
+========================================= */
 
 .contact {
-    width: min(1120px, 100%);
+    width: min(1180px, 100%);
 
-    margin: 0 auto 17px;
+    margin: 0 auto 18px;
 
-    padding: 21px;
+    padding: 24px 20px;
 
-    background: var(--black);
+    background:
+        linear-gradient(
+            135deg,
+            #111111,
+            #202326
+        );
 
     color: #ffffff;
 
@@ -627,11 +684,11 @@ textarea {
 }
 
 .contact h2 {
-    margin: 0 0 13px;
+    margin: 0 0 14px;
 
     color: #ffffff;
 
-    font-size: 21px;
+    font-size: 22px;
 
     font-weight: 900;
 }
@@ -639,9 +696,9 @@ textarea {
 .contact p {
     display: inline-block;
 
-    margin: 4px 12px;
+    margin: 4px 13px;
 
-    color: #dbe2e6;
+    color: #dce3e7;
 
     font-size: 12px;
 
@@ -652,18 +709,20 @@ textarea {
     color: #ffffff;
 
     text-decoration: underline;
+
+    text-underline-offset: 3px;
 }
 
-/* ==================================================
+/* =========================================
    الفوتر
-================================================== */
+========================================= */
 
 .footer {
-    margin: 0 -16px -45px;
+    margin: 0 -18px -50px;
 
-    padding: 24px 15px 28px;
+    padding: 25px 18px 30px;
 
-    background: #0c0f11;
+    background: #0d1012;
 
     color: #aeb7bc;
 
@@ -671,12 +730,12 @@ textarea {
 
     font-size: 10.5px;
 
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
-/* ==================================================
-   العناصر القديمة
-================================================== */
+/* =========================================
+   عناصر قديمة
+========================================= */
 
 .trust-bar {
     background: var(--black);
@@ -687,7 +746,7 @@ textarea {
 .trust-section {
     background: var(--black);
 
-    border: 1px solid #30373c;
+    border: 1px solid #30363a;
 
     border-radius: var(--radius);
 
@@ -719,38 +778,41 @@ textarea {
 
     border: 1px solid var(--black);
 
-    border-radius: 9px;
+    border-radius: 10px;
 }
 
 .btn:hover {
-    background: #292f33;
+    background: #292e32;
 }
 
-/* ==================================================
+/* =========================================
    التركيز
-================================================== */
+========================================= */
 
 a:focus-visible,
-button:focus-visible {
-    outline: 3px solid rgba(21, 95, 141, 0.28);
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(23, 105, 170, 0.28);
 
     outline-offset: 3px;
 }
 
-/* ==================================================
+/* =========================================
    الهاتف
-================================================== */
+========================================= */
 
 @media (max-width: 700px) {
 
     .ghayth-page {
-        padding: 9px 10px 30px;
+        padding: 8px 9px 30px;
     }
 
     .hero {
-        border-radius: 13px;
-
         margin-bottom: 9px;
+
+        border-radius: 15px;
     }
 
     .hero-image {
@@ -758,19 +820,19 @@ button:focus-visible {
     }
 
     .urgent-bar {
-        padding: 9px 10px;
-
         margin-bottom: 9px;
 
-        border-radius: 8px;
+        padding: 9px 10px;
+
+        border-radius: 9px;
 
         font-size: 10px;
     }
 
     .security-box {
-        padding: 15px 17px;
+        padding: 16px 17px;
 
-        border-radius: 11px;
+        border-radius: 13px;
     }
 
     .security-box::before {
@@ -783,6 +845,8 @@ button:focus-visible {
 
     .security-text {
         font-size: 10.5px;
+
+        line-height: 1.9;
     }
 
     .security-warning {
@@ -790,19 +854,21 @@ button:focus-visible {
     }
 
     .main-container {
-        padding: 23px 0 30px;
+        padding: 26px 0 30px;
     }
 
     .page-title {
-        margin-bottom: 22px;
+        margin-bottom: 24px;
     }
 
     .page-title h1 {
-        font-size: 27px;
+        font-size: 28px;
+
+        letter-spacing: -0.5px;
     }
 
     .page-title h1::after {
-        width: 42px;
+        width: 45px;
 
         height: 3px;
 
@@ -814,7 +880,7 @@ button:focus-visible {
     }
 
     .sections-title {
-        margin-bottom: 11px;
+        margin-bottom: 12px;
 
         padding-right: 9px;
 
@@ -826,47 +892,51 @@ button:focus-visible {
     .aid-list {
         grid-template-columns: 1fr;
 
-        gap: 8px;
+        gap: 9px;
     }
 
     .aid-card {
-        min-height: 82px;
+        min-height: 84px;
 
         padding: 10px 11px;
 
-        border-radius: 10px;
+        border-radius: 12px;
     }
 
     .aid-card-content {
-        min-height: 60px;
+        min-height: 62px;
 
         gap: 9px;
     }
 
     .aid-icon {
-        flex-basis: 43px;
+        flex-basis: 44px;
 
-        width: 43px;
-        height: 43px;
+        width: 44px;
+        height: 44px;
 
-        border-radius: 10px;
+        border-radius: 11px;
 
         font-size: 20px;
     }
 
     .aid-title {
+        margin-bottom: 3px;
+
         font-size: 13px;
     }
 
     .aid-description {
         font-size: 9.5px;
+
+        line-height: 1.55;
     }
 
     .aid-arrow {
-        flex-basis: 24px;
+        flex-basis: 25px;
 
-        width: 24px;
-        height: 24px;
+        width: 25px;
+        height: 25px;
 
         font-size: 17px;
     }
@@ -874,13 +944,13 @@ button:focus-visible {
     .registration-box {
         grid-template-columns: 1fr;
 
-        margin-top: 20px;
+        margin-top: 21px;
 
-        padding: 14px;
+        padding: 15px;
 
-        gap: 7px;
+        gap: 8px;
 
-        border-radius: 11px;
+        border-radius: 13px;
     }
 
     .registration-title {
@@ -892,19 +962,21 @@ button:focus-visible {
     }
 
     .registration-link {
-        min-height: 43px;
+        min-height: 44px;
+
+        padding: 8px 10px;
+
+        border-radius: 9px;
 
         font-size: 10.5px;
-
-        border-radius: 8px;
     }
 
     .notice {
-        margin-top: 13px;
+        margin-top: 14px;
 
-        padding: 14px;
+        padding: 15px;
 
-        border-radius: 10px;
+        border-radius: 12px;
     }
 
     .notice h2 {
@@ -916,9 +988,9 @@ button:focus-visible {
     }
 
     .contact {
-        padding: 17px 10px;
+        padding: 18px 10px;
 
-        border-radius: 11px;
+        border-radius: 13px;
     }
 
     .contact h2 {
@@ -934,19 +1006,19 @@ button:focus-visible {
     }
 
     .footer {
-        margin-left: -10px;
-        margin-right: -10px;
+        margin-left: -9px;
+        margin-right: -9px;
         margin-bottom: -30px;
 
-        padding: 19px 10px 24px;
+        padding: 20px 10px 25px;
 
         font-size: 9.5px;
     }
 }
 
-/* ==================================================
+/* =========================================
    الأجهزة المتوسطة
-================================================== */
+========================================= */
 
 @media (min-width: 701px) and (max-width: 1000px) {
 
@@ -956,6 +1028,6 @@ button:focus-visible {
     }
 
     .hero-image {
-        max-height: 350px;
+        max-height: 360px;
     }
 }
