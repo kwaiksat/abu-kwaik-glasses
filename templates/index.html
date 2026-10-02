@@ -47,51 +47,52 @@ body{
 
 .urgent-bar{
     width:100%;
-    background:#f4a3a3;
+    background:#f3a2a2;
     color:#111;
     text-align:center;
-    padding:13px 12px;
-    font-size:16px;
+    padding:12px 10px;
+    font-size:15px;
     font-weight:900;
-    line-height:1.8;
-    border-bottom:1px solid #e58b8b;
+    line-height:1.7;
+    border-bottom:1px solid #e38d8d;
 }
 
 /* =========================
-   التنبيه الأمني
+   البوابة الآمنة
 ========================= */
 
 .security-box{
     width:92%;
     max-width:950px;
-    margin:18px auto 0;
+    margin:16px auto 0;
     background:#fff;
-    border:2px solid #111;
-    border-radius:16px;
-    padding:18px 20px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
+    border:1px solid #d9e3ed;
+    border-right:5px solid #111;
+    border-radius:15px;
+    padding:16px 18px;
+    box-shadow:0 4px 13px rgba(35,70,110,.06);
 }
 
 .security-title{
-    margin:0 0 8px;
+    margin:0 0 7px;
     color:#111;
-    font-size:19px;
+    font-size:18px;
     font-weight:900;
 }
 
 .security-text{
     margin:0;
     color:#444;
-    font-size:14px;
+    font-size:13px;
     line-height:1.9;
 }
 
 .security-warning{
-    margin:12px 0 0;
-    padding-top:11px;
-    border-top:1px solid #ddd;
+    margin:10px 0 0;
+    padding-top:9px;
+    border-top:1px solid #e2e2e2;
     color:#111;
-    font-size:14px;
+    font-size:13px;
     font-weight:900;
     line-height:1.8;
 }
@@ -104,7 +105,7 @@ body{
     width:92%;
     max-width:950px;
     margin:0 auto;
-    padding:22px 0 45px;
+    padding:20px 0 42px;
 }
 
 /* =========================
@@ -113,21 +114,21 @@ body{
 
 .page-title{
     text-align:center;
-    margin:4px 0 22px;
+    margin:3px 0 20px;
 }
 
 .page-title h1{
-    margin:0 0 6px;
+    margin:0 0 5px;
     color:#111;
-    font-size:29px;
+    font-size:28px;
     font-weight:900;
 }
 
 .page-title p{
     margin:0;
     color:#555;
+    font-size:13px;
     line-height:1.8;
-    font-size:14px;
 }
 
 /* =========================
@@ -136,53 +137,71 @@ body{
 
 .sections-title{
     text-align:center;
-    margin:25px 0 17px;
+    margin:22px 0 15px;
     color:#111;
-    font-size:23px;
+    font-size:22px;
     font-weight:900;
 }
 
 /* =========================
-   بطاقات الأقسام
+   شبكة البطاقات
 ========================= */
 
 .aid-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.aid-card{
-    display:block;
-    background:#fff;
-    border:1px solid #d8e1ec;
-    border-radius:13px;
-    padding:12px 14px;
-    text-decoration:none;
-    color:#111;
-    box-shadow:0 3px 10px rgba(35,70,110,.07);
-    transition:.2s ease;
-}
-
-.aid-card:hover{
-    border-color:#111;
-    box-shadow:0 5px 15px rgba(0,0,0,.10);
-    transform:translateY(-1px);
-}
-
-.aid-card-content{
-    display:flex;
-    align-items:center;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
 }
 
+/* =========================
+   بطاقة القسم
+========================= */
+
+.aid-card{
+    display:block;
+    position:relative;
+    overflow:hidden;
+    min-height:116px;
+    background:#fff;
+    border:1px solid #d7e1eb;
+    border-radius:15px;
+    padding:14px;
+    text-decoration:none;
+    color:#111;
+    box-shadow:0 4px 12px rgba(35,70,110,.07);
+    transition:.2s ease;
+}
+
+.aid-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:5px;
+    height:100%;
+    background:#111;
+}
+
+.aid-card:hover{
+    transform:translateY(-2px);
+    border-color:#111;
+    box-shadow:0 7px 17px rgba(0,0,0,.11);
+}
+
+.aid-card-content{
+    height:100%;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
 .aid-icon{
-    width:47px;
-    height:47px;
-    min-width:47px;
-    border-radius:12px;
+    width:48px;
+    height:48px;
+    min-width:48px;
+    border-radius:13px;
     background:#edf4fb;
-    border:1px solid #dce8f3;
+    border:1px solid #d9e6f2;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -195,9 +214,9 @@ body{
 }
 
 .aid-title{
-    margin:0 0 3px;
+    margin:0 0 4px;
     color:#111;
-    font-size:16px;
+    font-size:15px;
     font-weight:900;
     line-height:1.5;
 }
@@ -205,21 +224,21 @@ body{
 .aid-description{
     margin:0;
     color:#666;
-    font-size:12px;
+    font-size:11.5px;
     line-height:1.65;
 }
 
 .aid-arrow{
-    width:28px;
-    min-width:28px;
-    height:28px;
+    width:27px;
+    min-width:27px;
+    height:27px;
     border-radius:50%;
     background:#f0f4f8;
+    color:#111;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#111;
-    font-size:20px;
+    font-size:19px;
     font-weight:900;
 }
 
@@ -231,14 +250,14 @@ body{
     background:#fff;
     border-radius:16px;
     padding:20px;
-    margin-top:30px;
+    margin-top:28px;
     border:1px solid #d8e1ec;
     box-shadow:0 4px 14px rgba(35,70,110,.06);
 }
 
 .registration-title{
     text-align:center;
-    margin:0 0 17px;
+    margin:0 0 16px;
     color:#111;
     font-size:21px;
     font-weight:900;
@@ -248,15 +267,15 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    min-height:50px;
+    min-height:49px;
     margin-bottom:10px;
-    padding:11px 14px;
+    padding:10px 14px;
     background:#111;
     color:#fff;
     border-radius:11px;
     text-decoration:none;
     text-align:center;
-    font-size:15px;
+    font-size:14px;
     font-weight:800;
     transition:.2s ease;
 }
@@ -270,15 +289,15 @@ body{
 }
 
 /* =========================
-   تنبيه المعلومات
+   التنويه
 ========================= */
 
 .notice{
-    margin-top:25px;
+    margin-top:24px;
     background:#fff;
     border-right:5px solid #111;
     border-radius:13px;
-    padding:18px 19px;
+    padding:17px 18px;
     line-height:2;
     border-top:1px solid #e0e7ef;
     border-bottom:1px solid #e0e7ef;
@@ -295,7 +314,7 @@ body{
 .notice p{
     margin:0;
     color:#444;
-    font-size:14px;
+    font-size:13px;
 }
 
 /* =========================
@@ -336,7 +355,7 @@ body{
    الهاتف
 ========================= */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
     .hero-image{
         max-height:350px;
@@ -344,13 +363,13 @@ body{
 
     .urgent-bar{
         font-size:14px;
-        padding:11px 10px;
+        padding:11px 9px;
     }
 
     .security-box{
         width:94%;
-        padding:15px 16px;
-        margin-top:14px;
+        padding:14px 15px;
+        margin-top:13px;
     }
 
     .security-title{
@@ -359,38 +378,40 @@ body{
 
     .security-text,
     .security-warning{
-        font-size:13px;
+        font-size:12.5px;
     }
 
     .main-container{
         width:94%;
-        padding-top:18px;
+        padding-top:17px;
     }
 
     .page-title{
-        margin-bottom:18px;
+        margin-bottom:17px;
     }
 
     .page-title h1{
         font-size:25px;
     }
 
-    .page-title p{
-        font-size:13px;
-    }
-
     .sections-title{
-        font-size:21px;
-        margin:22px 0 14px;
+        font-size:20px;
+        margin:21px 0 13px;
     }
 
     .aid-list{
+        grid-template-columns:1fr;
         gap:8px;
     }
 
     .aid-card{
-        padding:10px 11px;
+        min-height:92px;
+        padding:10px 12px;
         border-radius:12px;
+    }
+
+    .aid-card::before{
+        width:4px;
     }
 
     .aid-card-content{
@@ -406,7 +427,7 @@ body{
     }
 
     .aid-title{
-        font-size:15px;
+        font-size:14.5px;
     }
 
     .aid-description{
@@ -423,7 +444,7 @@ body{
 
     .registration-box{
         padding:16px;
-        margin-top:25px;
+        margin-top:24px;
     }
 
     .registration-title{
@@ -436,7 +457,7 @@ body{
     }
 
     .notice{
-        padding:16px;
+        padding:15px;
     }
 
     .notice h2{
@@ -444,7 +465,19 @@ body{
     }
 
     .notice p{
-        font-size:13px;
+        font-size:12.5px;
+    }
+}
+
+/* =========================
+   الشاشات الكبيرة
+========================= */
+
+@media(min-width:701px){
+
+    .aid-card:nth-child(1),
+    .aid-card:nth-child(2){
+        min-height:126px;
     }
 }
 </style>
@@ -531,8 +564,6 @@ body{
         <div class="aid-list">
 
 
-            <!-- المساعدات النقدية -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -553,8 +584,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- المساعدات الغذائية -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -577,8 +606,6 @@ body{
             </a>
 
 
-            <!-- الإغاثة العاجلة -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -599,8 +626,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- UNRWA -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -623,8 +648,6 @@ body{
             </a>
 
 
-            <!-- WFP -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -645,8 +668,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- UNICEF -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -669,8 +690,6 @@ body{
             </a>
 
 
-            <!-- الطبية والجرحى -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -691,8 +710,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- المأوى -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -715,8 +732,6 @@ body{
             </a>
 
 
-            <!-- التعليم -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -737,8 +752,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- النساء والأرامل -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -761,8 +774,6 @@ body{
             </a>
 
 
-            <!-- كبار السن -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -783,8 +794,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- الأيتام -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -811,7 +820,7 @@ body{
 
 
         <!-- =========================
-             روابط التسجيل والاستبيانات
+             روابط التسجيل
         ========================== -->
 
         <div class="registration-box">
@@ -819,7 +828,6 @@ body{
             <h2 class="registration-title">
                 تعبئة الاستبيانات والتسجيل
             </h2>
-
 
             <a
                 class="registration-link"
@@ -830,7 +838,6 @@ body{
                 وزارة التنمية الاجتماعية – رام الله
             </a>
 
-
             <a
                 class="registration-link"
                 href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSezy3pBvLajiJTSmuHfL6p36saZM66-or_r8Xb_US43osefbg/formResponse"
@@ -839,7 +846,6 @@ body{
             >
                 وزارة التنمية الاجتماعية – غزة
             </a>
-
 
             <a
                 class="registration-link"
@@ -850,7 +856,6 @@ body{
                 الفارس الشهم
             </a>
 
-
             <a
                 class="registration-link"
                 href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
@@ -859,7 +864,6 @@ body{
             >
                 برنامج الأغذية العالمي WFP
             </a>
-
 
             <a
                 class="registration-link"
@@ -870,7 +874,6 @@ body{
                 UNRWA – الأونروا
             </a>
 
-
             <a
                 class="registration-link"
                 href="https://gazaaid.unrwa.org/Home/Requests"
@@ -879,7 +882,6 @@ body{
             >
                 UN – طلبات المساعدة
             </a>
-
 
             <a
                 class="registration-link"
@@ -904,7 +906,6 @@ body{
             </h2>
 
             <p>
-
                 غيث المجد لا يطلب من أي شخص دفع أموال مقابل هذه الخدمة،
                 ولا يستلم أموالًا من المستفيدين.
 
@@ -917,7 +918,6 @@ body{
 
                 يرجى الحذر من أي شخص يطلب منك دفع المال مقابل الوصول
                 إلى الروابط أو المعلومات المنشورة.
-
             </p>
 
         </div>
