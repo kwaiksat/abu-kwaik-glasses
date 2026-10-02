@@ -2,540 +2,23 @@
 
 {% block content %}
 
-<style>
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    background:#f5f8fc;
-    color:#111;
-    font-family:"Cairo","Tahoma","Arial",sans-serif;
-}
-
-.ghayth-page{
-    direction:rtl;
-    min-height:100vh;
-    background:#f5f8fc;
-}
-
-/* =========================
-   الصورة الرئيسية
-========================= */
-
-.hero{
-    width:100%;
-    background:#000;
-    text-align:center;
-    line-height:0;
-}
-
-.hero-image{
-    width:100%;
-    max-width:1100px;
-    height:auto;
-    max-height:430px;
-    object-fit:cover;
-    display:block;
-    margin:0 auto;
-}
-
-/* =========================
-   شريط المساعدات العاجلة
-========================= */
-
-.urgent-bar{
-    width:100%;
-    background:#f3a2a2;
-    color:#111;
-    text-align:center;
-    padding:11px 10px;
-    font-size:15px;
-    font-weight:900;
-    line-height:1.7;
-    border-bottom:1px solid #e38d8d;
-}
-
-/* =========================
-   البوابة الآمنة
-========================= */
-
-.security-box{
-    width:92%;
-    max-width:950px;
-    margin:15px auto 0;
-    background:#fff;
-    border:1px solid #d9e3ed;
-    border-right:5px solid #111;
-    border-radius:14px;
-    padding:15px 17px;
-    box-shadow:0 4px 13px rgba(35,70,110,.06);
-}
-
-.security-title{
-    margin:0 0 7px;
-    color:#111;
-    font-size:18px;
-    font-weight:900;
-}
-
-.security-text{
-    margin:0;
-    color:#444;
-    font-size:13px;
-    line-height:1.9;
-}
-
-.security-warning{
-    margin:10px 0 0;
-    padding-top:9px;
-    border-top:1px solid #e2e2e2;
-    color:#111;
-    font-size:12.5px;
-    font-weight:900;
-    line-height:1.8;
-}
-
-/* =========================
-   المحتوى
-========================= */
-
-.main-container{
-    width:92%;
-    max-width:950px;
-    margin:0 auto;
-    padding:20px 0 40px;
-}
-
-/* =========================
-   العنوان
-========================= */
-
-.page-title{
-    text-align:center;
-    margin:3px 0 19px;
-}
-
-.page-title h1{
-    margin:0 0 5px;
-    color:#111;
-    font-size:28px;
-    font-weight:900;
-}
-
-.page-title p{
-    margin:0;
-    color:#555;
-    font-size:13px;
-    line-height:1.8;
-}
-
-/* =========================
-   عنوان الأقسام
-========================= */
-
-.sections-title{
-    text-align:center;
-    margin:21px 0 14px;
-    color:#111;
-    font-size:22px;
-    font-weight:900;
-}
-
-/* =========================
-   شبكة الأقسام
-========================= */
-
-.aid-list{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-/* =========================
-   بطاقات الأقسام
-========================= */
-
-.aid-card{
-    display:block;
-    position:relative;
-    overflow:hidden;
-    min-height:102px;
-    background:#fff;
-    border:1px solid #d6e1ec;
-    border-radius:13px;
-    padding:11px 13px;
-    text-decoration:none;
-    color:#111;
-    box-shadow:0 3px 10px rgba(35,70,110,.06);
-    transition:.2s ease;
-}
-
-.aid-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    width:4px;
-    height:100%;
-    background:#111;
-}
-
-.aid-card:hover{
-    transform:translateY(-2px);
-    border-color:#111;
-    box-shadow:0 6px 15px rgba(0,0,0,.10);
-}
-
-.aid-card-content{
-    height:100%;
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.aid-icon{
-    width:45px;
-    height:45px;
-    min-width:45px;
-    border-radius:12px;
-    background:#edf4fb;
-    border:1px solid #d9e6f2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-}
-
-.aid-text{
-    flex:1;
-    min-width:0;
-}
-
-.aid-title{
-    margin:0 0 4px;
-    color:#111;
-    font-size:14.5px;
-    font-weight:900;
-    line-height:1.5;
-}
-
-.aid-description{
-    margin:0;
-    color:#666;
-    font-size:11px;
-    line-height:1.6;
-}
-
-.aid-arrow{
-    width:25px;
-    min-width:25px;
-    height:25px;
-    border-radius:50%;
-    background:#f0f4f8;
-    color:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    font-weight:900;
-}
-
-/* =========================
-   الروابط المهمة
-========================= */
-
-.registration-box{
-    background:#fff;
-    border-radius:15px;
-    padding:18px;
-    margin-top:25px;
-    border:1px solid #d8e1ec;
-    box-shadow:0 4px 14px rgba(35,70,110,.06);
-}
-
-.registration-title{
-    text-align:center;
-    margin:0 0 5px;
-    color:#111;
-    font-size:21px;
-    font-weight:900;
-}
-
-.registration-subtitle{
-    text-align:center;
-    color:#666;
-    font-size:12px;
-    margin:0 0 15px;
-    line-height:1.7;
-}
-
-.registration-link{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:47px;
-    margin-bottom:9px;
-    padding:10px 14px;
-    background:#111;
-    color:#fff;
-    border-radius:10px;
-    text-decoration:none;
-    text-align:center;
-    font-size:13.5px;
-    font-weight:800;
-    transition:.2s ease;
-}
-
-.registration-link:last-child{
-    margin-bottom:0;
-}
-
-.registration-link:hover{
-    background:#333;
-}
-
-/* =========================
-   التنويه
-========================= */
-
-.notice{
-    margin-top:23px;
-    background:#fff;
-    border-right:5px solid #111;
-    border-radius:13px;
-    padding:16px 18px;
-    line-height:2;
-    border-top:1px solid #e0e7ef;
-    border-bottom:1px solid #e0e7ef;
-    border-left:1px solid #e0e7ef;
-}
-
-.notice h2{
-    margin:0 0 8px;
-    color:#111;
-    font-size:19px;
-    font-weight:900;
-}
-
-.notice p{
-    margin:0;
-    color:#444;
-    font-size:13px;
-}
-
-/* =========================
-   التواصل
-========================= */
-
-.contact{
-    background:#111;
-    color:#fff;
-    padding:27px 15px;
-    text-align:center;
-}
-
-.contact h2{
-    margin:0 0 13px;
-    font-size:21px;
-}
-
-.contact p{
-    margin:7px 0;
-    font-size:14px;
-}
-
-/* =========================
-   الفوتر
-========================= */
-
-.footer{
-    background:#000;
-    color:#aaa;
-    text-align:center;
-    padding:17px 12px;
-    font-size:12px;
-    line-height:1.8;
-}
-
-/* =========================
-   الهاتف
-========================= */
-
-@media(max-width:700px){
-
-    .hero-image{
-        max-height:350px;
-    }
-
-    .urgent-bar{
-        font-size:14px;
-        padding:10px 8px;
-    }
-
-    .security-box{
-        width:94%;
-        padding:14px 15px;
-        margin-top:13px;
-    }
-
-    .security-title{
-        font-size:17px;
-    }
-
-    .security-text,
-    .security-warning{
-        font-size:12.5px;
-    }
-
-    .main-container{
-        width:94%;
-        padding-top:17px;
-    }
-
-    .page-title{
-        margin-bottom:16px;
-    }
-
-    .page-title h1{
-        font-size:25px;
-    }
-
-    .page-title p{
-        font-size:11.5px;
-    }
-
-    .sections-title{
-        font-size:20px;
-        margin:19px 0 12px;
-    }
-
-    .aid-list{
-        grid-template-columns:1fr;
-        gap:7px;
-    }
-
-    .aid-card{
-        min-height:86px;
-        padding:9px 11px;
-        border-radius:11px;
-    }
-
-    .aid-card::before{
-        width:4px;
-    }
-
-    .aid-card-content{
-        gap:9px;
-    }
-
-    .aid-icon{
-        width:41px;
-        height:41px;
-        min-width:41px;
-        border-radius:10px;
-        font-size:20px;
-    }
-
-    .aid-title{
-        font-size:14px;
-    }
-
-    .aid-description{
-        font-size:10.5px;
-        line-height:1.55;
-    }
-
-    .aid-arrow{
-        width:24px;
-        min-width:24px;
-        height:24px;
-        font-size:17px;
-    }
-
-    .registration-box{
-        padding:15px;
-        margin-top:22px;
-    }
-
-    .registration-title{
-        font-size:19px;
-    }
-
-    .registration-subtitle{
-        font-size:11px;
-    }
-
-    .registration-link{
-        min-height:45px;
-        font-size:12.5px;
-        margin-bottom:7px;
-    }
-
-    .notice{
-        padding:15px;
-    }
-
-    .notice h2{
-        font-size:18px;
-    }
-
-    .notice p{
-        font-size:12px;
-    }
-
-    .contact h2{
-        font-size:19px;
-    }
-
-    .contact p{
-        font-size:13px;
-    }
-}
-
-/* =========================
-   الشاشات الكبيرة
-========================= */
-
-@media(min-width:701px){
-
-    .aid-card:nth-child(1),
-    .aid-card:nth-child(2){
-        min-height:108px;
-    }
-}
-</style>
-
-
 <div class="ghayth-page">
 
-    <!-- =========================
-         الصورة الرئيسية
-    ========================== -->
-
+    <!-- الصورة الرئيسية -->
     <div class="hero">
         <img
-            src="/static/1790427276274.jpg"
+            src="{{ url_for('static', filename='1790427276274.jpg') }}"
             alt="غيث المجد"
             class="hero-image"
         >
     </div>
 
-
-    <!-- =========================
-         المساعدات العاجلة
-    ========================== -->
-
+    <!-- المساعدات العاجلة -->
     <div class="urgent-bar">
         🚨 مساعدات عاجلة وروابط مهمة — يرجى التأكد من الرابط قبل إدخال أي بيانات
     </div>
 
-
-    <!-- =========================
-         البوابة الآمنة
-    ========================== -->
-
+    <!-- البوابة الآمنة -->
     <section class="security-box">
 
         <h2 class="security-title">
@@ -557,13 +40,9 @@ body{
 
     </section>
 
-
     <main class="main-container">
 
-        <!-- =========================
-             العنوان
-        ========================== -->
-
+        <!-- العنوان -->
         <div class="page-title">
 
             <h1>
@@ -576,20 +55,12 @@ body{
 
         </div>
 
-
-        <!-- =========================
-             الأقسام
-        ========================== -->
-
+        <!-- أقسام المساعدات -->
         <h2 class="sections-title">
             أقسام المساعدات
         </h2>
 
-
         <div class="aid-list">
-
-
-            <!-- 1 -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -611,9 +82,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- 2 -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -633,9 +101,6 @@ body{
 
                 </div>
             </a>
-
-
-            <!-- 3 -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -657,9 +122,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- 4 -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -679,9 +141,6 @@ body{
 
                 </div>
             </a>
-
-
-            <!-- 5 -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -703,9 +162,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- 6 -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -725,9 +181,6 @@ body{
 
                 </div>
             </a>
-
-
-            <!-- 7 -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -749,9 +202,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- 8 -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -771,9 +221,6 @@ body{
 
                 </div>
             </a>
-
-
-            <!-- 9 -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -795,9 +242,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- 10 -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -817,9 +261,6 @@ body{
 
                 </div>
             </a>
-
-
-            <!-- 11 -->
 
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
@@ -841,9 +282,6 @@ body{
                 </div>
             </a>
 
-
-            <!-- 12 -->
-
             <a href="#" class="aid-card">
                 <div class="aid-card-content">
 
@@ -864,14 +302,9 @@ body{
                 </div>
             </a>
 
-
         </div>
 
-
-        <!-- =========================
-             روابط التسجيل
-        ========================== -->
-
+        <!-- روابط التسجيل -->
         <div class="registration-box">
 
             <h2 class="registration-title">
@@ -882,7 +315,6 @@ body{
                 روابط مباشرة إلى نماذج وخدمات المساعدات المتاحة
             </p>
 
-
             <a
                 class="registration-link"
                 href="https://donate.mosd.gov.ps"
@@ -891,7 +323,6 @@ body{
             >
                 وزارة التنمية الاجتماعية – رام الله
             </a>
-
 
             <a
                 class="registration-link"
@@ -902,7 +333,6 @@ body{
                 وزارة التنمية الاجتماعية – غزة
             </a>
 
-
             <a
                 class="registration-link"
                 href="https://aid.alfaresalshahm.com/single-reg"
@@ -911,7 +341,6 @@ body{
             >
                 الفارس الشهم
             </a>
-
 
             <a
                 class="registration-link"
@@ -922,7 +351,6 @@ body{
                 برنامج الأغذية العالمي WFP
             </a>
 
-
             <a
                 class="registration-link"
                 href="https://gazaaid.unrwa.org/Login"
@@ -932,7 +360,6 @@ body{
                 UNRWA – الأونروا
             </a>
 
-
             <a
                 class="registration-link"
                 href="https://gazaaid.unrwa.org/Home/Requests"
@@ -941,7 +368,6 @@ body{
             >
                 UN – طلبات المساعدة
             </a>
-
 
             <a
                 class="registration-link"
@@ -954,11 +380,7 @@ body{
 
         </div>
 
-
-        <!-- =========================
-             التنويه
-        ========================== -->
-
+        <!-- التنويه -->
         <div class="notice">
 
             <h2>
@@ -968,65 +390,47 @@ body{
             <p>
                 غيث المجد لا يطلب من أي شخص دفع أموال مقابل هذه الخدمة،
                 ولا يستلم أموالًا من المستفيدين.
-
                 <br><br>
+                الهدف هو تنظيم وتوثيق الروابط والمعلومات المتعلقة
+                بالمساعدات الإنسانية وتسهيل الوصول إلى الجهات الرسمية.
+            </p>
 
-                نحن جهة تهدف إلى توثيق وتنظيم الروابط والمعلومات
-                المتعلقة بالمساعدات بصورة واضحة.
+        </div>
 
-                <br><br>
+        <!-- التواصل -->
+        <div class="contact">
 
-                يرجى الحذر من أي شخص يطلب منك دفع المال مقابل الوصول
-                إلى الروابط أو المعلومات المنشورة.
+            <h2>
+                📞 التواصل
+            </h2>
+
+            <p>
+                واتساب / هاتف:
+                <strong>0592480001</strong>
+            </p>
+
+            <p>
+                البريد الإلكتروني:
+                <a href="mailto:n299964@hotmail.com">
+                    n299964@hotmail.com
+                </a>
+            </p>
+
+            <p>
+                البريد الإلكتروني:
+                <a href="mailto:zaeemkwaik@gmail.com">
+                    zaeemkwaik@gmail.com
+                </a>
             </p>
 
         </div>
 
     </main>
 
-
-    <!-- =========================
-         التواصل
-    ========================== -->
-
-    <div class="contact">
-
-        <h2>
-            📞 تواصل مع غيث المجد
-        </h2>
-
-        <p>
-            واتساب / هاتف: 0592480001
-        </p>
-
-        <p>
-            البريد الإلكتروني: n299964@hotmail.com
-        </p>
-
-        <p>
-            البريد الإلكتروني: zaeemkwaik@gmail.com
-        </p>
-
-    </div>
-
-
-    <!-- =========================
-         الفوتر
-    ========================== -->
-
-    <div class="footer">
-
-        <strong>غيث المجد</strong>
-
-        <br>
-
-        GHAYTH AL-MAJD
-
-        <br>
-
-        توثيق وتنظيم الروابط والمعلومات المتعلقة بالمساعدات الإنسانية
-
-    </div>
+    <!-- الفوتر -->
+    <footer class="footer">
+        غيث المجد — بوابة مستقلة لتنظيم والتحقق من روابط المساعدات الإنسانية
+    </footer>
 
 </div>
 
