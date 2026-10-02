@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.secret_key = os.environ.get(
     "SECRET_KEY",
-    "majd-al-khair-platform-secret-key"
+    "ghayth-al-majd-secret-key"
 )
 
 
@@ -43,7 +43,7 @@ def health():
 
 
 # =========================================================
-# ERROR PAGES
+# ERROR PAGE
 # =========================================================
 
 @app.errorhandler(404)
@@ -51,23 +51,24 @@ def page_not_found(error):
     return """
     <!doctype html>
     <html lang="ar" dir="rtl">
+
     <head>
         <meta charset="utf-8">
+
         <meta name="viewport"
               content="width=device-width, initial-scale=1">
-        <title>الصفحة غير موجودة - منصة مجد الخير</title>
+
+        <title>الصفحة غير موجودة - غيث المجد</title>
+
         <style>
             body {
                 margin: 0;
                 padding: 30px;
-                background: #f7f7f5;
+                background: #f5f5f5;
                 color: #222;
                 font-family:
-                    "Noto Naskh Arabic",
-                    "Noto Sans Arabic",
-                    "Segoe UI",
-                    Tahoma,
                     Arial,
+                    Tahoma,
                     sans-serif;
                 text-align: center;
             }
@@ -79,7 +80,8 @@ def page_not_found(error):
                 background: #ffffff;
                 border-radius: 18px;
                 border: 1px solid #e2e2e2;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                box-shadow:
+                    0 10px 30px rgba(0, 0, 0, 0.08);
             }
 
             h1 {
@@ -88,14 +90,15 @@ def page_not_found(error):
 
             p {
                 color: #666666;
+                line-height: 1.8;
             }
 
             a {
                 display: inline-block;
                 margin-top: 15px;
                 padding: 12px 24px;
-                background: #c9a227;
-                color: #111111;
+                background: #111111;
+                color: #ffffff;
                 text-decoration: none;
                 border-radius: 10px;
                 font-weight: bold;
@@ -104,16 +107,21 @@ def page_not_found(error):
     </head>
 
     <body>
+
         <div class="box">
+
             <h1>الصفحة غير موجودة</h1>
+
             <p>
                 عذرًا، الصفحة التي تبحث عنها غير متوفرة.
             </p>
 
             <a href="/">
-                العودة إلى منصة مجد الخير
+                العودة إلى غيث المجد
             </a>
+
         </div>
+
     </body>
     </html>
     """, 404
