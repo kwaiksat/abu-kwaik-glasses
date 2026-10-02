@@ -3,22 +3,30 @@
 }
 
 :root {
-    --black: #111111;
-    --black-soft: #2a2a2a;
+    --black: #101418;
+    --black-soft: #252b31;
 
-    --blue: #2f78b7;
-    --blue-dark: #1f5f96;
-    --blue-light: #eef7ff;
-    --blue-soft: #f6fbff;
-    --blue-border: #d7e8f5;
+    --blue: #1769aa;
+    --blue-dark: #0d4f82;
+    --blue-light: #edf6fd;
+    --blue-soft: #f7fbfe;
+    --blue-border: #d8e7f1;
 
     --white: #ffffff;
-    --background: #f5faff;
+    --background: #f3f6f8;
 
-    --text: #111111;
-    --muted: #6d7882;
+    --text: #101418;
+    --muted: #68747e;
 
-    --border: #e1e9ef;
+    --border: #e2e8ec;
+
+    --shadow-sm: 0 4px 14px rgba(16, 32, 45, 0.06);
+    --shadow-md: 0 10px 30px rgba(16, 32, 45, 0.09);
+    --shadow-lg: 0 18px 45px rgba(16, 32, 45, 0.12);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
 }
 
 html {
@@ -30,11 +38,11 @@ body {
     padding: 0;
 
     background:
-        linear-gradient(
-            180deg,
+        radial-gradient(
+            circle at 50% 0%,
             #ffffff 0%,
-            #f8fcff 48%,
-            #eef7fd 100%
+            #f8fafb 38%,
+            #eef3f6 100%
         );
 
     color: var(--text);
@@ -46,10 +54,17 @@ body {
         sans-serif;
 
     line-height: 1.8;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* =====================================================
-   الصفحة
+   الصفحة الرئيسية
 ===================================================== */
 
 .ghayth-page {
@@ -62,8 +77,8 @@ body {
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f8fcff 45%,
-            #eef7fd 100%
+            #f8fafc 42%,
+            #eef3f6 100%
         );
 }
 
@@ -72,24 +87,43 @@ body {
 ===================================================== */
 
 .hero {
-    width: 94%;
-    max-width: 1200px;
+    position: relative;
 
-    margin: 12px auto 0;
+    width: 94%;
+    max-width: 1180px;
+
+    margin: 18px auto 0;
     padding: 0;
 
     overflow: hidden;
 
     background: #ffffff;
 
-    border: 1px solid #dbe8f1;
-    border-radius: 16px;
+    border: 1px solid rgba(20, 40, 55, 0.08);
 
-    box-shadow:
-        0 4px 18px rgba(31, 95, 150, 0.08);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-lg);
 
     text-align: center;
     line-height: 0;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.02) 0%,
+            rgba(0,0,0,0.03) 100%
+        );
 }
 
 .hero-image {
@@ -98,32 +132,44 @@ body {
     width: 100%;
     height: auto;
 
-    max-height: 340px;
+    max-height: 380px;
 
     margin: 0 auto;
 
     object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.hero:hover .hero-image {
+    transform: scale(1.012);
 }
 
 /* =====================================================
    شريط المساعدات العاجلة
-   تم جعله محايدًا حتى لا يظهر كبند أحمر
 ===================================================== */
 
 .urgent-bar {
     width: 94%;
-    max-width: 1200px;
+    max-width: 1180px;
 
-    margin: 12px auto 0;
+    margin: 15px auto 0;
 
-    padding: 9px 14px;
+    padding: 11px 18px;
 
-    background: #f4f9fd;
+    background:
+        linear-gradient(
+            90deg,
+            #f7fbfe,
+            #ffffff,
+            #f7fbfe
+        );
 
-    border: 1px solid #dceaf4;
-    border-radius: 11px;
+    border: 1px solid var(--blue-border);
 
-    color: #111111;
+    border-radius: 12px;
+
+    color: #20272d;
 
     text-align: center;
 
@@ -131,73 +177,92 @@ body {
     font-weight: 800;
 
     line-height: 1.7;
+
+    box-shadow: var(--shadow-sm);
 }
 
 /* =====================================================
-   البوابة الآمنة
+   بوابة الأمان
 ===================================================== */
 
 .security-box {
     width: 94%;
-    max-width: 1200px;
+    max-width: 1180px;
 
-    margin: 12px auto 0;
+    margin: 15px auto 0;
 
-    padding: 16px 19px;
+    padding: 21px 23px;
 
-    background: #ffffff;
+    background: rgba(255,255,255,0.94);
 
-    border: 1px solid var(--blue-border);
+    border: 1px solid var(--border);
 
-    border-radius: 14px;
+    border-radius: var(--radius-md);
 
-    box-shadow:
-        0 3px 14px rgba(31, 95, 150, 0.06);
+    box-shadow: var(--shadow-sm);
+
+    position: relative;
+}
+
+.security-box::before {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 18px;
+    bottom: 18px;
+
+    width: 4px;
+
+    background: var(--blue);
+
+    border-radius: 5px 0 0 5px;
 }
 
 .security-title {
-    margin: 0 0 6px;
+    margin: 0 0 7px;
 
-    color: #111111;
+    color: var(--black);
 
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 900;
 }
 
 .security-text {
     margin: 0;
 
-    color: #65727d;
+    color: var(--muted);
 
     font-size: 13px;
 
-    line-height: 1.85;
+    line-height: 1.9;
 }
 
 .security-warning {
-    margin: 10px 0 0;
+    margin: 12px 0 0;
 
-    padding-top: 8px;
+    padding-top: 10px;
 
-    border-top: 1px solid #e8eef3;
+    border-top: 1px solid #edf0f2;
 
-    color: #111111;
+    color: #20262b;
 
     font-size: 12px;
     font-weight: 800;
 }
 
 /* =====================================================
-   المحتوى الرئيسي
+   المحتوى
 ===================================================== */
 
 .main-container {
     width: 94%;
-    max-width: 1200px;
+    max-width: 1180px;
 
     margin: 0 auto;
 
-    padding: 19px 0 32px;
+    padding: 27px 0 42px;
 }
 
 /* =====================================================
@@ -205,45 +270,49 @@ body {
 ===================================================== */
 
 .page-title {
-    margin: 4px 0 19px;
+    margin: 2px 0 28px;
 
     text-align: center;
 }
 
 .page-title h1 {
-    margin: 0 0 5px;
+    margin: 0;
 
-    color: #111111;
+    color: var(--black);
 
-    font-size: 30px;
+    font-size: 34px;
     font-weight: 900;
 
-    letter-spacing: -0.3px;
+    letter-spacing: -0.7px;
+
+    line-height: 1.35;
 }
 
 .page-title p {
-    margin: 0;
+    margin: 7px 0 0;
 
-    color: #6c7882;
+    color: var(--muted);
 
     font-size: 13px;
 }
 
 /* =====================================================
-   عنوان الأقسام
+   عناوين الأقسام
 ===================================================== */
 
 .sections-title {
+    position: relative;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    gap: 18px;
+    gap: 15px;
 
-    margin: 17px 0 15px;
+    margin: 25px 0 18px;
 
-    color: #111111;
+    color: var(--black);
 
     font-size: 25px;
     font-weight: 900;
@@ -255,16 +324,30 @@ body {
 .sections-title::after {
     content: "";
 
-    width: 40px;
-    height: 2px;
+    width: 52px;
+    height: 1px;
 
-    background: #111111;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #101418
+        );
 
-    opacity: 0.75;
+    opacity: 0.65;
+}
+
+.sections-title::after {
+    background:
+        linear-gradient(
+            90deg,
+            #101418,
+            transparent
+        );
 }
 
 /* =====================================================
-   قائمة بطاقات المساعدات
+   شبكة المساعدات
 ===================================================== */
 
 .aid-list {
@@ -273,7 +356,7 @@ body {
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-    gap: 10px 13px;
+    gap: 14px;
 }
 
 /* =====================================================
@@ -285,44 +368,35 @@ body {
 
     display: block;
 
-    min-height: 96px;
+    min-height: 108px;
 
-    padding: 11px 13px;
+    padding: 14px 16px;
 
     overflow: hidden;
 
-    background: #ffffff;
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #fbfdfe 100%
+        );
 
-    border: 1px solid #dce8f0;
+    border: 1px solid #dfe7ec;
 
-    border-radius: 14px;
+    border-radius: var(--radius-md);
 
     text-decoration: none;
 
-    color: #111111;
+    color: var(--black);
 
-    box-shadow:
-        0 3px 12px rgba(25, 77, 120, 0.06);
+    box-shadow: var(--shadow-sm);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
 }
-
-.aid-card:hover {
-    transform: translateY(-2px);
-
-    background: #fbfdff;
-
-    border-color: #b9d4e9;
-
-    box-shadow:
-        0 7px 18px rgba(25, 77, 120, 0.10);
-}
-
-/* خط أزرق صغير داخل البطاقة */
 
 .aid-card::before {
     content: "";
@@ -330,14 +404,47 @@ body {
     position: absolute;
 
     right: 0;
-    top: 12px;
-    bottom: 12px;
+    top: 0;
+    bottom: 0;
 
-    width: 3px;
+    width: 4px;
 
-    background: #2f78b7;
+    background:
+        linear-gradient(
+            180deg,
+            var(--blue),
+            #4c9bd0
+        );
 
-    border-radius: 5px 0 0 5px;
+    opacity: 0.9;
+}
+
+.aid-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    left: -65px;
+    bottom: -75px;
+
+    border-radius: 50%;
+
+    background: rgba(23, 105, 170, 0.035);
+
+    pointer-events: none;
+}
+
+.aid-card:hover {
+    transform: translateY(-4px);
+
+    background: #ffffff;
+
+    border-color: #bfd7e7;
+
+    box-shadow: var(--shadow-md);
 }
 
 /* =====================================================
@@ -345,7 +452,7 @@ body {
 ===================================================== */
 
 .aid-card-content {
-    min-height: 72px;
+    min-height: 78px;
 
     height: 100%;
 
@@ -353,39 +460,49 @@ body {
 
     align-items: center;
 
-    gap: 11px;
+    gap: 13px;
 }
 
 /* =====================================================
-   أيقونة البطاقة
+   الأيقونة
 ===================================================== */
 
 .aid-icon {
-    width: 50px;
-    height: 50px;
+    position: relative;
 
-    min-width: 50px;
+    width: 54px;
+    height: 54px;
+
+    min-width: 54px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: #eef7ff;
+    background:
+        linear-gradient(
+            145deg,
+            #edf7fe,
+            #e5f1f9
+        );
 
-    border: 1px solid #dcecf8;
+    border: 1px solid #d5e7f2;
 
-    border-radius: 13px;
+    border-radius: 15px;
+
+    color: var(--blue-dark);
 
     font-size: 25px;
 
     line-height: 1;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
-/* تنويع خفيف جدًا للخلفيات */
-
 .aid-card:nth-child(2n) .aid-icon {
-    background: #f0f8ff;
+    background: #f1f7fb;
 }
 
 .aid-card:nth-child(3n) .aid-icon {
@@ -393,15 +510,15 @@ body {
 }
 
 .aid-card:nth-child(4n) .aid-icon {
-    background: #f4f1ff;
+    background: #f4f3fa;
 }
 
 .aid-card:nth-child(5n) .aid-icon {
-    background: #fff5f7;
+    background: #fbf4f6;
 }
 
 .aid-card:nth-child(6n) .aid-icon {
-    background: #f3f7fb;
+    background: #f2f6f8;
 }
 
 /* =====================================================
@@ -415,9 +532,9 @@ body {
 }
 
 .aid-title {
-    margin: 0 0 3px;
+    margin: 0 0 4px;
 
-    color: #111111;
+    color: var(--black);
 
     font-size: 16px;
     font-weight: 900;
@@ -428,11 +545,11 @@ body {
 .aid-description {
     margin: 0;
 
-    color: #6d7882;
+    color: var(--muted);
 
     font-size: 11.5px;
 
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* =====================================================
@@ -440,22 +557,34 @@ body {
 ===================================================== */
 
 .aid-arrow {
-    width: 23px;
-    min-width: 23px;
+    width: 29px;
+    min-width: 29px;
 
-    height: 23px;
+    height: 29px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    color: #111111;
+    background: #f4f7f9;
 
-    font-size: 24px;
-    font-weight: 400;
+    color: var(--black);
+
+    font-size: 21px;
+    font-weight: 500;
 
     border-radius: 50%;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.aid-card:hover .aid-arrow {
+    background: #e9f3fa;
+
+    transform: translateX(-2px);
 }
 
 /* =====================================================
@@ -468,20 +597,24 @@ body {
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-    gap: 8px 12px;
+    gap: 10px 13px;
 
-    margin-top: 20px;
+    margin-top: 27px;
 
-    padding: 18px;
+    padding: 21px;
 
-    background: #ffffff;
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f9fbfc
+        );
 
-    border: 1px solid var(--blue-border);
+    border: 1px solid var(--border);
 
-    border-radius: 15px;
+    border-radius: var(--radius-md);
 
-    box-shadow:
-        0 3px 13px rgba(31, 95, 150, 0.05);
+    box-shadow: var(--shadow-sm);
 }
 
 .registration-title {
@@ -492,11 +625,11 @@ body {
     align-items: center;
     justify-content: center;
 
-    gap: 17px;
+    gap: 15px;
 
-    margin: 0 0 6px;
+    margin: 0 0 4px;
 
-    color: #111111;
+    color: var(--black);
 
     font-size: 22px;
     font-weight: 900;
@@ -508,18 +641,20 @@ body {
 .registration-title::after {
     content: "";
 
-    width: 38px;
-    height: 2px;
+    width: 45px;
+    height: 1px;
 
-    background: #111111;
+    background: #101418;
+
+    opacity: 0.65;
 }
 
 .registration-subtitle {
     grid-column: 1 / -1;
 
-    margin: 0 0 8px;
+    margin: 0 0 10px;
 
-    color: #6d7882;
+    color: var(--muted);
 
     text-align: center;
 
@@ -532,19 +667,17 @@ body {
     align-items: center;
     justify-content: center;
 
-    min-height: 40px;
+    min-height: 44px;
 
-    margin: 0;
+    padding: 8px 13px;
 
-    padding: 7px 12px;
+    background: #f4f9fc;
 
-    background: #f1f8ff;
+    border: 1px solid #d3e3ed;
 
-    border: 1px solid #cfe2f1;
+    color: #182027;
 
-    color: #111111;
-
-    border-radius: 10px;
+    border-radius: 11px;
 
     text-decoration: none;
 
@@ -556,15 +689,18 @@ body {
     transition:
         background 0.2s ease,
         border-color 0.2s ease,
-        transform 0.2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .registration-link:hover {
-    background: #e5f2fc;
+    background: #eaf5fb;
 
-    border-color: #a9cbe4;
+    border-color: #aac9dc;
 
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-sm);
 }
 
 /* =====================================================
@@ -572,28 +708,29 @@ body {
 ===================================================== */
 
 .notice {
-    margin-top: 16px;
+    position: relative;
 
-    padding: 16px 18px;
+    margin-top: 19px;
+
+    padding: 18px 20px;
 
     background: #ffffff;
 
-    border: 1px solid #dce7ef;
+    border: 1px solid #dfe7ec;
 
-    border-right: 4px solid #111111;
+    border-right: 4px solid var(--black);
 
-    border-radius: 13px;
+    border-radius: var(--radius-md);
 
     line-height: 1.9;
 
-    box-shadow:
-        0 3px 12px rgba(25, 77, 120, 0.04);
+    box-shadow: var(--shadow-sm);
 }
 
 .notice h2 {
     margin: 0 0 7px;
 
-    color: #111111;
+    color: var(--black);
 
     font-size: 18px;
 
@@ -603,7 +740,7 @@ body {
 .notice p {
     margin: 0;
 
-    color: #5f6c76;
+    color: #626e77;
 
     font-size: 12.5px;
 }
@@ -614,24 +751,28 @@ body {
 
 .contact {
     width: 94%;
-    max-width: 1200px;
+    max-width: 1180px;
 
-    margin: 0 auto 15px;
+    margin: 0 auto 18px;
 
-    padding: 18px 20px;
+    padding: 21px 22px;
 
-    background: #ffffff;
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8fbfd
+        );
 
-    border: 1px solid var(--blue-border);
+    border: 1px solid var(--border);
 
-    border-radius: 14px;
+    border-radius: var(--radius-md);
 
-    color: #111111;
+    color: var(--black);
 
     text-align: center;
 
-    box-shadow:
-        0 3px 12px rgba(25, 77, 120, 0.04);
+    box-shadow: var(--shadow-sm);
 }
 
 .contact h2 {
@@ -640,11 +781,11 @@ body {
     align-items: center;
     justify-content: center;
 
-    gap: 17px;
+    gap: 15px;
 
-    margin: 0 0 13px;
+    margin: 0 0 14px;
 
-    color: #111111;
+    color: var(--black);
 
     font-size: 21px;
 
@@ -655,18 +796,20 @@ body {
 .contact h2::after {
     content: "";
 
-    width: 36px;
-    height: 2px;
+    width: 40px;
+    height: 1px;
 
-    background: #111111;
+    background: #101418;
+
+    opacity: 0.65;
 }
 
 .contact p {
     display: inline-block;
 
-    margin: 0 18px;
+    margin: 0 16px;
 
-    color: #222222;
+    color: #30383f;
 
     font-size: 12.5px;
 
@@ -682,16 +825,16 @@ body {
 
     overflow: hidden;
 
-    padding: 20px 15px 28px;
+    padding: 25px 15px 31px;
 
     background:
         linear-gradient(
             180deg,
-            #edf7ff 0%,
-            #e5f2fb 100%
+            #eaf3f8 0%,
+            #dfeaf1 100%
         );
 
-    color: #71808d;
+    color: #687782;
 
     text-align: center;
 
@@ -708,11 +851,11 @@ body {
     left: -5%;
     right: -5%;
 
-    top: -28px;
+    top: -31px;
 
-    height: 55px;
+    height: 60px;
 
-    background: #f5faff;
+    background: #f3f6f8;
 
     border-radius: 50% 50% 0 0;
 }
@@ -720,11 +863,11 @@ body {
 .footer strong {
     position: relative;
 
-    color: #111111;
+    color: var(--black);
 }
 
 /* =====================================================
-   توافق مع الملفات والعناصر القديمة
+   توافق مع العناصر القديمة
 ===================================================== */
 
 .trust-bar,
@@ -739,7 +882,7 @@ body {
 }
 
 .trust-bar {
-    background: #111111;
+    background: #101418;
 
     color: #ffffff;
 
@@ -751,11 +894,18 @@ body {
 }
 
 .trust-section {
-    background: #111111;
+    background:
+        linear-gradient(
+            145deg,
+            #101418,
+            #1b2228
+        );
 
-    border: 1px solid #222222;
+    border: 1px solid #2b343c;
 
-    border-radius: 16px;
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-md);
 }
 
 .trust-section h2 {
@@ -763,17 +913,23 @@ body {
 }
 
 .btn {
-    background: #111111;
+    background: #101418;
 
-    border: 1px solid #111111;
+    border: 1px solid #101418;
 
     color: #ffffff;
 
-    border-radius: 9px;
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
 .btn:hover {
-    background: #2b2b2b;
+    background: #272f36;
+
+    transform: translateY(-1px);
 }
 
 .important-notice {
@@ -781,7 +937,7 @@ body {
 
     border: 1px solid #dce7ef;
 
-    border-right: 4px solid #111111;
+    border-right: 4px solid #101418;
 
     border-radius: 12px;
 
@@ -796,7 +952,9 @@ body {
 
     border: 1px solid #dce7ef;
 
-    border-radius: 13px;
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-sm);
 }
 
 .category-card h3,
@@ -804,6 +962,17 @@ body {
 .contact-box h2,
 .step-card h3 {
     color: #111111;
+}
+
+/* =====================================================
+   تأثير التركيز
+===================================================== */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(23, 105, 170, 0.25);
+
+    outline-offset: 3px;
 }
 
 /* =====================================================
@@ -815,21 +984,23 @@ body {
     .hero {
         width: 96%;
 
-        margin-top: 8px;
+        margin-top: 9px;
 
-        border-radius: 12px;
+        border-radius: 15px;
+
+        box-shadow: var(--shadow-md);
     }
 
     .hero-image {
-        max-height: 270px;
+        max-height: 285px;
     }
 
     .urgent-bar {
         width: 96%;
 
-        margin-top: 9px;
+        margin-top: 10px;
 
-        padding: 8px 9px;
+        padding: 9px 10px;
 
         font-size: 11.5px;
 
@@ -839,11 +1010,18 @@ body {
     .security-box {
         width: 96%;
 
-        margin-top: 9px;
+        margin-top: 10px;
 
-        padding: 13px 14px;
+        padding: 15px 16px;
 
-        border-radius: 11px;
+        border-radius: 13px;
+    }
+
+    .security-box::before {
+        top: 14px;
+        bottom: 14px;
+
+        width: 3px;
     }
 
     .security-title {
@@ -861,27 +1039,31 @@ body {
     .main-container {
         width: 96%;
 
-        padding-top: 14px;
+        padding-top: 19px;
 
-        padding-bottom: 24px;
+        padding-bottom: 28px;
     }
 
     .page-title {
-        margin-bottom: 13px;
+        margin-bottom: 18px;
     }
 
     .page-title h1 {
-        font-size: 25px;
+        font-size: 26px;
+
+        letter-spacing: -0.4px;
     }
 
     .page-title p {
         font-size: 11px;
+
+        margin-top: 5px;
     }
 
     .sections-title {
-        gap: 12px;
+        gap: 11px;
 
-        margin: 14px 0 11px;
+        margin: 18px 0 12px;
 
         font-size: 21px;
     }
@@ -894,59 +1076,59 @@ body {
     .aid-list {
         grid-template-columns: 1fr;
 
-        gap: 7px;
+        gap: 9px;
     }
 
     .aid-card {
-        min-height: 76px;
+        min-height: 82px;
 
-        padding: 8px 10px;
+        padding: 9px 11px;
 
-        border-radius: 10px;
+        border-radius: 12px;
     }
 
     .aid-card::before {
         top: 9px;
         bottom: 9px;
 
-        width: 2px;
+        width: 3px;
     }
 
     .aid-card-content {
-        min-height: 58px;
+        min-height: 62px;
 
-        gap: 8px;
+        gap: 9px;
     }
 
     .aid-icon {
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
 
-        min-width: 42px;
+        min-width: 44px;
 
-        border-radius: 10px;
+        border-radius: 11px;
 
         font-size: 20px;
     }
 
     .aid-title {
-        font-size: 13px;
+        font-size: 13.5px;
     }
 
     .aid-description {
         font-size: 9.8px;
 
-        line-height: 1.5;
+        line-height: 1.55;
     }
 
     .aid-arrow {
-        width: 21px;
+        width: 24px;
 
-        min-width: 21px;
+        min-width: 24px;
 
-        height: 21px;
+        height: 24px;
 
-        font-size: 22px;
+        font-size: 19px;
     }
 
     .registration-box {
@@ -954,11 +1136,13 @@ body {
 
         width: 100%;
 
-        padding: 13px;
+        padding: 14px;
 
-        margin-top: 16px;
+        margin-top: 18px;
 
-        gap: 6px;
+        gap: 7px;
+
+        border-radius: 13px;
     }
 
     .registration-title {
@@ -969,23 +1153,23 @@ body {
 
     .registration-title::before,
     .registration-title::after {
-        width: 23px;
+        width: 25px;
     }
 
     .registration-link {
-        min-height: 39px;
+        min-height: 41px;
 
         font-size: 11px;
 
-        border-radius: 8px;
+        border-radius: 9px;
     }
 
     .notice {
-        margin-top: 13px;
+        margin-top: 14px;
 
-        padding: 13px;
+        padding: 14px;
 
-        border-radius: 10px;
+        border-radius: 11px;
     }
 
     .notice h2 {
@@ -999,13 +1183,15 @@ body {
     .contact {
         width: 96%;
 
-        padding: 14px 10px;
+        padding: 15px 11px;
 
-        margin-bottom: 9px;
+        margin-bottom: 10px;
+
+        border-radius: 12px;
     }
 
     .contact h2 {
-        gap: 10px;
+        gap: 9px;
 
         font-size: 18px;
 
@@ -1014,7 +1200,7 @@ body {
 
     .contact h2::before,
     .contact h2::after {
-        width: 23px;
+        width: 24px;
     }
 
     .contact p {
@@ -1026,7 +1212,7 @@ body {
     }
 
     .footer {
-        padding: 17px 10px 24px;
+        padding: 19px 10px 26px;
 
         font-size: 10px;
     }
@@ -1039,7 +1225,11 @@ body {
 @media (min-width: 701px) and (max-width: 950px) {
 
     .hero-image {
-        max-height: 300px;
+        max-height: 320px;
+    }
+
+    .page-title h1 {
+        font-size: 31px;
     }
 
     .aid-title {
@@ -1053,4 +1243,20 @@ body {
     .contact p {
         margin: 0 10px;
     }
+}
+
+/* =====================================================
+   شاشات كبيرة
+===================================================== */
+
+@media (min-width: 1200px) {
+
+    .aid-list {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
+
+    .hero-image {
+        max-height: 400px;
+    }
+}
