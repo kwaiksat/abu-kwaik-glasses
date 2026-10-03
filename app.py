@@ -2,11 +2,6 @@ import os
 
 from flask import Flask, render_template
 
-
-# =========================================================
-# APPLICATION
-# =========================================================
-
 app = Flask(__name__)
 
 app.secret_key = os.environ.get(
@@ -15,49 +10,30 @@ app.secret_key = os.environ.get(
 )
 
 
-# =========================================================
-# HOME PAGE
-# =========================================================
-
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
-# =========================================================
-# REGISTRATION PAGE
-# =========================================================
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    return render_template("register.html")
-
-
-# =========================================================
-# HEALTH CHECK
-# =========================================================
 
 @app.route("/health")
 def health():
     return "OK", 200
 
 
-# =========================================================
-# ERROR PAGE
-# =========================================================
-
 @app.errorhandler(404)
 def page_not_found(error):
     return """
     <!doctype html>
     <html lang="ar" dir="rtl">
-
     <head>
         <meta charset="utf-8">
-
         <meta name="viewport"
               content="width=device-width, initial-scale=1">
-
         <title>الصفحة غير موجودة - غيث المجد</title>
 
         <style>
@@ -126,10 +102,6 @@ def page_not_found(error):
     </html>
     """, 404
 
-
-# =========================================================
-# SERVER
-# =========================================================
 
 if __name__ == "__main__":
 
