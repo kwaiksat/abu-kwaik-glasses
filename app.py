@@ -17,7 +17,177 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return """
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1">
+
+        <meta name="description"
+              content="عن غيث المجد وأهداف الموقع وطريقة استخدامه">
+
+        <title>عن غيث المجد</title>
+
+        <style>
+            body {
+                margin: 0;
+                background: #f5f5f5;
+                color: #111;
+                font-family:
+                    Arial,
+                    Tahoma,
+                    sans-serif;
+                line-height: 2;
+            }
+
+            .page {
+                width: min(100% - 30px, 900px);
+                margin: 30px auto;
+            }
+
+            .box {
+                background: #fff;
+                padding: 25px;
+                margin-bottom: 18px;
+                border-radius: 18px;
+                border: 1px solid #e5e5e5;
+                box-shadow:
+                    0 8px 25px rgba(0, 0, 0, .07);
+            }
+
+            h1,
+            h2 {
+                color: #111;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            p {
+                color: #444;
+            }
+
+            a {
+                display: inline-block;
+                margin-top: 10px;
+                padding: 11px 20px;
+                background: #111;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <main class="page">
+
+            <div class="box">
+                <h1>عن غيث المجد</h1>
+
+                <p>
+                    دليل مستقل للمساعدات والخدمات الإنسانية
+                    والتعليمية.
+                </p>
+            </div>
+
+            <div class="box">
+                <h2>ما هو غيث المجد؟</h2>
+
+                <p>
+                    غيث المجد هو دليل مستقل يهدف إلى تنظيم
+                    وتجميع روابط المساعدات والخدمات الإنسانية
+                    والتعليمية المتاحة للعائلات والأفراد
+                    في قطاع غزة وفلسطين.
+                </p>
+
+                <p>
+                    يساعد الموقع المستخدم على الوصول إلى
+                    الروابط والنماذج الرسمية بصورة أوضح،
+                    مع التنبيه إلى ضرورة التأكد من مصدر
+                    أي رابط قبل إدخال البيانات الشخصية.
+                </p>
+            </div>
+
+            <div class="box">
+                <h2>هدف الموقع</h2>
+
+                <p>
+                    يهدف غيث المجد إلى تسهيل الوصول إلى
+                    المعلومات والروابط الرسمية المتعلقة
+                    بالمساعدات والخدمات وتقليل صعوبة البحث
+                    بين الروابط المتعددة.
+                </p>
+            </div>
+
+            <div class="box">
+                <h2>تنبيه مهم</h2>
+
+                <p>
+                    غيث المجد ليس جهة مانحة ولا يستلم أموالًا
+                    من المستفيدين، ولا يطلب رسومًا مقابل
+                    الوصول إلى روابط المساعدات.
+                </p>
+
+                <p>
+                    يجب دائمًا مراجعة الجهة الرسمية قبل
+                    مشاركة أي بيانات شخصية.
+                </p>
+            </div>
+
+            <div class="box">
+                <h2>الخصوصية والأمان</h2>
+
+                <p>
+                    لا ينبغي إدخال كلمات المرور أو البيانات
+                    البنكية أو أي معلومات حساسة في أي رابط
+                    قبل التأكد من أن الرابط تابع للجهة
+                    الرسمية المعنية.
+                </p>
+            </div>
+
+            <div class="box">
+                <h2>التواصل</h2>
+
+                <p>
+                    واتساب / هاتف:
+                    <strong>0592480001</strong>
+                </p>
+
+                <p>
+                    البريد الإلكتروني:
+                    <a href="mailto:n299964@hotmail.com">
+                        n299964@hotmail.com
+                    </a>
+                </p>
+
+                <p>
+                    البريد الإلكتروني:
+                    <a href="mailto:zaeemkwaik@gmail.com">
+                        zaeemkwaik@gmail.com
+                    </a>
+                </p>
+
+                <a href="/">
+                    العودة إلى الصفحة الرئيسية
+                </a>
+            </div>
+
+        </main>
+
+    </body>
+    </html>
+    """
 
 
 @app.route("/health")
