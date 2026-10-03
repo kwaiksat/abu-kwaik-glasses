@@ -1,1249 +1,512 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block content %}
+    <title>غيث المجد</title>
 
-<div class="ghayth-page">
+    <meta name="description" content="غيث المجد - دليل وروابط المساعدات الإنسانية في غزة">
+    <meta name="theme-color" content="#111111">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7;
+            color: #111;
+            font-family: Arial, Tahoma, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px 40px;
+        }
+
+        /* الصورة الرئيسية */
+        .hero {
+            width: 100%;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+
+        .hero img {
+            display: block;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 0 0 20px 20px;
+        }
+
+        /* العناوين */
+        .section-title {
+            margin: 25px 0 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .section-subtitle {
+            margin: -5px 0 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* بنرات المؤسسات */
+        .organizations {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .organization-banner {
+            width: 100%;
+            min-height: 82px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 12px 15px;
+
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 17px;
+
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .organization-banner:hover {
+            transform: translateY(-2px);
+            border-color: #111;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+        }
+
+        .organization-banner:active {
+            transform: scale(0.985);
+        }
+
+        .organization-icon {
+            width: 55px;
+            height: 55px;
+            min-width: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-left: 14px;
+
+            background: #f1f1f1;
+            border-radius: 15px;
+
+            font-size: 27px;
+        }
+
+        .organization-content {
+            flex: 1;
+            text-align: right;
+        }
+
+        .organization-content h3 {
+            margin: 0 0 5px;
+            font-size: 17px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .organization-content p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #707070;
+        }
+
+        .organization-arrow {
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 10px;
+
+            border-radius: 50%;
+            background: #111;
+            color: #fff;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* الأخبار العاجلة */
+        .urgent-box {
+            margin: 25px 0 20px;
+            padding: 16px 18px;
+
+            background: #fff;
+            border: 1px solid #e3e3e3;
+            border-right: 5px solid #111;
+            border-radius: 15px;
+
+            text-align: right;
+        }
+
+        .urgent-box h2 {
+            margin: 0 0 7px;
+            font-size: 18px;
+        }
+
+        .urgent-box p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* قسم التعليم */
+        .education-box {
+            margin-top: 25px;
+            padding: 20px;
+
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 17px;
+
+            text-align: right;
+        }
+
+        .education-box h2 {
+            margin: 0 0 10px;
+            font-size: 19px;
+        }
+
+        .education-box p {
+            margin: 0;
+            color: #666;
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        /* التواصل */
+        .contact-box {
+            margin-top: 25px;
+            padding: 20px;
+
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 17px;
+
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            margin: 0 0 15px;
+            font-size: 19px;
+        }
+
+        .contact-item {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #333;
+            direction: ltr;
+        }
+
+        .contact-item a {
+            font-weight: 700;
+        }
+
+        /* التذييل */
+        footer {
+            margin-top: 30px;
+            padding: 20px 10px;
+
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* الهاتف */
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 0 10px 30px;
+            }
+
+            .hero img {
+                border-radius: 0 0 15px 15px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .organization-banner {
+                min-height: 76px;
+                padding: 10px 12px;
+                border-radius: 15px;
+            }
+
+            .organization-icon {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                margin-left: 11px;
+                border-radius: 13px;
+                font-size: 23px;
+            }
+
+            .organization-content h3 {
+                font-size: 15px;
+            }
+
+            .organization-content p {
+                font-size: 12px;
+            }
+
+            .organization-arrow {
+                width: 31px;
+                height: 31px;
+                min-width: 31px;
+                margin-right: 7px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
 
     <!-- الصورة الرئيسية -->
     <div class="hero">
         <img
             src="{{ url_for('static', filename='1790427276274.jpg') }}"
             alt="غيث المجد"
-            class="hero-image"
         >
     </div>
 
 
-    <!-- الشريط العاجل -->
-    <div class="urgent-bar">
-        🚨 روابط مساعدات وخدمات مهمة — تأكد من الرابط قبل إدخال بياناتك
+    <!-- روابط المساعدات -->
+    <h1 class="section-title">روابط المساعدات</h1>
+
+    <p class="section-subtitle">
+        اضغط على المؤسسة المطلوبة للانتقال مباشرة إلى موقعها الرسمي أو صفحة التسجيل.
+    </p>
+
+
+    <div class="organizations">
+
+        <!-- وزارة التنمية الاجتماعية -->
+        <a
+            class="organization-banner"
+            href="https://donate.mosd.gov.ps"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">🏛️</div>
+
+            <div class="organization-content">
+                <h3>وزارة التنمية الاجتماعية</h3>
+                <p>التسجيل وطلبات المساعدة</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+
+        <!-- وزارة التنمية الاجتماعية - غزة -->
+        <a
+            class="organization-banner"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScY7JYhJ9QJ8qQj4hK5c7xX7z2w7m6n5b4v3c2x1z0/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">📋</div>
+
+            <div class="organization-content">
+                <h3>وزارة التنمية الاجتماعية - غزة</h3>
+                <p>استمارة التسجيل وطلب المساعدة</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+
+        <!-- الفارس الشهم -->
+        <a
+            class="organization-banner"
+            href="https://aid.alfaresalshahm.com/single-reg"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">🤝</div>
+
+            <div class="organization-content">
+                <h3>الفارس الشهم</h3>
+                <p>التسجيل للحصول على المساعدة</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+
+        <!-- برنامج الأغذية العالمي -->
+        <a
+            class="organization-banner"
+            href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">🍚</div>
+
+            <div class="organization-content">
+                <h3>برنامج الأغذية العالمي WFP</h3>
+                <p>بوابة المستفيدين وتحديث البيانات</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+
+        <!-- الأونروا -->
+        <a
+            class="organization-banner"
+            href="https://gazaaid.unrwa.org/Login"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">🏠</div>
+
+            <div class="organization-content">
+                <h3>الأونروا UNRWA</h3>
+                <p>الدخول إلى بوابة المساعدات</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+
+        <!-- الأمم المتحدة -->
+        <a
+            class="organization-banner"
+            href="https://gazaaid.unrwa.org/Home/Requests"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">🌐</div>
+
+            <div class="organization-content">
+                <h3>طلبات المساعدة</h3>
+                <p>صفحة طلبات المساعدة عبر النظام الإلكتروني</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+
+        <!-- هيئة الغاز -->
+        <a
+            class="organization-banner"
+            href="https://e-gaza.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="organization-icon">🔥</div>
+
+            <div class="organization-content">
+                <h3>هيئة الغاز</h3>
+                <p>الدخول إلى الموقع الإلكتروني</p>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
     </div>
 
 
-    <!-- التنبيه الأمني -->
-    <section class="security-box">
-
-        <strong>⚠️ تنبيه مهم</strong>
+    <!-- الأخبار العاجلة -->
+    <div class="urgent-box">
+        <h2>أخبار المساعدات العاجلة</h2>
 
         <p>
-            غيث المجد موقع مستقل لتجميع روابط المساعدات والخدمات.
-            لا يطلب الموقع أي رسوم ولا يستقبل التبرعات.
+            تابع آخر الإعلانات والروابط المتعلقة بالمساعدات الإنسانية
+            والخدمات المتاحة للمستفيدين.
         </p>
+    </div>
 
-    </section>
 
-
-    <main class="main-container">
-
-
-        <!-- العنوان -->
-        <div class="page-title">
-
-            <h1>غيث المجد</h1>
-
-            <p>
-                بوابة مباشرة لروابط المساعدات والخدمات الرسمية
-            </p>
-
-        </div>
-
-
-        <!-- ================================================= -->
-        <!-- بوابة الروابط -->
-        <!-- ================================================= -->
-
-        <section class="official-aid-portal">
-
-
-            <div class="official-portal-header">
-
-                <h2>
-                    🔗 روابط المساعدات والخدمات
-                </h2>
-
-                <p>
-                    اضغط على المؤسسة للانتقال مباشرة إلى رابطها.
-                </p>
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- البحث عن الرابط ومصداقيته -->
-            <!-- ================================================= -->
-
-            <div class="link-verification-box">
-
-                <h3>
-                    🔎 البحث عن الرابط ومصداقيته
-                </h3>
-
-                <p>
-                    أدخل اسم المؤسسة أو الرابط للتحقق من وجوده ضمن الروابط
-                    الرسمية المسجلة في غيث المجد.
-                </p>
-
-
-                <div class="link-check-row">
-
-                    <input
-                        type="text"
-                        id="linkCheckInput"
-                        placeholder="اكتب اسم المؤسسة أو الصق الرابط هنا..."
-                        autocomplete="off"
-                    >
-
-                    <button
-                        type="button"
-                        id="linkCheckButton"
-                    >
-                        تحقق من الرابط
-                    </button>
-
-                </div>
-
-
-                <div
-                    id="linkCheckResult"
-                    class="link-check-result"
-                    style="display:none;"
-                ></div>
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- البحث عن المؤسسات -->
-            <!-- ================================================= -->
-
-            <div class="aid-search-box">
-
-                <input
-                    type="search"
-                    id="aidSearch"
-                    placeholder="🔎 ابحث عن مؤسسة أو نوع المساعدة..."
-                    autocomplete="off"
-                >
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- جميع الروابط -->
-            <!-- ================================================= -->
-
-            <div
-                class="official-aid-list"
-                id="officialAidList"
-            >
-
-
-                <!-- 1 -->
-                <a
-                    href="https://donate.mosd.gov.ps"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="وزارة التنمية الاجتماعية رام الله"
-                    data-type="مساعدات نقدية مالية حكومية"
-                    data-url="https://donate.mosd.gov.ps"
-                >
-
-                    <div class="official-card-icon">
-                        🏛️
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            مساعدات نقدية
-                        </span>
-
-                        <h3>
-                            وزارة التنمية الاجتماعية – رام الله
-                        </h3>
-
-                        <p>
-                            خدمات ومساعدات اجتماعية
-                        </p>
-
-                        <span class="official-card-link">
-                            الدخول مباشرة إلى الرابط ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 2 -->
-                <a
-                    href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSezy3pBvLajiJTSmuHfL6p36saZM66-or_r8Xb_US43osefbg/formResponse"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="وزارة التنمية الاجتماعية غزة"
-                    data-type="تسجيل مساعدات حكومية"
-                    data-url="https://docs.google.com/forms/u/0/d/e/1FAIpQLSezy3pBvLajiJTSmuHfL6p36saZM66-or_r8Xb_US43osefbg/formResponse"
-                >
-
-                    <div class="official-card-icon">
-                        📝
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            تسجيل
-                        </span>
-
-                        <h3>
-                            وزارة التنمية الاجتماعية – غزة
-                        </h3>
-
-                        <p>
-                            نموذج التسجيل الإلكتروني
-                        </p>
-
-                        <span class="official-card-link">
-                            فتح الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 3 -->
-                <a
-                    href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="WFP برنامج الأغذية العالمي"
-                    data-type="مساعدات غذائية نقدية الأمم المتحدة"
-                    data-url="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
-                >
-
-                    <div class="official-card-icon">
-                        🌾
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            غذاء ونقدية
-                        </span>
-
-                        <h3>
-                            برنامج الأغذية العالمي WFP
-                        </h3>
-
-                        <p>
-                            بوابة المستفيدين التابعة لبرنامج الأغذية العالمي
-                        </p>
-
-                        <span class="official-card-link">
-                            الدخول مباشرة إلى WFP ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 4 -->
-                <a
-                    href="https://gazaaid.unrwa.org/Login"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="UNRWA الأونروا"
-                    data-type="مساعدات غذائية نقدية خدمات الأمم المتحدة"
-                    data-url="https://gazaaid.unrwa.org/Login"
-                >
-
-                    <div class="official-card-icon">
-                        🕊️
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            الأمم المتحدة
-                        </span>
-
-                        <h3>
-                            الأونروا UNRWA
-                        </h3>
-
-                        <p>
-                            بوابة خدمات الأونروا
-                        </p>
-
-                        <span class="official-card-link">
-                            الدخول مباشرة إلى الأونروا ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 5 -->
-                <a
-                    href="https://gazaaid.unrwa.org/Home/Requests"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="طلبات UNRWA الأونروا"
-                    data-type="طلبات مساعدات الأمم المتحدة"
-                    data-url="https://gazaaid.unrwa.org/Home/Requests"
-                >
-
-                    <div class="official-card-icon">
-                        📋
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            طلبات
-                        </span>
-
-                        <h3>
-                            طلبات الأونروا UNRWA
-                        </h3>
-
-                        <p>
-                            صفحة الطلبات في بوابة الأونروا
-                        </p>
-
-                        <span class="official-card-link">
-                            فتح الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 6 -->
-                <a
-                    href="https://www.unrwa.org/ar/eUNRWA"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="eUNRWA الأونروا"
-                    data-type="خدمات إلكترونية الأمم المتحدة"
-                    data-url="https://www.unrwa.org/ar/eUNRWA"
-                >
-
-                    <div class="official-card-icon">
-                        🌐
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            خدمات إلكترونية
-                        </span>
-
-                        <h3>
-                            eUNRWA
-                        </h3>
-
-                        <p>
-                            الخدمات الإلكترونية للأونروا
-                        </p>
-
-                        <span class="official-card-link">
-                            الدخول مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 7 -->
-                <a
-                    href="https://aid.alfaresalshahm.com/single-reg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="الفارس الشهم"
-                    data-type="مساعدات تسجيل"
-                    data-url="https://aid.alfaresalshahm.com/single-reg"
-                >
-
-                    <div class="official-card-icon">
-                        🤝
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            مساعدات
-                        </span>
-
-                        <h3>
-                            الفارس الشهم
-                        </h3>
-
-                        <p>
-                            رابط التسجيل الإلكتروني
-                        </p>
-
-                        <span class="official-card-link">
-                            فتح الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 8 -->
-                <a
-                    href="https://www.unicef.org/sop/contact-us"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="UNICEF اليونيسف"
-                    data-type="أطفال صحة مساعدات الأمم المتحدة"
-                    data-url="https://www.unicef.org/sop/contact-us"
-                >
-
-                    <div class="official-card-icon">
-                        🧒
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            أطفال
-                        </span>
-
-                        <h3>
-                            اليونيسف UNICEF
-                        </h3>
-
-                        <p>
-                            الموقع الرسمي ووسائل التواصل
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 9 -->
-                <a
-                    href="https://crisisresponse.iom.int/response/occupied-palestinian-territory-crisis-response-plan-2026"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="IOM المنظمة الدولية للهجرة"
-                    data-type="مأوى إغاثة طوارئ الأمم المتحدة"
-                    data-url="https://crisisresponse.iom.int/response/occupied-palestinian-territory-crisis-response-plan-2026"
-                >
-
-                    <div class="official-card-icon">
-                        ⛺
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            مأوى وإغاثة
-                        </span>
-
-                        <h3>
-                            المنظمة الدولية للهجرة IOM
-                        </h3>
-
-                        <p>
-                            معلومات الاستجابة الإنسانية
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 10 -->
-                <a
-                    href="https://www.acted.org/en/countries/opt/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="ACTED"
-                    data-type="إغاثة غذاء طوارئ"
-                    data-url="https://www.acted.org/en/countries/opt/"
-                >
-
-                    <div class="official-card-icon">
-                        🤲
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            إغاثة
-                        </span>
-
-                        <h3>
-                            ACTED
-                        </h3>
-
-                        <p>
-                            برامج ومعلومات الاستجابة الإنسانية
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 11 -->
-                <a
-                    href="https://www.nrc.no/countries/middle-east/palestine"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="NRC المجلس النرويجي للاجئين"
-                    data-type="مأوى إغاثة طوارئ"
-                    data-url="https://www.nrc.no/countries/middle-east/palestine"
-                >
-
-                    <div class="official-card-icon">
-                        🏠
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            مأوى
-                        </span>
-
-                        <h3>
-                            المجلس النرويجي للاجئين NRC
-                        </h3>
-
-                        <p>
-                            برامج ومعلومات المنظمة في فلسطين
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 12 -->
-                <a
-                    href="https://www.anera.org/contact-us/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="Anera"
-                    data-type="غذاء إغاثة مساعدات"
-                    data-url="https://www.anera.org/contact-us/"
-                >
-
-                    <div class="official-card-icon">
-                        🤝
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            إغاثة
-                        </span>
-
-                        <h3>
-                            Anera
-                        </h3>
-
-                        <p>
-                            الموقع الرسمي ووسائل التواصل
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 13 -->
-                <a
-                    href="https://www.palestinercs.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="PRCS الهلال الأحمر الفلسطيني"
-                    data-type="صحة طوارئ إسعاف"
-                    data-url="https://www.palestinercs.org/"
-                >
-
-                    <div class="official-card-icon">
-                        🚑
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            طبي وطوارئ
-                        </span>
-
-                        <h3>
-                            الهلال الأحمر الفلسطيني PRCS
-                        </h3>
-
-                        <p>
-                            الموقع الرسمي لجمعية الهلال الأحمر الفلسطيني
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 14 -->
-                <a
-                    href="https://www.pcrf.net/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="PCRF مؤسسة إغاثة أطفال فلسطين"
-                    data-type="صحة أطفال علاج"
-                    data-url="https://www.pcrf.net/"
-                >
-
-                    <div class="official-card-icon">
-                        ❤️
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            صحة وأطفال
-                        </span>
-
-                        <h3>
-                            مؤسسة إغاثة أطفال فلسطين PCRF
-                        </h3>
-
-                        <p>
-                            برامج وخدمات دعم الأطفال
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 15 -->
-                <a
-                    href="https://www.healpalestine.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="HEAL Palestine"
-                    data-type="صحة أطفال تعليم مساعدات"
-                    data-url="https://www.healpalestine.org/"
-                >
-
-                    <div class="official-card-icon">
-                        🩺
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            صحة وتعليم
-                        </span>
-
-                        <h3>
-                            HEAL Palestine
-                        </h3>
-
-                        <p>
-                            برامج صحية وإنسانية وتعليمية
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 16 -->
-                <a
-                    href="https://www.savethechildren.net/what-we-do/where-we-work/occupied-palestinian-territory"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="Save the Children إنقاذ الطفولة"
-                    data-type="أطفال تعليم إغاثة"
-                    data-url="https://www.savethechildren.net/what-we-do/where-we-work/occupied-palestinian-territory"
-                >
-
-                    <div class="official-card-icon">
-                        📚
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            أطفال وتعليم
-                        </span>
-
-                        <h3>
-                            Save the Children
-                        </h3>
-
-                        <p>
-                            برامج الأطفال والتعليم والإغاثة
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 17 -->
-                <a
-                    href="https://www.oxfam.org/en/what-we-do/countries/palestine-and-israel"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="Oxfam أوكسفام"
-                    data-type="إغاثة غذاء"
-                    data-url="https://www.oxfam.org/en/what-we-do/countries/palestine-and-israel"
-                >
-
-                    <div class="official-card-icon">
-                        🌍
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            إغاثة
-                        </span>
-
-                        <h3>
-                            Oxfam
-                        </h3>
-
-                        <p>
-                            معلومات وبرامج المنظمة المتعلقة بفلسطين
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 18 -->
-                <a
-                    href="https://islamic-relief.org/appeals/palestine/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="Islamic Relief الإغاثة الإسلامية"
-                    data-type="إغاثة غذاء نقدية طوارئ"
-                    data-url="https://islamic-relief.org/appeals/palestine/"
-                >
-
-                    <div class="official-card-icon">
-                        🤲
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            إغاثة
-                        </span>
-
-                        <h3>
-                            Islamic Relief
-                        </h3>
-
-                        <p>
-                            معلومات وبرامج الإغاثة المتعلقة بفلسطين
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 19 -->
-                <a
-                    href="https://www.caritasjr.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="Caritas Jerusalem كاريتاس القدس"
-                    data-type="إغاثة صحة أطفال"
-                    data-url="https://www.caritasjr.org/"
-                >
-
-                    <div class="official-card-icon">
-                        🤝
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            خدمات إنسانية
-                        </span>
-
-                        <h3>
-                            Caritas Jerusalem
-                        </h3>
-
-                        <p>
-                            الموقع الرسمي وخدمات المؤسسة في فلسطين
-                        </p>
-
-                        <span class="official-card-link">
-                            زيارة الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 20 -->
-                <a
-                    href="https://complaints.eapp.gov.ps/index.php"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="الشكاوى الحكومية"
-                    data-type="شكاوى حكومية"
-                    data-url="https://complaints.eapp.gov.ps/index.php"
-                >
-
-                    <div class="official-card-icon">
-                        📢
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            حكومي
-                        </span>
-
-                        <h3>
-                            بوابة الشكاوى الحكومية
-                        </h3>
-
-                        <p>
-                            تقديم ومتابعة الشكاوى الحكومية
-                        </p>
-
-                        <span class="official-card-link">
-                            فتح الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- 21 -->
-                <a
-                    href="https://e-gaza.com/login"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="official-aid-card"
-                    data-name="خدمات الغاز غزة"
-                    data-type="خدمات حكومية غاز"
-                    data-url="https://e-gaza.com/login"
-                >
-
-                    <div class="official-card-icon">
-                        🔥
-                    </div>
-
-                    <div class="official-card-content">
-
-                        <span class="official-card-badge">
-                            خدمة
-                        </span>
-
-                        <h3>
-                            خدمات الغاز – غزة
-                        </h3>
-
-                        <p>
-                            بوابة الخدمات الإلكترونية
-                        </p>
-
-                        <span class="official-card-link">
-                            فتح الرابط مباشرة ←
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-            </div>
-
-
-            <!-- لا توجد نتائج -->
-            <div
-                id="noAidResults"
-                class="no-aid-results"
-                style="display:none;"
-            >
-                🔎 لم يتم العثور على مؤسسة أو رابط مطابق.
-            </div>
-
-
-            <!-- ملاحظة -->
-            <div class="official-portal-note">
-
-                <strong>
-                    تنبيه:
-                </strong>
-
-                <p>
-                    غيث المجد لا يطلب أي رسوم ولا يستقبل الأموال أو التبرعات.
-                    التحقق هنا يعني أن الرابط موجود ضمن قائمة الروابط المسجلة
-                    في الموقع، وليس ضمانًا دائمًا لمحتوى الموقع الخارجي.
-                </p>
-
-            </div>
-
-
-        </section>
-
-
-        <!-- ================================================= -->
-        <!-- التواصل -->
-        <!-- ================================================= -->
-
-        <div class="contact">
-
-            <h2>
-                تواصل مع غيث المجد
-            </h2>
-
-            <p>
-                📱 واتساب / هاتف:
-                <strong>0592480001</strong>
-            </p>
-
-            <p>
-                📧
-                <strong>n299964@hotmail.com</strong>
-            </p>
-
-            <p>
-                📧
-                <strong>zaeemkwaik@gmail.com</strong>
-            </p>
-
-        </div>
-
-
-    </main>
-
-
-    <!-- ================================================= -->
-    <!-- الفوتر -->
-    <!-- ================================================= -->
-
-    <footer class="footer">
+    <!-- التعليم -->
+    <div class="education-box">
+        <h2>قسم التعليم</h2>
 
         <p>
-            © غيث المجد — دليل مستقل لروابط المساعدات والخدمات
+            روابط ومعلومات تساعد الطلاب والأسر على الوصول إلى الخدمات
+            والفرص التعليمية المتاحة.
         </p>
+    </div>
 
+
+    <!-- التواصل -->
+    <div class="contact-box">
+
+        <h2>تواصل معنا</h2>
+
+        <div class="contact-item">
+            واتساب / هاتف:
+            <a href="https://wa.me/970592480001" target="_blank" rel="noopener noreferrer">
+                0592480001
+            </a>
+        </div>
+
+        <div class="contact-item">
+            <a href="mailto:n299964@hotmail.com">
+                n299964@hotmail.com
+            </a>
+        </div>
+
+        <div class="contact-item">
+            <a href="mailto:zaeemkwaik@gmail.com">
+                zaeemkwaik@gmail.com
+            </a>
+        </div>
+
+    </div>
+
+
+    <footer>
+        غيث المجد © جميع الحقوق محفوظة
+        <br>
+        دليل مستقل للروابط والمساعدات الإنسانية
     </footer>
 
 </div>
 
-
-<!-- ================================================= -->
-<!-- JavaScript -->
-<!-- ================================================= -->
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-    /* =========================================
-       البحث عن المؤسسات
-    ========================================= */
-
-    const searchInput =
-        document.getElementById("aidSearch");
-
-    const cards =
-        document.querySelectorAll(".official-aid-card");
-
-    const noResults =
-        document.getElementById("noAidResults");
-
-
-    if (searchInput) {
-
-        searchInput.addEventListener(
-            "input",
-            function () {
-
-                const value =
-                    searchInput.value
-                        .trim()
-                        .toLowerCase();
-
-                let visible = 0;
-
-
-                cards.forEach(function (card) {
-
-                    const name =
-                        (card.dataset.name || "")
-                            .toLowerCase();
-
-                    const type =
-                        (card.dataset.type || "")
-                            .toLowerCase();
-
-                    const text =
-                        card.innerText
-                            .toLowerCase();
-
-
-                    const match =
-                        value === "" ||
-                        name.includes(value) ||
-                        type.includes(value) ||
-                        text.includes(value);
-
-
-                    if (match) {
-
-                        card.style.display = "";
-
-                        visible++;
-
-                    } else {
-
-                        card.style.display = "none";
-
-                    }
-
-                });
-
-
-                if (noResults) {
-
-                    noResults.style.display =
-                        visible === 0
-                            ? "block"
-                            : "none";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       التحقق من الرابط
-    ========================================= */
-
-    const checkInput =
-        document.getElementById("linkCheckInput");
-
-    const checkButton =
-        document.getElementById("linkCheckButton");
-
-    const checkResult =
-        document.getElementById("linkCheckResult");
-
-
-    function checkLink() {
-
-        const value =
-            checkInput.value
-                .trim()
-                .toLowerCase();
-
-
-        if (!value) {
-
-            checkResult.style.display = "block";
-
-            checkResult.className =
-                "link-check-result warning";
-
-            checkResult.innerHTML =
-                "⚠️ اكتب اسم المؤسسة أو الصق الرابط أولاً.";
-
-            return;
-
-        }
-
-
-        let foundCard = null;
-
-
-        cards.forEach(function (card) {
-
-            const name =
-                (card.dataset.name || "")
-                    .toLowerCase();
-
-            const url =
-                (card.dataset.url || "")
-                    .toLowerCase();
-
-
-            if (
-                name.includes(value) ||
-                url === value ||
-                url.includes(value)
-            ) {
-
-                foundCard = card;
-
-            }
-
-        });
-
-
-        if (foundCard) {
-
-            const officialUrl =
-                foundCard.dataset.url;
-
-
-            const organization =
-                foundCard.dataset.name;
-
-
-            checkResult.style.display = "block";
-
-            checkResult.className =
-                "link-check-result success";
-
-            checkResult.innerHTML =
-
-                "✅ <strong>الرابط موجود في قائمة غيث المجد.</strong>" +
-                "<br>" +
-                "المؤسسة: " +
-                organization +
-                "<br>" +
-                "الرابط المسجل: " +
-                "<br>" +
-                "<a href=\"" +
-                officialUrl +
-                "\" target=\"_blank\" rel=\"noopener noreferrer\">" +
-                officialUrl +
-                "</a>";
-
-        } else {
-
-            checkResult.style.display = "block";
-
-            checkResult.className =
-                "link-check-result danger";
-
-            checkResult.innerHTML =
-                "⚠️ هذا الرابط أو اسم المؤسسة غير موجود في قائمة الروابط المسجلة في غيث المجد." +
-                "<br><small>لا تدخل بياناتك قبل التأكد من الجهة الرسمية.</small>";
-
-        }
-
-    }
-
-
-    if (checkButton) {
-
-        checkButton.addEventListener(
-            "click",
-            checkLink
-        );
-
-    }
-
-
-    if (checkInput) {
-
-        checkInput.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Enter") {
-
-                    checkLink();
-
-                }
-
-            }
-        );
-
-    }
-
-
-});
-
-</script>
-
-
-{% endblock %}
+</body>
+</html>
