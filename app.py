@@ -315,58 +315,66 @@ def privacy():
     """
 
 
-@app.route("/health")
-def health():
-    return "OK", 200
-
-
-@app.errorhandler(404)
-def page_not_found(error):
+@app.route("/terms")
+def terms():
     return """
     <!doctype html>
     <html lang="ar" dir="rtl">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>الصفحة غير موجودة - غيث المجد</title>
+        <meta name="description"
+              content="شروط استخدام موقع غيث المجد">
+
+        <title>شروط الاستخدام - غيث المجد</title>
 
         <style>
             body {
                 margin: 0;
-                padding: 30px;
                 background: #f5f5f5;
-                color: #222;
+                color: #111;
                 font-family: Arial, Tahoma, sans-serif;
-                text-align: center;
+                line-height: 2;
+            }
+
+            .page {
+                width: min(100% - 30px, 900px);
+                margin: 30px auto;
             }
 
             .box {
-                max-width: 600px;
-                margin: 80px auto;
-                padding: 35px 20px;
-                background: #ffffff;
+                background: #fff;
+                padding: 25px;
                 border-radius: 18px;
-                border: 1px solid #e2e2e2;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                border: 1px solid #e5e5e5;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+            }
+
+            h1, h2 {
+                color: #111;
             }
 
             h1 {
-                color: #111111;
+                text-align: center;
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 21px;
+                margin-top: 25px;
             }
 
             p {
-                color: #666666;
-                line-height: 1.8;
+                color: #444;
             }
 
             a {
                 display: inline-block;
                 margin-top: 15px;
-                padding: 12px 24px;
-                background: #111111;
-                color: #ffffff;
+                padding: 11px 20px;
+                background: #111;
+                color: #fff;
                 text-decoration: none;
                 border-radius: 10px;
                 font-weight: bold;
@@ -375,37 +383,43 @@ def page_not_found(error):
     </head>
 
     <body>
+        <main class="page">
 
-        <div class="box">
+            <div class="box">
 
-            <h1>الصفحة غير موجودة</h1>
+                <h1>شروط الاستخدام</h1>
 
-            <p>
-                عذرًا، الصفحة التي تبحث عنها غير متوفرة.
-            </p>
+                <h2>مقدمة</h2>
 
-            <a href="/">
-                العودة إلى غيث المجد
-            </a>
+                <p>
+                    باستخدامك موقع غيث المجد، فإنك توافق على
+                    استخدام الموقع وفق الشروط الموضحة في هذه الصفحة.
+                </p>
 
-        </div>
+                <h2>طبيعة الموقع</h2>
 
-    </body>
-    </html>
-    """, 404
+                <p>
+                    غيث المجد دليل مستقل يجمع روابط وخدمات
+                    ومعلومات تساعد المستخدمين على الوصول إلى
+                    الجهات والمصادر الرسمية.
+                </p>
 
+                <p>
+                    الموقع ليس جهة حكومية ولا جهة مانحة،
+                    ولا يمثل المؤسسات أو الجهات التي يتم عرض
+                    روابطها.
+                </p>
 
-if __name__ == "__main__":
+                <h2>الروابط الخارجية</h2>
 
-    port = int(
-        os.environ.get(
-            "PORT",
-            5000
-        )
-    )
+                <p>
+                    يحتوي الموقع على روابط لمواقع وخدمات خارجية.
+                    عند الضغط على أي رابط والانتقال إلى موقع آخر،
+                    يصبح استخدامك لذلك الموقع خاضعًا لشروطه
+                    وسياساته الخاصة.
+                </p>
 
-    app.run(
-        host="0.0.0.0",
-        port=port,
-        debug=False
-    )
+                <h2>دقة المعلومات</h2>
+
+                <p>
+                    نس
