@@ -7,10 +7,13 @@
 
     <title>غيث المجد</title>
 
-    <meta name="description" content="غيث المجد - دليل وروابط المساعدات والخدمات التعليمية في فلسطين">
+    <meta name="description"
+          content="غيث المجد - دليل وروابط المساعدات والخدمات التعليمية في فلسطين">
+
     <meta name="theme-color" content="#111111">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 
     <style>
 
@@ -38,8 +41,6 @@
             padding: 0 15px 40px;
         }
 
-        /* الصورة الرئيسية */
-
         .hero {
             width: 100%;
             margin: 0 auto 20px;
@@ -54,8 +55,6 @@
             margin: 0 auto;
             border-radius: 0 0 20px 20px;
         }
-
-        /* العناوين */
 
         .section-title {
             margin: 28px 0 10px;
@@ -73,16 +72,12 @@
             line-height: 1.8;
         }
 
-        /* مجموعات الأقسام */
-
         .organizations {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 13px;
         }
-
-        /* البنرات */
 
         .organization-banner {
             width: 100%;
@@ -170,15 +165,11 @@
             font-weight: bold;
         }
 
-        /* الفاصل بين الأقسام */
-
         .section-divider {
             height: 1px;
             background: #e5e5e5;
             margin: 35px 0 25px;
         }
-
-        /* الأخبار */
 
         .urgent-box {
             margin: 30px 0 20px;
@@ -204,8 +195,6 @@
             line-height: 1.8;
         }
 
-        /* التعليم */
-
         .education-intro {
             margin: 0 0 20px;
             padding: 16px;
@@ -219,8 +208,6 @@
             line-height: 1.9;
             text-align: right;
         }
-
-        /* التواصل */
 
         .contact-box {
             margin-top: 30px;
@@ -248,8 +235,6 @@
             font-weight: 700;
         }
 
-        /* التذييل */
-
         footer {
             margin-top: 30px;
             padding: 20px 10px;
@@ -260,7 +245,20 @@
             line-height: 1.8;
         }
 
-        /* الهاتف */
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            display: inline-block;
+            margin: 0 7px;
+            color: #111;
+            font-weight: 700;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 600px) {
 
@@ -306,34 +304,25 @@
                 margin-right: 7px;
                 font-size: 16px;
             }
+
+            .footer-links a {
+                margin: 4px 6px;
+            }
         }
 
     </style>
 </head>
 
-
 <body>
 
 <div class="page">
 
-
-    <!-- ============================= -->
-    <!-- الصورة الرئيسية -->
-    <!-- ============================= -->
-
     <div class="hero">
-
         <img
             src="{{ url_for('static', filename='1790427276274.jpg') }}"
             alt="غيث المجد"
         >
-
     </div>
-
-
-    <!-- ============================= -->
-    <!-- قسم المساعدات -->
-    <!-- ============================= -->
 
     <h1 class="section-title">
         روابط المساعدات
@@ -343,215 +332,101 @@
         روابط مباشرة للخدمات والمساعدات المتاحة للمستفيدين.
     </p>
 
-
     <div class="organizations">
 
+        <a class="organization-banner"
+           href="https://donate.mosd.gov.ps"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- وزارة التنمية الاجتماعية -->
-
-        <a
-            class="organization-banner"
-            href="https://donate.mosd.gov.ps"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🏛️
-            </div>
+            <div class="organization-icon">🏛️</div>
 
             <div class="organization-content">
-
-                <h3>
-                    وزارة التنمية الاجتماعية
-                </h3>
-
-                <p>
-                    التسجيل وطلبات المساعدة
-                </p>
-
+                <h3>وزارة التنمية الاجتماعية</h3>
+                <p>التسجيل وطلبات المساعدة</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://aid.alfaresalshahm.com/single-reg"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- الفارس الشهم -->
-
-        <a
-            class="organization-banner"
-            href="https://aid.alfaresalshahm.com/single-reg"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🤝
-            </div>
+            <div class="organization-icon">🤝</div>
 
             <div class="organization-content">
-
-                <h3>
-                    الفارس الشهم
-                </h3>
-
-                <p>
-                    التسجيل للحصول على المساعدة
-                </p>
-
+                <h3>الفارس الشهم</h3>
+                <p>التسجيل للحصول على المساعدة</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- برنامج الأغذية العالمي -->
-
-        <a
-            class="organization-banner"
-            href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🍚
-            </div>
+            <div class="organization-icon">🍚</div>
 
             <div class="organization-content">
-
-                <h3>
-                    برنامج الأغذية العالمي WFP
-                </h3>
-
-                <p>
-                    بوابة المستفيدين وتحديث البيانات
-                </p>
-
+                <h3>برنامج الأغذية العالمي WFP</h3>
+                <p>بوابة المستفيدين وتحديث البيانات</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://gazaaid.unrwa.org/Login"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- الأونروا -->
-
-        <a
-            class="organization-banner"
-            href="https://gazaaid.unrwa.org/Login"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🏠
-            </div>
+            <div class="organization-icon">🏠</div>
 
             <div class="organization-content">
-
-                <h3>
-                    الأونروا UNRWA
-                </h3>
-
-                <p>
-                    الدخول إلى بوابة المساعدات
-                </p>
-
+                <h3>الأونروا UNRWA</h3>
+                <p>الدخول إلى بوابة المساعدات</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://gazaaid.unrwa.org/Home/Requests"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- طلبات المساعدة -->
-
-        <a
-            class="organization-banner"
-            href="https://gazaaid.unrwa.org/Home/Requests"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📋
-            </div>
+            <div class="organization-icon">📋</div>
 
             <div class="organization-content">
-
-                <h3>
-                    طلبات المساعدة
-                </h3>
-
-                <p>
-                    الوصول إلى صفحة طلبات المساعدة
-                </p>
-
+                <h3>طلبات المساعدة</h3>
+                <p>الوصول إلى صفحة طلبات المساعدة</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://e-gaza.com/login"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- هيئة الغاز -->
-
-        <a
-            class="organization-banner"
-            href="https://e-gaza.com/login"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🔥
-            </div>
+            <div class="organization-icon">🔥</div>
 
             <div class="organization-content">
-
-                <h3>
-                    هيئة الغاز
-                </h3>
-
-                <p>
-                    الدخول إلى الموقع الإلكتروني
-                </p>
-
+                <h3>هيئة الغاز</h3>
+                <p>الدخول إلى الموقع الإلكتروني</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
-
 
     </div>
 
-
-    <!-- ============================= -->
-    <!-- فاصل -->
-    <!-- ============================= -->
-
     <div class="section-divider"></div>
-
-
-    <!-- ============================= -->
-    <!-- التربية والتعليم -->
-    <!-- ============================= -->
 
     <h2 class="section-title">
         🎓 التربية والتعليم في فلسطين
@@ -562,7 +437,6 @@
         والخدمات الإلكترونية الخاصة بالطلبة والمعلمين والأسر.
     </p>
 
-
     <div class="education-intro">
 
         هذا القسم يجمع أهم الروابط التعليمية الرسمية والخدمات
@@ -572,400 +446,189 @@
 
     </div>
 
-
     <div class="organizations">
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- وزارة التربية والتعليم -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🎓
-            </div>
+            <div class="organization-icon">🎓</div>
 
             <div class="organization-content">
-
-                <h3>
-                    وزارة التربية والتعليم العالي الفلسطينية
-                </h3>
-
-                <p>
-                    الموقع الرسمي للوزارة وأخبار وخدمات التربية والتعليم
-                </p>
-
+                <h3>وزارة التربية والتعليم العالي الفلسطينية</h3>
+                <p>الموقع الرسمي للوزارة وأخبار وخدمات التربية والتعليم</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- جميع خدمات التربية والتعليم -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📚
-            </div>
+            <div class="organization-icon">📚</div>
 
             <div class="organization-content">
-
-                <h3>
-                    خدمات وزارة التربية والتعليم
-                </h3>
-
-                <p>
-                    المنهاج والمدارس والمديريات والخدمات والبرامج التعليمية
-                </p>
-
+                <h3>خدمات وزارة التربية والتعليم</h3>
+                <p>المنهاج والمدارس والمديريات والخدمات والبرامج التعليمية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://gaza.moe.edu.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- التعليم الإلكتروني غزة -->
-
-        <a
-            class="organization-banner"
-            href="https://gaza.moe.edu.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                💻
-            </div>
+            <div class="organization-icon">💻</div>
 
             <div class="organization-content">
-
-                <h3>
-                    الخدمات الإلكترونية - غزة
-                </h3>
-
-                <p>
-                    التعليم الإلكتروني والخدمات التعليمية والفنية والطلابية
-                </p>
-
+                <h3>الخدمات الإلكترونية - غزة</h3>
+                <p>التعليم الإلكتروني والخدمات التعليمية والفنية والطلابية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.eschool.edu.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- المدرسة الإلكترونية -->
-
-        <a
-            class="organization-banner"
-            href="https://www.eschool.edu.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🖥️
-            </div>
+            <div class="organization-icon">🖥️</div>
 
             <div class="organization-content">
-
-                <h3>
-                    المدرسة الإلكترونية
-                </h3>
-
-                <p>
-                    متابعة البيانات والخدمات الدراسية للطلبة
-                </p>
-
+                <h3>المدرسة الإلكترونية</h3>
+                <p>متابعة البيانات والخدمات الدراسية للطلبة</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://moe.edu.ps/student-result"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- نتائج الثانوية -->
-
-        <a
-            class="organization-banner"
-            href="https://moe.edu.ps/student-result"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📝
-            </div>
+            <div class="organization-icon">📝</div>
 
             <div class="organization-content">
-
-                <h3>
-                    نتائج الثانوية العامة - غزة
-                </h3>
-
-                <p>
-                    الاستعلام عن نتيجة الطالب وكشف العلامات
-                </p>
-
+                <h3>نتائج الثانوية العامة - غزة</h3>
+                <p>الاستعلام عن نتيجة الطالب وكشف العلامات</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://moe.edu.ps/gaza"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- التعليم الإلكتروني غزة -->
-
-        <a
-            class="organization-banner"
-            href="https://moe.edu.ps/gaza"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🌐
-            </div>
+            <div class="organization-icon">🌐</div>
 
             <div class="organization-content">
-
-                <h3>
-                    التعليم الإلكتروني - غزة
-                </h3>
-
-                <p>
-                    المدارس الافتراضية والتطبيقات والاختبارات والتسجيل
-                </p>
-
+                <h3>التعليم الإلكتروني - غزة</h3>
+                <p>المدارس الافتراضية والتطبيقات والاختبارات والتسجيل</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- المنهاج الفلسطيني -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📖
-            </div>
+            <div class="organization-icon">📖</div>
 
             <div class="organization-content">
-
-                <h3>
-                    المنهاج الفلسطيني
-                </h3>
-
-                <p>
-                    الوصول إلى خدمات ومصادر المنهاج والتعليم الفلسطينية
-                </p>
-
+                <h3>المنهاج الفلسطيني</h3>
+                <p>الوصول إلى خدمات ومصادر المنهاج والتعليم الفلسطينية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- معلومات المديريات والمدارس -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🏫
-            </div>
+            <div class="organization-icon">🏫</div>
 
             <div class="organization-content">
-
-                <h3>
-                    المديريات والمدارس
-                </h3>
-
-                <p>
-                    معلومات المديريات والمدارس والخدمات التعليمية
-                </p>
-
+                <h3>المديريات والمدارس</h3>
+                <p>معلومات المديريات والمدارس والخدمات التعليمية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- مكتبة المعهد الوطني -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📚
-            </div>
+            <div class="organization-icon">📚</div>
 
             <div class="organization-content">
-
-                <h3>
-                    مكتبة المعهد الوطني للتدريب التربوي
-                </h3>
-
-                <p>
-                    مصادر ومواد مرتبطة بالتدريب التربوي
-                </p>
-
+                <h3>مكتبة المعهد الوطني للتدريب التربوي</h3>
+                <p>مصادر ومواد مرتبطة بالتدريب التربوي</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- مركز البحث والتطوير -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🔬
-            </div>
+            <div class="organization-icon">🔬</div>
 
             <div class="organization-content">
-
-                <h3>
-                    مركز البحث والتطوير التربوي
-                </h3>
-
-                <p>
-                    البحث والتطوير في مجال التربية والتعليم
-                </p>
-
+                <h3>مركز البحث والتطوير التربوي</h3>
+                <p>البحث والتطوير في مجال التربية والتعليم</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- رياض الأطفال -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🧒
-            </div>
+            <div class="organization-icon">🧒</div>
 
             <div class="organization-content">
-
-                <h3>
-                    رياض الأطفال المرخصة
-                </h3>
-
-                <p>
-                    معلومات رياض الأطفال المرخصة من الوزارة
-                </p>
-
+                <h3>رياض الأطفال المرخصة</h3>
+                <p>معلومات رياض الأطفال المرخصة من الوزارة</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.moe.edu.ps/services/all"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- تعليم الكبار -->
-
-        <a
-            class="organization-banner"
-            href="https://www.moe.edu.ps/services/all"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                ✏️
-            </div>
+            <div class="organization-icon">✏️</div>
 
             <div class="organization-content">
-
-                <h3>
-                    تعليم الكبار ومحو الأمية
-                </h3>
-
-                <p>
-                    برامج محو الأمية والتعليم الموازي وتعليم الكبار
-                </p>
-
+                <h3>تعليم الكبار ومحو الأمية</h3>
+                <p>برامج محو الأمية والتعليم الموازي وتعليم الكبار</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
-
 
     </div>
-
-
-    <!-- ============================= -->
-    <!-- التعليم العالي -->
-    <!-- ============================= -->
 
     <div class="section-divider"></div>
 
@@ -977,240 +640,114 @@
         خدمات وزارة التعليم العالي والجامعات والمنح والشهادات.
     </p>
 
-
     <div class="organizations">
 
+        <a class="organization-banner"
+           href="https://www.mohe.pna.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- وزارة التعليم العالي -->
-
-        <a
-            class="organization-banner"
-            href="https://www.mohe.pna.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🎓
-            </div>
+            <div class="organization-icon">🎓</div>
 
             <div class="organization-content">
-
-                <h3>
-                    وزارة التربية والتعليم العالي
-                </h3>
-
-                <p>
-                    الموقع الرسمي وخدمات التعليم العالي في فلسطين
-                </p>
-
+                <h3>وزارة التربية والتعليم العالي</h3>
+                <p>الموقع الرسمي وخدمات التعليم العالي في فلسطين</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://eservices.mohe.pna.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- الخدمات الإلكترونية -->
-
-        <a
-            class="organization-banner"
-            href="https://eservices.mohe.pna.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                💻
-            </div>
+            <div class="organization-icon">💻</div>
 
             <div class="organization-content">
-
-                <h3>
-                    الخدمات الإلكترونية للتعليم العالي
-                </h3>
-
-                <p>
-                    تسجيل الدخول وإنشاء حساب والاستفادة من الخدمات الإلكترونية
-                </p>
-
+                <h3>الخدمات الإلكترونية للتعليم العالي</h3>
+                <p>تسجيل الدخول وإنشاء حساب والاستفادة من الخدمات الإلكترونية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.mohe.pna.ps/services/Scholarship"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- المنح والبعثات -->
-
-        <a
-            class="organization-banner"
-            href="https://www.mohe.pna.ps/services/Scholarship"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🎓
-            </div>
+            <div class="organization-icon">🎓</div>
 
             <div class="organization-content">
-
-                <h3>
-                    المنح والبعثات الدراسية
-                </h3>
-
-                <p>
-                    المنح الداخلية والخارجية والمقاعد الدراسية
-                </p>
-
+                <h3>المنح والبعثات الدراسية</h3>
+                <p>المنح الداخلية والخارجية والمقاعد الدراسية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.mohe.pna.ps/scholarships"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- أخبار المنح -->
-
-        <a
-            class="organization-banner"
-            href="https://www.mohe.pna.ps/scholarships"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📢
-            </div>
+            <div class="organization-icon">📢</div>
 
             <div class="organization-content">
-
-                <h3>
-                    آخر المنح الدراسية
-                </h3>
-
-                <p>
-                    البحث والاطلاع على المنح والإعلانات الدراسية
-                </p>
-
+                <h3>آخر المنح الدراسية</h3>
+                <p>البحث والاطلاع على المنح والإعلانات الدراسية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.mohe.pna.ps/Higher-Education/Higher-Education/Certificate-Equivalency-System"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- معادلة الشهادات -->
-
-        <a
-            class="organization-banner"
-            href="https://www.mohe.pna.ps/Higher-Education/Higher-Education/Certificate-Equivalency-System"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                📜
-            </div>
+            <div class="organization-icon">📜</div>
 
             <div class="organization-content">
-
-                <h3>
-                    معادلة الشهادات
-                </h3>
-
-                <p>
-                    معادلة الشهادات والدرجات العلمية الصادرة من خارج فلسطين
-                </p>
-
+                <h3>معادلة الشهادات</h3>
+                <p>معادلة الشهادات والدرجات العلمية الصادرة من خارج فلسطين</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.mohe.pna.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- تصديق الشهادات -->
-
-        <a
-            class="organization-banner"
-            href="https://www.mohe.pna.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                ✅
-            </div>
+            <div class="organization-icon">✅</div>
 
             <div class="organization-content">
-
-                <h3>
-                    تصديق الشهادات والوثائق
-                </h3>
-
-                <p>
-                    خدمات تصديق الشهادات والوثائق التعليمية
-                </p>
-
+                <h3>تصديق الشهادات والوثائق</h3>
+                <p>خدمات تصديق الشهادات والوثائق التعليمية</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
 
+        <a class="organization-banner"
+           href="https://www.mohe.pna.ps/"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- مؤسسات التعليم العالي -->
-
-        <a
-            class="organization-banner"
-            href="https://www.mohe.pna.ps/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="organization-icon">
-                🏫
-            </div>
+            <div class="organization-icon">🏫</div>
 
             <div class="organization-content">
-
-                <h3>
-                    مؤسسات التعليم العالي
-                </h3>
-
-                <p>
-                    معلومات وإحصاءات وروابط مؤسسات التعليم العالي
-                </p>
-
+                <h3>مؤسسات التعليم العالي</h3>
+                <p>معلومات وإحصاءات وروابط مؤسسات التعليم العالي</p>
             </div>
 
-            <div class="organization-arrow">
-                ←
-            </div>
-
+            <div class="organization-arrow">←</div>
         </a>
-
 
     </div>
-
-
-    <!-- ============================= -->
-    <!-- الأخبار التعليمية -->
-    <!-- ============================= -->
 
     <div class="urgent-box">
 
@@ -1225,17 +762,11 @@
 
     </div>
 
-
-    <!-- ============================= -->
-    <!-- التواصل -->
-    <!-- ============================= -->
-
     <div class="contact-box">
 
         <h2>
             تواصل معنا
         </h2>
-
 
         <div class="contact-item">
 
@@ -1251,7 +782,6 @@
 
         </div>
 
-
         <div class="contact-item">
 
             <a href="mailto:n299964@hotmail.com">
@@ -1259,7 +789,6 @@
             </a>
 
         </div>
-
 
         <div class="contact-item">
 
@@ -1271,11 +800,6 @@
 
     </div>
 
-
-    <!-- ============================= -->
-    <!-- التذييل -->
-    <!-- ============================= -->
-
     <footer>
 
         غيث المجد © جميع الحقوق محفوظة
@@ -1284,8 +808,21 @@
 
         دليل مستقل للروابط والخدمات الإنسانية والتعليمية
 
-    </footer>
+        <div class="footer-links">
 
+            <a href="{{ url_for('about') }}">
+                عن غيث المجد
+            </a>
+
+            |
+
+            <a href="{{ url_for('privacy') }}">
+                سياسة الخصوصية
+            </a>
+
+        </div>
+
+    </footer>
 
 </div>
 
