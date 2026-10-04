@@ -2,424 +2,551 @@ import os
 
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(name)
 
 app.secret_key = os.environ.get(
-    "SECRET_KEY",
-    "ghayth-al-majd-secret-key"
+"SECRET_KEY",
+"ghayth-al-majd-secret-key"
 )
-
 
 @app.route("/")
 def index():
-    return render_template("index.html")
-
+return render_template("index.html")
 
 @app.route("/about")
 def about():
-    return """
-    <!doctype html>
-    <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+return """
+<!doctype html>
+<html lang="ar" dir="rtl">
 
-        <meta name="description"
-              content="عن غيث المجد وأهداف الموقع وطريقة استخدامه">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>عن غيث المجد</title>
+    <meta name="description"
+          content="عن غيث المجد وأهداف الموقع وطريقة استخدامه">
 
-        <style>
-            body {
-                margin: 0;
-                background: #f5f5f5;
-                color: #111;
-                font-family: Arial, Tahoma, sans-serif;
-                line-height: 2;
-            }
+    <title>عن غيث المجد</title>
 
-            .page {
-                width: min(100% - 30px, 900px);
-                margin: 30px auto;
-            }
+    <style>
+        body {
+            margin: 0;
+            background: #f5f5f5;
+            color: #111;
+            font-family: Arial, Tahoma, sans-serif;
+            line-height: 2;
+        }
 
-            .box {
-                background: #fff;
-                padding: 25px;
-                margin-bottom: 18px;
-                border-radius: 18px;
-                border: 1px solid #e5e5e5;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
-            }
+        .page {
+            width: min(100% - 30px, 900px);
+            margin: 30px auto;
+        }
 
-            h1, h2 {
-                color: #111;
-            }
+        .box {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 18px;
+            border-radius: 18px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+        }
 
-            h1 {
-                text-align: center;
-                font-size: 32px;
-            }
+        h1,
+        h2 {
+            color: #111;
+        }
 
-            h2 {
-                font-size: 22px;
-            }
+        h1 {
+            text-align: center;
+            font-size: 32px;
+        }
 
-            p {
-                color: #444;
-            }
+        h2 {
+            font-size: 22px;
+        }
 
-            a {
-                display: inline-block;
-                margin-top: 10px;
-                padding: 11px 20px;
-                background: #111;
-                color: #fff;
-                text-decoration: none;
-                border-radius: 10px;
-                font-weight: bold;
-            }
-        </style>
-    </head>
+        p {
+            color: #444;
+        }
 
-    <body>
-        <main class="page">
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 20px;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
-            <div class="box">
-                <h1>عن غيث المجد</h1>
+<body>
 
-                <p>
-                    دليل مستقل للمساعدات والخدمات الإنسانية
-                    والتعليمية.
-                </p>
-            </div>
+    <main class="page">
 
-            <div class="box">
-                <h2>ما هو غيث المجد؟</h2>
+        <div class="box">
 
-                <p>
-                    غيث المجد هو دليل مستقل يهدف إلى تنظيم
-                    وتجميع روابط المساعدات والخدمات الإنسانية
-                    والتعليمية المتاحة للعائلات والأفراد
-                    في قطاع غزة وفلسطين.
-                </p>
+            <h1>عن غيث المجد</h1>
 
-                <p>
-                    يساعد الموقع المستخدم على الوصول إلى
-                    الروابط والنماذج الرسمية بصورة أوضح،
-                    مع التنبيه إلى ضرورة التأكد من مصدر
-                    أي رابط قبل إدخال البيانات الشخصية.
-                </p>
-            </div>
+            <p>
+                دليل مستقل للمساعدات والخدمات الإنسانية
+                والتعليمية.
+            </p>
 
-            <div class="box">
-                <h2>هدف الموقع</h2>
+        </div>
 
-                <p>
-                    يهدف غيث المجد إلى تسهيل الوصول إلى
-                    المعلومات والروابط الرسمية المتعلقة
-                    بالمساعدات والخدمات وتقليل صعوبة البحث
-                    بين الروابط المتعددة.
-                </p>
-            </div>
+        <div class="box">
 
-            <div class="box">
-                <h2>تنبيه مهم</h2>
+            <h2>ما هو غيث المجد؟</h2>
 
-                <p>
-                    غيث المجد ليس جهة مانحة ولا يستلم أموالًا
-                    من المستفيدين، ولا يطلب رسومًا مقابل
-                    الوصول إلى روابط المساعدات.
-                </p>
+            <p>
+                غيث المجد هو دليل مستقل يهدف إلى تنظيم
+                وتجميع روابط المساعدات والخدمات الإنسانية
+                والتعليمية المتاحة للعائلات والأفراد
+                في قطاع غزة وفلسطين.
+            </p>
 
-                <p>
-                    يجب دائمًا مراجعة الجهة الرسمية قبل
-                    مشاركة أي بيانات شخصية.
-                </p>
-            </div>
+            <p>
+                يساعد الموقع المستخدم على الوصول إلى
+                الروابط والنماذج الرسمية بصورة أوضح،
+                مع التنبيه إلى ضرورة التأكد من مصدر
+                أي رابط قبل إدخال البيانات الشخصية.
+            </p>
 
-            <div class="box">
-                <h2>الخصوصية والأمان</h2>
+        </div>
 
-                <p>
-                    لا ينبغي إدخال كلمات المرور أو البيانات
-                    البنكية أو أي معلومات حساسة في أي رابط
-                    قبل التأكد من أن الرابط تابع للجهة
-                    الرسمية المعنية.
-                </p>
-            </div>
+        <div class="box">
 
-            <div class="box">
-                <h2>التواصل</h2>
+            <h2>هدف الموقع</h2>
 
-                <p>
-                    واتساب / هاتف:
-                    <strong>0592480001</strong>
-                </p>
+            <p>
+                يهدف غيث المجد إلى تسهيل الوصول إلى
+                المعلومات والروابط الرسمية المتعلقة
+                بالمساعدات والخدمات وتقليل صعوبة البحث
+                بين الروابط المتعددة.
+            </p>
 
-                <p>
-                    البريد الإلكتروني:
-                    <a href="mailto:n299964@hotmail.com">
-                        n299964@hotmail.com
-                    </a>
-                </p>
+        </div>
 
-                <p>
-                    البريد الإلكتروني:
-                    <a href="mailto:zaeemkwaik@gmail.com">
-                        zaeemkwaik@gmail.com
-                    </a>
-                </p>
+        <div class="box">
 
-                <a href="/">
-                    العودة إلى الصفحة الرئيسية
+            <h2>الالتزام والوصف</h2>
+
+            <p>
+                يلتزم غيث المجد بتقديم دليل منظم وواضح
+                للوصول إلى الروابط والخدمات الرسمية
+                المتعلقة بالمساعدات الإنسانية والتعليمية
+                في فلسطين.
+            </p>
+
+            <p>
+                نسعى إلى عرض الروابط بصورة مباشرة مع
+                توضيح الجهة أو الخدمة المرتبطة بكل رابط،
+                مع الحرص على مراجعة المعلومات والروابط
+                وتحديثها قدر الإمكان.
+            </p>
+
+            <p>
+                غيث المجد منصة مستقلة ولا يمثل أي مؤسسة
+                حكومية أو منظمة إنسانية أو جهة مانحة،
+                ولا يضمن الحصول على أي مساعدة أو قبول
+                أي طلب.
+            </p>
+
+        </div>
+
+        <div class="box">
+
+            <h2>تنبيه مهم</h2>
+
+            <p>
+                غيث المجد ليس جهة مانحة ولا يستلم أموالًا
+                من المستفيدين، ولا يطلب رسومًا مقابل
+                الوصول إلى روابط المساعدات.
+            </p>
+
+            <p>
+                يجب دائمًا مراجعة الجهة الرسمية قبل
+                مشاركة أي بيانات شخصية أو تقديم أي طلب.
+            </p>
+
+        </div>
+
+        <div class="box">
+
+            <h2>الخصوصية والأمان</h2>
+
+            <p>
+                لا ينبغي إدخال كلمات المرور أو البيانات
+                البنكية أو أي معلومات حساسة في أي رابط
+                قبل التأكد من أن الرابط تابع للجهة
+                الرسمية المعنية.
+            </p>
+
+        </div>
+
+        <div class="box">
+
+            <h2>التواصل</h2>
+
+            <p>
+                واتساب / هاتف:
+                <strong>0592480001</strong>
+            </p>
+
+            <p>
+                البريد الإلكتروني:
+                <a href="mailto:n299964@hotmail.com">
+                    n299964@hotmail.com
                 </a>
-            </div>
+            </p>
 
-        </main>
-    </body>
-    </html>
-    """
+            <p>
+                البريد الإلكتروني:
+                <a href="mailto:zaeemkwaik@gmail.com">
+                    zaeemkwaik@gmail.com
+                </a>
+            </p>
 
+            <a href="/">
+                العودة إلى الصفحة الرئيسية
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
+"""
 
 @app.route("/privacy")
 def privacy():
-    return """
-    <!doctype html>
-    <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+return """
+<!doctype html>
+<html lang="ar" dir="rtl">
 
-        <meta name="description"
-              content="سياسة الخصوصية لموقع غيث المجد">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>سياسة الخصوصية - غيث المجد</title>
+    <meta name="description"
+          content="سياسة الخصوصية لموقع غيث المجد">
 
-        <style>
-            body {
-                margin: 0;
-                background: #f5f5f5;
-                color: #111;
-                font-family: Arial, Tahoma, sans-serif;
-                line-height: 2;
-            }
+    <title>سياسة الخصوصية - غيث المجد</title>
 
-            .page {
-                width: min(100% - 30px, 900px);
-                margin: 30px auto;
-            }
+    <style>
+        body {
+            margin: 0;
+            background: #f5f5f5;
+            color: #111;
+            font-family: Arial, Tahoma, sans-serif;
+            line-height: 2;
+        }
 
-            .box {
-                background: #fff;
-                padding: 25px;
-                border-radius: 18px;
-                border: 1px solid #e5e5e5;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
-            }
+        .page {
+            width: min(100% - 30px, 900px);
+            margin: 30px auto;
+        }
 
-            h1, h2 {
-                color: #111;
-            }
+        .box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+        }
 
-            h1 {
-                text-align: center;
-            }
+        h1,
+        h2 {
+            color: #111;
+        }
 
-            p {
-                color: #444;
-            }
+        h1 {
+            text-align: center;
+        }
 
-            a {
-                display: inline-block;
-                margin-top: 15px;
-                padding: 11px 20px;
-                background: #111;
-                color: #fff;
-                text-decoration: none;
-                border-radius: 10px;
-                font-weight: bold;
-            }
-        </style>
-    </head>
+        p {
+            color: #444;
+        }
 
-    <body>
-        <main class="page">
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 20px;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
-            <div class="box">
+<body>
 
-                <h1>سياسة الخصوصية</h1>
+    <main class="page">
 
-                <h2>مقدمة</h2>
+        <div class="box">
 
-                <p>
-                    نحترم خصوصية زوار موقع غيث المجد،
-                    ونسعى إلى توضيح كيفية التعامل مع المعلومات
-                    أثناء استخدام الموقع.
-                </p>
+            <h1>سياسة الخصوصية</h1>
 
-                <h2>المعلومات الشخصية</h2>
+            <h2>مقدمة</h2>
 
-                <p>
-                    غيث المجد لا يطلب من الزوار إدخال كلمات
-                    المرور أو البيانات البنكية أو المعلومات
-                    الحساسة داخل الموقع.
-                </p>
+            <p>
+                نحترم خصوصية زوار موقع غيث المجد،
+                ونسعى إلى توضيح كيفية التعامل مع المعلومات
+                أثناء استخدام الموقع.
+            </p>
 
-                <h2>الروابط الخارجية</h2>
+            <h2>المعلومات الشخصية</h2>
 
-                <p>
-                    يحتوي الموقع على روابط لجهات ومؤسسات
-                    خارجية. عند الانتقال إلى أي رابط خارجي،
-                    يصبح المستخدم خاضعًا لسياسة الخصوصية
-                    وشروط استخدام الجهة الخارجية.
-                </p>
+            <p>
+                غيث المجد لا يطلب من الزوار إدخال كلمات
+                المرور أو البيانات البنكية أو المعلومات
+                الحساسة داخل الموقع.
+            </p>
 
-                <h2>ملفات تعريف الارتباط والإعلانات</h2>
+            <h2>الروابط الخارجية</h2>
 
-                <p>
-                    قد يستخدم الموقع خدمات خارجية، بما في ذلك
-                    خدمات الإعلانات والتحليلات، وقد تستخدم هذه
-                    الخدمات ملفات تعريف الارتباط وفقًا لسياساتها
-                    الخاصة.
-                </p>
+            <p>
+                يحتوي الموقع على روابط لجهات ومؤسسات
+                خارجية. عند الانتقال إلى أي رابط خارجي،
+                يصبح المستخدم خاضعًا لسياسة الخصوصية
+                وشروط استخدام الجهة الخارجية.
+            </p>
 
-                <h2>أمان المستخدم</h2>
+            <h2>ملفات تعريف الارتباط والإعلانات</h2>
 
-                <p>
-                    ننصح دائمًا بالتأكد من عنوان الموقع والجهة
-                    الرسمية قبل مشاركة أي معلومات شخصية.
-                </p>
+            <p>
+                قد يستخدم الموقع خدمات خارجية، بما في ذلك
+                خدمات الإعلانات والتحليلات، وقد تستخدم هذه
+                الخدمات ملفات تعريف الارتباط وفقًا لسياساتها
+                الخاصة.
+            </p>
 
-                <h2>التواصل</h2>
+            <h2>أمان المستخدم</h2>
 
-                <p>
-                    للاستفسارات المتعلقة بالخصوصية:
-                </p>
+            <p>
+                ننصح دائمًا بالتأكد من عنوان الموقع والجهة
+                الرسمية قبل مشاركة أي معلومات شخصية.
+            </p>
 
-                <p>
-                    <a href="mailto:n299964@hotmail.com">
-                        n299964@hotmail.com
-                    </a>
-                </p>
+            <h2>التواصل</h2>
 
-                <a href="/">
-                    العودة إلى الصفحة الرئيسية
+            <p>
+                للاستفسارات المتعلقة بالخصوصية:
+            </p>
+
+            <p>
+                <a href="mailto:n299964@hotmail.com">
+                    n299964@hotmail.com
                 </a>
+            </p>
 
-            </div>
+            <a href="/">
+                العودة إلى الصفحة الرئيسية
+            </a>
 
-        </main>
-    </body>
-    </html>
-    """
+        </div>
 
+    </main>
+
+</body>
+</html>
+"""
 
 @app.route("/terms")
 def terms():
-    return """
-    <!doctype html>
-    <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+return """
+<!doctype html>
+<html lang="ar" dir="rtl">
 
-        <meta name="description"
-              content="شروط استخدام موقع غيث المجد">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>شروط الاستخدام - غيث المجد</title>
+    <meta name="description"
+          content="شروط استخدام موقع غيث المجد">
 
-        <style>
-            body {
-                margin: 0;
-                background: #f5f5f5;
-                color: #111;
-                font-family: Arial, Tahoma, sans-serif;
-                line-height: 2;
-            }
+    <title>شروط الاستخدام - غيث المجد</title>
 
-            .page {
-                width: min(100% - 30px, 900px);
-                margin: 30px auto;
-            }
+    <style>
+        body {
+            margin: 0;
+            background: #f5f5f5;
+            color: #111;
+            font-family: Arial, Tahoma, sans-serif;
+            line-height: 2;
+        }
 
-            .box {
-                background: #fff;
-                padding: 25px;
-                border-radius: 18px;
-                border: 1px solid #e5e5e5;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
-            }
+        .page {
+            width: min(100% - 30px, 900px);
+            margin: 30px auto;
+        }
 
-            h1, h2 {
-                color: #111;
-            }
+        .box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+        }
 
-            h1 {
-                text-align: center;
-                font-size: 30px;
-            }
+        h1,
+        h2 {
+            color: #111;
+        }
 
-            h2 {
-                font-size: 21px;
-                margin-top: 25px;
-            }
+        h1 {
+            text-align: center;
+            font-size: 30px;
+        }
 
-            p {
-                color: #444;
-            }
+        h2 {
+            font-size: 21px;
+            margin-top: 25px;
+        }
 
-            a {
-                display: inline-block;
-                margin-top: 15px;
-                padding: 11px 20px;
-                background: #111;
-                color: #fff;
-                text-decoration: none;
-                border-radius: 10px;
-                font-weight: bold;
-            }
-        </style>
-    </head>
+        p {
+            color: #444;
+        }
 
-    <body>
-        <main class="page">
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 20px;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
-            <div class="box">
+<body>
 
-                <h1>شروط الاستخدام</h1>
+    <main class="page">
 
-                <h2>مقدمة</h2>
+        <div class="box">
 
-                <p>
-                    باستخدامك موقع غيث المجد، فإنك توافق على
-                    استخدام الموقع وفق الشروط الموضحة في هذه الصفحة.
-                </p>
+            <h1>شروط الاستخدام</h1>
 
-                <h2>طبيعة الموقع</h2>
+            <h2>مقدمة</h2>
 
-                <p>
-                    غيث المجد دليل مستقل يجمع روابط وخدمات
-                    ومعلومات تساعد المستخدمين على الوصول إلى
-                    الجهات والمصادر الرسمية.
-                </p>
+            <p>
+                باستخدامك موقع غيث المجد، فإنك توافق على
+                استخدام الموقع وفق الشروط الموضحة في هذه الصفحة.
+            </p>
 
-                <p>
-                    الموقع ليس جهة حكومية ولا جهة مانحة،
-                    ولا يمثل المؤسسات أو الجهات التي يتم عرض
-                    روابطها.
-                </p>
+            <h2>طبيعة الموقع</h2>
 
-                <h2>الروابط الخارجية</h2>
+            <p>
+                غيث المجد دليل مستقل يجمع روابط وخدمات
+                ومعلومات تساعد المستخدمين على الوصول إلى
+                الجهات والمصادر الرسمية.
+            </p>
 
-                <p>
-                    يحتوي الموقع على روابط لمواقع وخدمات خارجية.
-                    عند الضغط على أي رابط والانتقال إلى موقع آخر،
-                    يصبح استخدامك لذلك الموقع خاضعًا لشروطه
-                    وسياساته الخاصة.
-                </p>
+            <p>
+                الموقع ليس جهة حكومية ولا جهة مانحة،
+                ولا يمثل المؤسسات أو الجهات التي يتم عرض
+                روابطها.
+            </p>
 
-                <h2>دقة المعلومات</h2>
+            <h2>الروابط الخارجية</h2>
 
-                <p>
-                    نس
+            <p>
+                يحتوي الموقع على روابط لمواقع وخدمات خارجية.
+                عند الضغط على أي رابط والانتقال إلى موقع آخر،
+                يصبح استخدامك لذلك الموقع خاضعًا لشروطه
+                وسياساته الخاصة.
+            </p>
+
+            <h2>دقة المعلومات</h2>
+
+            <p>
+                نسعى إلى تقديم معلومات وروابط مفيدة ودقيقة
+                قدر الإمكان، إلا أن بعض الروابط أو الخدمات
+                الخارجية قد تتغير أو تتوقف أو يتم تحديثها
+                من قبل الجهات المالكة لها.
+            </p>
+
+            <p>
+                لذلك يجب على المستخدم التحقق من المعلومات
+                من المصدر الرسمي قبل الاعتماد عليها أو
+                مشاركة أي بيانات شخصية.
+            </p>
+
+            <h2>المسؤولية</h2>
+
+            <p>
+                غيث المجد لا يضمن قبول طلبات المساعدة أو
+                الحصول على أي خدمة أو منحة أو منفعة من
+                الجهات الخارجية التي يتم ربط مواقعها.
+            </p>
+
+            <p>
+                يتحمل المستخدم مسؤولية استخدام المواقع
+                والخدمات الخارجية والبيانات التي يقدمها
+                لتلك الجهات.
+            </p>
+
+            <h2>الرسوم والمدفوعات</h2>
+
+            <p>
+                غيث المجد لا يطلب من المستخدمين دفع رسوم
+                مقابل الوصول إلى الروابط المدرجة في الموقع.
+            </p>
+
+            <p>
+                إذا طلبت جهة خارجية أي رسوم مقابل خدمة،
+                فيجب على المستخدم التحقق من الجهة وشروطها
+                الرسمية قبل الدفع.
+            </p>
+
+            <h2>التعديلات</h2>
+
+            <p>
+                قد يتم تحديث محتوى الموقع أو هذه الشروط
+                من وقت لآخر بهدف تحسين الخدمة وتوضيح
+                المعلومات المقدمة للمستخدمين.
+            </p>
+
+            <h2>التواصل</h2>
+
+            <p>
+                للاستفسارات المتعلقة بشروط الاستخدام:
+            </p>
+
+            <p>
+                <a href="mailto:n299964@hotmail.com">
+                    n299964@hotmail.com
+                </a>
+            </p>
+
+            <p>
+                <a href="mailto:zaeemkwaik@gmail.com">
+                    zaeemkwaik@gmail.com
+                </a>
+            </p>
+
+            <a href="/">
+                العودة إلى الصفحة الرئيسية
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
+"""
+
+if name == "main":
+app.run(
+host="0.0.0.0",
+port=int(os.environ.get("PORT", 5000))
+)
