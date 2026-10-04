@@ -22,8 +22,7 @@ def about():
     <html lang="ar" dir="rtl">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta name="description"
               content="عن غيث المجد وأهداف الموقع وطريقة استخدامه">
@@ -35,10 +34,7 @@ def about():
                 margin: 0;
                 background: #f5f5f5;
                 color: #111;
-                font-family:
-                    Arial,
-                    Tahoma,
-                    sans-serif;
+                font-family: Arial, Tahoma, sans-serif;
                 line-height: 2;
             }
 
@@ -53,12 +49,10 @@ def about():
                 margin-bottom: 18px;
                 border-radius: 18px;
                 border: 1px solid #e5e5e5;
-                box-shadow:
-                    0 8px 25px rgba(0, 0, 0, .07);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
             }
 
-            h1,
-            h2 {
+            h1, h2 {
                 color: #111;
             }
 
@@ -89,7 +83,6 @@ def about():
     </head>
 
     <body>
-
         <main class="page">
 
             <div class="box">
@@ -184,7 +177,139 @@ def about():
             </div>
 
         </main>
+    </body>
+    </html>
+    """
 
+
+@app.route("/privacy")
+def privacy():
+    return """
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description"
+              content="سياسة الخصوصية لموقع غيث المجد">
+
+        <title>سياسة الخصوصية - غيث المجد</title>
+
+        <style>
+            body {
+                margin: 0;
+                background: #f5f5f5;
+                color: #111;
+                font-family: Arial, Tahoma, sans-serif;
+                line-height: 2;
+            }
+
+            .page {
+                width: min(100% - 30px, 900px);
+                margin: 30px auto;
+            }
+
+            .box {
+                background: #fff;
+                padding: 25px;
+                border-radius: 18px;
+                border: 1px solid #e5e5e5;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+            }
+
+            h1, h2 {
+                color: #111;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            p {
+                color: #444;
+            }
+
+            a {
+                display: inline-block;
+                margin-top: 15px;
+                padding: 11px 20px;
+                background: #111;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main class="page">
+
+            <div class="box">
+
+                <h1>سياسة الخصوصية</h1>
+
+                <h2>مقدمة</h2>
+
+                <p>
+                    نحترم خصوصية زوار موقع غيث المجد،
+                    ونسعى إلى توضيح كيفية التعامل مع المعلومات
+                    أثناء استخدام الموقع.
+                </p>
+
+                <h2>المعلومات الشخصية</h2>
+
+                <p>
+                    غيث المجد لا يطلب من الزوار إدخال كلمات
+                    المرور أو البيانات البنكية أو المعلومات
+                    الحساسة داخل الموقع.
+                </p>
+
+                <h2>الروابط الخارجية</h2>
+
+                <p>
+                    يحتوي الموقع على روابط لجهات ومؤسسات
+                    خارجية. عند الانتقال إلى أي رابط خارجي،
+                    يصبح المستخدم خاضعًا لسياسة الخصوصية
+                    وشروط استخدام الجهة الخارجية.
+                </p>
+
+                <h2>ملفات تعريف الارتباط والإعلانات</h2>
+
+                <p>
+                    قد يستخدم الموقع خدمات خارجية، بما في ذلك
+                    خدمات الإعلانات والتحليلات، وقد تستخدم هذه
+                    الخدمات ملفات تعريف الارتباط وفقًا لسياساتها
+                    الخاصة.
+                </p>
+
+                <h2>أمان المستخدم</h2>
+
+                <p>
+                    ننصح دائمًا بالتأكد من عنوان الموقع والجهة
+                    الرسمية قبل مشاركة أي معلومات شخصية.
+                </p>
+
+                <h2>التواصل</h2>
+
+                <p>
+                    للاستفسارات المتعلقة بالخصوصية:
+                </p>
+
+                <p>
+                    <a href="mailto:n299964@hotmail.com">
+                        n299964@hotmail.com
+                    </a>
+                </p>
+
+                <a href="/">
+                    العودة إلى الصفحة الرئيسية
+                </a>
+
+            </div>
+
+        </main>
     </body>
     </html>
     """
@@ -204,6 +329,7 @@ def page_not_found(error):
         <meta charset="utf-8">
         <meta name="viewport"
               content="width=device-width, initial-scale=1">
+
         <title>الصفحة غير موجودة - غيث المجد</title>
 
         <style>
@@ -212,10 +338,7 @@ def page_not_found(error):
                 padding: 30px;
                 background: #f5f5f5;
                 color: #222;
-                font-family:
-                    Arial,
-                    Tahoma,
-                    sans-serif;
+                font-family: Arial, Tahoma, sans-serif;
                 text-align: center;
             }
 
@@ -226,8 +349,7 @@ def page_not_found(error):
                 background: #ffffff;
                 border-radius: 18px;
                 border: 1px solid #e2e2e2;
-                box-shadow:
-                    0 10px 30px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             }
 
             h1 {
