@@ -23,6 +23,13 @@ def ads_txt():
     )
 
 
+@app.route("/robots.txt")
+def robots_txt():
+    return """User-agent: *
+Allow: /
+""", 200, {"Content-Type": "text/plain"}
+
+
 @app.route("/about")
 def about():
     return """
