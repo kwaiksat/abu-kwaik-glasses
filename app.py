@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -12,6 +12,15 @@ app.secret_key = os.environ.get(
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
+@app.route("/ads.txt")
+def ads_txt():
+    return send_from_directory(
+        os.path.dirname(os.path.abspath(__file__)),
+        "ads.txt",
+        mimetype="text/plain"
+    )
 
 
 @app.route("/about")
