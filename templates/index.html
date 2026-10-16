@@ -167,10 +167,11 @@
         }
 
         .organization-content h3 {
-            margin: 0 0 5px;
+            margin: 0;
             font-size: 17px;
             font-weight: 800;
             color: #111;
+            line-height: 1.6;
         }
 
         .organization-content p {
@@ -195,34 +196,140 @@
             font-weight: bold;
         }
 
-        /* بنر افحص غازك */
+        /* أيقونة شعلة صغيرة بتدرجات وظلال */
+        .gas-icon {
+            width: 31px;
+            height: 31px;
+            display: block;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.22));
+        }
+
+        .gas-service .organization-content h3,
+        .new-service .organization-content h3 {
+            margin: 0;
+        }
+
+        /* الزر الأول: افحص غازك */
         .featured-gas {
-            background: linear-gradient(135deg, #fff7ed, #ffffff);
+            background: linear-gradient(135deg, #fff0d9, #fffaf2);
             border: 2px solid #f59e0b;
         }
 
         .featured-gas:hover {
             border-color: #ea580c;
-            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.13);
+            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.15);
         }
 
         .featured-gas .organization-icon {
-            background: #ffedd5;
-            color: #ea580c;
-        }
-
-        .featured-gas .organization-icon .gas-icon {
-            width: 31px;
-            height: 31px;
-            display: block;
+            background: #ffe0b2;
         }
 
         .featured-gas .organization-content h3 {
-            color: #c2410c;
+            color: #9a3412;
         }
 
         .featured-gas .organization-arrow {
             background: #ea580c;
+        }
+
+        /* الزر الثاني: معالجة مشاكل الغاز */
+        .gas-problems {
+            background: linear-gradient(135deg, #ddf3e5, #f5fff8);
+            border: 2px solid #72c997;
+        }
+
+        .gas-problems:hover {
+            border-color: #21834b;
+            box-shadow: 0 8px 20px rgba(33, 131, 75, 0.13);
+        }
+
+        .gas-problems .organization-icon {
+            background: #c6ead3;
+        }
+
+        .gas-problems .organization-content h3 {
+            color: #155d35;
+        }
+
+        .gas-problems .organization-arrow {
+            background: #21834b;
+        }
+
+        /* الزر الثالث: التسجيل للاستفادة من الغاز */
+        .gas-register {
+            background: linear-gradient(135deg, #ddebff, #f6f9ff);
+            border: 2px solid #8bb7f0;
+        }
+
+        .gas-register:hover {
+            border-color: #2865b0;
+            box-shadow: 0 8px 20px rgba(40, 101, 176, 0.13);
+        }
+
+        .gas-register .organization-icon {
+            background: #c8ddff;
+        }
+
+        .gas-register .organization-content h3 {
+            color: #174477;
+        }
+
+        .gas-register .organization-arrow {
+            background: #2865b0;
+        }
+
+        /* التسجيل في جمعية الزهراء */
+        .zahraa-service {
+            background: linear-gradient(135deg, #f3e8ff, #fcf8ff);
+            border: 2px solid #c4a0e8;
+        }
+
+        .zahraa-service:hover {
+            border-color: #8545b5;
+            box-shadow: 0 8px 20px rgba(133, 69, 181, 0.13);
+        }
+
+        .zahraa-service .organization-icon {
+            background: #e7d4fa;
+        }
+
+        .zahraa-service .organization-content h3 {
+            color: #582a7d;
+        }
+
+        .zahraa-service .organization-arrow {
+            background: #8545b5;
+        }
+
+        /* وزارة التنمية الاجتماعية - غزة */
+        .mosd-gaza-service {
+            background: linear-gradient(135deg, #e0f2fe, #f5fbff);
+            border: 2px solid #83c7e9;
+        }
+
+        .mosd-gaza-service:hover {
+            border-color: #1675a9;
+            box-shadow: 0 8px 20px rgba(22, 117, 169, 0.13);
+        }
+
+        .mosd-gaza-service .organization-icon {
+            background: #c5e8fa;
+        }
+
+        .mosd-gaza-service .organization-content h3 {
+            color: #124c70;
+        }
+
+        .mosd-gaza-service .organization-arrow {
+            background: #1675a9;
+        }
+
+        /* أيقونة مساعدات بتدرج لوني */
+        .aid-icon {
+            width: 35px;
+            height: 35px;
+            display: block;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
         }
 
         /* بنر تطبيق موديل التعليمي */
@@ -397,9 +504,14 @@
                 font-size: 16px;
             }
 
-            .featured-gas .organization-icon .gas-icon {
-                width: 28px;
-                height: 28px;
+            .gas-icon {
+                width: 27px;
+                height: 27px;
+            }
+
+            .aid-icon {
+                width: 31px;
+                height: 31px;
             }
 
             .featured-moodle .organization-icon .graduation-icon {
@@ -488,36 +600,208 @@
 
     <div class="organizations">
 
-        <!-- البنر الأول: افحص غازك -->
-        <a class="organization-banner featured-gas"
+        <!-- 1. افحص غازك -->
+        <a class="organization-banner featured-gas gas-service"
            href="https://e-gaza.com/check"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           aria-label="افحص غازك">
 
             <div class="organization-icon">
                 <svg class="gas-icon"
-                     viewBox="0 0 24 24"
-                     fill="none"
+                     viewBox="0 0 64 64"
                      xmlns="http://www.w3.org/2000/svg"
                      aria-hidden="true">
-                    <path
-                        d="M13.5 2.5C14.2 6.2 10.8 7.3 11.5 10.2C9.8 9.5 9 8.2 9.1 6.8C6.8 9 5 11.5 5 14.7C5 19 8.1 22 12 22C16 22 19 19 19 15.1C19 10.2 15.8 6.1 13.5 2.5Z"
-                        fill="#EA580C"/>
-                    <path
-                        d="M12.5 13C13 15 10.5 16 11.3 17.5C11.7 18.2 12.3 18.5 13 18.5C14.3 18.5 15.2 17.5 15.2 16.3C15.2 14.9 13.9 13.8 12.5 13Z"
-                        fill="#FDBA74"/>
+                    <defs>
+                        <linearGradient id="flameOne" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fff176"/>
+                            <stop offset="42%" stop-color="#ff9800"/>
+                            <stop offset="100%" stop-color="#e53935"/>
+                        </linearGradient>
+                        <linearGradient id="flameInnerOne" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fffde7"/>
+                            <stop offset="100%" stop-color="#ffb74d"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M35 3C39 16 27 20 32 29C23 26 20 20 22 14C12 23 7 33 10 43C12 54 21 60 32 60C46 60 55 49 53 37C51 24 42 13 35 3Z"
+                          fill="url(#flameOne)"/>
+                    <path d="M33 32C35 39 28 42 31 48C25 46 23 42 25 38C20 43 20 51 27 55C33 59 42 54 42 47C42 41 38 36 33 32Z"
+                          fill="url(#flameInnerOne)"/>
                 </svg>
             </div>
 
             <div class="organization-content">
                 <h3>افحص غازك</h3>
-                <p>الدخول مباشرة لفحص حالة الغاز عبر البوابة الإلكترونية</p>
             </div>
 
             <div class="organization-arrow">←</div>
         </a>
 
-        <!-- البنر الثاني: تطبيق موديل التعليمي -->
+        <!-- 2. معالجة مشاكل الغاز -->
+        <a class="organization-banner gas-problems gas-service"
+           href="https://e-gaza.com/support-tickets"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="معالجة مشاكل الغاز">
+
+            <div class="organization-icon">
+                <svg class="gas-icon"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+                    <defs>
+                        <linearGradient id="flameTwo" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fff176"/>
+                            <stop offset="42%" stop-color="#ff9800"/>
+                            <stop offset="100%" stop-color="#e53935"/>
+                        </linearGradient>
+                        <linearGradient id="flameInnerTwo" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fffde7"/>
+                            <stop offset="100%" stop-color="#ffb74d"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M35 3C39 16 27 20 32 29C23 26 20 20 22 14C12 23 7 33 10 43C12 54 21 60 32 60C46 60 55 49 53 37C51 24 42 13 35 3Z"
+                          fill="url(#flameTwo)"/>
+                    <path d="M33 32C35 39 28 42 31 48C25 46 23 42 25 38C20 43 20 51 27 55C33 59 42 54 42 47C42 41 38 36 33 32Z"
+                          fill="url(#flameInnerTwo)"/>
+                </svg>
+            </div>
+
+            <div class="organization-content">
+                <h3>معالجة مشاكل الغاز</h3>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+        <!-- 3. التسجيل للاستفادة من الغاز -->
+        <a class="organization-banner gas-register gas-service"
+           href="https://e-gaza.com/login"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="التسجيل للاستفادة من الغاز">
+
+            <div class="organization-icon">
+                <svg class="gas-icon"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+                    <defs>
+                        <linearGradient id="flameThree" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fff176"/>
+                            <stop offset="42%" stop-color="#ff9800"/>
+                            <stop offset="100%" stop-color="#e53935"/>
+                        </linearGradient>
+                        <linearGradient id="flameInnerThree" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fffde7"/>
+                            <stop offset="100%" stop-color="#ffb74d"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M35 3C39 16 27 20 32 29C23 26 20 20 22 14C12 23 7 33 10 43C12 54 21 60 32 60C46 60 55 49 53 37C51 24 42 13 35 3Z"
+                          fill="url(#flameThree)"/>
+                    <path d="M33 32C35 39 28 42 31 48C25 46 23 42 25 38C20 43 20 51 27 55C33 59 42 54 42 47C42 41 38 36 33 32Z"
+                          fill="url(#flameInnerThree)"/>
+                </svg>
+            </div>
+
+            <div class="organization-content">
+                <h3>التسجيل للاستفادة من الغاز</h3>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+        <!-- 4. التسجيل في جمعية الزهراء -->
+        <a class="organization-banner zahraa-service new-service"
+           href="https://ee.kobotoolbox.org/x/yEHP4WiQ"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="التسجيل في جمعية الزهراء">
+
+            <div class="organization-icon">
+                <svg class="aid-icon"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+                    <defs>
+                        <linearGradient id="heartAid" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#ff9bb2"/>
+                            <stop offset="55%" stop-color="#ec407a"/>
+                            <stop offset="100%" stop-color="#ad1457"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 55S7 40 7 23C7 10 23 6 32 19C41 6 57 10 57 23C57 40 32 55 32 55Z"
+                          fill="url(#heartAid)"
+                          stroke="#fff"
+                          stroke-width="2"/>
+                    <path d="M18 25C18 19 24 17 28 22"
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="3"
+                          stroke-linecap="round"/>
+                    <path d="M32 29V42M25.5 35.5H38.5"
+                          stroke="#fff"
+                          stroke-width="4"
+                          stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="organization-content">
+                <h3>التسجيل في جمعية الزهراء</h3>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+        <!-- 5. وزارة التنمية الاجتماعية - غزة -->
+        <a class="organization-banner mosd-gaza-service new-service"
+           href="https://services.citizen.egaza.ps/login"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="وزارة التنمية الاجتماعية - غزة">
+
+            <div class="organization-icon">
+                <svg class="aid-icon"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+                    <defs>
+                        <linearGradient id="aidBox" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#81d4fa"/>
+                            <stop offset="55%" stop-color="#29b6f6"/>
+                            <stop offset="100%" stop-color="#0277bd"/>
+                        </linearGradient>
+                        <linearGradient id="aidHeart" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#ff8a80"/>
+                            <stop offset="100%" stop-color="#e53935"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M9 23L32 11L55 23L32 35Z"
+                          fill="#b3e5fc"/>
+                    <path d="M9 23L32 35V56L9 44Z"
+                          fill="url(#aidBox)"/>
+                    <path d="M32 35L55 23V44L32 56Z"
+                          fill="#0288d1"/>
+                    <path d="M32 20C35 15 43 17 43 23C43 29 32 35 32 35S21 29 21 23C21 17 29 15 32 20Z"
+                          fill="url(#aidHeart)"
+                          stroke="#fff"
+                          stroke-width="1.5"/>
+                    <path d="M14 25L14 41M38 39L49 33"
+                          stroke="#fff"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          opacity=".65"/>
+                </svg>
+            </div>
+
+            <div class="organization-content">
+                <h3>وزارة التنمية الاجتماعية – غزة</h3>
+            </div>
+
+            <div class="organization-arrow">←</div>
+        </a>
+
+        <!-- البنر الحالي: تطبيق موديل التعليمي -->
         <a class="organization-banner featured-moodle"
            href="https://play.google.com/store/apps/details?id=com.moodle.moodlemobile"
            target="_blank"
@@ -529,17 +813,14 @@
                      fill="none"
                      xmlns="http://www.w3.org/2000/svg"
                      aria-hidden="true">
-                    <path
-                        d="M2 9L12 3L22 9L12 15L2 9Z"
-                        fill="#7C3AED"/>
-                    <path
-                        d="M6 11.5V16C9.5 19 14.5 19 18 16V11.5L12 15L6 11.5Z"
-                        fill="#A78BFA"/>
-                    <path
-                        d="M22 9V15"
-                        stroke="#6D28D9"
-                        stroke-width="2"
-                        stroke-linecap="round"/>
+                    <path d="M2 9L12 3L22 9L12 15L2 9Z"
+                          fill="#7C3AED"/>
+                    <path d="M6 11.5V16C9.5 19 14.5 19 18 16V11.5L12 15L6 11.5Z"
+                          fill="#A78BFA"/>
+                    <path d="M22 9V15"
+                          stroke="#6D28D9"
+                          stroke-width="2"
+                          stroke-linecap="round"/>
                     <circle cx="22" cy="16.5" r="1.5" fill="#6D28D9"/>
                 </svg>
             </div>
