@@ -1,1192 +1,895 @@
 
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>غيث المجد | دليل المساعدات والخدمات في فلسطين</title>
+{% extends "base.html" %}
 
-    <meta name="description"
-          content="غيث المجد دليل مستقل يساعد الفلسطينيين في الوصول إلى روابط المساعدات والخدمات الإنسانية والتعليمية الرسمية في فلسطين.">
+{% block content %}
+<style>
+    :root {
+        --blue: #084875;
+        --blue-light: #1267a5;
+        --green: #16845b;
+        --green-light: #e9f7ef;
+        --text: #243746;
+        --muted: #647789;
+        --border: #dce8ef;
+        --background: #f3f8fc;
+        --white: #ffffff;
+        --shadow: 0 8px 24px rgba(20, 66, 94, .08);
+    }
 
-    <meta name="theme-color" content="#111111">
+    * {
+        box-sizing: border-box;
+    }
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    html {
+        scroll-behavior: smooth;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
+    body {
+        margin: 0;
+        background: var(--background);
+        color: var(--text);
+        font-family: "Cairo", Tahoma, Arial, sans-serif;
+        line-height: 1.9;
+    }
+
+    a {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .ghayth-page {
+        width: min(100% - 24px, 1050px);
+        margin: 0 auto;
+        padding: 18px 0 28px;
+    }
+
+    .ghayth-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 17px 20px;
+        margin-bottom: 20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-bottom: 4px solid var(--green);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+    }
+
+    .ghayth-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+    .ghayth-brand-icon {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #dff7e8, #e0efff);
+        box-shadow: 0 4px 0 #c9e5d5;
+        font-size: 28px;
+    }
+
+    .ghayth-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.45;
+    }
+
+    .ghayth-brand-text strong {
+        color: var(--blue);
+        font-size: 23px;
+        font-weight: 900;
+    }
+
+    .ghayth-brand-text small {
+        color: var(--green);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        direction: ltr;
+        text-align: right;
+    }
+
+    .header-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 15px;
+        border-radius: 12px;
+        background: var(--green-light);
+        color: #096443;
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        margin-bottom: 18px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #084875, #1267a5 65%, #16845b);
+        box-shadow: var(--shadow);
+        text-align: center;
+        color: #fff;
+    }
+
+    .hero::before,
+    .hero::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(255,255,255,.17);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .hero::before {
+        width: 260px;
+        height: 260px;
+        top: -130px;
+        right: -70px;
+    }
+
+    .hero::after {
+        width: 200px;
+        height: 200px;
+        bottom: -125px;
+        left: -50px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 760px;
+    }
+
+    .hero-image {
+        display: block;
+        width: 88px;
+        height: 88px;
+        margin: 0 auto 10px;
+        border: 3px solid rgba(255,255,255,.8);
+        border-radius: 22px;
+        object-fit: cover;
+        background: #fff;
+        box-shadow: 0 7px 20px rgba(0,0,0,.18);
+    }
+
+    .hero h1 {
+        margin: 0 0 7px;
+        font-size: clamp(25px, 5vw, 36px);
+        font-weight: 900;
+        line-height: 1.5;
+    }
+
+    .hero p {
+        margin: 0;
+        color: #edf8ff;
+        font-size: 15px;
+    }
+
+    .intro-box,
+    .notice-box,
+    .info-box,
+    .contact-box,
+    .education-intro {
+        padding: 20px;
+        margin-bottom: 18px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 17px;
+        box-shadow: var(--shadow);
+    }
+
+    .intro-box {
+        border-top: 4px solid var(--green);
+        background: linear-gradient(145deg, #fff, #f1f8fd);
+        text-align: center;
+    }
+
+    .intro-box h2 {
+        margin: 0 0 8px;
+        color: var(--blue);
+        font-size: 23px;
+        font-weight: 900;
+    }
+
+    .intro-box p,
+    .notice-box p,
+    .info-box p,
+    .education-intro p {
+        margin: 0;
+        color: var(--muted);
+    }
+
+    .notice-box {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: #f0f8fd;
+        border-right: 5px solid var(--green);
+    }
+
+    .notice-icon {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+        background: #dff4e7;
+        font-size: 22px;
+    }
+
+    .notice-box h2 {
+        margin: 0 0 4px;
+        color: var(--blue);
+        font-size: 17px;
+    }
+
+    .section {
+        margin: 25px 0;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 15px;
+        color: var(--blue);
+        font-size: clamp(20px, 4vw, 25px);
+        font-weight: 900;
+    }
+
+    .section-title::before {
+        content: "";
+        width: 6px;
+        height: 30px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        background: var(--green);
+    }
+
+    .section-subtitle {
+        margin: -7px 0 15px;
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .service-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+    }
+
+    .service-card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        min-height: 88px;
+        padding: 15px;
+        overflow: hidden;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 5px 16px rgba(20,66,94,.05);
+        color: var(--text);
+        text-decoration: none;
+        transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-3px);
+        border-color: #8fcab0;
+        box-shadow: 0 10px 24px rgba(20,66,94,.12);
+    }
+
+    .service-icon {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        flex-shrink: 0;
+        border-radius: 15px;
+        background: #eaf4fb;
+        font-size: 26px;
+        box-shadow: inset 0 -3px 0 rgba(8,72,117,.06);
+    }
+
+    .service-card.gas .service-icon {
+        background: #fff0e5;
+    }
+
+    .service-card.women .service-icon {
+        background: #fcebf4;
+    }
+
+    .service-card.education .service-icon {
+        background: #e8f0ff;
+    }
+
+    .service-card.social .service-icon {
+        background: #e4f7eb;
+    }
+
+    .service-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .service-info strong {
+        display: block;
+        color: var(--blue);
+        font-size: 15px;
+        font-weight: 900;
+        line-height: 1.7;
+    }
+
+    .service-arrow {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #edf5fb;
+        color: var(--blue-light);
+        font-size: 18px;
+        font-weight: 900;
+    }
+
+    .info-box h2,
+    .contact-box h2 {
+        margin: 0 0 8px;
+        color: var(--blue);
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    .info-list {
+        margin: 10px 0 0;
+        padding-right: 22px;
+        color: var(--muted);
+    }
+
+    .info-list li {
+        margin-bottom: 5px;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+    }
+
+    .contact-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 13px;
+        border-radius: 12px;
+        background: var(--green-light);
+        color: #096443;
+        font-weight: 800;
+        text-align: center;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+    }
+
+    .contact-link.email {
+        background: #eaf4fb;
+        color: var(--blue);
+    }
+
+    .trust-strip {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px;
+        margin: 20px 0;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        background: #fff;
+    }
+
+    .trust-item {
+        padding: 7px 12px;
+        border-radius: 10px;
+        background: #f0f8fd;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .site-footer {
+        padding: 24px 16px;
+        border-top: 4px solid var(--green);
+        border-radius: 18px;
+        background: var(--blue);
+        color: #fff;
+        text-align: center;
+    }
+
+    .site-footer strong {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 19px;
+        font-weight: 900;
+    }
+
+    .site-footer p {
+        margin: 5px 0 12px;
+        color: #e4f0f8;
+        font-size: 13px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 18px;
+        margin-top: 12px;
+    }
+
+    .footer-links a {
+        color: #d2f4df;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .copyright {
+        padding-top: 13px;
+        margin-top: 15px;
+        border-top: 1px solid rgba(255,255,255,.2);
+        color: #d8e8f4;
+        font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .ghayth-page {
+            width: min(100% - 16px, 1050px);
+            padding-top: 9px;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background: #f7f7f7;
-            color: #111;
-            font-family: Arial, Tahoma, sans-serif;
+        .ghayth-header {
+            padding: 12px 10px;
+            gap: 7px;
+            border-radius: 14px;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        .ghayth-brand {
+            gap: 8px;
         }
 
-        .page {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 15px 40px;
+        .ghayth-brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            font-size: 22px;
+        }
+
+        .ghayth-brand-text strong {
+            font-size: 18px;
+        }
+
+        .ghayth-brand-text small {
+            font-size: 8px;
+            letter-spacing: .5px;
+        }
+
+        .header-link {
+            padding: 8px 9px;
+            font-size: 11px;
         }
 
         .hero {
-            width: 100%;
-            margin: 0 auto 20px;
-            text-align: center;
+            min-height: 205px;
+            padding: 20px 14px;
+            border-radius: 16px;
         }
 
-        .hero img {
-            display: block;
-            width: 100%;
-            max-width: 900px;
-            height: auto;
-            margin: 0 auto;
-            border-radius: 0 0 20px 20px;
+        .hero-image {
+            width: 72px;
+            height: 72px;
         }
 
-        .intro-box {
-            margin: 20px 0 30px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 17px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-            text-align: right;
-        }
-
-        .intro-box h1 {
-            margin: 0 0 10px;
-            font-size: 24px;
-            text-align: center;
-        }
-
-        .intro-box p {
-            margin: 8px 0;
-            color: #555;
-            font-size: 14px;
-            line-height: 2;
-        }
-
-        .section-title {
-            margin: 28px 0 10px;
-            text-align: center;
-            font-size: 23px;
-            font-weight: 800;
-            color: #111;
-        }
-
-        .section-subtitle {
-            margin: 0 0 20px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .notice-box {
-            margin: 20px 0 25px;
-            padding: 17px 18px;
-            background: #fff;
-            border: 1px solid #e3e3e3;
-            border-right: 5px solid #111;
-            border-radius: 15px;
-            text-align: right;
-        }
-
-        .notice-box h2 {
-            margin: 0 0 8px;
-            font-size: 18px;
-        }
-
-        .notice-box p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-            line-height: 1.9;
-        }
-
-        .organizations {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 13px;
-        }
-
-        .organization-banner {
-            width: 100%;
-            min-height: 82px;
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 17px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                border-color 0.2s ease;
-        }
-
-        .organization-banner:hover {
-            transform: translateY(-2px);
-            border-color: #111;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
-        }
-
-        .organization-banner:active {
-            transform: scale(0.985);
-        }
-
-        .organization-icon {
-            width: 55px;
-            height: 55px;
-            min-width: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 14px;
-            background: #f1f1f1;
-            border-radius: 15px;
-            font-size: 27px;
-        }
-
-        .organization-content {
-            flex: 1;
-            text-align: right;
-        }
-
-        .organization-content h3 {
-            margin: 0;
-            font-size: 17px;
-            font-weight: 800;
-            color: #111;
-            line-height: 1.6;
-        }
-
-        .organization-content p {
-            margin: 0;
+        .hero p {
             font-size: 13px;
-            line-height: 1.6;
-            color: #707070;
         }
 
-        .organization-arrow {
-            width: 35px;
-            height: 35px;
-            min-width: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            border-radius: 50%;
-            background: #111;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* أيقونة شعلة صغيرة بتدرجات وظلال */
-        .gas-icon {
-            width: 31px;
-            height: 31px;
-            display: block;
-            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.22));
-        }
-
-        .gas-service .organization-content h3,
-        .new-service .organization-content h3 {
-            margin: 0;
-        }
-
-        /* الزر الأول: افحص غازك */
-        .featured-gas {
-            background: linear-gradient(135deg, #fff0d9, #fffaf2);
-            border: 2px solid #f59e0b;
-        }
-
-        .featured-gas:hover {
-            border-color: #ea580c;
-            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.15);
-        }
-
-        .featured-gas .organization-icon {
-            background: #ffe0b2;
-        }
-
-        .featured-gas .organization-content h3 {
-            color: #9a3412;
-        }
-
-        .featured-gas .organization-arrow {
-            background: #ea580c;
-        }
-
-        /* الزر الثاني: معالجة مشاكل الغاز */
-        .gas-problems {
-            background: linear-gradient(135deg, #ddf3e5, #f5fff8);
-            border: 2px solid #72c997;
-        }
-
-        .gas-problems:hover {
-            border-color: #21834b;
-            box-shadow: 0 8px 20px rgba(33, 131, 75, 0.13);
-        }
-
-        .gas-problems .organization-icon {
-            background: #c6ead3;
-        }
-
-        .gas-problems .organization-content h3 {
-            color: #155d35;
-        }
-
-        .gas-problems .organization-arrow {
-            background: #21834b;
-        }
-
-        /* الزر الثالث: التسجيل للاستفادة من الغاز */
-        .gas-register {
-            background: linear-gradient(135deg, #ddebff, #f6f9ff);
-            border: 2px solid #8bb7f0;
-        }
-
-        .gas-register:hover {
-            border-color: #2865b0;
-            box-shadow: 0 8px 20px rgba(40, 101, 176, 0.13);
-        }
-
-        .gas-register .organization-icon {
-            background: #c8ddff;
-        }
-
-        .gas-register .organization-content h3 {
-            color: #174477;
-        }
-
-        .gas-register .organization-arrow {
-            background: #2865b0;
-        }
-
-        /* التسجيل في جمعية الزهراء */
-        .zahraa-service {
-            background: linear-gradient(135deg, #f3e8ff, #fcf8ff);
-            border: 2px solid #c4a0e8;
-        }
-
-        .zahraa-service:hover {
-            border-color: #8545b5;
-            box-shadow: 0 8px 20px rgba(133, 69, 181, 0.13);
-        }
-
-        .zahraa-service .organization-icon {
-            background: #e7d4fa;
-        }
-
-        .zahraa-service .organization-content h3 {
-            color: #582a7d;
-        }
-
-        .zahraa-service .organization-arrow {
-            background: #8545b5;
-        }
-
-        /* وزارة التنمية الاجتماعية - غزة */
-        .mosd-gaza-service {
-            background: linear-gradient(135deg, #e0f2fe, #f5fbff);
-            border: 2px solid #83c7e9;
-        }
-
-        .mosd-gaza-service:hover {
-            border-color: #1675a9;
-            box-shadow: 0 8px 20px rgba(22, 117, 169, 0.13);
-        }
-
-        .mosd-gaza-service .organization-icon {
-            background: #c5e8fa;
-        }
-
-        .mosd-gaza-service .organization-content h3 {
-            color: #124c70;
-        }
-
-        .mosd-gaza-service .organization-arrow {
-            background: #1675a9;
-        }
-
-        /* أيقونة مساعدات بتدرج لوني */
-        .aid-icon {
-            width: 35px;
-            height: 35px;
-            display: block;
-            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
-        }
-
-        /* بنر تطبيق موديل التعليمي */
-        .featured-moodle {
-            background: linear-gradient(135deg, #eff6ff, #ffffff);
-            border: 2px solid #60a5fa;
-        }
-
-        .featured-moodle:hover {
-            border-color: #2563eb;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.13);
-        }
-
-        .featured-moodle .organization-icon {
-            background: #ede9fe;
-        }
-
-        .featured-moodle .organization-icon .graduation-icon {
-            width: 33px;
-            height: 33px;
-            display: block;
-        }
-
-        .featured-moodle .organization-content h3 {
-            color: #1d4ed8;
-        }
-
-        .featured-moodle .organization-arrow {
-            background: #2563eb;
-        }
-
-        .section-divider {
-            height: 1px;
-            background: #e5e5e5;
-            margin: 35px 0 25px;
-        }
-
+        .intro-box,
+        .notice-box,
+        .info-box,
+        .contact-box,
         .education-intro {
-            margin: 0 0 20px;
-            padding: 18px;
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 15px;
-            color: #555;
+            padding: 15px;
+        }
+
+        .service-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .service-card {
+            min-height: 77px;
+            padding: 12px;
+        }
+
+        .service-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            font-size: 23px;
+        }
+
+        .service-info strong {
             font-size: 14px;
-            line-height: 2;
-            text-align: right;
         }
 
-        .info-box {
-            margin: 25px 0;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 17px;
-            text-align: right;
+        .contact-grid {
+            grid-template-columns: 1fr;
         }
 
-        .info-box h2 {
-            margin: 0 0 12px;
-            font-size: 19px;
+        .section {
+            margin: 21px 0;
         }
 
-        .info-box p {
-            margin: 8px 0;
-            color: #666;
-            font-size: 14px;
-            line-height: 1.9;
+        .site-footer {
+            padding: 21px 12px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
         }
 
-        .info-box ul {
-            margin: 10px 0 0;
-            padding-right: 20px;
-            color: #555;
-            font-size: 14px;
-            line-height: 2;
+        .service-card {
+            transition: none;
         }
+    }
+</style>
 
-        .contact-box {
-            margin-top: 30px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 17px;
-            text-align: center;
-        }
+<main class="ghayth-page">
 
-        .contact-box h2 {
-            margin: 0 0 15px;
-            font-size: 19px;
-        }
+    <header class="ghayth-header">
+        <a class="ghayth-brand" href="/" aria-label="الصفحة الرئيسية لغيث المجد">
+            <span class="ghayth-brand-icon">🌿</span>
+            <span class="ghayth-brand-text">
+                <strong>غيث المجد</strong>
+                <small>GHAYTH AL-MAJD</small>
+            </span>
+        </a>
 
-        .contact-item {
-            margin: 9px 0;
-            font-size: 14px;
-            color: #333;
-        }
+        <a class="header-link" href="#services">
+            استعرض الخدمات <span>←</span>
+        </a>
+    </header>
 
-        .contact-item a {
-            font-weight: 700;
-        }
+    <section class="hero">
+        <div class="hero-content">
+            <img
+                class="hero-image"
+                src="{{ url_for('static', filename='1790427276274.jpg') }}"
+                alt="شعار غيث المجد"
+                onerror="this.style.display='none'"
+            >
+            <h1>غيث المجد</h1>
+            <p>دليل مستقل للوصول إلى روابط المساعدات والخدمات الإنسانية والتعليمية الرسمية في فلسطين.</p>
+        </div>
+    </section>
 
-        footer {
-            margin-top: 30px;
-            padding: 20px 10px;
-            text-align: center;
-            color: #777;
-            font-size: 12px;
-            line-height: 1.8;
-        }
-
-        .footer-links {
-            margin-top: 10px;
-        }
-
-        .footer-links a {
-            display: inline-block;
-            margin: 0 7px;
-            color: #111;
-            font-weight: 700;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 600px) {
-            .page {
-                padding: 0 10px 30px;
-            }
-
-            .hero img {
-                border-radius: 0 0 15px 15px;
-            }
-
-            .intro-box h1 {
-                font-size: 21px;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-
-            .organization-banner {
-                min-height: 76px;
-                padding: 10px 12px;
-                border-radius: 15px;
-            }
-
-            .organization-icon {
-                width: 48px;
-                height: 48px;
-                min-width: 48px;
-                margin-left: 11px;
-                border-radius: 13px;
-                font-size: 23px;
-            }
-
-            .organization-content h3 {
-                font-size: 15px;
-            }
-
-            .organization-content p {
-                font-size: 12px;
-            }
-
-            .organization-arrow {
-                width: 31px;
-                height: 31px;
-                min-width: 31px;
-                margin-right: 7px;
-                font-size: 16px;
-            }
-
-            .gas-icon {
-                width: 27px;
-                height: 27px;
-            }
-
-            .aid-icon {
-                width: 31px;
-                height: 31px;
-            }
-
-            .featured-moodle .organization-icon .graduation-icon {
-                width: 30px;
-                height: 30px;
-            }
-
-            .footer-links a {
-                margin: 4px 6px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-<div class="page">
-
-    <div class="hero">
-        <img
-            src="{{ url_for('static', filename='1790427276274.jpg') }}"
-            alt="غيث المجد"
-        >
-    </div>
-
-    <div class="intro-box">
-        <h1>غيث المجد</h1>
-
+    <section class="intro-box">
+        <h2>روابط موثوقة لخدمة أهلنا في فلسطين</h2>
         <p>
-            غيث المجد هو دليل مستقل يهدف إلى مساعدة الزائر في الوصول
-            إلى الروابط والخدمات الرسمية المتعلقة بالمساعدات الإنسانية
-            والتعليم والخدمات الإلكترونية في فلسطين.
+            نجمع في غيث المجد روابط الخدمات والمساعدات والتسجيلات التعليمية
+            في مكان واحد لتسهيل الوصول إليها. يرجى التأكد من شروط كل خدمة
+            ومصدر الرابط قبل إرسال بياناتك الشخصية.
         </p>
+    </section>
 
-        <p>
-            نقوم بجمع الروابط في مكان واحد وترتيبها حسب نوع الخدمة،
-            حتى يتمكن المستفيد من الوصول إلى الجهة الرسمية بصورة
-            أسهل وأوضح، دون الحاجة إلى البحث بين صفحات ومواقع متعددة.
-        </p>
-    </div>
+    <section class="notice-box">
+        <span class="notice-icon">🔔</span>
+        <div>
+            <h2>تنويه مهم للزوار</h2>
+            <p>
+                غيث المجد دليل مستقل، وليس جهة مانحة ولا يمثل المؤسسات المذكورة.
+                التسجيل وتقديم الطلبات يتمان عبر المواقع الرسمية لكل مؤسسة،
+                ولا نضمن قبول أي طلب أو توفر المساعدة.
+            </p>
+        </div>
+    </section>
 
-    <div class="notice-box">
-        <h2>تنبيه مهم قبل استخدام الروابط</h2>
+    <section class="section" id="services">
+        <h2 class="section-title">روابط المساعدات والخدمات الإنسانية</h2>
+        <p class="section-subtitle">اضغط على اسم الخدمة للانتقال مباشرة إلى رابطها.</p>
 
-        <p>
-            غيث المجد ليس جهة مانحة ولا يمثل أي مؤسسة حكومية أو
-            منظمة إنسانية، ولا يستلم طلبات المساعدة نيابة عن أي جهة.
-            الروابط الموجودة في الموقع تقود إلى مواقع خارجية تابعة
-            للجهات أو المؤسسات المعنية، ويُنصح دائمًا بالتأكد من
-            بيانات الموقع قبل إدخال أي معلومات شخصية.
-        </p>
-    </div>
+        <div class="service-grid">
 
-    <div class="info-box">
-        <h2>دليل عملي لاستخدام خدمات المساعدة</h2>
+            <a class="service-card gas"
+               href="https://e-gaza.com/check"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🔥</span>
+                <span class="service-info"><strong>افحص غازك</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
 
-        <p>
-            تختلف طريقة التسجيل والاستفادة من المساعدات والخدمات
-            من جهة إلى أخرى، لذلك من المهم قراءة التعليمات الخاصة
-            بكل خدمة قبل إرسال الطلب أو تحديث البيانات.
-        </p>
+            <a class="service-card gas"
+               href="https://e-gaza.com/support-tickets"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🛠️</span>
+                <span class="service-info"><strong>معالجة مشاكل الغاز</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
 
-        <p>
-            عند الدخول إلى أي بوابة، تأكد من عنوان الموقع والجهة
-            التي تدير الخدمة، ولا تشارك كلمات المرور أو الرموز
-            السرية مع أي شخص يدّعي أنه يساعدك في التسجيل.
-        </p>
+            <a class="service-card gas"
+               href="https://e-gaza.com/login"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📝</span>
+                <span class="service-info"><strong>التسجيل للاستفادة من الغاز</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
 
-        <ul>
-            <li>ابدأ بقراءة شروط وتعليمات الجهة قبل تعبئة الطلب.</li>
-            <li>أدخل بياناتك الشخصية في الموقع الرسمي فقط.</li>
-            <li>لا تدفع رسومًا لشخص مقابل التسجيل في خدمة معلنة على أنها مجانية.</li>
-            <li>احتفظ برقم الطلب أو رسالة التأكيد بعد إتمام التسجيل.</li>
-            <li>إذا لم تعمل الصفحة، ارجع إلى الموقع الرئيسي للجهة وابحث عن الخدمة من خلاله.</li>
-            <li>تجنب الروابط التي تصلك من مصادر مجهولة وتطلب معلومات حساسة أو تحويل أموال.</li>
+            <a class="service-card women"
+               href="https://ee.kobotoolbox.org/x/yEHP4WiQ"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">💗</span>
+                <span class="service-info"><strong>التسجيل في جمعية الزهراء</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card social"
+               href="https://services.citizen.egaza.ps/login"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🤝</span>
+                <span class="service-info"><strong>وزارة التنمية الاجتماعية – غزة</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://play.google.com/store/apps/details?id=com.moodle.moodlemobile"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📘</span>
+                <span class="service-info"><strong>موديل التعليمي</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card social"
+               href="https://donate.mosd.gov.ps"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🏛️</span>
+                <span class="service-info"><strong>وزارة التنمية الاجتماعية – المساعدات</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card social"
+               href="https://aid.alfaresalshahm.com/single-reg"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🧾</span>
+                <span class="service-info"><strong>التسجيل لدى الفارس الشهم</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card social"
+               href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🌾</span>
+                <span class="service-info"><strong>برنامج الأغذية العالمي WFP</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card social"
+               href="https://gazaaid.unrwa.org/Login"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🏠</span>
+                <span class="service-info"><strong>خدمات الأونروا – تسجيل الدخول</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card social"
+               href="https://gazaaid.unrwa.org/Home/Requests"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📋</span>
+                <span class="service-info"><strong>طلبات الأونروا</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card gas"
+               href="https://e-gaza.com/login"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🪪</span>
+                <span class="service-info"><strong>الدخول إلى خدمات الغاز</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="section" id="education">
+        <h2 class="section-title">قسم التربية والتعليم الشامل</h2>
+
+        <div class="education-intro">
+            <p>
+                روابط الخدمات التعليمية الفلسطينية، ومواقع الوزارة والخدمات
+                الإلكترونية ونتائج الطلبة. تحقق من الإعلانات والمواعيد المنشورة
+                على الموقع الرسمي لكل جهة.
+            </p>
+        </div>
+
+        <div class="service-grid">
+
+            <a class="service-card education"
+               href="https://www.moe.edu.ps/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🏫</span>
+                <span class="service-info"><strong>وزارة التربية والتعليم الفلسطينية</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://www.moe.edu.ps/services/all"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📚</span>
+                <span class="service-info"><strong>الخدمات الإلكترونية التعليمية</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://gaza.moe.edu.ps/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📍</span>
+                <span class="service-info"><strong>وزارة التربية والتعليم – غزة</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://www.eschool.edu.ps/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">💻</span>
+                <span class="service-info"><strong>بوابة التعليم الإلكتروني</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://moe.edu.ps/student-result"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📝</span>
+                <span class="service-info"><strong>نتائج الطلبة</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://moe.edu.ps/gaza"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🎓</span>
+                <span class="service-info"><strong>خدمات التعليم – غزة</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="section" id="universities">
+        <h2 class="section-title">التعليم العالي والجامعات</h2>
+
+        <div class="service-grid">
+
+            <a class="service-card education"
+               href="https://www.mohe.pna.ps/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🎓</span>
+                <span class="service-info"><strong>وزارة التعليم العالي والبحث العلمي</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://eservices.mohe.pna.ps/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🖥️</span>
+                <span class="service-info"><strong>الخدمات الإلكترونية للتعليم العالي</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://www.mohe.pna.ps/services/Scholarship"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">🏅</span>
+                <span class="service-info"><strong>المنح الدراسية</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+            <a class="service-card education"
+               href="https://www.mohe.pna.ps/Higher-Education/Higher-Education/Certificate-Equivalency-System"
+               target="_blank" rel="noopener noreferrer">
+                <span class="service-icon">📜</span>
+                <span class="service-info"><strong>معادلة الشهادات</strong></span>
+                <span class="service-arrow">←</span>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="info-box">
+        <h2>إرشادات مهمة قبل تقديم طلب المساعدة</h2>
+        <ul class="info-list">
+            <li>تأكد من أن الرابط تابع للجهة المعنية قبل إدخال معلوماتك.</li>
+            <li>اقرأ شروط التسجيل والفئات المستهدفة والمواعيد المعلنة.</li>
+            <li>لا تشارك كلمة المرور أو رموز التحقق مع أي شخص.</li>
+            <li>لا تدفع أموالًا مقابل وعود غير موثقة بالحصول على المساعدة.</li>
+            <li>قد تتغير شروط التسجيل أو تتوقف بعض الروابط؛ راجع الموقع الرسمي للجهة.</li>
         </ul>
+    </section>
+
+    <div class="trust-strip">
+        <span class="trust-item">🔎 روابط مباشرة</span>
+        <span class="trust-item">🔐 إرشادات للسلامة الرقمية</span>
+        <span class="trust-item">📚 خدمات تعليمية</span>
+        <span class="trust-item">🤝 خدمات إنسانية</span>
     </div>
 
-    <h2 class="section-title">
-        روابط المساعدات والخدمات الإنسانية
-    </h2>
-
-    <p class="section-subtitle">
-        مجموعة من الروابط المباشرة للوصول إلى بوابات التسجيل
-        والخدمات والمساعدات المتاحة.
-    </p>
-
-    <div class="organizations">
-
-        <!-- 1. افحص غازك -->
-        <a class="organization-banner featured-gas gas-service"
-           href="https://e-gaza.com/check"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="افحص غازك">
-
-            <div class="organization-icon">
-                <svg class="gas-icon"
-                     viewBox="0 0 64 64"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-                    <defs>
-                        <linearGradient id="flameOne" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#fff176"/>
-                            <stop offset="42%" stop-color="#ff9800"/>
-                            <stop offset="100%" stop-color="#e53935"/>
-                        </linearGradient>
-                        <linearGradient id="flameInnerOne" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#fffde7"/>
-                            <stop offset="100%" stop-color="#ffb74d"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M35 3C39 16 27 20 32 29C23 26 20 20 22 14C12 23 7 33 10 43C12 54 21 60 32 60C46 60 55 49 53 37C51 24 42 13 35 3Z"
-                          fill="url(#flameOne)"/>
-                    <path d="M33 32C35 39 28 42 31 48C25 46 23 42 25 38C20 43 20 51 27 55C33 59 42 54 42 47C42 41 38 36 33 32Z"
-                          fill="url(#flameInnerOne)"/>
-                </svg>
-            </div>
-
-            <div class="organization-content">
-                <h3>افحص غازك</h3>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <!-- 2. معالجة مشاكل الغاز -->
-        <a class="organization-banner gas-problems gas-service"
-           href="https://e-gaza.com/support-tickets"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="معالجة مشاكل الغاز">
-
-            <div class="organization-icon">
-                <svg class="gas-icon"
-                     viewBox="0 0 64 64"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-                    <defs>
-                        <linearGradient id="flameTwo" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#fff176"/>
-                            <stop offset="42%" stop-color="#ff9800"/>
-                            <stop offset="100%" stop-color="#e53935"/>
-                        </linearGradient>
-                        <linearGradient id="flameInnerTwo" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#fffde7"/>
-                            <stop offset="100%" stop-color="#ffb74d"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M35 3C39 16 27 20 32 29C23 26 20 20 22 14C12 23 7 33 10 43C12 54 21 60 32 60C46 60 55 49 53 37C51 24 42 13 35 3Z"
-                          fill="url(#flameTwo)"/>
-                    <path d="M33 32C35 39 28 42 31 48C25 46 23 42 25 38C20 43 20 51 27 55C33 59 42 54 42 47C42 41 38 36 33 32Z"
-                          fill="url(#flameInnerTwo)"/>
-                </svg>
-            </div>
-
-            <div class="organization-content">
-                <h3>معالجة مشاكل الغاز</h3>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <!-- 3. التسجيل للاستفادة من الغاز -->
-        <a class="organization-banner gas-register gas-service"
-           href="https://e-gaza.com/login"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="التسجيل للاستفادة من الغاز">
-
-            <div class="organization-icon">
-                <svg class="gas-icon"
-                     viewBox="0 0 64 64"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-                    <defs>
-                        <linearGradient id="flameThree" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#fff176"/>
-                            <stop offset="42%" stop-color="#ff9800"/>
-                            <stop offset="100%" stop-color="#e53935"/>
-                        </linearGradient>
-                        <linearGradient id="flameInnerThree" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#fffde7"/>
-                            <stop offset="100%" stop-color="#ffb74d"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M35 3C39 16 27 20 32 29C23 26 20 20 22 14C12 23 7 33 10 43C12 54 21 60 32 60C46 60 55 49 53 37C51 24 42 13 35 3Z"
-                          fill="url(#flameThree)"/>
-                    <path d="M33 32C35 39 28 42 31 48C25 46 23 42 25 38C20 43 20 51 27 55C33 59 42 54 42 47C42 41 38 36 33 32Z"
-                          fill="url(#flameInnerThree)"/>
-                </svg>
-            </div>
-
-            <div class="organization-content">
-                <h3>التسجيل للاستفادة من الغاز</h3>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <!-- 4. التسجيل في جمعية الزهراء -->
-        <a class="organization-banner zahraa-service new-service"
-           href="https://ee.kobotoolbox.org/x/yEHP4WiQ"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="التسجيل في جمعية الزهراء">
-
-            <div class="organization-icon">
-                <svg class="aid-icon"
-                     viewBox="0 0 64 64"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-                    <defs>
-                        <linearGradient id="heartAid" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#ff9bb2"/>
-                            <stop offset="55%" stop-color="#ec407a"/>
-                            <stop offset="100%" stop-color="#ad1457"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M32 55S7 40 7 23C7 10 23 6 32 19C41 6 57 10 57 23C57 40 32 55 32 55Z"
-                          fill="url(#heartAid)"
-                          stroke="#fff"
-                          stroke-width="2"/>
-                    <path d="M18 25C18 19 24 17 28 22"
-                          fill="none"
-                          stroke="#fff"
-                          stroke-width="3"
-                          stroke-linecap="round"/>
-                    <path d="M32 29V42M25.5 35.5H38.5"
-                          stroke="#fff"
-                          stroke-width="4"
-                          stroke-linecap="round"/>
-                </svg>
-            </div>
-
-            <div class="organization-content">
-                <h3>التسجيل في جمعية الزهراء</h3>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <!-- 5. وزارة التنمية الاجتماعية - غزة -->
-        <a class="organization-banner mosd-gaza-service new-service"
-           href="https://services.citizen.egaza.ps/login"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="وزارة التنمية الاجتماعية - غزة">
-
-            <div class="organization-icon">
-                <svg class="aid-icon"
-                     viewBox="0 0 64 64"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-                    <defs>
-                        <linearGradient id="aidBox" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#81d4fa"/>
-                            <stop offset="55%" stop-color="#29b6f6"/>
-                            <stop offset="100%" stop-color="#0277bd"/>
-                        </linearGradient>
-                        <linearGradient id="aidHeart" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#ff8a80"/>
-                            <stop offset="100%" stop-color="#e53935"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M9 23L32 11L55 23L32 35Z"
-                          fill="#b3e5fc"/>
-                    <path d="M9 23L32 35V56L9 44Z"
-                          fill="url(#aidBox)"/>
-                    <path d="M32 35L55 23V44L32 56Z"
-                          fill="#0288d1"/>
-                    <path d="M32 20C35 15 43 17 43 23C43 29 32 35 32 35S21 29 21 23C21 17 29 15 32 20Z"
-                          fill="url(#aidHeart)"
-                          stroke="#fff"
-                          stroke-width="1.5"/>
-                    <path d="M14 25L14 41M38 39L49 33"
-                          stroke="#fff"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          opacity=".65"/>
-                </svg>
-            </div>
-
-            <div class="organization-content">
-                <h3>وزارة التنمية الاجتماعية – غزة</h3>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <!-- البنر الحالي: تطبيق موديل التعليمي -->
-        <a class="organization-banner featured-moodle"
-           href="https://play.google.com/store/apps/details?id=com.moodle.moodlemobile"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">
-                <svg class="graduation-icon"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-                    <path d="M2 9L12 3L22 9L12 15L2 9Z"
-                          fill="#7C3AED"/>
-                    <path d="M6 11.5V16C9.5 19 14.5 19 18 16V11.5L12 15L6 11.5Z"
-                          fill="#A78BFA"/>
-                    <path d="M22 9V15"
-                          stroke="#6D28D9"
-                          stroke-width="2"
-                          stroke-linecap="round"/>
-                    <circle cx="22" cy="16.5" r="1.5" fill="#6D28D9"/>
-                </svg>
-            </div>
-
-            <div class="organization-content">
-                <h3>حمّل تطبيق موديل التعليمي</h3>
-                <p>الانتقال إلى متجر Google Play لتحميل تطبيق Moodle</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://donate.mosd.gov.ps"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🏛️</div>
-
-            <div class="organization-content">
-                <h3>وزارة التنمية الاجتماعية</h3>
-                <p>التسجيل وطلبات المساعدة والخدمات الاجتماعية</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://aid.alfaresalshahm.com/single-reg"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🤝</div>
-
-            <div class="organization-content">
-                <h3>الفارس الشهم</h3>
-                <p>الوصول إلى صفحة التسجيل للحصول على المساعدة</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://pal.beneficiaryregistration.cbt.wfp.org/update/login"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🍚</div>
-
-            <div class="organization-content">
-                <h3>برنامج الأغذية العالمي WFP</h3>
-                <p>بوابة المستفيدين وتحديث البيانات</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://gazaaid.unrwa.org/Login"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🏠</div>
-
-            <div class="organization-content">
-                <h3>الأونروا UNRWA</h3>
-                <p>الدخول إلى بوابة المساعدات والخدمات</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://gazaaid.unrwa.org/Home/Requests"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">📋</div>
-
-            <div class="organization-content">
-                <h3>طلبات المساعدة - الأونروا</h3>
-                <p>الوصول إلى صفحة طلبات المساعدة المتاحة</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://e-gaza.com/login"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🔥</div>
-
-            <div class="organization-content">
-                <h3>الخدمات الإلكترونية للغاز</h3>
-                <p>الدخول إلى البوابة الإلكترونية للخدمات</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-    </div>
-
-    <div class="info-box">
-        <h2>كيف تستفيد من دليل المساعدات؟</h2>
-
-        <p>
-            عند اختيار أي خدمة من القائمة، اضغط على البطاقة للانتقال
-            مباشرة إلى الموقع الخارجي المرتبط بها.
-        </p>
-
-        <ul>
-            <li>اقرأ تعليمات الجهة الرسمية قبل التسجيل.</li>
-            <li>استخدم بياناتك الشخصية في المواقع الرسمية فقط.</li>
-            <li>لا تدفع أي مبلغ مقابل التسجيل في خدمة مجانية.</li>
-            <li>احتفظ برقم الطلب أو أي رسالة تأكيد تظهر بعد التسجيل.</li>
-        </ul>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <h2 class="section-title">
-        🎓 التربية والتعليم في فلسطين
-    </h2>
-
-    <p class="section-subtitle">
-        روابط تعليمية وخدمات إلكترونية تساعد الطلبة والأسر
-        والمعلمين في الوصول إلى المصادر الرسمية.
-    </p>
-
-    <div class="education-intro">
-        يضم هذا القسم مجموعة من الروابط التعليمية الرسمية التي
-        يمكن من خلالها متابعة أخبار وزارة التربية والتعليم،
-        والخدمات الإلكترونية، والتعليم الإلكتروني، والنتائج
-        والمعلومات المتعلقة بالمدارس والطلبة.
-
-        <br><br>
-
-        ننصح الزائر بالاعتماد على المصادر الرسمية عند البحث عن
-        إعلان أو نتيجة أو خدمة تعليمية، لأن المعلومات التعليمية
-        قد تتغير حسب الفترة الدراسية والجهة المسؤولة.
-    </div>
-
-    <div class="organizations">
-
-        <a class="organization-banner"
-           href="https://www.moe.edu.ps/"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🎓</div>
-
-            <div class="organization-content">
-                <h3>وزارة التربية والتعليم العالي الفلسطينية</h3>
-                <p>الموقع الرسمي وأخبار وخدمات التربية والتعليم</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://www.moe.edu.ps/services/all"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">📚</div>
-
-            <div class="organization-content">
-                <h3>خدمات وزارة التربية والتعليم</h3>
-                <p>الخدمات والبرامج والمعلومات التعليمية الرسمية</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://gaza.moe.edu.ps/"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">💻</div>
-
-            <div class="organization-content">
-                <h3>الخدمات التعليمية - غزة</h3>
-                <p>الوصول إلى الخدمات والمصادر التعليمية الإلكترونية</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://www.eschool.edu.ps/"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🖥️</div>
-
-            <div class="organization-content">
-                <h3>المدرسة الإلكترونية</h3>
-                <p>خدمات وموارد إلكترونية مرتبطة بالتعليم والطلبة</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://moe.edu.ps/student-result"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">📝</div>
-
-            <div class="organization-content">
-                <h3>نتائج الطلبة</h3>
-                <p>الوصول إلى خدمات الاستعلام عن النتائج التعليمية</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://moe.edu.ps/gaza"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🌐</div>
-
-            <div class="organization-content">
-                <h3>الخدمات التعليمية في غزة</h3>
-                <p>مصادر وخدمات إلكترونية مرتبطة بالتعليم في غزة</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-    </div>
-
-    <div class="section-divider"></div>
-
-    <h2 class="section-title">
-        🏛️ التعليم العالي والجامعات
-    </h2>
-
-    <p class="section-subtitle">
-        روابط رسمية للتعليم العالي والمنح والشهادات والخدمات الجامعية.
-    </p>
-
-    <div class="organizations">
-
-        <a class="organization-banner"
-           href="https://www.mohe.pna.ps/"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🎓</div>
-
-            <div class="organization-content">
-                <h3>وزارة التعليم العالي</h3>
-                <p>الموقع الرسمي وخدمات التعليم العالي في فلسطين</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://eservices.mohe.pna.ps/"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">💻</div>
-
-            <div class="organization-content">
-                <h3>الخدمات الإلكترونية للتعليم العالي</h3>
-                <p>الخدمات الإلكترونية المتعلقة بالتعليم العالي</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://www.mohe.pna.ps/services/Scholarship"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">🎓</div>
-
-            <div class="organization-content">
-                <h3>المنح والبعثات الدراسية</h3>
-                <p>معلومات وخدمات متعلقة بالمنح والبعثات الدراسية</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-        <a class="organization-banner"
-           href="https://www.mohe.pna.ps/Higher-Education/Higher-Education/Certificate-Equivalency-System"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="organization-icon">📜</div>
-
-            <div class="organization-content">
-                <h3>معادلة الشهادات</h3>
-                <p>الخدمة المتعلقة بمعادلة الشهادات والدرجات العلمية</p>
-            </div>
-
-            <div class="organization-arrow">←</div>
-        </a>
-
-    </div>
-
-    <div class="info-box">
-        <h2>ملاحظة حول الروابط الخارجية</h2>
-
-        <p>
-            الروابط الموجودة في غيث المجد تقود إلى مواقع خارجية.
-            قد تقوم الجهات المسؤولة بتغيير صفحاتها أو تحديث عناوين
-            خدماتها من وقت إلى آخر. لذلك يجب دائمًا التأكد من أن
-            الموقع الذي وصلت إليه هو الموقع الرسمي للجهة قبل تقديم
-            أي معلومات أو مستندات.
-        </p>
-    </div>
-
-    <div class="contact-box">
-        <h2>تواصل معنا</h2>
-
-        <div class="contact-item">
-            واتساب / هاتف:
-            <a
-                href="https://wa.me/970592480001"
-                target="_blank"
-                rel="noopener noreferrer">
-                0592480001
+    <section class="contact-box" id="contact">
+        <h2>التواصل مع غيث المجد</h2>
+        <p>للاستفسارات المتعلقة بالموقع أو للإبلاغ عن رابط يحتاج إلى مراجعة.</p>
+
+        <div class="contact-grid">
+            <a class="contact-link"
+               href="https://wa.me/970592480001"
+               target="_blank" rel="noopener noreferrer">
+                <span>💬</span> التواصل عبر واتساب
+            </a>
+
+            <a class="contact-link email"
+               href="mailto:n299964@hotmail.com">
+                <span>✉️</span> البريد الإلكتروني
+            </a>
+
+            <a class="contact-link email"
+               href="mailto:zaeemkwaik@gmail.com">
+                <span>📧</span> بريد الموقع الآخر
             </a>
         </div>
+    </section>
 
-        <div class="contact-item">
-            <a href="mailto:n299964@hotmail.com">
-                n299964@hotmail.com
-            </a>
-        </div>
+    <footer class="site-footer">
+        <strong>غيث المجد | GHAYTH AL-MAJD</strong>
+        <p>دليل مستقل لروابط المساعدات والخدمات الإنسانية والتعليمية الرسمية في فلسطين.</p>
 
-        <div class="contact-item">
-            <a href="mailto:zaeemkwaik@gmail.com">
-                zaeemkwaik@gmail.com
-            </a>
-        </div>
-    </div>
-
-    <footer>
-        غيث المجد © جميع الحقوق محفوظة
-
-        <br>
-
-        دليل مستقل للروابط والخدمات الإنسانية والتعليمية في فلسطين
-
-        <div class="footer-links">
-            <a href="{{ url_for('about') }}">عن غيث المجد</a>
-            |
+        <nav class="footer-links" aria-label="روابط الموقع">
+            <a href="{{ url_for('about') }}">من نحن</a>
             <a href="{{ url_for('privacy') }}">سياسة الخصوصية</a>
-            |
-            <a href="{{ url_for('terms') }}">شروط الاستخدام</a>
+            <a href="{{ url_for('terms') }}">الشروط والأحكام</a>
+            <a href="#contact">تواصل معنا</a>
+            <a href="#services">الخدمات الإنسانية</a>
+            <a href="#education">التربية والتعليم</a>
+        </nav>
+
+        <div class="copyright">
+            © غيث المجد — جميع الحقوق محفوظة.
+            يرجى الرجوع إلى الجهات الرسمية للتحقق من تفاصيل الخدمات.
         </div>
     </footer>
 
-</div>
-</body>
-</html>
+</main>
+{% endblock %}
